@@ -1,0 +1,37 @@
+[
+    {
+      "id": 1,
+      "title": "Bowing in Japan",
+      "content": "Bowing (お辞儀, ojigi) is an important custom in Japan used to greet people, express gratitude, apologize, or show respect. The depth and duration of the bow can indicate the level of respect or status relationship. A slight bow of about 15 degrees is common for casual greetings, while a deep bow of 45 degrees or more is used for formal apologies or showing deep respect. In business settings, the person of lower status typically bows deeper and longer than the person of higher status.",
+      "category": "Etiquette",
+      "chapterIntroduced": "chapter_1"
+    },
+    {
+      "id": 2,
+      "title": "Taking off shoes indoors",
+      "content": "In Japan, it is customary to remove your shoes when entering homes, traditional restaurants, and certain other buildings. This practice keeps the indoor space clean and is considered respectful. There is typically a genkan (玄関), or entryway, where you remove your shoes before stepping up into the main living area. Indoor slippers are often provided for guests. Remember to turn your shoes to face the exit after removing them, and never wear outdoor shoes on tatami mats.",
+      "category": "Etiquette",
+      "chapterIntroduced": "chapter_1"
+    },
+    {
+      "id": 3,
+      "title": "School Uniforms in Japan",
+      "content": "Most Japanese schools require students to wear uniforms. The typical uniform consists of a military-style suit for boys and a sailor outfit for girls, though designs vary by school. Uniforms help create a sense of unity and reduce social distinctions among students. Many schools have separate summer and winter uniforms, and strict rules about how the uniform should be worn. Students often customize their uniforms slightly to express individuality within the rules.",
+      "category": "Education",
+      "chapterIntroduced": "chapter_1"
+    },
+    {
+      "id": 4,
+      "title": "Honorific Language",
+      "content": "Japanese has an elaborate system of honorifics (keigo) that change based on the social status relationship between speaker and listener. Using appropriate honorifics is crucial for polite communication in Japan. There are three main types: teineigo (polite language), sonkeigo (respectful language), and kenjougo (humble language). The use of honorifics reflects Japan's hierarchical society and the importance placed on showing proper respect to others based on status, age, and social relationship.",
+      "category": "Language",
+      "chapterIntroduced": "chapter_1"
+    },
+    {
+      "id": 5,
+      "title": "Classroom Etiquette in Japan",
+      "content": "Japanese students typically remain in one classroom while teachers rotate. Students are responsible for cleaning their own classrooms, usually spending time after school each day on cleaning duties (掃除, souji). When a teacher enters, students stand and bow as a sign of respect. During class, raising your hand before speaking is expected, and speaking out of turn is considered disruptive. Students typically address teachers using 'sensei' after their surname, never by first name.",
+      "category": "Education",
+      "chapterIntroduced": "chapter_1"
+    }
+  ]

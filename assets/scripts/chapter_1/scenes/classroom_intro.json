@@ -1,0 +1,362 @@
+{
+    "id": "classroom_intro",
+    "title": "First Day in Class",
+    "defaultBackground": "assets/images/backgrounds/classroom.webp",
+    "nodes": {
+      "start": {
+        "line": {
+          "id": "start",
+          "textJp": "次の日、始業式の後、あなたは初めての教室に入ります。",
+          "furiganaJp": "つぎのひ、しぎょうしきのあと、あなたははじめてのきょうしつにはいります。",
+          "romajiJp": "Tsugi no hi, shigyō-shiki no ato, anata wa hajimete no kyōshitsu ni hairimasu.",
+          "textEn": "The next day, after the opening ceremony, you enter your classroom for the first time.",
+          "nextId": "classroom_description",
+          "background": "assets/images/backgrounds/classroom.webp",
+          "tags": ["vocab:37", "vocab:38", "grammar:24"]
+        },
+        "choices": []
+      },
+      "classroom_description": {
+        "line": {
+          "id": "classroom_description",
+          "textJp": "教室には、すでに多くの生徒がいます。皆、あなたに興味津々といった様子で見ています。",
+          "furiganaJp": "きょうしつには、すでにおおくのせいとがいます。みな、あなたにきょうみしんしんといったようすでみています。",
+          "romajiJp": "Kyōshitsu ni wa, sudeni ōku no seito ga imasu. Mina, anata ni kyōmi shinshin to itta yōsu de mite imasu.",
+          "textEn": "There are already many students in the classroom. Everyone is looking at you with great interest.",
+          "nextId": "tanaka_introduction_to_class",
+          "tags": ["vocab:39", "vocab:40", "grammar:25"]
+        },
+        "choices": []
+      },
+      "tanaka_introduction_to_class": {
+        "line": {
+          "id": "tanaka_introduction_to_class",
+          "characterId": "2",
+          "speakerName": "田中先生",
+          "sprite": "formal",
+          "position": "left",
+          "textJp": "皆さん、今日から一緒に勉強する留学生を紹介します。",
+          "furiganaJp": "みなさん、きょうからいっしょにべんきょうするりゅうがくせいをしょうかいします。",
+          "romajiJp": "Minasan, kyō kara issho ni benkyō suru ryūgakusei o shōkai shimasu.",
+          "textEn": "Everyone, I would like to introduce the exchange student who will be studying with you from today.",
+          "nextId": "your_introduction_prompt",
+          "tags": ["vocab:41", "grammar:26"]
+        },
+        "choices": []
+      },
+      "your_introduction_prompt": {
+        "line": {
+          "id": "your_introduction_prompt",
+          "characterId": "2",
+          "speakerName": "田中先生",
+          "sprite": "smile",
+          "position": "left",
+          "textJp": "自己紹介をお願いします。",
+          "furiganaJp": "じこしょうかいをおねがいします。",
+          "romajiJp": "Jiko shōkai o onegai shimasu.",
+          "textEn": "Please introduce yourself.",
+          "nextId": "self_introduction_choice",
+          "tags": ["vocab:42", "grammar:27"]
+        },
+        "choices": []
+      },
+      "self_introduction_choice": {
+        "line": {
+          "id": "self_introduction_choice",
+          "textJp": "どのように自己紹介をしますか？",
+          "textEn": "How will you introduce yourself?",
+          "isChoice": true
+        },
+        "choices": [
+          {
+            "id": "choice_formal_intro",
+            "textJp": "はじめまして。私の名前は＿＿＿です。どうぞよろしくお願いします。",
+            "furiganaJp": "はじめまして。わたしのなまえは＿＿＿です。どうぞよろしくおねがいします。",
+            "textEn": "Nice to meet you. My name is ___. Please take care of me.",
+            "meaning": "Give a standard, polite self-introduction",
+            "nextId": "reaction_formal_intro",
+            "requiredLevel": 1,
+            "requiredItems": [],
+            "relationshipChanges": {
+              "2": 3,
+              "1": 2
+            },
+            "tags": ["vocab:43", "grammar:28"]
+          },
+          {
+            "id": "choice_detailed_intro",
+            "textJp": "はじめまして。私は＿＿＿です。日本語と日本の文化に興味があります。一緒に勉強できて嬉しいです。",
+            "furiganaJp": "はじめまして。わたしは＿＿＿です。にほんごとにほんのぶんかにきょうみがあります。いっしょにべんきょうできてうれしいです。",
+            "textEn": "Nice to meet you. I am ___. I'm interested in Japanese language and culture. I'm happy to study together with you.",
+            "meaning": "Give a more detailed introduction about your interests",
+            "nextId": "reaction_detailed_intro",
+            "requiredLevel": 2,
+            "requiredItems": [],
+            "relationshipChanges": {
+              "2": 5,
+              "1": 4
+            },
+            "tags": ["vocab:44", "vocab:45", "grammar:29"]
+          },
+          {
+            "id": "choice_nervous_intro",
+            "textJp": "あ、あの...私は＿＿＿です。日本語がまだ下手ですが...よろしくお願いします。",
+            "furiganaJp": "あ、あの...わたしは＿＿＿です。にほんごがまだへたですが...よろしくおねがいします。",
+            "textEn": "Um, I'm ___. My Japanese isn't very good yet... but please be kind to me.",
+            "meaning": "Give a nervous introduction, mentioning your limited Japanese",
+            "nextId": "reaction_nervous_intro",
+            "requiredLevel": 1,
+            "requiredItems": [],
+            "relationshipChanges": {
+              "2": 2,
+              "1": 3
+            },
+            "tags": ["vocab:46", "grammar:30"]
+          }
+        ]
+      },
+      "reaction_formal_intro": {
+        "line": {
+          "id": "reaction_formal_intro",
+          "characterId": "2",
+          "speakerName": "田中先生",
+          "sprite": "smile",
+          "position": "left",
+          "textJp": "ありがとうございます。とても丁寧な自己紹介でした。",
+          "furiganaJp": "ありがとうございます。とてもていねいなじこしょうかいでした。",
+          "romajiJp": "Arigatō gozaimasu. Totemo teinei na jiko shōkai deshita.",
+          "textEn": "Thank you. That was a very polite self-introduction.",
+          "nextId": "class_reaction",
+          "tags": ["vocab:47", "grammar:31"]
+        },
+        "choices": []
+      },
+      "reaction_detailed_intro": {
+        "line": {
+          "id": "reaction_detailed_intro",
+          "characterId": "2",
+          "speakerName": "田中先生",
+          "sprite": "happy",
+          "position": "left",
+          "textJp": "素晴らしい自己紹介ですね！日本語がとても上手です。日本の文化に興味があるなんて、嬉しいです。",
+          "furiganaJp": "すばらしいじこしょうかいですね！にほんごがとてもじょうずです。にほんのぶんかにきょうみがあるなんて、うれしいです。",
+          "romajiJp": "Subarashii jiko shōkai desu ne! Nihongo ga totemo jōzu desu. Nihon no bunka ni kyōmi ga aru nante, ureshii desu.",
+          "textEn": "What a wonderful self-introduction! Your Japanese is very good. I'm happy that you're interested in Japanese culture.",
+          "nextId": "class_reaction",
+          "tags": ["vocab:48", "vocab:49", "grammar:32"]
+        },
+        "choices": []
+      },
+      "reaction_nervous_intro": {
+        "line": {
+          "id": "reaction_nervous_intro",
+          "characterId": "2",
+          "speakerName": "田中先生",
+          "sprite": "reassuring",
+          "position": "left",
+          "textJp": "大丈夫ですよ。これから一緒に勉強していきましょう。皆さんも助けてあげてくださいね。",
+          "furiganaJp": "だいじょうぶですよ。これからいっしょにべんきょうしていきましょう。みなさんもたすけてあげてくださいね。",
+          "romajiJp": "Daijōbu desu yo. Kore kara issho ni benkyō shite ikimashō. Minasan mo tasukete agete kudasai ne.",
+          "textEn": "It's alright. Let's study together from now on. Everyone, please help our new student.",
+          "nextId": "class_reaction",
+          "tags": ["vocab:50", "grammar:33"]
+        },
+        "choices": []
+      },
+      "class_reaction": {
+        "line": {
+          "id": "class_reaction",
+          "textJp": "クラスの生徒たちは拍手し、何人かは「よろしく！」と声を掛けてくれます。",
+          "furiganaJp": "クラスのせいとたちははくしゅし、なんにんかは「よろしく！」とこえをかけてくれます。",
+          "romajiJp": "Kurasu no seitotachi wa hakushu shi, nanninka wa 'yoroshiku!' to koe o kakete kuremasu.",
+          "textEn": "The students in the class applaud, and some of them call out 'Nice to meet you!'",
+          "nextId": "find_seat",
+          "tags": ["vocab:51", "grammar:34"]
+        },
+        "choices": []
+      },
+      "find_seat": {
+        "line": {
+          "id": "find_seat",
+          "characterId": "2",
+          "speakerName": "田中先生",
+          "sprite": "formal",
+          "position": "left",
+          "textJp": "では、席に着いてください。窓側の後ろから3番目の席です。",
+          "furiganaJp": "では、せきについてください。まどがわのうしろからさんばんめのせきです。",
+          "romajiJp": "Dewa, seki ni tsuite kudasai. Madogawa no ushiro kara san-banme no seki desu.",
+          "textEn": "Now, please take your seat. It's the third seat from the back on the window side.",
+          "nextId": "walk_to_seat",
+          "tags": ["vocab:52", "vocab:53", "grammar:35"]
+        },
+        "choices": []
+      },
+      "walk_to_seat": {
+        "line": {
+          "id": "walk_to_seat",
+          "textJp": "あなたは指定された席に向かって歩きます。周りの生徒たちは好奇心いっぱいの目であなたを見ています。",
+          "furiganaJp": "あなたはしていされたせきにむかってあるきます。まわりのせいとたちはこうきしんいっぱいのめであなたをみています。",
+          "romajiJp": "Anata wa shitei sareta seki ni mukatte arukimasu. Mawari no seitotachi wa kōkishin ippai no me de anata o mite imasu.",
+          "textEn": "You walk towards your assigned seat. The surrounding students are watching you with curious eyes.",
+          "nextId": "yuki_introduction",
+          "tags": ["vocab:54", "vocab:55", "grammar:36"]
+        },
+        "choices": []
+      },
+      "yuki_introduction": {
+        "line": {
+          "id": "yuki_introduction",
+          "characterId": "1",
+          "speakerName": "ユキ",
+          "sprite": "friendly",
+          "position": "right",
+          "textJp": "あの、こんにちは！私の名前はユキです。隣の席だね。よろしく！",
+          "furiganaJp": "あの、こんにちは！わたしのなまえはユキです。となりのせきだね。よろしく！",
+          "romajiJp": "Ano, konnichiwa! Watashi no namae wa Yuki desu. Tonari no seki da ne. Yoroshiku!",
+          "textEn": "Um, hello! My name is Yuki. I sit next to you. Nice to meet you!",
+          "nextId": "yuki_greeting_choice",
+          "tags": ["vocab:56", "grammar:37"]
+        },
+        "choices": []
+      },
+      "yuki_greeting_choice": {
+        "line": {
+          "id": "yuki_greeting_choice",
+          "textJp": "どのように返事をしますか？",
+          "textEn": "How will you respond?",
+          "isChoice": true
+        },
+        "choices": [
+          {
+            "id": "choice_friendly_response",
+            "textJp": "こんにちは、ユキさん！よろしくお願いします。",
+            "furiganaJp": "こんにちは、ユキさん！よろしくおねがいします。",
+            "textEn": "Hello, Yuki-san! Nice to meet you too.",
+            "meaning": "Respond in a friendly, polite manner",
+            "nextId": "yuki_friendly_reaction",
+            "requiredLevel": 1,
+            "requiredItems": [],
+            "relationshipChanges": {
+              "1": 5
+            },
+            "tags": ["vocab:57", "grammar:38"]
+          },
+          {
+            "id": "choice_question_response",
+            "textJp": "こんにちは！日本語を教えてくれますか？",
+            "furiganaJp": "こんにちは！にほんごをおしえてくれますか？",
+            "textEn": "Hello! Would you help me with Japanese?",
+            "meaning": "Ask Yuki to help you with Japanese",
+            "nextId": "yuki_help_reaction",
+            "requiredLevel": 2,
+            "requiredItems": [],
+            "relationshipChanges": {
+              "1": 4
+            },
+            "tags": ["vocab:58", "grammar:39"]
+          },
+          {
+            "id": "choice_shy_response",
+            "textJp": "あ、はい...よろしく...",
+            "furiganaJp": "あ、はい...よろしく...",
+            "textEn": "Oh, yes... nice to meet you...",
+            "meaning": "Respond shyly, unsure what to say",
+            "nextId": "yuki_shy_reaction",
+            "requiredLevel": 1,
+            "requiredItems": [],
+            "relationshipChanges": {
+              "1": 3
+            },
+            "tags": []
+          }
+        ]
+      },
+      "yuki_friendly_reaction": {
+        "line": {
+          "id": "yuki_friendly_reaction",
+          "characterId": "1",
+          "speakerName": "ユキ",
+          "sprite": "happy",
+          "position": "right",
+          "textJp": "嬉しい！日本語が上手だね。何か分からないことがあったら、いつでも聞いてね！",
+          "furiganaJp": "うれしい！にほんごがじょうずだね。なにかわからないことがあったら、いつでもきいてね！",
+          "romajiJp": "Ureshii! Nihongo ga jōzu da ne. Nanika wakaranai koto ga attara, itsudemo kiite ne!",
+          "textEn": "I'm happy! Your Japanese is good. If there's anything you don't understand, feel free to ask me anytime!",
+          "nextId": "class_starts",
+          "tags": ["vocab:59", "vocab:60", "grammar:40"]
+        },
+        "choices": []
+      },
+      "yuki_help_reaction": {
+        "line": {
+          "id": "yuki_help_reaction",
+          "characterId": "1",
+          "speakerName": "ユキ",
+          "sprite": "excited",
+          "position": "right",
+          "textJp": "もちろん！喜んで手伝うよ。私も英語を勉強しているから、お互いに教え合おう！",
+          "furiganaJp": "もちろん！よろこんでてつだうよ。わたしもえいごをべんきょうしているから、おたがいにおしえあおう！",
+          "romajiJp": "Mochiron! Yorokonde tetsudau yo. Watashi mo eigo o benkyō shite iru kara, otagai ni oshie aō!",
+          "textEn": "Of course! I'd be happy to help. I'm studying English too, so let's teach each other!",
+          "nextId": "class_starts",
+          "tags": ["vocab:61", "vocab:62", "grammar:41"]
+        },
+        "choices": []
+      },
+      "yuki_shy_reaction": {
+        "line": {
+          "id": "yuki_shy_reaction",
+          "characterId": "1",
+          "speakerName": "ユキ",
+          "sprite": "gentle",
+          "position": "right",
+          "textJp": "緊張してる？大丈夫だよ。みんな優しいから。ゆっくり話すね。",
+          "furiganaJp": "きんちょうしてる？だいじょうぶだよ。みんなやさしいから。ゆっくりはなすね。",
+          "romajiJp": "Kinchō shiteru? Daijōbu da yo. Minna yasashii kara. Yukkuri hanasu ne.",
+          "textEn": "Are you nervous? It's okay. Everyone's nice here. I'll speak slowly for you.",
+          "nextId": "class_starts",
+          "tags": ["vocab:63", "vocab:64", "grammar:42"]
+        },
+        "choices": []
+      },
+      "class_starts": {
+        "line": {
+          "id": "class_starts",
+          "characterId": "2",
+          "speakerName": "田中先生",
+          "sprite": "formal",
+          "position": "left",
+          "textJp": "はい、みなさん。授業を始めます。教科書を開いてください。",
+          "furiganaJp": "はい、みなさん。じゅぎょうをはじめます。きょうかしょをひらいてください。",
+          "romajiJp": "Hai, minasan. Jugyō o hajimemasu. Kyōkasho o hiraite kudasai.",
+          "textEn": "Alright, everyone. Let's begin the class. Please open your textbooks.",
+          "nextId": "your_thoughts",
+          "tags": ["vocab:65", "vocab:66", "grammar:43"]
+        },
+        "choices": []
+      },
+      "your_thoughts": {
+        "line": {
+          "id": "your_thoughts",
+          "textJp": "あなたは教科書を開きながら、「これからどんな学校生活になるだろう」と考えます。隣のユキさんは親切そうで、少しだけ安心します。",
+          "furiganaJp": "あなたはきょうかしょをひらきながら、「これからどんながっこうせいかつになるだろう」とかんがえます。となりのユキさんはしんせつそうで、すこしだけあんしんします。",
+          "romajiJp": "Anata wa kyōkasho o hirakina gara, 'kore kara donna gakkō seikatsu ni naru darō' to kangaemasu. Tonari no Yuki-san wa shinsetsu-sō de, sukoshi dake anshin shimasu.",
+          "textEn": "As you open your textbook, you wonder 'What will my school life be like from now on?' Yuki beside you seems kind, which makes you feel a little more at ease.",
+          "nextId": "scene_end",
+          "tags": ["vocab:67", "vocab:68", "grammar:44"]
+        },
+        "choices": []
+      },
+      "scene_end": {
+        "line": {
+          "id": "scene_end",
+          "textJp": "シーン３：終了",
+          "textEn": "Scene 3: Complete",
+          "background": "assets/images/backgrounds/black.png"
+        },
+        "choices": []
+      }
+    },
+    "startNodeId": "start",
+    "tags": ["chapter_1", "classroom", "meeting_classmates"]
+  }

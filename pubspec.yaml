@@ -1,0 +1,159 @@
+name: kizuna_quest
+description: "A visual novel language learning adventure."
+publish_to: 'none' # Prevents accidental publishing to pub.dev
+
+# Version follows semantic versioning (major.minor.patch+build)
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.3.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations: # For internationalization support
+    sdk: flutter
+
+  # Core & State Management
+  flutter_riverpod: ^2.4.9 # State management
+  riverpod_annotation: ^2.3.3 # Code generation for Riverpod
+  go_router: ^14.8.1 # Routing
+  shared_preferences: ^2.2.2 # Simple key-value storage (settings)
+  path_provider: ^2.1.2 # Finding local paths (for Drift DB)
+  intl: ^0.19.0 # Internationalization formatting
+
+  # Database (Local - Offline First)
+  drift: ^2.14.1 # Local database (ORM)
+  drift_flutter: ^0.2.4 # Flutter integration for Drift
+  path: ^1.8.3 # Path manipulation (used with Drift/path_provider)
+  sqlite3_flutter_libs: ^0.5.20 # SQLite implementation for mobile/desktop
+  sqlite3: ^2.3.0 # SQLite implementation for web
+
+  # Analytics & Monitoring (Requires Network Connection)
+  firebase_core: ^3.12.1 # Required for Firebase integration
+  firebase_analytics: ^11.4.4 # Analytics
+  firebase_crashlytics: ^4.3.4 # Crash reporting
+  firebase_performance: ^0.10.1+4 # Performance monitoring
+
+  # UI & UX
+  cupertino_icons: ^1.0.8 # iOS style icons
+  flutter_vector_icons: ^2.0.0 # More icon options
+  flutter_animate: ^4.5.0 # Animation utilities
+  lottie: ^3.3.1 # Lottie animations
+  flex_color_scheme: ^8.2.0 # Theming utilities
+  google_fonts: ^6.1.0 # Custom fonts from Google Fonts
+  shimmer: ^3.0.0 # Shimmer loading effect
+  flutter_svg: ^2.0.9 # SVG rendering
+  flutter_markdown: ^0.7.6+2 # Markdown rendering (e.g., for cultural notes)
+  readmore: ^3.0.0 # Expandable text widget
+  percent_indicator: ^4.2.4 # Circular/Linear percent indicators (e.g., for progress)
+
+  # Audio (Optional - for SFX/BGM)
+  just_audio: ^0.9.36 # Audio playback
+
+  # Data Models & Serialization
+  freezed_annotation: ^3.0.0 # Code generation for immutable classes
+  json_annotation: ^4.9.0 # JSON serialization helpers
+  equatable: ^2.0.5 # Simplify equality comparisons
+
+  # Utilities
+  collection: ^1.18.0 # Utility functions for collections
+  uuid: ^4.2.2 # Generating unique IDs
+  logger: ^2.0.2+1 # Logging utility
+  package_info_plus: ^8.3.0 # Get app package info
+  device_info_plus: ^11.3.3 # Get device info
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  integration_test:
+    sdk: flutter
+
+  # Linting & Code Analysis
+  flutter_lints: ^5.0.0 # Recommended Flutter lints
+  custom_lint: ^0.7.5 # Framework for custom lints
+  riverpod_lint: ^2.3.7 # Custom lints for Riverpod
+
+  # Code Generation
+  build_runner: ^2.4.7 # Code generation tool runner
+  riverpod_generator: ^2.3.9 # Riverpod code generator
+  go_router_builder: ^2.4.1 # GoRouter code generator
+  freezed: ^3.0.4 # Freezed code generator
+  json_serializable: ^6.9.4 # JSON serialization generator
+  drift_dev: ^2.14.1 # Drift code generator (for DB)
+
+  # Testing Utilities
+  mocktail: ^1.0.2 # Mocking library for tests
+
+  # Build & Deployment Utilities
+  flutter_native_splash: ^2.3.8 # Generates native splash screens
+  flutter_launcher_icons: ^0.14.3 # Generates app launcher icons
+  coverage: ^1.7.2 # Test coverage reporting
+
+# Flutter configuration
+flutter:
+  # Material Design icons
+  uses-material-design: true
+  
+  # Assets bundling configuration
+  assets:
+    # Image assets
+    - assets/images/backgrounds/
+    - assets/images/characters/
+    - assets/images/characters/yuki/
+    - assets/images/characters/tanaka/
+    - assets/images/ui/
+    
+    # Game scripts
+    - assets/scripts/chapter_1/
+    - assets/scripts/chapter_1/scenes/
+    - assets/scripts/common/
+
+    # Game data
+    - assets/data/
+    - assets/data/chapter_1/
+    
+    # Audio assets (if used)
+    - assets/audio/
+  
+  # Font configuration
+  fonts:
+    - family: NotoSansJP
+      fonts:
+        - asset: assets/fonts/NotoSansJP-Regular.ttf
+        - asset: assets/fonts/NotoSansJP-Bold.ttf
+          weight: 700
+    - family: Mochiy
+      fonts:
+        - asset: assets/fonts/MochiyPopOne-Regular.ttf
+
+# Flutter localization configuration
+flutter_intl:
+  enabled: true
+  main_locale: en
+  arb_dir: lib/l10n
+  output_dir: lib/generated
+
+# Flutter Native Splash configuration
+flutter_native_splash:
+  color: "#232533"
+  image: assets/images/ui/splash.png
+  android: true
+  ios: true
+  web: true
+
+# Flutter Launcher Icons configuration
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/ui/app_icon.png"
+  min_sdk_android: 21
+  web:
+    generate: true
+    image_path: "assets/images/ui/app_icon.png"
+  windows:
+    generate: true
+    image_path: "assets/images/ui/app_icon.png"
+  macos:
+    generate: true
+    image_path: "assets/images/ui/app_icon.png"

@@ -1,0 +1,286 @@
+{
+    "id": "meeting_tanaka",
+    "title": "Meeting Teacher Tanaka",
+    "defaultBackground": "assets/images/backgrounds/car_interior.png",
+    "nodes": {
+      "start": {
+        "line": {
+          "id": "start",
+          "textJp": "田中先生の車に乗り、学校に向かっています。窓の外に東京の風景が流れていきます。",
+          "furiganaJp": "たなかせんせいのくるまにのり、がっこうにむかっています。まどのそとにとうきょうのふうけいがながれていきます。",
+          "romajiJp": "Tanaka-sensei no kuruma ni nori, gakkō ni mukatte imasu. Mado no soto ni Tōkyō no fūkei ga nagarete ikimasu.",
+          "textEn": "You're in Professor Tanaka's car, heading to the school. The Tokyo scenery flows past outside the window.",
+          "background": "assets/images/backgrounds/car_interior.png",
+          "nextId": "tanaka_question",
+          "tags": ["vocab:16", "vocab:17", "grammar:10"]
+        },
+        "choices": []
+      },
+      "tanaka_question": {
+        "line": {
+          "id": "tanaka_question",
+          "characterId": "2",
+          "speakerName": "田中先生",
+          "sprite": "driving",
+          "position": "left",
+          "textJp": "日本は初めてですか？",
+          "furiganaJp": "にほんははじめてですか？",
+          "romajiJp": "Nihon wa hajimete desu ka?",
+          "textEn": "Is this your first time in Japan?",
+          "nextId": "japan_experience_choice",
+          "tags": ["vocab:18", "grammar:11"]
+        },
+        "choices": []
+      },
+      "japan_experience_choice": {
+        "line": {
+          "id": "japan_experience_choice",
+          "textJp": "どう答えますか？",
+          "textEn": "How will you answer?",
+          "isChoice": true
+        },
+        "choices": [
+          {
+            "id": "choice_first_time",
+            "textJp": "はい、初めてです。とても楽しみです！",
+            "furiganaJp": "はい、はじめてです。とてもたのしみです！",
+            "textEn": "Yes, it's my first time. I'm very excited!",
+            "meaning": "Tell them it's your first time in Japan and express excitement",
+            "nextId": "response_first_time",
+            "requiredLevel": 1,
+            "requiredItems": [],
+            "relationshipChanges": {
+              "2": 3
+            },
+            "tags": []
+          },
+          {
+            "id": "choice_been_before",
+            "textJp": "いいえ、以前に一度来たことがあります。",
+            "furiganaJp": "いいえ、いぜんにいちどきたことがあります。",
+            "textEn": "No, I've been here once before.",
+            "meaning": "Tell them you've visited Japan once before",
+            "nextId": "response_been_before",
+            "requiredLevel": 2,
+            "requiredItems": [],
+            "relationshipChanges": {
+              "2": 4
+            },
+            "tags": ["grammar:12"]
+          },
+          {
+            "id": "choice_anime_fan",
+            "textJp": "初めてですが、アニメでたくさん見ました！",
+            "furiganaJp": "はじめてですが、アニメでたくさんみました！",
+            "textEn": "It's my first time, but I've seen a lot in anime!",
+            "meaning": "Say it's your first visit but you know Japan from anime",
+            "nextId": "response_anime_fan",
+            "requiredLevel": 2,
+            "requiredItems": [],
+            "relationshipChanges": {
+              "2": 2
+            },
+            "tags": ["vocab:19"]
+          }
+        ]
+      },
+      "response_first_time": {
+        "line": {
+          "id": "response_first_time",
+          "characterId": "2",
+          "speakerName": "田中先生",
+          "sprite": "smile",
+          "position": "left",
+          "textJp": "そうですか。日本の文化や言葉について、いろいろ教えますよ。",
+          "furiganaJp": "そうですか。にほんのぶんかやことばについて、いろいろおしえますよ。",
+          "romajiJp": "Sō desu ka. Nihon no bunka ya kotoba ni tsuite, iroiro oshiemasu yo.",
+          "textEn": "I see. I'll teach you a lot about Japanese culture and language.",
+          "nextId": "approaching_school",
+          "tags": ["vocab:20", "vocab:21", "grammar:13"]
+        },
+        "choices": []
+      },
+      "response_been_before": {
+        "line": {
+          "id": "response_been_before",
+          "characterId": "2",
+          "speakerName": "田中先生",
+          "sprite": "surprised",
+          "position": "left",
+          "textJp": "そうなんですか！日本語もうまいですね。どこに行きましたか？",
+          "furiganaJp": "そうなんですか！にほんごもうまいですね。どこにいきましたか？",
+          "romajiJp": "Sō nan desu ka! Nihongo mo umai desu ne. Doko ni ikimashita ka?",
+          "textEn": "Is that so! Your Japanese is good too. Where did you go?",
+          "nextId": "mention_tokyo",
+          "tags": ["vocab:22", "grammar:14"]
+        },
+        "choices": []
+      },
+      "mention_tokyo": {
+        "line": {
+          "id": "mention_tokyo",
+          "textJp": "東京に行ったと言います。田中先生は頷きます。",
+          "furiganaJp": "とうきょうにいったといいます。たなかせんせいはうなずきます。",
+          "romajiJp": "Tōkyō ni itta to iimasu. Tanaka-sensei wa unazukimasu.",
+          "textEn": "You tell her you went to Tokyo. Professor Tanaka nods.",
+          "nextId": "approaching_school",
+          "tags": ["vocab:23"]
+        },
+        "choices": []
+      },
+      "response_anime_fan": {
+        "line": {
+          "id": "response_anime_fan",
+          "characterId": "2",
+          "speakerName": "田中先生",
+          "sprite": "amused",
+          "position": "left",
+          "textJp": "あら、アニメファンですか。でも、実際の日本は少し違いますよ。",
+          "furiganaJp": "あら、アニメファンですか。でも、じっさいのにほんはすこしちがいますよ。",
+          "romajiJp": "Ara, anime fan desu ka. Demo, jissai no Nihon wa sukoshi chigaimasu yo.",
+          "textEn": "Oh, you're an anime fan. But the real Japan is a bit different, you know.",
+          "nextId": "approaching_school",
+          "tags": ["vocab:24", "grammar:15"]
+        },
+        "choices": []
+      },
+      "approaching_school": {
+        "line": {
+          "id": "approaching_school",
+          "characterId": "2",
+          "speakerName": "田中先生",
+          "sprite": "driving",
+          "position": "left",
+          "textJp": "あ、もうすぐ学校に着きます。あそこに見えるのが桜丘高校です。",
+          "furiganaJp": "あ、もうすぐがっこうにつきます。あそこにみえるのがさくらおかこうこうです。",
+          "romajiJp": "A, mō sugu gakkō ni tsukimasu. Asoko ni mieru no ga Sakuraoka Kōkō desu.",
+          "textEn": "Ah, we're almost at the school. That building you can see over there is Sakuraoka High School.",
+          "nextId": "school_view",
+          "tags": ["vocab:25", "grammar:16"]
+        },
+        "choices": []
+      },
+      "school_view": {
+        "line": {
+          "id": "school_view",
+          "textJp": "窓の外を見ると、大きな校舎が見えてきます。桜の木が周りに植えられています。",
+          "furiganaJp": "まどのそとをみると、おおきなこうしゃがみえてきます。さくらのきがまわりにうえられています。",
+          "romajiJp": "Mado no soto o miru to, ōkina kōsha ga miete kimasu. Sakura no ki ga mawari ni uerarete imasu.",
+          "textEn": "Looking out the window, you can see a large school building. Cherry blossom trees are planted around it.",
+          "background": "assets/images/backgrounds/school_approach.png",
+          "nextId": "arrive_school",
+          "tags": ["vocab:26", "vocab:27", "grammar:17"]
+        },
+        "choices": []
+      },
+      "arrive_school": {
+        "line": {
+          "id": "arrive_school",
+          "textJp": "車は学校の前に停まります。",
+          "furiganaJp": "くるまはがっこうのまえにとまります。",
+          "romajiJp": "Kuruma wa gakkō no mae ni tomarimasu.",
+          "textEn": "The car stops in front of the school.",
+          "background": "assets/images/backgrounds/school_entrance.png",
+          "nextId": "exit_car",
+          "tags": ["vocab:28"]
+        },
+        "choices": []
+      },
+      "exit_car": {
+        "line": {
+          "id": "exit_car",
+          "characterId": "2",
+          "speakerName": "田中先生",
+          "sprite": "formal",
+          "position": "center",
+          "textJp": "では、降りましょう。荷物をお手伝いします。",
+          "furiganaJp": "では、おりましょう。にもつをおてつだいします。",
+          "romajiJp": "Dewa, orimashō. Nimotsu o otetsudai shimasu.",
+          "textEn": "Well then, let's get out. I'll help you with your luggage.",
+          "nextId": "school_entrance_view",
+          "tags": ["vocab:29", "grammar:18"]
+        },
+        "choices": []
+      },
+      "school_entrance_view": {
+        "line": {
+          "id": "school_entrance_view",
+          "textJp": "学校の入り口は広くて明るいです。入口には「桜丘高校」と書かれた看板があります。",
+          "furiganaJp": "がっこうのいりぐちはひろくてあかるいです。いりぐちには「さくらおかこうこう」とかかれたかんばんがあります。",
+          "romajiJp": "Gakkō no iriguchi wa hirokute akarui desu. Iriguchi ni wa 'Sakuraoka Kōkō' to kakareta kanban ga arimasu.",
+          "textEn": "The school entrance is wide and bright. There's a sign at the entrance that says 'Sakuraoka High School'.",
+          "nextId": "meeting_principal_intro",
+          "tags": ["vocab:30", "vocab:31", "grammar:19"]
+        },
+        "choices": []
+      },
+      "meeting_principal_intro": {
+        "line": {
+          "id": "meeting_principal_intro",
+          "characterId": "2",
+          "speakerName": "田中先生",
+          "sprite": "formal",
+          "position": "left",
+          "textJp": "まずは校長先生にご挨拶しましょう。その後、寮に行きます。",
+          "furiganaJp": "まずはこうちょうせんせいにごあいさつしましょう。そのあと、りょうにいきます。",
+          "romajiJp": "Mazu wa kōchō-sensei ni goaisatsu shimashō. Sono ato, ryō ni ikimasu.",
+          "textEn": "First, let's greet the principal. After that, we'll go to the dormitory.",
+          "nextId": "nervousness_reaction",
+          "tags": ["vocab:32", "vocab:33", "grammar:20"]
+        },
+        "choices": []
+      },
+      "nervousness_reaction": {
+        "line": {
+          "id": "nervousness_reaction",
+          "textJp": "少し緊張します。これから始まる学校生活について考えています。",
+          "furiganaJp": "すこしきんちょうします。これからはじまるがっこうせいかつについてかんがえています。",
+          "romajiJp": "Sukoshi kinchō shimasu. Kore kara hajimaru gakkō seikatsu ni tsuite kangaete imasu.",
+          "textEn": "You feel a bit nervous. You're thinking about the school life that's about to begin.",
+          "nextId": "tanaka_reassurance",
+          "tags": ["vocab:34", "grammar:21"]
+        },
+        "choices": []
+      },
+      "tanaka_reassurance": {
+        "line": {
+          "id": "tanaka_reassurance",
+          "characterId": "2",
+          "speakerName": "田中先生",
+          "sprite": "smile",
+          "position": "left",
+          "textJp": "大丈夫ですよ。みんな親切ですから。さあ、行きましょう。",
+          "furiganaJp": "だいじょうぶですよ。みんなしんせつですから。さあ、いきましょう。",
+          "romajiJp": "Daijōbu desu yo. Minna shinsetsu desu kara. Sā, ikimashō.",
+          "textEn": "It'll be fine. Everyone is kind. Now, let's go.",
+          "nextId": "follow_tanaka",
+          "tags": ["vocab:35", "grammar:22"]
+        },
+        "choices": []
+      },
+      "follow_tanaka": {
+        "line": {
+          "id": "follow_tanaka",
+          "textJp": "あなたは深呼吸して、田中先生について学校の中に入ります。",
+          "furiganaJp": "あなたはしんこきゅうして、たなかせんせいについてがっこうのなかにはいります。",
+          "romajiJp": "Anata wa shinkokyū shite, Tanaka-sensei ni tsuite gakkō no naka ni hairimasu.",
+          "textEn": "You take a deep breath and follow Professor Tanaka into the school.",
+          "background": "assets/images/backgrounds/school_hallway.png",
+          "nextId": "scene_end",
+          "tags": ["vocab:36", "grammar:23"]
+        },
+        "choices": []
+      },
+      "scene_end": {
+        "line": {
+          "id": "scene_end",
+          "textJp": "シーン２：終了",
+          "textEn": "Scene 2: Complete",
+          "background": "assets/images/backgrounds/black.png"
+        },
+        "choices": []
+      }
+    },
+    "startNodeId": "start",
+    "tags": ["chapter_1", "school_introduction", "tanaka"]
+  }

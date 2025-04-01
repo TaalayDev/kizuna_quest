@@ -1,0 +1,442 @@
+[
+    {
+      "id": 1,
+      "title": "Past Tense Form: ました",
+      "patternJp": "Verb + ました",
+      "explanationEn": "The pattern [Verb + ました] is used to express that an action happened in the past. It is the polite past tense form of verbs.",
+      "exampleJp": "東京に到着しました。",
+      "exampleEn": "I arrived in Tokyo.",
+      "jlptLevel": "N5",
+      "chapterIntroduced": "chapter_1"
+    },
+    {
+      "id": 2,
+      "title": "Connecting Contrasting Clauses: が",
+      "patternJp": "Sentence A が Sentence B",
+      "explanationEn": "The particle が is used to connect two clauses where the second clause presents a contrast or unexpected result from the first.",
+      "exampleJp": "興奮していますが、少し緊張もしています。",
+      "exampleEn": "I'm excited, but I'm also a bit nervous.",
+      "jlptLevel": "N4",
+      "chapterIntroduced": "chapter_1"
+    },
+    {
+      "id": 3,
+      "title": "Topic Marker: は",
+      "patternJp": "Noun + は",
+      "explanationEn": "The particle は (pronounced 'wa') marks the topic of a sentence - what the sentence is about.",
+      "exampleJp": "空港は人でいっぱいです。",
+      "exampleEn": "The airport is full of people.",
+      "jlptLevel": "N5",
+      "chapterIntroduced": "chapter_1"
+    },
+    {
+      "id": 4,
+      "title": "Confirmation Particle: ね",
+      "patternJp": "Sentence + ね",
+      "explanationEn": "The particle ね is added at the end of a sentence to seek confirmation or agreement, similar to tag questions in English.",
+      "exampleJp": "あなたが新しい留学生ですね。",
+      "exampleEn": "You must be the new exchange student, right?",
+      "jlptLevel": "N5",
+      "chapterIntroduced": "chapter_1"
+    },
+    {
+      "id": 5,
+      "title": "Self-introduction: と申します",
+      "patternJp": "Name + と申します",
+      "explanationEn": "The phrase 'と申します' is a humble way of introducing yourself, more polite than 'です'.",
+      "exampleJp": "私は田中と申します。",
+      "exampleEn": "My name is Tanaka.",
+      "jlptLevel": "N4",
+      "chapterIntroduced": "chapter_1"
+    },
+    {
+      "id": 6,
+      "title": "Formal Please: お願いします",
+      "patternJp": "よろしくお願いします",
+      "explanationEn": "This phrase is used in introductions to ask for good relations. It literally means 'Please be kind to me' but is commonly used when meeting someone new.",
+      "exampleJp": "はじめまして、よろしくお願いします。",
+      "exampleEn": "Nice to meet you, please treat me well.",
+      "jlptLevel": "N5",
+      "chapterIntroduced": "chapter_1"
+    },
+    {
+      "id": 7,
+      "title": "Expressing Opinion: ですね",
+      "patternJp": "Statement + ですね",
+      "explanationEn": "Adding ですね to a statement expresses agreement or confirmation, often used when commenting on something obvious or when you want to show you're following along.",
+      "exampleJp": "日本語が上手ですね。",
+      "exampleEn": "Your Japanese is good, isn't it?",
+      "jlptLevel": "N5",
+      "chapterIntroduced": "chapter_1"
+    },
+    {
+      "id": 8,
+      "title": "Let's do: ましょう",
+      "patternJp": "Verb stem + ましょう",
+      "explanationEn": "This pattern expresses a suggestion or proposal to do something together, equivalent to 'let's do' in English.",
+      "exampleJp": "これから一緒に日本語を勉強しましょう。",
+      "exampleEn": "Let's study Japanese together from now on.",
+      "jlptLevel": "N5",
+      "chapterIntroduced": "chapter_1"
+    },
+    {
+      "id": 9,
+      "title": "Describing Start of Action: 始まります",
+      "patternJp": "Noun + が + 始まります",
+      "explanationEn": "The verb 始まります (hajimarimasu) means 'to begin' or 'to start' and is used to indicate that something is starting.",
+      "exampleJp": "日本での新生活が始まります。",
+      "exampleEn": "Your new life in Japan begins.",
+      "jlptLevel": "N4",
+      "chapterIntroduced": "chapter_1"
+    },
+    {
+      "id": 10,
+      "title": "Progressive Form: ています",
+      "patternJp": "Verb + て + います",
+      "explanationEn": "The pattern [Verb + て + います] is used to express that an action is in progress (similar to '-ing' in English).",
+      "exampleJp": "学校に向かっています。",
+      "exampleEn": "I am heading to school.",
+      "jlptLevel": "N4",
+      "chapterIntroduced": "chapter_1"
+    },
+    {
+      "id": 11,
+      "title": "Question Particle: か",
+      "patternJp": "Sentence + か",
+      "explanationEn": "The particle か is placed at the end of a sentence to turn it into a question.",
+      "exampleJp": "日本は初めてですか？",
+      "exampleEn": "Is this your first time in Japan?",
+      "jlptLevel": "N5",
+      "chapterIntroduced": "chapter_1"
+    },
+    {
+      "id": 12,
+      "title": "Experience: ことがあります",
+      "patternJp": "Verb (past) + ことがあります",
+      "explanationEn": "This pattern is used to express that you have had the experience of doing something in the past.",
+      "exampleJp": "日本に来たことがあります。",
+      "exampleEn": "I have been to Japan before.",
+      "jlptLevel": "N4",
+      "chapterIntroduced": "chapter_1"
+    },
+    {
+      "id": 13,
+      "title": "About/Concerning: について",
+      "patternJp": "Noun + について",
+      "explanationEn": "The particle について means 'about', 'concerning', or 'regarding' and is used to introduce the topic of conversation or explanation.",
+      "exampleJp": "日本の文化や言葉について、いろいろ教えますよ。",
+      "exampleEn": "I'll teach you a lot about Japanese culture and language.",
+      "jlptLevel": "N4",
+      "chapterIntroduced": "chapter_1"
+    },
+    {
+      "id": 14,
+      "title": "Emphasis Particle: も",
+      "patternJp": "Noun + も",
+      "explanationEn": "The particle も means 'also' or 'too', and is used to indicate that something else similar exists or happens in addition to what was previously mentioned.",
+      "exampleJp": "日本語もうまいですね。",
+      "exampleEn": "Your Japanese is good too.",
+      "jlptLevel": "N5",
+      "chapterIntroduced": "chapter_1"
+    },
+    {
+      "id": 15,
+      "title": "Contrast: でも",
+      "patternJp": "Sentence A。でも、Sentence B。",
+      "explanationEn": "The word でも means 'but' or 'however' and is used to connect contrasting statements.",
+      "exampleJp": "アニメファンですか。でも、実際の日本は少し違いますよ。",
+      "exampleEn": "You're an anime fan. But, the real Japan is a bit different.",
+      "jlptLevel": "N5",
+      "chapterIntroduced": "chapter_1"
+    },
+    {
+      "id": 16,
+      "title": "Near Future: もうすぐ",
+      "patternJp": "もうすぐ + Verb (non-past)",
+      "explanationEn": "The adverb もうすぐ means 'soon' or 'in a moment' and is used to indicate that something will happen in the near future.",
+      "exampleJp": "もうすぐ学校に着きます。",
+      "exampleEn": "We will arrive at school soon.",
+      "jlptLevel": "N4",
+      "chapterIntroduced": "chapter_1"
+    },
+    {
+      "id": 17,
+      "title": "Passive Form: られています",
+      "patternJp": "Verb + られています",
+      "explanationEn": "This is the passive form combined with the progressive form, used to describe a state resulting from an action performed by someone.",
+      "exampleJp": "桜の木が周りに植えられています。",
+      "exampleEn": "Cherry blossom trees are planted around it.",
+      "jlptLevel": "N4",
+      "chapterIntroduced": "chapter_1"
+    },
+    {
+      "id": 18,
+      "title": "Helping Verb: お手伝いします",
+      "patternJp": "お + Noun + します",
+      "explanationEn": "This pattern uses the honorific prefix お with a noun followed by します to create a polite verb expression.",
+      "exampleJp": "荷物をお手伝いします。",
+      "exampleEn": "I'll help you with your luggage.",
+      "jlptLevel": "N4",
+      "chapterIntroduced": "chapter_1"
+    },
+    {
+      "id": 19,
+      "title": "Describing State: て-form + います",
+      "patternJp": "Verb (te-form) + います",
+      "explanationEn": "This pattern is used to describe the current state of something as a result of a completed action.",
+      "exampleJp": "入口には「桜丘高校」と書かれた看板があります。",
+      "exampleEn": "There's a sign at the entrance that says 'Sakuraoka High School'.",
+      "jlptLevel": "N4",
+      "chapterIntroduced": "chapter_1"
+    },
+    {
+      "id": 20,
+      "title": "Sequential Actions: その後",
+      "patternJp": "Action A。その後、Action B。",
+      "explanationEn": "The phrase その後 means 'after that' or 'afterwards' and is used to indicate that one action follows another.",
+      "exampleJp": "まずは校長先生にご挨拶しましょう。その後、寮に行きます。",
+      "exampleEn": "First, let's greet the principal. After that, we'll go to the dormitory.",
+      "jlptLevel": "N4",
+      "chapterIntroduced": "chapter_1"
+    },
+    {
+      "id": 21,
+      "title": "Thinking About: について考えています",
+      "patternJp": "Noun + について + 考えています",
+      "explanationEn": "This pattern combines the particle について (about) with the verb 考えています (thinking) to express that you are thinking about a particular topic.",
+      "exampleJp": "これから始まる学校生活について考えています。",
+      "exampleEn": "I'm thinking about the school life that's about to begin.",
+      "jlptLevel": "N3",
+      "chapterIntroduced": "chapter_1"
+    },
+    {
+      "id": 22,
+      "title": "Reason: から",
+      "patternJp": "Sentence A から、Sentence B",
+      "explanationEn": "The particle から means 'because' and is used to give a reason for something.",
+      "exampleJp": "みんな親切ですから、大丈夫ですよ。",
+      "exampleEn": "Everyone is kind, so it will be fine.",
+      "jlptLevel": "N5",
+      "chapterIntroduced": "chapter_1"
+    },
+    {
+      "id": 23,
+      "title": "Following Someone: について",
+      "patternJp": "Person + について + verb of movement",
+      "explanationEn": "When used with a person and a verb of movement, について means 'to follow' or 'to go with' that person.",
+      "exampleJp": "田中先生について学校の中に入ります。",
+      "exampleEn": "You follow Professor Tanaka into the school.",
+      "jlptLevel": "N4",
+      "chapterIntroduced": "chapter_1"
+    },
+    {
+      "id": 24,
+      "title": "Time Expression: 次の日",
+      "patternJp": "次の + time noun",
+      "explanationEn": "The expression 次の means 'next' and is used before time nouns to indicate the next occurrence of that time period.",
+      "exampleJp": "次の日、始業式の後、あなたは初めての教室に入ります。",
+      "exampleEn": "The next day, after the opening ceremony, you enter your classroom for the first time.",
+      "jlptLevel": "N5",
+      "chapterIntroduced": "chapter_1"
+    },
+    {
+      "id": 25,
+      "title": "Existence: には...がいます",
+      "patternJp": "Place + には + Subject + がいます",
+      "explanationEn": "This pattern is used to express the existence of living things at a specific place. には marks the location, and がいます indicates the presence of animate objects.",
+      "exampleJp": "教室には、すでに多くの生徒がいます。",
+      "exampleEn": "There are already many students in the classroom.",
+      "jlptLevel": "N5",
+      "chapterIntroduced": "chapter_1"
+    },
+    {
+      "id": 26,
+      "title": "Verb + 一緒に",
+      "patternJp": "Verb + 一緒に",
+      "explanationEn": "The phrase 一緒に means 'together' and is used to indicate that an action is done together with someone else.",
+      "exampleJp": "今日から一緒に勉強する留学生を紹介します。",
+      "exampleEn": "I would like to introduce the exchange student who will be studying with you from today.",
+      "jlptLevel": "N5",
+      "chapterIntroduced": "chapter_1"
+    },
+    {
+      "id": 27,
+      "title": "Requesting: お願いします",
+      "patternJp": "Noun + をお願いします",
+      "explanationEn": "The phrase をお願いします is a polite way to make a request, meaning 'please (do something)' or 'I would like to request'.",
+      "exampleJp": "自己紹介をお願いします。",
+      "exampleEn": "Please introduce yourself.",
+      "jlptLevel": "N5",
+      "chapterIntroduced": "chapter_1"
+    },
+    {
+      "id": 28,
+      "title": "Possession: の",
+      "patternJp": "Noun A + の + Noun B",
+      "explanationEn": "The particle の indicates possession or association between two nouns. Noun A possesses or is associated with Noun B.",
+      "exampleJp": "私の名前は＿＿＿です。",
+      "exampleEn": "My name is ___.",
+      "jlptLevel": "N5",
+      "chapterIntroduced": "chapter_1"
+    },
+    {
+      "id": 29,
+      "title": "Interest: に興味があります",
+      "patternJp": "Noun + に興味があります",
+      "explanationEn": "This pattern expresses interest in something. The particle に connects the object of interest with the phrase 興味があります (to have interest).",
+      "exampleJp": "日本語と日本の文化に興味があります。",
+      "exampleEn": "I'm interested in Japanese language and culture.",
+      "jlptLevel": "N4",
+      "chapterIntroduced": "chapter_1"
+    },
+    {
+      "id": 30,
+      "title": "Potential Form: できる",
+      "patternJp": "Verb + ことができる",
+      "explanationEn": "The potential form indicates the ability to do something. The verb できる means 'can do' or 'is able to do'.",
+      "exampleJp": "一緒に勉強できて嬉しいです。",
+      "exampleEn": "I'm happy to be able to study together.",
+      "jlptLevel": "N4",
+      "chapterIntroduced": "chapter_1"
+    },
+    {
+      "id": 31,
+      "title": "Past Adjective: でした",
+      "patternJp": "Na-adjective + でした",
+      "explanationEn": "To form the past tense of a na-adjective, add でした after the adjective.",
+      "exampleJp": "とても丁寧な自己紹介でした。",
+      "exampleEn": "That was a very polite self-introduction.",
+      "jlptLevel": "N5",
+      "chapterIntroduced": "chapter_1"
+    },
+    {
+      "id": 32,
+      "title": "Emphasizing Feelings: なんて",
+      "patternJp": "Clause + なんて + Emotion",
+      "explanationEn": "The expression なんて is used to emphasize or express surprise about something, often followed by a statement of emotion.",
+      "exampleJp": "日本の文化に興味があるなんて、嬉しいです。",
+      "exampleEn": "I'm happy that you're interested in Japanese culture.",
+      "jlptLevel": "N3",
+      "chapterIntroduced": "chapter_1"
+    },
+    {
+      "id": 33,
+      "title": "Making Requests: てあげてください",
+      "patternJp": "Verb-te + あげてください",
+      "explanationEn": "This pattern combines the te-form of a verb with あげてください to make a polite request for someone to do something for another person.",
+      "exampleJp": "みなさんも助けてあげてくださいね。",
+      "exampleEn": "Everyone, please help our new student.",
+      "jlptLevel": "N3",
+      "chapterIntroduced": "chapter_1"
+    },
+    {
+      "id": 34,
+      "title": "Benefactive: てくれます",
+      "patternJp": "Verb-te + くれます",
+      "explanationEn": "The pattern てくれます indicates that someone does something for the speaker, expressing appreciation for their action.",
+      "exampleJp": "何人かは「よろしく！」と声を掛けてくれます。",
+      "exampleEn": "Some of them call out 'Nice to meet you!'",
+      "jlptLevel": "N4",
+      "chapterIntroduced": "chapter_1"
+    },
+    {
+      "id": 35,
+      "title": "Ordinal Numbers: 番目",
+      "patternJp": "Number + 番目",
+      "explanationEn": "To form ordinal numbers in Japanese (first, second, third, etc.), add 番目 (banme) after the number.",
+      "exampleJp": "窓側の後ろから3番目の席です。",
+      "exampleEn": "It's the third seat from the back on the window side.",
+      "jlptLevel": "N4",
+      "chapterIntroduced": "chapter_1"
+    },
+    {
+      "id": 36,
+      "title": "Passive Form: されました",
+      "patternJp": "Verb + されました",
+      "explanationEn": "The passive form indicates that the subject receives the action rather than performing it. It can also indicate that something was done by an unspecified agent.",
+      "exampleJp": "指定された席に向かって歩きます。",
+      "exampleEn": "You walk towards your assigned seat.",
+      "jlptLevel": "N4",
+      "chapterIntroduced": "chapter_1"
+    },
+    {
+      "id": 37,
+      "title": "Sentence-ending だね",
+      "patternJp": "Statement + だね",
+      "explanationEn": "The pattern だね is a casual version of ですね, used to seek agreement or confirmation from the listener.",
+      "exampleJp": "隣の席だね。",
+      "exampleEn": "I sit next to you, don't I?",
+      "jlptLevel": "N4",
+      "chapterIntroduced": "chapter_1"
+    },
+    {
+      "id": 38,
+      "title": "Polite Request Form: おねがいします",
+      "patternJp": "Noun + をおねがいします",
+      "explanationEn": "This is a polite way to make a request using the honorific prefix お with the noun ねがい (request) and the verb します.",
+      "exampleJp": "よろしくおねがいします。",
+      "exampleEn": "Please treat me well.",
+      "jlptLevel": "N5",
+      "chapterIntroduced": "chapter_1"
+    },
+    {
+      "id": 39,
+      "title": "Request with てくれますか",
+      "patternJp": "Verb-te + くれますか",
+      "explanationEn": "This pattern is used to politely ask someone to do something for you. It combines the te-form of a verb with くれますか (will you do for me?).",
+      "exampleJp": "日本語を教えてくれますか？",
+      "exampleEn": "Would you help me with Japanese?",
+      "jlptLevel": "N4",
+      "chapterIntroduced": "chapter_1"
+    },
+    {
+      "id": 40,
+      "title": "Conditional: たら",
+      "patternJp": "Verb (ta-form) + ら, Consequence",
+      "explanationEn": "The たら conditional form is used to express 'if' or 'when' something happens, followed by the consequence or result.",
+      "exampleJp": "何か分からないことがあったら、いつでも聞いてね！",
+      "exampleEn": "If there's anything you don't understand, feel free to ask me anytime!",
+      "jlptLevel": "N4",
+      "chapterIntroduced": "chapter_1"
+    },
+    {
+      "id": 41,
+      "title": "Causative Form: させて",
+      "patternJp": "Verb (causative) + て",
+      "explanationEn": "The causative form indicates making or letting someone do something.",
+      "exampleJp": "お互いに教え合おう！",
+      "exampleEn": "Let's teach each other!",
+      "jlptLevel": "N3",
+      "chapterIntroduced": "chapter_1"
+    },
+    {
+      "id": 42,
+      "title": "Casual Reason: から",
+      "patternJp": "Sentence + から",
+      "explanationEn": "In casual speech, から is placed at the end of a sentence to give a reason for a previous statement.",
+      "exampleJp": "大丈夫だよ。みんな優しいから。",
+      "exampleEn": "It's okay. Because everyone's nice here.",
+      "jlptLevel": "N5",
+      "chapterIntroduced": "chapter_1"
+    },
+    {
+      "id": 43,
+      "title": "Imperative Form: てください",
+      "patternJp": "Verb (te-form) + ください",
+      "explanationEn": "The pattern てください is used to give polite instructions or requests, meaning 'please do'.",
+      "exampleJp": "教科書を開いてください。",
+      "exampleEn": "Please open your textbooks.",
+      "jlptLevel": "N5",
+      "chapterIntroduced": "chapter_1"
+    },
+    {
+      "id": 44,
+      "title": "Simultaneous Actions: ながら",
+      "patternJp": "Verb stem + ながら, Main Verb",
+      "explanationEn": "The pattern ながら connects two actions that occur simultaneously, similar to 'while' in English.",
+      "exampleJp": "あなたは教科書を開きながら、「これからどんな学校生活になるだろう」と考えます。",
+      "exampleEn": "As you open your textbook, you wonder 'What will my school life be like from now on?'",
+      "jlptLevel": "N4",
+      "chapterIntroduced": "chapter_1"
+    }
+  ]
