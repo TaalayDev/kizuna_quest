@@ -9,8 +9,8 @@ import 'package:kizuna_quest/presentation/widgets/common/animated_background.dar
 import 'package:kizuna_quest/presentation/widgets/home/character_showcase.dart';
 import 'package:kizuna_quest/presentation/widgets/home/feature_button.dart';
 import 'package:kizuna_quest/presentation/widgets/home/recent_save_card.dart';
-import 'package:kizuna_quest/utils/constants.dart';
-import 'package:kizuna_quest/utils/extensions.dart';
+import 'package:kizuna_quest/core/utils/constants.dart';
+import 'package:kizuna_quest/core/utils/extensions.dart';
 
 /// Home screen of the application
 class HomeScreen extends ConsumerStatefulWidget {

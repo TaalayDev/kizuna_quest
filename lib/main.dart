@@ -9,7 +9,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kizuna_quest/app.dart';
 import 'package:kizuna_quest/core/services/settings_service.dart';
-import 'package:kizuna_quest/utils/app_logger.dart';
+import 'package:kizuna_quest/core/utils/app_logger.dart';
+
+import 'providers/database_provider.dart';
 //import 'package:kizuna_quest/utils/firebase_options.dart';
 
 /// Global providers container reference for use in tests
@@ -35,24 +37,24 @@ void main() async {
   );
 
   // Set error handling
-  FlutterError.onError = (FlutterErrorDetails details) {
-    AppLogger.error(
-      'Flutter error',
-      error: details.exception,
-      stackTrace: details.stack,
-    );
-    FlutterError.presentError(details);
-  };
+  // FlutterError.onError = (FlutterErrorDetails details) {
+  //   AppLogger.error(
+  //     'Flutter error',
+  //     error: details.exception,
+  //     stackTrace: details.stack,
+  //   );
+  //   FlutterError.presentError(details);
+  // };
 
-  // Handle errors not caught by Flutter
-  PlatformDispatcher.instance.onError = (error, stack) {
-    AppLogger.error(
-      'Uncaught platform error',
-      error: error,
-      stackTrace: stack,
-    );
-    return true;
-  };
+  // // Handle errors not caught by Flutter
+  // PlatformDispatcher.instance.onError = (error, stack) {
+  //   AppLogger.error(
+  //     'Uncaught platform error',
+  //     error: error,
+  //     stackTrace: stack,
+  //   );
+  //   return true;
+  // };
 
   // Initialize Firebase if not web and in release mode
   // We'll keep analytics off for debug builds
@@ -95,6 +97,33 @@ void main() async {
       child: const KizunaQuestApp(),
     ),
   );
+
+  // Initialize active save ID after app starts
+  _initializeActiveSaveId();
+}
+
+/// Initialize the active save ID from settings
+Future<void> _initializeActiveSaveId() async {
+  try {
+    final activeSaveId = SettingsService.getActiveSaveId();
+    if (activeSaveId != null) {
+      // Check if this save ID exists in the database
+      final gameRepository = _container.read(gameRepositoryProvider);
+      final saveGame = await gameRepository.getSaveGameById(activeSaveId);
+
+      if (saveGame != null) {
+        // Set the active save ID in the provider
+        await _container.read(activeSaveIdProvider.notifier).setActiveSaveId(activeSaveId);
+        AppLogger.info('Restored active save game: ${saveGame.playerName} (ID: $activeSaveId)');
+      } else {
+        // Save ID doesn't exist anymore, clear it
+        await SettingsService.setActiveSaveId(null);
+        AppLogger.warning('Saved game ID $activeSaveId no longer exists, clearing active save');
+      }
+    }
+  } catch (e, stack) {
+    AppLogger.error('Error initializing active save ID', error: e, stackTrace: stack);
+  }
 }
 
 /// Debug observer to log provider changes

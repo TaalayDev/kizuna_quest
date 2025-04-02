@@ -8,7 +8,7 @@ import 'package:kizuna_quest/presentation/widgets/common/animated_background.dar
 import 'package:kizuna_quest/presentation/widgets/kotoba/mastery_level_badge.dart';
 import 'package:kizuna_quest/presentation/widgets/kotoba/vocabulary_detail_dialog.dart';
 import 'package:kizuna_quest/presentation/widgets/kotoba/vocabulary_filter_chip.dart';
-import 'package:kizuna_quest/utils/extensions.dart';
+import 'package:kizuna_quest/core/utils/extensions.dart';
 
 /// Provider for the current filter in the Kotoba Log
 final kotobaFilterProvider = StateProvider.autoDispose<KotobaFilter>((ref) => KotobaFilter.all);
@@ -33,6 +33,7 @@ enum KotobaFilter {
 /// Provider for filtered vocabulary items
 final filteredVocabularyProvider = Provider.autoDispose<List<VocabularyModel>>((ref) {
   final vocabularyAsync = ref.watch(vocabularyWithStatusProvider);
+  print('Filtered Vocabulary: $vocabularyAsync');
   final filter = ref.watch(kotobaFilterProvider);
   final searchQuery = ref.watch(kotobaSearchQueryProvider).toLowerCase();
 

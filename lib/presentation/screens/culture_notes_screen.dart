@@ -7,7 +7,7 @@ import 'package:kizuna_quest/providers/database_provider.dart';
 import 'package:kizuna_quest/presentation/widgets/common/animated_background.dart';
 import 'package:kizuna_quest/presentation/widgets/culture/category_selector.dart';
 import 'package:kizuna_quest/presentation/widgets/culture/culture_note_card.dart';
-import 'package:kizuna_quest/utils/extensions.dart';
+import 'package:kizuna_quest/core/utils/extensions.dart';
 
 /// Provider for the current selected category in Culture Notes
 final selectedCategoryProvider = StateProvider.autoDispose<String?>((ref) => null);

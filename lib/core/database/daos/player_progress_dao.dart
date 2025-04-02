@@ -6,7 +6,7 @@ import 'package:kizuna_quest/core/database/tables/save_games_table.dart';
 import 'package:kizuna_quest/core/database/tables/unlocked_cultural_notes_table.dart';
 import 'package:kizuna_quest/core/database/tables/unlocked_grammar_table.dart';
 import 'package:kizuna_quest/core/database/tables/unlocked_vocabulary_table.dart';
-import 'package:kizuna_quest/utils/app_logger.dart';
+import 'package:kizuna_quest/core/utils/app_logger.dart';
 
 part 'player_progress_dao.g.dart';
 

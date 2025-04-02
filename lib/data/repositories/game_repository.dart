@@ -17,7 +17,7 @@ import 'package:kizuna_quest/data/models/game_progress_model.dart';
 import 'package:kizuna_quest/data/models/grammar_point_model.dart';
 import 'package:kizuna_quest/data/models/save_game_model.dart';
 import 'package:kizuna_quest/data/models/vocabulary_model.dart';
-import 'package:kizuna_quest/utils/app_logger.dart';
+import 'package:kizuna_quest/core/utils/app_logger.dart';
 import 'package:path/path.dart' as path;
 
 /// Repository for all game-related data access
@@ -182,6 +182,8 @@ class GameRepository {
 
     // Get unlocked status from database
     final unlockedItems = await _playerProgressDao.getUnlockedVocabulary(saveId);
+
+    print('Unlocked items: $unlockedItems');
 
     // Create a map of vocabulary ID to unlocked info
     final Map<int, UnlockedVocabularyItem> unlockedMap = {};

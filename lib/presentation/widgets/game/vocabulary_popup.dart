@@ -3,7 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kizuna_quest/data/models/vocabulary_model.dart';
 import 'package:kizuna_quest/providers/database_provider.dart';
-import 'package:kizuna_quest/utils/extensions.dart';
+import 'package:kizuna_quest/core/utils/extensions.dart';
 
 /// Learning popup for new vocabulary
 class VocabularyPopup extends ConsumerWidget {

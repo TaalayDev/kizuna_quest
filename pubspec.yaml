@@ -21,6 +21,7 @@ dependencies:
   shared_preferences: ^2.2.2 # Simple key-value storage (settings)
   path_provider: ^2.1.2 # Finding local paths (for Drift DB)
   intl: ^0.19.0 # Internationalization formatting
+  screenshot: ^3.0.0 # Screenshot capture for save thumbnails
 
   # Database (Local - Offline First)
   drift: ^2.14.1 # Local database (ORM)

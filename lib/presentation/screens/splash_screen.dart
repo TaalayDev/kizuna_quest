@@ -7,7 +7,7 @@ import 'package:go_router/go_router.dart';
 import 'package:kizuna_quest/core/services/settings_service.dart';
 import 'package:kizuna_quest/data/repositories/game_repository.dart';
 import 'package:kizuna_quest/presentation/widgets/common/animated_background.dart';
-import 'package:kizuna_quest/utils/constants.dart';
+import 'package:kizuna_quest/core/utils/constants.dart';
 import 'package:lottie/lottie.dart';
 
 /// Animated splash screen for Kizuna Quest

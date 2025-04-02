@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kizuna_quest/utils/extensions.dart';
+import 'package:kizuna_quest/core/utils/extensions.dart';
 
 /// Filter chip widget for vocabulary categories
 class VocabularyFilterChip extends StatelessWidget {

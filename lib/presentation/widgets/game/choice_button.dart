@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:kizuna_quest/config/theme/custom_colors.dart';
 import 'package:kizuna_quest/data/models/dialogue_model.dart';
-import 'package:kizuna_quest/utils/extensions.dart';
+import 'package:kizuna_quest/core/utils/extensions.dart';
 
 /// Widget that displays a dialogue choice button
 class ChoiceButton extends StatefulWidget {

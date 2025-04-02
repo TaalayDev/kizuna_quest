@@ -9,8 +9,8 @@ import 'package:kizuna_quest/presentation/screens/kotoba_log_screen.dart';
 import 'package:kizuna_quest/presentation/screens/onboarding_screen.dart';
 import 'package:kizuna_quest/presentation/screens/settings_screen.dart';
 import 'package:kizuna_quest/presentation/screens/splash_screen.dart';
-import 'package:kizuna_quest/utils/app_logger.dart';
-import 'package:kizuna_quest/utils/constants.dart';
+import 'package:kizuna_quest/core/utils/app_logger.dart';
+import 'package:kizuna_quest/core/utils/constants.dart';
 
 /// Provider for the app router
 final appRouterProvider = Provider<GoRouter>((ref) {

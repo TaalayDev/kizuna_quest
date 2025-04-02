@@ -1,7 +1,7 @@
 import 'package:drift/drift.dart';
 import 'package:kizuna_quest/core/database/app_database.dart';
 import 'package:kizuna_quest/core/database/tables/characters_table.dart';
-import 'package:kizuna_quest/utils/app_logger.dart';
+import 'package:kizuna_quest/core/utils/app_logger.dart';
 
 part 'character_dao.g.dart';
 

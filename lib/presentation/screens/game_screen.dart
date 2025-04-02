@@ -16,9 +16,11 @@ import 'package:kizuna_quest/presentation/widgets/game/grammar_popup.dart';
 import 'package:kizuna_quest/presentation/widgets/game/vocabulary_popup.dart';
 import 'package:kizuna_quest/providers/database_provider.dart';
 import 'package:kizuna_quest/providers/game_providers.dart';
-import 'package:kizuna_quest/utils/app_logger.dart';
-import 'package:kizuna_quest/utils/constants.dart';
-import 'package:kizuna_quest/utils/extensions.dart';
+import 'package:kizuna_quest/core/utils/app_logger.dart';
+import 'package:kizuna_quest/core/utils/constants.dart';
+import 'package:kizuna_quest/core/utils/extensions.dart';
+import 'package:kizuna_quest/core/utils/screenshot_helper.dart';
+import 'package:screenshot/screenshot.dart';
 
 import '../widgets/game/cultural_note_popup.dart';
 
@@ -42,6 +44,8 @@ class GameScreen extends ConsumerStatefulWidget {
 }
 
 class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStateMixin {
+  final ScreenshotController _screenshotController = ScreenshotController();
+
   // Animation controllers
   late AnimationController _backgroundController;
   late AnimationController _dialogueController;
@@ -63,6 +67,7 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
   bool _showVocabPopup = false;
   bool _showGrammarPopup = false;
   bool _showCulturalNotePopup = false;
+  bool _isCapturingScreenshot = false;
 
   // Dynamic content
   Map<String, CharacterModel> _characters = {};
@@ -132,7 +137,7 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
     if (widget.saveId != null) {
       final saveId = int.tryParse(widget.saveId!);
       if (saveId != null) {
-        ref.read(activeSaveIdProvider.notifier).state = saveId;
+        await ref.read(activeSaveIdProvider.notifier).setActiveSaveId(saveId);
 
         // Initialize game from save
         await _loadFromSave(saveId);
@@ -190,7 +195,7 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
       final saveId = await gameRepository.createSaveGame(newSaveGame);
 
       // Set as active save
-      ref.read(activeSaveIdProvider.notifier).state = saveId;
+      await ref.read(activeSaveIdProvider.notifier).setActiveSaveId(saveId);
     }
   }
 
@@ -220,6 +225,52 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
     });
   }
 
+  Future<String?> _captureScreenshot() async {
+    // Don't capture if we're already capturing or if menus/popups are open
+    if (_isCapturingScreenshot || _isMenuOpen || _showVocabPopup || _showGrammarPopup || _showCulturalNotePopup) {
+      return null;
+    }
+
+    setState(() {
+      _isCapturingScreenshot = true;
+    });
+
+    try {
+      // Use a delay to ensure the UI is fully rendered
+      await Future.delayed(const Duration(milliseconds: 100));
+
+      // Capture and save screenshot
+      final activeSaveId = ref.read(activeSaveIdProvider);
+      final currentSceneId = ref.read(activeSceneIdProvider);
+
+      final fileName = 'save_${activeSaveId}_${currentSceneId ?? 'unknown'}';
+      final screenshotPath = await ScreenshotHelper.takeAndSaveScreenshot(
+        controller: _screenshotController,
+        fileName: fileName,
+      );
+
+      if (screenshotPath != null) {
+        // Generate a thumbnail for the save game
+        final thumbnailPath = await ScreenshotHelper.generateThumbnail(
+          screenshotPath: screenshotPath,
+          thumbnailName: 'thumb_$fileName',
+          width: 320,
+          height: 180,
+        );
+
+        return thumbnailPath;
+      }
+    } catch (e, stack) {
+      AppLogger.error('Error capturing screenshot', error: e, stackTrace: stack);
+    } finally {
+      setState(() {
+        _isCapturingScreenshot = false;
+      });
+    }
+
+    return null;
+  }
+
   Future<void> _quickSave() async {
     final gameRepository = ref.read(gameRepositoryProvider);
     final activeSaveId = ref.read(activeSaveIdProvider);
@@ -231,13 +282,14 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
         final currentChapterId = ref.read(activeChapterIdProvider) ?? save.currentChapter;
         final currentSceneId = ref.read(activeSceneIdProvider) ?? save.currentScene;
 
+        final thumbnailPath = await _captureScreenshot();
+
         await gameRepository.createQuickSave(
           playerName: save.playerName,
           currentChapter: currentChapterId,
           currentScene: currentSceneId,
           playTimeSeconds: _elapsedPlayTime,
-          // Take a screenshot of current scene for thumbnail
-          // thumbnailPath: not implemented
+          thumbnailPath: thumbnailPath,
         );
 
         ScaffoldMessenger.of(context).showSnackBar(

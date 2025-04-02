@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kizuna_quest/utils/extensions.dart';
+import 'package:kizuna_quest/core/utils/extensions.dart';
 
 /// A button widget for home screen features
 class FeatureButton extends StatelessWidget {

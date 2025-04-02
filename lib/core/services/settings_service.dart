@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:kizuna_quest/utils/app_logger.dart';
+import 'package:kizuna_quest/core/utils/app_logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// Service class to handle application settings persistence
@@ -26,6 +26,7 @@ class SettingsService {
   static const String _keyFirstLaunch = 'first_launch';
   static const String _keyDeviceId = 'device_id';
   static const String _keyOnboardingCompleted = 'onboarding_completed';
+  static const String _keyActiveSaveId = 'active_save_id';
 
   /// Initialize the settings service
   static Future<void> initialize() async {
@@ -58,15 +59,32 @@ class SettingsService {
     await _prefs.setBool(_keyOnboardingCompleted, val);
   }
 
+  /// Get the active save game ID
+  static int? getActiveSaveId() {
+    return _prefs.getInt(_keyActiveSaveId);
+  }
+
+  /// Set the active save game ID
+  static Future<void> setActiveSaveId(int? saveId) async {
+    if (saveId == null) {
+      await _prefs.remove(_keyActiveSaveId);
+    } else {
+      await _prefs.setInt(_keyActiveSaveId, saveId);
+    }
+  }
+
   /// Reset all settings to default values
   static Future<void> resetToDefaults() async {
     try {
       // Don't reset first launch flag or device ID
       final firstLaunch = isFirstLaunch();
       final deviceId = getDeviceId();
+      final activeSaveId = getActiveSaveId();
 
       // Get all keys except those we want to preserve
-      final keys = _prefs.getKeys().where((key) => key != _keyFirstLaunch && key != _keyDeviceId);
+      final keys = _prefs.getKeys().where(
+            (key) => key != _keyFirstLaunch && key != _keyDeviceId && key != _keyActiveSaveId,
+          );
 
       // Remove all other keys
       for (final key in keys) {
@@ -77,6 +95,9 @@ class SettingsService {
       await _prefs.setBool(_keyFirstLaunch, firstLaunch);
       if (deviceId != null) {
         await _prefs.setString(_keyDeviceId, deviceId);
+      }
+      if (activeSaveId != null) {
+        await _prefs.setInt(_keyActiveSaveId, activeSaveId);
       }
 
       AppLogger.info('Settings reset to defaults');

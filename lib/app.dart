@@ -5,7 +5,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:kizuna_quest/config/router/app_router.dart';
 import 'package:kizuna_quest/config/theme/app_theme.dart';
 import 'package:kizuna_quest/providers/theme_providers.dart';
-import 'package:kizuna_quest/utils/constants.dart';
+import 'package:kizuna_quest/core/utils/constants.dart';
 
 /// The main application widget for Kizuna Quest.
 class KizunaQuestApp extends ConsumerWidget {
