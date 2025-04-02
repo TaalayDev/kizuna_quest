@@ -20,6 +20,11 @@ class SaveGameDao extends DatabaseAccessor<AppDatabase> with _$SaveGameDaoMixin 
         .get();
   }
 
+  Stream<List<SaveGame>> watchAllSaveGamesStream() {
+    return (select(saveGames)..orderBy([(t) => OrderingTerm(expression: t.lastSavedAt, mode: OrderingMode.desc)]))
+        .watch();
+  }
+
   /// Get save game by ID
   Future<SaveGame?> getSaveGameById(int id) {
     return (select(saveGames)..where((s) => s.id.equals(id))).getSingleOrNull();

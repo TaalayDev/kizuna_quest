@@ -92,7 +92,7 @@ class AppDatabase extends _$AppDatabase {
 
   static QueryExecutor _openConnection() {
     return driftDatabase(
-      name: kReleaseMode ? _databaseFileName : 'kizuna_quest_dev_1.db',
+      name: kReleaseMode ? _databaseFileName : 'kizuna_quest_dev_2.db',
       web: DriftWebOptions(
         sqlite3Wasm: Uri.parse('sqlite3.wasm'),
         driftWorker: Uri.parse('drift_worker.js'),

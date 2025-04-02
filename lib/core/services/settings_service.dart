@@ -47,6 +47,7 @@ class SettingsService {
   /// Mark that the app has been launched
   static Future<void> markAppLaunched() async {
     await _prefs.setBool(_keyFirstLaunch, false);
+    await _prefs.setBool(_keyOnboardingCompleted, true);
   }
 
   /// Check if onboarding is completed

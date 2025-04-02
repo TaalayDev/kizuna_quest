@@ -116,23 +116,26 @@ final activeSaveGameProvider = StreamProvider((ref) {
 });
 
 /// Provider for character relationships in the active save
-final characterRelationshipsProvider = FutureProvider<List<CharacterModel>>((ref) {
+final characterRelationshipsProvider = StreamProvider<List<CharacterModel>>((ref) {
   final gameRepository = ref.watch(gameRepositoryProvider);
   final activeSaveId = ref.watch(activeSaveIdProvider);
 
   if (activeSaveId == null) {
-    return <CharacterModel>[];
+    return Stream.value(<CharacterModel>[]);
   }
 
   return gameRepository.getCharactersWithRelationships(activeSaveId);
+});
+
+final allCharactersProvider = FutureProvider<List<CharacterModel>>((ref) async {
+  final gameRepository = ref.watch(gameRepositoryProvider);
+  return gameRepository.getAllCharacters();
 });
 
 /// Provider for vocabulary with status in the active save
 final vocabularyWithStatusProvider = FutureProvider.autoDispose<List<VocabularyModel>>((ref) {
   final gameRepository = ref.watch(gameRepositoryProvider);
   final activeSaveId = ref.watch(activeSaveIdProvider);
-
-  print('activeSaveId: $activeSaveId');
 
   if (activeSaveId == null) {
     return <VocabularyModel>[];
@@ -196,7 +199,7 @@ final sceneProvider = FutureProvider.family<dynamic, (String, String)>((ref, par
   return gameRepository.loadScene(chapterId, sceneId);
 });
 
-final allSaveGamesProvider = FutureProvider.autoDispose<List<SaveGameModel>>((ref) async {
+final allSaveGamesProvider = StreamProvider.autoDispose<List<SaveGameModel>>((ref) {
   final gameRepository = ref.watch(gameRepositoryProvider);
   return gameRepository.getAllSaveGames();
 });

@@ -75,6 +75,9 @@ class CharacterSprite extends StatelessWidget {
     // Apply different animations based on position
     var animatedSprite = _buildSprite(MediaQuery.sizeOf(context), spritePath);
 
+    print('Sprite path: $spritePath');
+    print('Sprite position: $spritePosition');
+
     // Add position-specific animations
     switch (spritePosition) {
       case SpritePosition.left:
@@ -113,7 +116,7 @@ class CharacterSprite extends StatelessWidget {
   Widget _buildSprite(Size size, String spritePath) {
     // Build the basic sprite with shadow and highlight if speaking
     final height = size.height * 0.8; // Adjust height based on screen size
-    final width = size.width * 0.8; // Adjust width based on screen size
+    final width = size.width; // Adjust width based on screen size
 
     return Container(
       height: height, // Standard height for character sprites

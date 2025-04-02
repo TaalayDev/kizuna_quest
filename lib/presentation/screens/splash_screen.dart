@@ -40,7 +40,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> with SingleTickerPr
   }
 
   Future<void> _checkFirstLaunch() async {
-    final isFirstLaunch = SettingsService.isFirstLaunch();
+    final isFirstLaunch = SettingsService.isOnboardingCompleted();
     setState(() {
       _isFirstLaunch = isFirstLaunch;
     });

@@ -28,6 +28,8 @@ class _CharacterShowcaseState extends ConsumerState<CharacterShowcase> {
   Widget build(BuildContext context) {
     final charactersData = ref.watch(characterRelationshipsProvider);
 
+    final allCharactersAsync = ref.watch(allCharactersProvider);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -42,11 +44,17 @@ class _CharacterShowcaseState extends ConsumerState<CharacterShowcase> {
           height: 220,
           child: charactersData.when(
             data: (characters) {
-              if (characters.isEmpty) {
+              final unlockedCharacters = characters.where((c) => c.hasRelationship).toList();
+
+              if (unlockedCharacters.isEmpty) {
                 return _buildEmptyState();
               }
 
-              return _buildCharacterList(characters);
+              return allCharactersAsync.when(
+                data: (allCharacters) => _buildCharacterList(unlockedCharacters),
+                loading: () => const Center(child: CircularProgressIndicator()),
+                error: (error, stack) => _buildErrorState(context, error),
+              );
             },
             loading: () => const Center(
               child: CircularProgressIndicator(),
@@ -62,6 +70,32 @@ class _CharacterShowcaseState extends ConsumerState<CharacterShowcase> {
           ),
         ),
       ],
+    );
+  }
+
+  Widget _buildErrorState(BuildContext context, Object error) {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.error_outline,
+              color: context.theme.colorScheme.error,
+              size: 40,
+            ),
+            const SizedBox(height: 8),
+            Text(
+              'Failed to load character data',
+              style: context.textTheme.bodyMedium?.copyWith(
+                color: context.theme.colorScheme.onSurface,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
+      ),
     );
   }
 

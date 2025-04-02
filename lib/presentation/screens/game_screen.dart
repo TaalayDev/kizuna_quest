@@ -69,6 +69,11 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
   bool _showCulturalNotePopup = false;
   bool _isCapturingScreenshot = false;
 
+  // UI state for scene transitions
+  bool _isSceneTransitioning = false;
+  bool _isChapterTransitioning = false;
+  String _nextChapterTitle = '';
+
   // Dynamic content
   Map<String, CharacterModel> _characters = {};
   List<Widget> _characterSprites = [];
@@ -272,6 +277,10 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
   }
 
   Future<void> _quickSave() async {
+    setState(() {
+      _isMenuOpen = false;
+    });
+
     final gameRepository = ref.read(gameRepositoryProvider);
     final activeSaveId = ref.read(activeSaveIdProvider);
 
@@ -330,6 +339,20 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
     _nextDialogue();
   }
 
+  /// Checks if the current dialogue node is the end of a scene
+  bool _isEndOfScene(DialogueNode? dialogueNode) {
+    if (dialogueNode == null) return false;
+
+    // If it's a choice node, it's not the end
+    if (dialogueNode.isChoiceNode) return false;
+
+    // If it has a next dialogue ID, it's not the end
+    if (dialogueNode.line.nextId != null) return false;
+
+    // Otherwise, we're at the end of the scene
+    return true;
+  }
+
   void _nextDialogue() {
     final currentDialogue = ref.read(currentDialogueProvider).valueOrNull;
 
@@ -345,8 +368,9 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
       // Proceed to next dialogue node
       ref.read(currentDialogueIdProvider.notifier).state = currentDialogue.line.nextId;
     } else {
-      // End of scene, could load next scene or show end screen
+      // End of scene reached, load the next scene
       AppLogger.info('End of current dialogue path reached');
+      _loadNextScene();
     }
   }
 
@@ -379,6 +403,237 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
     final userLanguageLevel = SettingsService.getLanguageLevel();
 
     return choice.requiredLevel <= userLanguageLevel;
+  }
+
+  Future<void> _loadNextScene() async {
+    final gameRepository = ref.read(gameRepositoryProvider);
+    final currentChapterId = ref.read(activeChapterIdProvider);
+    final currentSceneId = ref.read(activeSceneIdProvider);
+
+    if (currentChapterId == null || currentSceneId == null) {
+      AppLogger.error('Cannot load next scene: chapter or scene ID is null');
+      return;
+    }
+
+    try {
+      // Get current chapter data
+      final chapter = await gameRepository.loadChapter(currentChapterId);
+      if (chapter == null) {
+        AppLogger.error('Cannot load next scene: chapter $currentChapterId not found');
+        return;
+      }
+
+      // Find the index of the current scene in the chapter
+      final currentSceneIndex = chapter.sceneIds.indexOf(currentSceneId);
+      if (currentSceneIndex == -1) {
+        AppLogger.error('Current scene $currentSceneId not found in chapter $currentChapterId');
+        return;
+      }
+
+      // Check if there is a next scene
+      if (currentSceneIndex < chapter.sceneIds.length - 1) {
+        // Get the next scene ID
+        final nextSceneId = chapter.sceneIds[currentSceneIndex + 1];
+
+        // Display scene transition UI
+        await _showSceneTransition();
+
+        // Update the active scene ID
+        ref.read(activeSceneIdProvider.notifier).state = nextSceneId;
+
+        // Reset dialogue ID to null so it will start from the beginning of the new scene
+        ref.read(currentDialogueIdProvider.notifier).state = null;
+
+        // Save progress
+        _saveProgress(currentChapterId, nextSceneId);
+
+        AppLogger.info('Loaded next scene: $nextSceneId');
+      } else {
+        // This is the last scene in the chapter
+        await _handleChapterEnd(currentChapterId);
+      }
+    } catch (e, stack) {
+      AppLogger.error('Error loading next scene', error: e, stackTrace: stack);
+
+      // Show error message to the user
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: const Text('Error loading next scene'),
+            behavior: SnackBarBehavior.floating,
+          ),
+        );
+      }
+    }
+  }
+
+  /// Handles the end of a chapter
+  Future<void> _handleChapterEnd(String currentChapterId) async {
+    final gameRepository = ref.read(gameRepositoryProvider);
+
+    try {
+      // Get all chapters to find the next one
+      final allChapters = await gameRepository.getAllChapters();
+
+      // Find current chapter by ID
+      final currentChapterIndex = allChapters.indexWhere((c) => c.id == currentChapterId);
+      if (currentChapterIndex == -1) {
+        AppLogger.error('Current chapter $currentChapterId not found in all chapters');
+        return;
+      }
+
+      // Check if there is a next chapter
+      if (currentChapterIndex < allChapters.length - 1) {
+        // Get the next chapter
+        final nextChapter = allChapters[currentChapterIndex + 1];
+
+        // Show chapter transition UI
+        await _showChapterTransition(nextChapter.id, nextChapter.title);
+
+        // Prompt user to continue to next chapter
+        if (context.mounted) {
+          final goToNextChapter = await showDialog<bool>(
+                context: context,
+                barrierDismissible: false,
+                builder: (context) => AlertDialog(
+                  title: const Text('Chapter Complete'),
+                  content: Text('Do you want to continue to ${nextChapter.title}?'),
+                  actions: [
+                    TextButton(
+                      onPressed: () => Navigator.of(context).pop(false),
+                      child: const Text('Return to Menu'),
+                    ),
+                    TextButton(
+                      onPressed: () => Navigator.of(context).pop(true),
+                      child: const Text('Continue'),
+                    ),
+                  ],
+                ),
+              ) ??
+              false;
+
+          if (goToNextChapter) {
+            // Update the active chapter and scene IDs
+            ref.read(activeChapterIdProvider.notifier).state = nextChapter.id;
+            ref.read(activeSceneIdProvider.notifier).state = nextChapter.startSceneId;
+
+            // Reset dialogue ID
+            ref.read(currentDialogueIdProvider.notifier).state = null;
+
+            // Save progress
+            _saveProgress(nextChapter.id, nextChapter.startSceneId);
+
+            AppLogger.info('Started next chapter: ${nextChapter.id}');
+          } else {
+            // Return to home screen
+            if (context.mounted) {
+              context.go(AppConstants.routeHome);
+            }
+          }
+        }
+      } else {
+        // This is the last chapter in the game
+        await _showGameCompleteScreen();
+      }
+    } catch (e, stack) {
+      AppLogger.error('Error handling chapter end', error: e, stackTrace: stack);
+    }
+  }
+
+  /// Saves the current progress
+  Future<void> _saveProgress(String chapterId, String sceneId) async {
+    final gameRepository = ref.read(gameRepositoryProvider);
+    final activeSaveId = ref.read(activeSaveIdProvider);
+
+    if (activeSaveId == null) {
+      AppLogger.warning('Cannot save progress: no active save ID');
+      return;
+    }
+
+    try {
+      final saveGame = await gameRepository.getSaveGameById(activeSaveId);
+      if (saveGame != null) {
+        // Update save game with new chapter and scene
+        final updatedSave = saveGame.copyWith(
+          currentChapter: chapterId,
+          currentScene: sceneId,
+          playTimeSeconds: _elapsedPlayTime,
+          lastSavedAt: DateTime.now(),
+        );
+
+        // Save the updated game state
+        await gameRepository.updateSaveGame(updatedSave);
+
+        AppLogger.info('Progress saved: chapter=$chapterId, scene=$sceneId');
+      }
+    } catch (e, stack) {
+      AppLogger.error('Failed to save progress', error: e, stackTrace: stack);
+    }
+  }
+
+  /// Shows a transition animation between scenes
+  Future<void> _showSceneTransition() async {
+    setState(() {
+      _isSceneTransitioning = true;
+    });
+
+    // Wait for the fade-out animation to complete
+    await Future.delayed(const Duration(milliseconds: 800));
+
+    setState(() {
+      _isSceneTransitioning = false;
+    });
+
+    // Reset character sprites when transitioning to a new scene
+    setState(() {
+      _characterSprites = [];
+      _currentBackground = '';
+    });
+  }
+
+  /// Shows a transition animation between chapters
+  Future<void> _showChapterTransition(String nextChapterId, String chapterTitle) async {
+    setState(() {
+      _isChapterTransitioning = true;
+      _nextChapterTitle = chapterTitle;
+    });
+
+    // Wait for the transition animation to complete
+    await Future.delayed(const Duration(milliseconds: 2000));
+
+    setState(() {
+      _isChapterTransitioning = false;
+      _nextChapterTitle = '';
+    });
+
+    // Reset character sprites and background when transitioning to a new chapter
+    setState(() {
+      _characterSprites = [];
+      _currentBackground = '';
+    });
+  }
+
+  /// Shows the game complete screen
+  Future<void> _showGameCompleteScreen() async {
+    if (!context.mounted) return;
+
+    await showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => AlertDialog(
+        title: const Text('Congratulations!'),
+        content: const Text('You have completed all available chapters of Kizuna Quest. Thank you for playing!'),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+              context.go(AppConstants.routeHome);
+            },
+            child: const Text('Return to Menu'),
+          ),
+        ],
+      ),
+    );
   }
 
   Future<void> _processRelationshipChanges(DialogueChoice choice) async {
@@ -431,9 +686,27 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
     _autoModeTimer = Timer.periodic(
       Duration(milliseconds: autoDelay),
       (timer) {
+        final currentDialogue = ref.read(currentDialogueProvider).valueOrNull;
+
         // Only advance if text is complete and no choices are shown
         if (_isTextComplete && !_showChoices) {
-          _advanceDialogue();
+          // If we're at the end of a scene, use a longer delay
+          if (_isEndOfScene(currentDialogue)) {
+            // Cancel the current timer
+            timer.cancel();
+
+            // Wait a bit longer before advancing to next scene
+            Future.delayed(const Duration(seconds: 2), () {
+              if (_isAutoMode) {
+                _advanceDialogue();
+                // Restart auto mode
+                _startAutoMode();
+              }
+            });
+          } else {
+            // Normal dialogue advancement
+            _advanceDialogue();
+          }
         }
       },
     );
@@ -554,6 +827,7 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
     setState(() {
       _showVocabPopup = false;
       _showGrammarPopup = false;
+      _showCulturalNotePopup = false; // Added cultural notes popup
     });
   }
 
@@ -653,44 +927,89 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
       },
     );
 
-    return Scaffold(
-      body: Stack(
-        fit: StackFit.expand,
-        children: [
-          // Background image - with fade transition animation
-          _buildBackgroundLayer(),
+    return Screenshot(
+      controller: _screenshotController,
+      child: Scaffold(
+        body: Stack(
+          fit: StackFit.expand,
+          children: [
+            // Background image - with fade transition animation
+            _buildBackgroundLayer(),
 
-          // Character sprites
-          ..._characterSprites,
+            // Character sprites
+            ..._characterSprites,
 
-          // Dialogue and UI elements
-          Column(
-            children: [
-              // Top UI bar
-              _buildTopUI(),
+            // Dialogue and UI elements
+            Column(
+              children: [
+                // Top UI bar
+                _buildTopUI(),
 
-              // Flexible space between top and bottom
-              const Spacer(),
+                // Flexible space between top and bottom
+                const Spacer(),
 
-              // Dialogue box at the bottom
-              _buildDialogueBox(currentDialogue, isLoading),
-            ],
-          ),
+                // Dialogue box at the bottom
+                _buildDialogueBox(currentDialogue, isLoading),
+              ],
+            ),
 
-          // Dialogue choices (conditionally shown)
-          if (_showChoices && currentDialogue != null && currentDialogue.choices.isNotEmpty)
-            _buildChoices(currentDialogue.choices),
+            // Dialogue choices (conditionally shown)
+            if (_showChoices && currentDialogue != null && currentDialogue.choices.isNotEmpty)
+              _buildChoices(currentDialogue.choices),
 
-          // Game menu (conditionally shown)
-          if (_isMenuOpen) _buildGameMenu(),
+            // Game menu (conditionally shown)
+            if (_isMenuOpen) _buildGameMenu(),
 
-          // Learning popups (vocabulary, grammar)
-          if (_showVocabPopup)
-            _buildVocabularyPopup(currentDialogue)
-          else if (_showGrammarPopup)
-            _buildGrammarPopup(currentDialogue),
-          if (_showCulturalNotePopup) _buildCulturalNotePopup(currentDialogue),
-        ],
+            // Learning popups (vocabulary, grammar)
+            if (_showVocabPopup)
+              _buildVocabularyPopup(currentDialogue)
+            else if (_showGrammarPopup)
+              _buildGrammarPopup(currentDialogue),
+            if (_showCulturalNotePopup) _buildCulturalNotePopup(currentDialogue),
+
+            // Scene transition overlay
+            if (_isSceneTransitioning)
+              AnimatedOpacity(
+                opacity: _isSceneTransitioning ? 1.0 : 0.0,
+                duration: const Duration(milliseconds: 500),
+                child: Container(
+                  color: Colors.black,
+                  alignment: Alignment.center,
+                  child: const CircularProgressIndicator(),
+                ),
+              ),
+
+            if (_isChapterTransitioning)
+              AnimatedOpacity(
+                opacity: _isChapterTransitioning ? 1.0 : 0.0,
+                duration: const Duration(milliseconds: 500),
+                child: Container(
+                  color: Colors.black,
+                  alignment: Alignment.center,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'CHAPTER',
+                        style: context.textTheme.titleLarge?.copyWith(
+                          color: Colors.white,
+                          letterSpacing: 2.0,
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                      Text(
+                        _nextChapterTitle,
+                        style: context.textTheme.headlineMedium?.copyWith(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ).animate().fadeIn(duration: 800.ms),
+                ),
+              ),
+          ],
+        ),
       ),
     );
   }
@@ -710,7 +1029,7 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
           image: DecorationImage(
             image: AssetImage(
               //_currentBackground.isNotEmpty ? _currentBackground :
-              'assets/images/backgrounds/classroom.webp',
+              'assets/images/backgrounds/car_interior.webp',
             ),
             fit: BoxFit.cover,
           ),

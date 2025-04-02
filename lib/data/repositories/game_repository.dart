@@ -51,9 +51,9 @@ class GameRepository {
   // ==================== Save Game Methods ====================
 
   /// Get all save games
-  Future<List<SaveGameModel>> getAllSaveGames() async {
-    final saves = await _saveGameDao.getAllSaveGames();
-    return saves.map(SaveGameModel.fromEntity).toList();
+  Stream<List<SaveGameModel>> getAllSaveGames() {
+    final saves = _saveGameDao.watchAllSaveGames().map((saves) => saves.map(SaveGameModel.fromEntity).toList());
+    return saves;
   }
 
   /// Get save game by ID
@@ -133,9 +133,11 @@ class GameRepository {
   }
 
   /// Get characters with relationships for a save game
-  Future<List<CharacterModel>> getCharactersWithRelationships(int saveId) async {
-    final results = await _playerProgressDao.getCharactersWithRelationships(saveId);
-    return results.map(CharacterModel.fromMap).toList();
+  Stream<List<CharacterModel>> getCharactersWithRelationships(int saveId) {
+    final results = _playerProgressDao.watchCharactersWithRelationships(saveId).map((characters) {
+      return characters.map(CharacterModel.fromMap).toList();
+    });
+    return results;
   }
 
   /// Get a specific character relationship

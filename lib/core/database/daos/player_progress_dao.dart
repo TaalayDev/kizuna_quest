@@ -122,7 +122,7 @@ class PlayerProgressDao extends DatabaseAccessor<AppDatabase> with _$PlayerProgr
   // (The other methods for vocabulary, grammar, cultural notes, etc.)
 
   /// Get character with relationship for a save game
-  Future<List<Map<String, dynamic>>> getCharactersWithRelationships(int saveGameId) async {
+  Stream<List<Map<String, dynamic>>> watchCharactersWithRelationships(int saveGameId) {
     // Join characters and relationships tables
     final query = select(characters).join([
       leftOuterJoin(
@@ -132,19 +132,22 @@ class PlayerProgressDao extends DatabaseAccessor<AppDatabase> with _$PlayerProgr
     ]);
 
     // Execute query
-    final rows = await query.get();
+    final rows = query.watch().map((rows) {
+      // Map results to a list of character and relationship objects
+      return rows.map((row) {
+        final character = row.readTable(characters);
+        final relationship = row.readTableOrNull(relationships);
+
+        return {
+          'character': character,
+          'relationship': relationship,
+          'kizunaPoints': relationship?.kizunaPoints ?? 0,
+        };
+      }).toList();
+    });
 
     // Map results
-    return rows.map((row) {
-      final character = row.readTable(characters);
-      final relationship = row.readTableOrNull(relationships);
-
-      return {
-        'character': character,
-        'relationship': relationship,
-        'kizunaPoints': relationship?.kizunaPoints ?? 0,
-      };
-    }).toList();
+    return rows;
   }
 
   // ==================== Vocabulary Methods ====================
