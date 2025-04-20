@@ -201,5 +201,9 @@ final sceneProvider = FutureProvider.family<dynamic, (String, String)>((ref, par
 
 final allSaveGamesProvider = StreamProvider.autoDispose<List<SaveGameModel>>((ref) {
   final gameRepository = ref.watch(gameRepositoryProvider);
-  return gameRepository.getAllSaveGames();
+  return gameRepository.getAllSaveGames().map((saveGames) {
+    // Sort save games by last saved date
+    saveGames.sort((a, b) => b.lastSavedAt.compareTo(a.lastSavedAt));
+    return saveGames;
+  });
 });

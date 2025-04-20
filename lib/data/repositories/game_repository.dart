@@ -101,14 +101,16 @@ class GameRepository {
 
   /// Create a quick save
   Future<int> createQuickSave({
-    required String playerName,
-    required String currentChapter,
-    required String currentScene,
-    required int playTimeSeconds,
+    required int currentSaveId,
+    String? playerName,
+    String? currentChapter,
+    String? currentScene,
+    int? playTimeSeconds,
     String? thumbnailPath,
     Map<String, dynamic>? settings,
   }) {
     return _saveGameDao.createQuickSave(
+      currentSaveId: currentSaveId,
       playerName: playerName,
       currentChapter: currentChapter,
       currentScene: currentScene,

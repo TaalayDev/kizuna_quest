@@ -195,7 +195,7 @@ class _KotobaLogScreenState extends ConsumerState<KotobaLogScreen> {
         ],
       ),
       // FAB for practice
-      floatingActionButton: _buildPracticeButton(),
+      // floatingActionButton: _buildPracticeButton(),
     );
   }
 

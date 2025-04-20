@@ -119,28 +119,55 @@ class SaveGameDao extends DatabaseAccessor<AppDatabase> with _$SaveGameDaoMixin 
 
   /// Create a quick save
   Future<int> createQuickSave({
-    required String playerName,
-    required String currentChapter,
-    required String currentScene,
-    required int playTimeSeconds,
+    required int currentSaveId,
+    String? playerName,
+    String? currentChapter,
+    String? currentScene,
+    int? playTimeSeconds,
     String? thumbnailPath,
     Map<String, dynamic>? settings,
   }) async {
-    // Use slot 0 for quick save
-    const quickSaveSlotId = 0;
+    try {
+      // Get data from the current save if available
+      final currentSave = await getSaveGameById(currentSaveId);
 
-    // Check if quick save exists and delete it
-    await deleteSaveGameBySlot(quickSaveSlotId);
+      if (currentSave == null) {
+        throw Exception('Current save not found');
+      }
+      final savePlayerName = playerName ?? currentSave.playerName;
+      final saveChapter = currentChapter ?? currentSave.currentChapter;
+      final saveScene = currentScene ?? currentSave.currentScene;
+      final savePlayTime = playTimeSeconds ?? currentSave.playTimeSeconds;
+      final saveSettings = settings ?? await getGameSettings(currentSaveId);
+      final thumbPath = thumbnailPath ?? currentSave.thumbnailPath;
 
-    // Create new quick save
-    return insertSaveGame(SaveGamesCompanion.insert(
-      slotId: quickSaveSlotId,
-      playerName: playerName,
-      currentChapter: currentChapter,
-      currentScene: currentScene,
-      playTimeSeconds: Value(playTimeSeconds),
-      thumbnailPath: Value(thumbnailPath),
-      settingsJson: Value(settings != null ? jsonEncode(settings) : '{}'),
-    ));
+      // Create new quick save
+      return insertSaveGame(SaveGamesCompanion.insert(
+        slotId: currentSaveId,
+        playerName: savePlayerName,
+        currentChapter: saveChapter,
+        currentScene: saveScene,
+        playTimeSeconds: Value(savePlayTime),
+        thumbnailPath: Value(thumbPath),
+        settingsJson: Value(jsonEncode(saveSettings)),
+      ));
+    } catch (e) {
+      // Use slot 0 for quick save
+      const quickSaveSlotId = 0;
+
+      // Check if quick save exists and delete it
+      await deleteSaveGameBySlot(quickSaveSlotId);
+
+      AppLogger.error('Failed to create quick save', error: e);
+      return insertSaveGame(SaveGamesCompanion.insert(
+        slotId: quickSaveSlotId,
+        playerName: playerName ?? "Player",
+        currentChapter: currentChapter ?? "chapter_1",
+        currentScene: currentScene ?? "scene_1",
+        playTimeSeconds: Value(playTimeSeconds ?? 0),
+        thumbnailPath: Value(thumbnailPath),
+        settingsJson: Value(settings != null ? jsonEncode(settings) : '{}'),
+      ));
+    }
   }
 }

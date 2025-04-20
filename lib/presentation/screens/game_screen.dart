@@ -409,6 +409,7 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
           final thumbnailPath = await _captureScreenshot(forSaving: true);
 
           await gameRepository.createQuickSave(
+            currentSaveId: activeSaveId,
             playerName: save.playerName,
             currentChapter: currentChapterId,
             currentScene: currentSceneId,
