@@ -71,18 +71,15 @@ class InAppReviewService {
     }
 
     // If this is not the first request, check for minimum interval
-    if (lastRequestTime != null) {
-      final lastRequest = DateTime.fromMillisecondsSinceEpoch(lastRequestTime);
-      final now = DateTime.now();
-      final daysSinceLastRequest = now.difference(lastRequest);
 
-      // If not enough days have passed AND not enough new sessions, don't request
-      if (daysSinceLastRequest < _minIntervalBetweenRequests &&
-          (sessionCount - _sessionsBeforeFirstRequest) %
-                  _sessionsBeforeReminder !=
-              0) {
-        return false;
-      }
+    final lastRequest = DateTime.fromMillisecondsSinceEpoch(lastRequestTime);
+    final now = DateTime.now();
+    final daysSinceLastRequest = now.difference(lastRequest);
+
+    // If not enough days have passed AND not enough new sessions, don't request
+    if (daysSinceLastRequest < _minIntervalBetweenRequests &&
+        (sessionCount - _sessionsBeforeFirstRequest) % _sessionsBeforeReminder != 0) {
+      return false;
     }
 
     return true;
@@ -100,7 +97,9 @@ class InAppReviewService {
         await _inAppReview.requestReview();
       } else {
         // For other platforms, open the store page directly
-        await _inAppReview.openStoreListing(appStoreId: '123456789');
+        await _inAppReview.openStoreListing(
+          appStoreId: '123456789',
+        );
       }
 
       // Update the last request time

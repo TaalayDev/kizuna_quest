@@ -11,6 +11,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kizuna_quest/app.dart';
 import 'package:kizuna_quest/core/services/settings_service.dart';
 import 'package:kizuna_quest/core/utils/app_logger.dart';
+import 'package:kizuna_quest/firebase_options.dart';
 import 'package:window_manager/window_manager.dart';
 
 import 'providers/database_provider.dart';
@@ -41,47 +42,26 @@ void main() async {
   // Initialize window manager for desktop platforms
   await initWindowManager();
 
-  // Set error handling
-  // FlutterError.onError = (FlutterErrorDetails details) {
-  //   AppLogger.error(
-  //     'Flutter error',
-  //     error: details.exception,
-  //     stackTrace: details.stack,
-  //   );
-  //   FlutterError.presentError(details);
-  // };
-
-  // // Handle errors not caught by Flutter
-  // PlatformDispatcher.instance.onError = (error, stack) {
-  //   AppLogger.error(
-  //     'Uncaught platform error',
-  //     error: error,
-  //     stackTrace: stack,
-  //   );
-  //   return true;
-  // };
-
   // Initialize Firebase if not web and in release mode
   // We'll keep analytics off for debug builds
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   if (!kIsWeb) {
     try {
-      // await Firebase.initializeApp(
-      //   options: DefaultFirebaseOptions.currentPlatform,
-      // );
-
       // Configure Crashlytics
       // FlutterError.onError = (errorDetails) {
       //   FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
       // };
 
-      // Pass all uncaught asynchronous errors to Crashlytics
+      // // Pass all uncaught asynchronous errors to Crashlytics
       // PlatformDispatcher.instance.onError = (error, stack) {
       //   FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
       //   return true;
       // };
 
       // Only enable analytics in release mode
-      // await FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(!kDebugMode);
+      await FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(!kDebugMode);
     } catch (e, stack) {
       AppLogger.error(
         'Failed to initialize Firebase',

@@ -71,6 +71,8 @@ class ReportController {
       _ref.read(reportSubmissionStateProvider.notifier).state = AsyncValue.data(result);
       return result;
     } catch (e, stack) {
+      print('Error submitting translation error report: $e');
+      print('Stack trace: $stack');
       _ref.read(reportSubmissionStateProvider.notifier).state = AsyncValue.error(e, stack);
       return false;
     }
