@@ -131,10 +131,15 @@ class _AnimatedBackgroundState extends State<AnimatedBackground> with SingleTick
                     gradient: LinearGradient(
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
-                      colors: [
-                        theme.colorScheme.background.withOpacity(0.3),
-                        theme.colorScheme.background.withOpacity(0.6),
-                      ],
+                      colors: isDarkMode
+                          ? [
+                              theme.colorScheme.background.withOpacity(0.3),
+                              theme.colorScheme.background.withOpacity(0.6),
+                            ]
+                          : [
+                              const Color(0xFF8C9EFF).withOpacity(0.1),
+                              const Color(0xFFB388FF).withOpacity(0.3),
+                            ],
                       stops: const [0.0, 1.0],
                     ),
                   ),

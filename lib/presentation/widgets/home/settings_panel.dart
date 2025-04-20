@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kizuna_quest/core/utils/extensions.dart';
 
 import '../../../providers/settings_provider.dart';
+import '../../../providers/sound_controller.dart';
 import '../../../providers/theme_providers.dart';
 
 class SettingsPanel extends ConsumerWidget {
@@ -220,10 +221,10 @@ Widget _buildTextSpeedSettings(BuildContext context, WidgetRef ref) {
 }
 
 Widget _buildAudioSettings(BuildContext context, WidgetRef ref) {
-  final audioSettings = ref.watch(audioSettingsProvider);
-  final audioEnabled = audioSettings['audioEnabled'] ?? true;
-  final musicVolume = audioSettings['musicVolume'] ?? 0.7;
-  final sfxVolume = audioSettings['sfxVolume'] ?? 1.0;
+  final audioSettings = ref.watch(soundControllerProvider);
+  final audioEnabled = audioSettings.isSoundEnabled;
+  final musicVolume = audioSettings.musicVolume;
+  final sfxVolume = audioSettings.soundVolume;
 
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
@@ -236,7 +237,7 @@ Widget _buildAudioSettings(BuildContext context, WidgetRef ref) {
         title: const Text('Enable Audio'),
         value: audioEnabled,
         onChanged: (value) {
-          ref.read(audioSettingsProvider.notifier).setAudioEnabled(value);
+          ref.read(soundControllerProvider.notifier).setSoundEnabled(value);
         },
         secondary: Icon(
           audioEnabled ? Icons.volume_up : Icons.volume_off,
@@ -257,7 +258,7 @@ Widget _buildAudioSettings(BuildContext context, WidgetRef ref) {
             divisions: 10,
             label: '${(musicVolume * 100).round()}%',
             onChanged: (value) {
-              ref.read(audioSettingsProvider.notifier).setMusicVolume(value);
+              ref.read(soundControllerProvider.notifier).setMusicVolume(value);
             },
           ),
         ),
@@ -274,7 +275,7 @@ Widget _buildAudioSettings(BuildContext context, WidgetRef ref) {
             divisions: 10,
             label: '${(sfxVolume * 100).round()}%',
             onChanged: (value) {
-              ref.read(audioSettingsProvider.notifier).setSfxVolume(value);
+              ref.read(soundControllerProvider.notifier).setSoundVolume(value);
             },
           ),
         ),

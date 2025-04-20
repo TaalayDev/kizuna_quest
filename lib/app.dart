@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:kizuna_quest/config/router/app_router.dart';
 import 'package:kizuna_quest/config/theme/app_theme.dart';
+import 'package:kizuna_quest/providers/sound_controller.dart';
 import 'package:kizuna_quest/providers/theme_providers.dart';
 import 'package:kizuna_quest/core/utils/constants.dart';
 
@@ -23,6 +24,7 @@ class _KizunaQuestAppState extends ConsumerState<KizunaQuestApp> with WidgetsBin
     super.initState();
     WidgetsBinding.instance.addObserver(this);
 
+    ref.read(soundControllerProvider.notifier).playBgm();
     _incrementSessionCount();
   }
 

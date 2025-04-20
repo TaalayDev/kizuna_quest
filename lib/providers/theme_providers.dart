@@ -64,7 +64,7 @@ class ThemeModeNotifier extends StateNotifier<ThemeMode> {
       if (themeModeString != null) {
         final themeMode = AppThemeMode.values.firstWhere(
           (e) => e.name == themeModeString,
-          orElse: () => AppThemeMode.system,
+          orElse: () => AppThemeMode.dark,
         );
         state = themeMode.toThemeMode();
       }

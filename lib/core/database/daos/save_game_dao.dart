@@ -142,15 +142,21 @@ class SaveGameDao extends DatabaseAccessor<AppDatabase> with _$SaveGameDaoMixin 
       final thumbPath = thumbnailPath ?? currentSave.thumbnailPath;
 
       // Create new quick save
-      return insertSaveGame(SaveGamesCompanion.insert(
-        slotId: currentSaveId,
+      await updateSaveGame(SaveGame(
+        id: currentSave.id,
+        slotId: currentSave.slotId,
         playerName: savePlayerName,
         currentChapter: saveChapter,
         currentScene: saveScene,
-        playTimeSeconds: Value(savePlayTime),
-        thumbnailPath: Value(thumbPath),
-        settingsJson: Value(jsonEncode(saveSettings)),
+        playTimeSeconds: savePlayTime,
+        thumbnailPath: thumbPath,
+        settingsJson: jsonEncode(saveSettings),
+        updatedAt: DateTime.now(),
+        lastSavedAt: DateTime.now(),
+        createdAt: currentSave.createdAt,
       ));
+
+      return currentSave.id;
     } catch (e) {
       // Use slot 0 for quick save
       const quickSaveSlotId = 0;

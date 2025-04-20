@@ -182,6 +182,7 @@ class CharacterDetailDialog extends StatelessWidget {
                       child: Image.asset(
                         defaultSprite,
                         fit: BoxFit.cover,
+                        height: context.screenHeight * 0.4,
                         errorBuilder: (context, error, stackTrace) {
                           // Fallback to avatar if sprite not found
                           return Image.asset(

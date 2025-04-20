@@ -50,7 +50,7 @@ dependencies:
   percent_indicator: ^4.2.4 # Circular/Linear percent indicators (e.g., for progress)
 
   # Audio (Optional - for SFX/BGM)
-  just_audio: ^0.9.36 # Audio playback
+  just_audio: ^0.10.0 # Audio playback
 
   # Data Models & Serialization
   freezed_annotation: ^3.0.0 # Code generation for immutable classes
