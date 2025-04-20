@@ -25,7 +25,10 @@ class SettingsPanel extends ConsumerWidget {
       children: [
         // Semi-transparent backdrop
         GestureDetector(
-          onTap: onClose,
+          onTap: () {
+            ref.read(soundControllerProvider.notifier).playClick();
+            onClose?.call();
+          },
           child: Container(
             color: Colors.black.withOpacity(0.5),
           ),
@@ -68,7 +71,10 @@ class SettingsPanel extends ConsumerWidget {
                       ),
                       const Spacer(),
                       IconButton(
-                        onPressed: onClose,
+                        onPressed: () {
+                          ref.read(soundControllerProvider.notifier).playClick();
+                          onClose?.call();
+                        },
                         icon: const Icon(Icons.close),
                       ),
                     ],
@@ -237,6 +243,7 @@ Widget _buildAudioSettings(BuildContext context, WidgetRef ref) {
         title: const Text('Enable Audio'),
         value: audioEnabled,
         onChanged: (value) {
+          ref.read(soundControllerProvider.notifier).playClick();
           ref.read(soundControllerProvider.notifier).setSoundEnabled(value);
         },
         secondary: Icon(

@@ -9,6 +9,8 @@ import 'package:kizuna_quest/presentation/widgets/culture/category_selector.dart
 import 'package:kizuna_quest/presentation/widgets/culture/culture_note_card.dart';
 import 'package:kizuna_quest/core/utils/extensions.dart';
 
+import '../../providers/sound_controller.dart';
+
 /// Provider for the current selected category in Culture Notes
 final selectedCategoryProvider = StateProvider.autoDispose<String?>((ref) => null);
 
@@ -201,7 +203,10 @@ class _CultureNotesScreenState extends ConsumerState<CultureNotesScreen> {
         children: [
           // Back button
           IconButton(
-            onPressed: () => context.pop(),
+            onPressed: () {
+              ref.read(soundControllerProvider.notifier).playClick();
+              context.pop();
+            },
             icon: Icon(
               Icons.arrow_back,
               color: context.theme.colorScheme.onBackground,
@@ -232,6 +237,7 @@ class _CultureNotesScreenState extends ConsumerState<CultureNotesScreen> {
           // Search toggle button
           IconButton(
             onPressed: () {
+              ref.read(soundControllerProvider.notifier).playClick();
               setState(() {
                 _showSearch = !_showSearch;
                 if (!_showSearch) {
@@ -250,6 +256,7 @@ class _CultureNotesScreenState extends ConsumerState<CultureNotesScreen> {
           // Filter info button
           IconButton(
             onPressed: () {
+              ref.read(soundControllerProvider.notifier).playClick();
               _showFilterInfoDialog();
             },
             icon: Icon(
@@ -523,15 +530,15 @@ class _CultureNotesScreenState extends ConsumerState<CultureNotesScreen> {
 
   void _showNoteDetailScreen(CulturalNoteModel note) {
     // If not already read, mark as read
-    if (!note.isRead) {
-      final activeSaveId = ref.read(activeSaveIdProvider);
-      if (activeSaveId != null) {
-        final gameRepository = ref.read(gameRepositoryProvider);
-        gameRepository.markCulturalNoteAsRead(activeSaveId, note.id);
-      }
-    }
+    // if (!note.isRead) {
+    //   final activeSaveId = ref.read(activeSaveIdProvider);
+    //   if (activeSaveId != null) {
+    //     final gameRepository = ref.read(gameRepositoryProvider);
+    //     gameRepository.markCulturalNoteAsRead(activeSaveId, note.id);
+    //   }
+    // }
 
-    // Navigate to detail screen
-    context.push('/culture/${note.id}', extra: note);
+    // // Navigate to detail screen
+    // context.push('/culture/${note.id}', extra: note);
   }
 }

@@ -12,6 +12,7 @@ import 'package:kizuna_quest/presentation/widgets/home/feature_button.dart';
 import 'package:kizuna_quest/presentation/widgets/home/recent_save_card.dart';
 import 'package:kizuna_quest/core/utils/constants.dart';
 import 'package:kizuna_quest/core/utils/extensions.dart';
+import 'package:kizuna_quest/providers/sound_controller.dart';
 
 import '../../core/services/in_app_review_service.dart';
 import '../../providers/app_providers.dart';
@@ -157,6 +158,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           // Settings button
           IconButton(
             onPressed: () {
+              ref.read(soundControllerProvider.notifier).playClick();
               _scaffoldKey.currentState?.openEndDrawer();
             },
             icon: Icon(
@@ -290,7 +292,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 subtitle: 'My Vocabulary',
                 japaneseText: '言葉帳',
                 color: context.theme.colorScheme.secondary,
-                onTap: () => context.push(AppConstants.routeKotobaLog),
+                onTap: () {
+                  ref.read(soundControllerProvider.notifier).playClick();
+                  context.push(AppConstants.routeKotobaLog);
+                },
               ).animate().fadeIn(delay: 400.ms, duration: 400.ms),
             ),
             const SizedBox(width: 16),
@@ -301,7 +306,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 subtitle: 'Japanese Culture',
                 japaneseText: '文化ノート',
                 color: context.theme.colorScheme.tertiary,
-                onTap: () => context.push(AppConstants.routeCultureNotes),
+                onTap: () {
+                  ref.read(soundControllerProvider.notifier).playClick();
+                  context.push(AppConstants.routeCultureNotes);
+                },
               ).animate().fadeIn(delay: 500.ms, duration: 400.ms),
             ),
           ],
@@ -346,6 +354,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   }
 
   void _showRateAppDialog() async {
+    ref.read(soundControllerProvider.notifier).playClick();
     await ref.read(inAppReviewProvider).requestReview();
   }
 
@@ -367,6 +376,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   }
 
   void _showReportErrorDialog() {
+    ref.read(soundControllerProvider.notifier).playClick();
     ErrorReportDialog.show(context);
   }
 
@@ -401,6 +411,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   }
 
   void _showSavesDialog() {
+    ref.read(soundControllerProvider.notifier).playClick();
     if (_showingSavesDialog) return;
 
     setState(() {
@@ -430,6 +441,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   }
 
   void _showAboutDialog() {
+    ref.read(soundControllerProvider.notifier).playClick();
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -449,7 +461,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         ),
         actions: [
           TextButton(
-            onPressed: () => Navigator.of(context).pop(),
+            onPressed: () {
+              ref.read(soundControllerProvider.notifier).playClick();
+              Navigator.of(context).pop();
+            },
             child: const Text('Close'),
           ),
         ],
@@ -458,17 +473,20 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   }
 
   void _replayTutorial() {
+    ref.read(soundControllerProvider.notifier).playClick();
     // Reset onboarding flag and navigate to onboarding
     SettingsService.setOnboardingCompleted(false);
     context.go('/onboarding');
   }
 
   void _startNewGame() {
+    ref.read(soundControllerProvider.notifier).playClick();
     // Navigate to game screen with no save ID (new game)
     context.push('${AppConstants.routeGame}?chapter=chapter_1');
   }
 
   void _continueSavedGame(SaveGameModel saveGame) {
+    ref.read(soundControllerProvider.notifier).playClick();
     // Set active save in provider
     ref.read(activeSaveIdProvider.notifier).state = saveGame.id;
 

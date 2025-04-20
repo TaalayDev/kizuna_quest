@@ -113,10 +113,10 @@ class SoundController extends StateNotifier<SoundState> {
   String _getSoundFile(SoundType type) {
     switch (type) {
       case SoundType.bgm:
-        return 'assets/audio/menu_music.mp3';
+        return 'assets/audio/theme.mp3';
 
       case SoundType.click:
-        return 'assets/audio/sfx/click.mp3';
+        return 'assets/audio/click.mp3';
     }
   }
 

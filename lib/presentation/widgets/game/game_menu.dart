@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kizuna_quest/core/utils/extensions.dart';
+
+import '../../../providers/sound_controller.dart';
 
 /// Widget that displays the in-game menu
 class GameMenu extends StatelessWidget {
@@ -70,20 +73,25 @@ class GameMenu extends StatelessWidget {
                 // Close button
                 Padding(
                   padding: const EdgeInsets.all(16),
-                  child: ElevatedButton(
-                    onPressed: onClose,
-                    style: ElevatedButton.styleFrom(
-                      foregroundColor: context.theme.colorScheme.onPrimary,
-                      backgroundColor: context.theme.colorScheme.primary,
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 32,
-                        vertical: 12,
+                  child: Consumer(
+                    builder: (context, ref, _) => ElevatedButton(
+                      onPressed: () {
+                        ref.read(soundControllerProvider.notifier).playClick();
+                        onClose();
+                      },
+                      style: ElevatedButton.styleFrom(
+                        foregroundColor: context.theme.colorScheme.onPrimary,
+                        backgroundColor: context.theme.colorScheme.primary,
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 32,
+                          vertical: 12,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16),
+                        ),
                       ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16),
-                      ),
+                      child: const Text('Return to Game'),
                     ),
-                    child: const Text('Return to Game'),
                   ),
                 ),
               ],
@@ -119,11 +127,16 @@ class GameMenu extends StatelessWidget {
             ),
           ),
           const Spacer(),
-          IconButton(
-            onPressed: onClose,
-            icon: Icon(
-              Icons.close,
-              color: context.theme.colorScheme.onPrimary,
+          Consumer(
+            builder: (context, ref, _) => IconButton(
+              onPressed: () {
+                ref.read(soundControllerProvider.notifier).playClick();
+                onClose();
+              },
+              icon: Icon(
+                Icons.close,
+                color: context.theme.colorScheme.onPrimary,
+              ),
             ),
           ),
         ],
@@ -132,60 +145,80 @@ class GameMenu extends StatelessWidget {
   }
 
   Widget _buildMenuItems(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 16),
-      child: Column(
-        children: [
-          _buildMenuItem(
-            context,
-            icon: Icons.save,
-            title: 'Save Game',
-            subtitle: 'Save your current progress',
-            onTap: onSave,
-            index: 0,
-          ),
-          _buildMenuItem(
-            context,
-            icon: Icons.restore,
-            title: 'Load Game',
-            subtitle: 'Load a previously saved game',
-            onTap: onLoad,
-            index: 1,
-          ),
-          _buildMenuItem(
-            context,
-            icon: Icons.settings,
-            title: 'Settings',
-            subtitle: 'Adjust game settings',
-            onTap: onSettings,
-            index: 2,
-          ),
-          _buildMenuItem(
-            context,
-            icon: Icons.menu_book,
-            title: 'Kotoba Log',
-            subtitle: 'View your vocabulary progress',
-            onTap: () => context.push('/kotoba'),
-            index: 3,
-          ),
-          _buildMenuItem(
-            context,
-            icon: Icons.lightbulb,
-            title: 'Culture Notes',
-            subtitle: 'Browse cultural information',
-            onTap: () => context.push('/culture'),
-            index: 4,
-          ),
-          _buildMenuItem(
-            context,
-            icon: Icons.exit_to_app,
-            title: 'Exit to Main Menu',
-            subtitle: 'Return to the main menu',
-            onTap: onExit,
-            isDestructive: true,
-            index: 5,
-          ),
-        ],
+    return Consumer(
+      builder: (context, ref, _) => Padding(
+        padding: const EdgeInsets.symmetric(vertical: 16),
+        child: Column(
+          children: [
+            _buildMenuItem(
+              context,
+              icon: Icons.save,
+              title: 'Save Game',
+              subtitle: 'Save your current progress',
+              onTap: () {
+                ref.read(soundControllerProvider.notifier).playClick();
+                onSave();
+              },
+              index: 0,
+            ),
+            _buildMenuItem(
+              context,
+              icon: Icons.restore,
+              title: 'Load Game',
+              subtitle: 'Load a previously saved game',
+              onTap: () {
+                ref.read(soundControllerProvider.notifier).playClick();
+                onLoad();
+              },
+              index: 1,
+            ),
+            _buildMenuItem(
+              context,
+              icon: Icons.settings,
+              title: 'Settings',
+              subtitle: 'Adjust game settings',
+              onTap: () {
+                ref.read(soundControllerProvider.notifier).playClick();
+                onSettings();
+              },
+              index: 2,
+            ),
+            _buildMenuItem(
+              context,
+              icon: Icons.menu_book,
+              title: 'Kotoba Log',
+              subtitle: 'View your vocabulary progress',
+              onTap: () {
+                ref.read(soundControllerProvider.notifier).playClick();
+                context.push('/kotoba');
+              },
+              index: 3,
+            ),
+            _buildMenuItem(
+              context,
+              icon: Icons.lightbulb,
+              title: 'Culture Notes',
+              subtitle: 'Browse cultural information',
+              onTap: () {
+                ref.read(soundControllerProvider.notifier).playClick();
+                context.push('/culture');
+              },
+              index: 4,
+            ),
+            _buildMenuItem(
+              context,
+              icon: Icons.exit_to_app,
+              title: 'Exit to Main Menu',
+              subtitle: 'Return to the main menu',
+              onTap: () {
+                ref.read(soundControllerProvider.notifier).playClick();
+                onExit();
+              },
+              isDestructive: true,
+              index: 5,
+            ),
+          ],
+        ),
       ),
     );
   }

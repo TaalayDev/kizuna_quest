@@ -6,6 +6,8 @@ import 'package:kizuna_quest/providers/database_provider.dart';
 import 'package:kizuna_quest/presentation/widgets/kotoba/mastery_level_badge.dart';
 import 'package:kizuna_quest/core/utils/extensions.dart';
 
+import '../../../providers/sound_controller.dart';
+
 /// A dialog for displaying detailed information about a vocabulary item
 class VocabularyDetailDialog extends ConsumerWidget {
   /// The vocabulary item to display
@@ -34,7 +36,7 @@ class VocabularyDetailDialog extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             // Top section with Japanese word and furigana
-            _buildTopSection(context),
+            _buildTopSection(context, ref),
 
             // Detail content
             Flexible(
@@ -71,7 +73,7 @@ class VocabularyDetailDialog extends ConsumerWidget {
     );
   }
 
-  Widget _buildTopSection(BuildContext context) {
+  Widget _buildTopSection(BuildContext context, WidgetRef ref) {
     return Container(
       padding: const EdgeInsets.fromLTRB(24, 24, 24, 16),
       decoration: BoxDecoration(
@@ -102,7 +104,10 @@ class VocabularyDetailDialog extends ConsumerWidget {
                   Icons.close,
                   color: context.theme.colorScheme.onPrimary,
                 ),
-                onPressed: () => Navigator.of(context).pop(),
+                onPressed: () {
+                  ref.read(soundControllerProvider.notifier).playClick();
+                  Navigator.of(context).pop();
+                },
                 tooltip: 'Close',
               ),
             ],

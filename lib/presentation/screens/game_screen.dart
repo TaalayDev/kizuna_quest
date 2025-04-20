@@ -22,6 +22,7 @@ import 'package:kizuna_quest/core/utils/app_logger.dart';
 import 'package:kizuna_quest/core/utils/constants.dart';
 import 'package:kizuna_quest/core/utils/extensions.dart';
 import 'package:kizuna_quest/core/utils/screenshot_helper.dart';
+import 'package:kizuna_quest/providers/sound_controller.dart';
 import 'package:screenshot/screenshot.dart';
 
 import '../../providers/app_providers.dart';
@@ -511,6 +512,7 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
   }
 
   void _makeChoice(DialogueChoice choice) {
+    ref.read(soundControllerProvider.notifier).playClick();
     // Check if user meets requirements for this choice
     if (_canMakeChoice(choice)) {
       // Hide choices
@@ -882,6 +884,7 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
   }
 
   void _toggleSkipMode() {
+    ref.read(soundControllerProvider.notifier).playClick();
     setState(() {
       _isSkipping = !_isSkipping;
       _isAutoMode = false; // Turn off auto mode if enabled
@@ -895,6 +898,7 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
   }
 
   void _startSkipping() {
+    ref.read(soundControllerProvider.notifier).playClick();
     // Skip mode just rapidly advances through dialogue
     _autoModeTimer?.cancel();
     _autoModeTimer = Timer.periodic(
@@ -921,6 +925,7 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
   }
 
   void _toggleMenu() {
+    ref.read(soundControllerProvider.notifier).playClick();
     setState(() {
       _isMenuOpen = !_isMenuOpen;
     });
@@ -1150,6 +1155,7 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
         key: _scaffoldKey,
         endDrawer: SettingsPanel(
           onClose: () {
+            ref.read(soundControllerProvider.notifier).playClick();
             _scaffoldKey.currentState?.closeEndDrawer();
           },
         ),
@@ -1320,7 +1326,10 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
           children: [
             // Back button (opens exit confirmation)
             IconButton(
-              onPressed: () => _showExitConfirmation(),
+              onPressed: () {
+                ref.read(soundControllerProvider.notifier).playClick();
+                _showExitConfirmation();
+              },
               icon: Icon(
                 Icons.arrow_back,
                 color: Colors.white,
@@ -1578,6 +1587,7 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
         actions: [
           TextButton(
             onPressed: () {
+              ref.read(soundControllerProvider.notifier).playClick();
               Navigator.of(context).pop();
               context.go(AppConstants.routeHome);
             },
@@ -1585,6 +1595,7 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
           ),
           TextButton(
             onPressed: () async {
+              ref.read(soundControllerProvider.notifier).playClick();
               Navigator.of(context).pop();
               await _quickSave(saveAndExit: true);
             },

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/utils/extensions.dart';
+import '../../../providers/sound_controller.dart';
 
 class LearningJournalNotification extends StatefulWidget {
   final int vocabCount;
@@ -123,12 +125,17 @@ class _LearningJournalNotificationState extends State<LearningJournalNotificatio
                         ),
                       ),
                     ),
-                    GestureDetector(
-                      onTap: _dismissNotification,
-                      child: Icon(
-                        Icons.close,
-                        size: 18,
-                        color: context.theme.colorScheme.onPrimaryContainer,
+                    Consumer(
+                      builder: (context, ref, _) => GestureDetector(
+                        onTap: () {
+                          ref.read(soundControllerProvider.notifier).playClick();
+                          _dismissNotification();
+                        },
+                        child: Icon(
+                          Icons.close,
+                          size: 18,
+                          color: context.theme.colorScheme.onPrimaryContainer,
+                        ),
                       ),
                     ),
                   ],
@@ -211,49 +218,54 @@ class _LearningJournalNotificationState extends State<LearningJournalNotificatio
     Color color,
     VoidCallback onTap,
   ) {
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(8),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 6.0, horizontal: 4.0),
-        child: Row(
-          children: [
-            Container(
-              padding: const EdgeInsets.all(6),
-              decoration: BoxDecoration(
-                color: color.withOpacity(0.2),
-                shape: BoxShape.circle,
-              ),
-              child: Icon(
-                icon,
-                size: 16,
-                color: color,
-              ),
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Text(
-                title,
-                style: context.textTheme.bodyMedium?.copyWith(
-                  fontWeight: FontWeight.w500,
+    return Consumer(
+      builder: (context, ref, _) => InkWell(
+        onTap: () {
+          ref.read(soundControllerProvider.notifier).playClick();
+          onTap();
+        },
+        borderRadius: BorderRadius.circular(8),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 6.0, horizontal: 4.0),
+          child: Row(
+            children: [
+              Container(
+                padding: const EdgeInsets.all(6),
+                decoration: BoxDecoration(
+                  color: color.withOpacity(0.2),
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(
+                  icon,
+                  size: 16,
+                  color: color,
                 ),
               ),
-            ),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-              decoration: BoxDecoration(
-                color: color,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Text(
-                '+$count',
-                style: context.textTheme.bodySmall?.copyWith(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
+              const SizedBox(width: 12),
+              Expanded(
+                child: Text(
+                  title,
+                  style: context.textTheme.bodyMedium?.copyWith(
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
               ),
-            ),
-          ],
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                decoration: BoxDecoration(
+                  color: color,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Text(
+                  '+$count',
+                  style: context.textTheme.bodySmall?.copyWith(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

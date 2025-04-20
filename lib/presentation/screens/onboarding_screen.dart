@@ -8,6 +8,8 @@ import 'package:kizuna_quest/core/utils/constants.dart';
 import 'package:kizuna_quest/core/utils/extensions.dart';
 import 'package:lottie/lottie.dart';
 
+import '../../providers/sound_controller.dart';
+
 /// Provider to track current onboarding page
 final onboardingPageProvider = StateProvider.autoDispose<int>((ref) => 0);
 
@@ -39,7 +41,10 @@ class OnboardingScreen extends ConsumerWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: TextButton(
-                      onPressed: () => _finishOnboarding(context),
+                      onPressed: () {
+                        ref.read(soundControllerProvider.notifier).playClick();
+                        _finishOnboarding(context);
+                      },
                       child: Text(
                         'Skip',
                         style: TextStyle(
@@ -121,6 +126,7 @@ class OnboardingScreen extends ConsumerWidget {
                       // Next/Start button
                       ElevatedButton(
                         onPressed: () {
+                          ref.read(soundControllerProvider.notifier).playClick();
                           if (currentPage < 3) {
                             pageController.nextPage(
                               duration: const Duration(milliseconds: 300),

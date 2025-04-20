@@ -10,6 +10,8 @@ import 'package:kizuna_quest/presentation/widgets/kotoba/vocabulary_detail_dialo
 import 'package:kizuna_quest/presentation/widgets/kotoba/vocabulary_filter_chip.dart';
 import 'package:kizuna_quest/core/utils/extensions.dart';
 
+import '../../providers/sound_controller.dart';
+
 /// Provider for the current filter in the Kotoba Log
 final kotobaFilterProvider = StateProvider.autoDispose<KotobaFilter>((ref) => KotobaFilter.all);
 
@@ -206,7 +208,10 @@ class _KotobaLogScreenState extends ConsumerState<KotobaLogScreen> {
         children: [
           // Back button
           IconButton(
-            onPressed: () => context.pop(),
+            onPressed: () {
+              ref.read(soundControllerProvider.notifier).playClick();
+              context.pop();
+            },
             icon: Icon(
               Icons.arrow_back,
               color: context.theme.colorScheme.onBackground,
@@ -237,6 +242,7 @@ class _KotobaLogScreenState extends ConsumerState<KotobaLogScreen> {
           // Search toggle button
           IconButton(
             onPressed: () {
+              ref.read(soundControllerProvider.notifier).playClick();
               setState(() {
                 _showSearch = !_showSearch;
                 if (!_showSearch) {
@@ -252,33 +258,33 @@ class _KotobaLogScreenState extends ConsumerState<KotobaLogScreen> {
           ),
 
           // Sort button
-          PopupMenuButton<String>(
-            icon: Icon(
-              Icons.sort,
-              color: context.theme.colorScheme.onBackground,
-            ),
-            onSelected: (value) {
-              // Implement sorting options
-            },
-            itemBuilder: (context) => [
-              const PopupMenuItem(
-                value: 'recent',
-                child: Text('Recently Added'),
-              ),
-              const PopupMenuItem(
-                value: 'alpha',
-                child: Text('Alphabetical'),
-              ),
-              const PopupMenuItem(
-                value: 'mastery',
-                child: Text('Mastery Level'),
-              ),
-              const PopupMenuItem(
-                value: 'jlpt',
-                child: Text('JLPT Level'),
-              ),
-            ],
-          ),
+          // PopupMenuButton<String>(
+          //   icon: Icon(
+          //     Icons.sort,
+          //     color: context.theme.colorScheme.onBackground,
+          //   ),
+          //   onSelected: (value) {
+          //     // Implement sorting options
+          //   },
+          //   itemBuilder: (context) => [
+          //     const PopupMenuItem(
+          //       value: 'recent',
+          //       child: Text('Recently Added'),
+          //     ),
+          //     const PopupMenuItem(
+          //       value: 'alpha',
+          //       child: Text('Alphabetical'),
+          //     ),
+          //     const PopupMenuItem(
+          //       value: 'mastery',
+          //       child: Text('Mastery Level'),
+          //     ),
+          //     const PopupMenuItem(
+          //       value: 'jlpt',
+          //       child: Text('JLPT Level'),
+          //     ),
+          //   ],
+          // ),
         ],
       ),
     );
@@ -495,6 +501,7 @@ class _KotobaLogScreenState extends ConsumerState<KotobaLogScreen> {
   }
 
   void _showVocabularyDetail(VocabularyModel vocabulary) {
+    ref.read(soundControllerProvider.notifier).playClick();
     showDialog(
       context: context,
       builder: (context) => VocabularyDetailDialog(vocabulary: vocabulary),
