@@ -49,6 +49,8 @@ class RecentSaveCard extends StatelessWidget {
                     ? Image.asset(
                         saveGame.thumbnailPath!,
                         fit: BoxFit.cover,
+                        width: 100,
+                        height: 100,
                       )
                     : Container(
                         color: context.theme.colorScheme.primaryContainer,

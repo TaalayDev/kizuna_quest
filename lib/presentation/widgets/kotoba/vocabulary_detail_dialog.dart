@@ -329,6 +329,7 @@ class VocabularyDetailDialog extends ConsumerWidget {
 
         // Chapter introduced
         Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Icon(
               Icons.book,
@@ -343,9 +344,12 @@ class VocabularyDetailDialog extends ConsumerWidget {
               ),
             ),
             const SizedBox(width: 8),
-            Text(
-              _getChapterName(vocabulary.chapterIntroduced),
-              style: context.textTheme.bodyMedium,
+            Expanded(
+              child: Text(
+                _getChapterName(vocabulary.chapterIntroduced),
+                style: context.textTheme.bodyMedium,
+                textAlign: TextAlign.end,
+              ),
             ),
           ],
         ),
@@ -360,22 +364,22 @@ class VocabularyDetailDialog extends ConsumerWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         // Listen button
-        OutlinedButton.icon(
-          onPressed: () {
-            // Play pronunciation (would need audio implementation)
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: const Text('Audio playback not implemented'),
-                behavior: SnackBarBehavior.floating,
-              ),
-            );
-          },
-          icon: const Icon(Icons.volume_up),
-          label: const Text('Listen'),
-          style: OutlinedButton.styleFrom(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-          ),
-        ),
+        // OutlinedButton.icon(
+        //   onPressed: () {
+        //     // Play pronunciation (would need audio implementation)
+        //     ScaffoldMessenger.of(context).showSnackBar(
+        //       SnackBar(
+        //         content: const Text('Audio playback not implemented'),
+        //         behavior: SnackBarBehavior.floating,
+        //       ),
+        //     );
+        //   },
+        //   icon: const Icon(Icons.volume_up),
+        //   label: const Text('Listen'),
+        //   style: OutlinedButton.styleFrom(
+        //     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        //   ),
+        // ),
 
         // Update mastery button (only if active save and unlocked)
         if (activeSaveId != null && vocabulary.isUnlocked)
@@ -383,7 +387,10 @@ class VocabularyDetailDialog extends ConsumerWidget {
             onPressed: () {
               _updateMasteryLevel(context, ref);
             },
-            icon: const Icon(Icons.trending_up),
+            icon: Icon(
+              Icons.trending_up,
+              color: context.theme.colorScheme.onPrimary,
+            ),
             label: const Text('Update Mastery'),
             style: ElevatedButton.styleFrom(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),

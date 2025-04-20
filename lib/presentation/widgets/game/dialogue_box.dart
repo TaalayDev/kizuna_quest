@@ -145,7 +145,9 @@ class _DialogueBoxState extends State<DialogueBox> with SingleTickerProviderStat
       _currentEnglishText = widget.line.textEn;
       _isTypingComplete = true;
     });
-    widget.onTextComplete();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      widget.onTextComplete();
+    });
   }
 
   void _completeTyping() {

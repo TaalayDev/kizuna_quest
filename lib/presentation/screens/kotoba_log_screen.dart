@@ -33,7 +33,7 @@ enum KotobaFilter {
 /// Provider for filtered vocabulary items
 final filteredVocabularyProvider = Provider.autoDispose<List<VocabularyModel>>((ref) {
   final vocabularyAsync = ref.watch(vocabularyWithStatusProvider);
-  print('Filtered Vocabulary: $vocabularyAsync');
+
   final filter = ref.watch(kotobaFilterProvider);
   final searchQuery = ref.watch(kotobaSearchQueryProvider).toLowerCase();
 
@@ -637,23 +637,23 @@ class _VocabularyCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   // Audio button (if implemented)
-                  IconButton(
-                    icon: Icon(
-                      Icons.volume_up,
-                      color: context.theme.colorScheme.primary,
-                    ),
-                    onPressed: () {
-                      // Play pronunciation (would need audio implementation)
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: const Text('Audio playback not implemented'),
-                          behavior: SnackBarBehavior.floating,
-                        ),
-                      );
-                    },
-                    tooltip: 'Listen',
-                    iconSize: 24,
-                  ),
+                  // IconButton(
+                  //   icon: Icon(
+                  //     Icons.volume_up,
+                  //     color: context.theme.colorScheme.primary,
+                  //   ),
+                  //   onPressed: () {
+                  //     // Play pronunciation (would need audio implementation)
+                  //     ScaffoldMessenger.of(context).showSnackBar(
+                  //       SnackBar(
+                  //         content: const Text('Audio playback not implemented'),
+                  //         behavior: SnackBarBehavior.floating,
+                  //       ),
+                  //     );
+                  //   },
+                  //   tooltip: 'Listen',
+                  //   iconSize: 24,
+                  // ),
                 ],
               ),
             ],

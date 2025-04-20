@@ -103,6 +103,10 @@ flutter:
     - assets/images/characters/
     - assets/images/characters/yuki/
     - assets/images/characters/tanaka/
+    - assets/images/characters/mei/
+    - assets/images/characters/nakamura/
+    - assets/images/characters/kenta/
+    - assets/images/characters/hiroshi/
     - assets/images/ui/
     
     # Game scripts

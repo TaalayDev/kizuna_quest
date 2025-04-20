@@ -1,7 +1,7 @@
 {
     "id": "arrival",
     "title": "Arrival at Narita Airport",
-    "defaultBackground": "assets/images/backgrounds/airport.png",
+    "defaultBackground": "assets/images/backgrounds/airport.webp",
     "nodes": {
       "start": {
         "line": {
@@ -11,7 +11,7 @@
           "romajiJp": "Tōkyō, Narita kūkō ni tōchaku shimashita.",
           "textEn": "You've arrived at Narita Airport, Tokyo.",
           "nextId": "arrival_thoughts",
-          "background": "assets/images/backgrounds/airport.png",
+          "background": "assets/images/backgrounds/airport.webp",
           "tags": ["vocab:1", "grammar:1"]
         },
         "choices": []
@@ -208,7 +208,7 @@
           "romajiJp": "Tanaka-sensei ni tsuite, kūkō o demasu. Nihon de no shinseikatsu ga hajimarimasu.",
           "textEn": "You follow Professor Tanaka and leave the airport. Your new life in Japan begins.",
           "nextId": "scene_end",
-          "background": "assets/images/backgrounds/airport_exit.png",
+          "background": "assets/images/backgrounds/airport_exit.webp",
           "tags": ["vocab:15", "grammar:9"]
         },
         "choices": []
@@ -217,8 +217,7 @@
         "line": {
           "id": "scene_end",
           "textJp": "シーン１：終了",
-          "textEn": "Scene 1: Complete",
-          "background": "assets/images/backgrounds/black.png"
+          "textEn": "Scene 1: Complete"
         },
         "choices": []
       }

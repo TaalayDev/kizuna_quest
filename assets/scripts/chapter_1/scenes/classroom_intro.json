@@ -11,7 +11,7 @@
           "romajiJp": "Tsugi no hi, shigyō-shiki no ato, anata wa hajimete no kyōshitsu ni hairimasu.",
           "textEn": "The next day, after the opening ceremony, you enter your classroom for the first time.",
           "nextId": "classroom_description",
-          "background": "assets/images/backgrounds/classroom.webp",
+          "background": "assets/images/backgrounds/classroom_greeting.webp",
           "tags": ["vocab:37", "vocab:38", "grammar:24"]
         },
         "choices": []
@@ -152,7 +152,7 @@
           "id": "reaction_nervous_intro",
           "characterId": "2",
           "speakerName": "田中先生",
-          "sprite": "reassuring",
+          "sprite": "smile",
           "position": "left",
           "textJp": "大丈夫ですよ。これから一緒に勉強していきましょう。皆さんも助けてあげてくださいね。",
           "furiganaJp": "だいじょうぶですよ。これからいっしょにべんきょうしていきましょう。みなさんもたすけてあげてくださいね。",
@@ -199,6 +199,7 @@
           "romajiJp": "Anata wa shitei sareta seki ni mukatte arukimasu. Mawari no seitotachi wa kōkishin ippai no me de anata o mite imasu.",
           "textEn": "You walk towards your assigned seat. The surrounding students are watching you with curious eyes.",
           "nextId": "yuki_introduction",
+          "background": "assets/images/backgrounds/classroom.webp",
           "tags": ["vocab:54", "vocab:55", "grammar:36"]
         },
         "choices": []
@@ -208,7 +209,7 @@
           "id": "yuki_introduction",
           "characterId": "1",
           "speakerName": "ユキ",
-          "sprite": "friendly",
+          "sprite": "happy",
           "position": "right",
           "textJp": "あの、こんにちは！私の名前はユキです。隣の席だね。よろしく！",
           "furiganaJp": "あの、こんにちは！わたしのなまえはユキです。となりのせきだね。よろしく！",
@@ -308,7 +309,7 @@
           "id": "yuki_shy_reaction",
           "characterId": "1",
           "speakerName": "ユキ",
-          "sprite": "gentle",
+          "sprite": "friendly",
           "position": "right",
           "textJp": "緊張してる？大丈夫だよ。みんな優しいから。ゆっくり話すね。",
           "furiganaJp": "きんちょうしてる？だいじょうぶだよ。みんなやさしいから。ゆっくりはなすね。",
@@ -351,8 +352,7 @@
         "line": {
           "id": "scene_end",
           "textJp": "シーン３：終了",
-          "textEn": "Scene 3: Complete",
-          "background": "assets/images/backgrounds/black.png"
+          "textEn": "Scene 3: Complete"
         },
         "choices": []
       }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:go_router/go_router.dart';
 import 'package:kizuna_quest/core/utils/extensions.dart';
 
 /// Widget that displays the in-game menu
@@ -164,7 +165,7 @@ class GameMenu extends StatelessWidget {
             icon: Icons.menu_book,
             title: 'Kotoba Log',
             subtitle: 'View your vocabulary progress',
-            onTap: () => Navigator.of(context).pushNamed('/kotoba'),
+            onTap: () => context.push('/kotoba'),
             index: 3,
           ),
           _buildMenuItem(
@@ -172,7 +173,7 @@ class GameMenu extends StatelessWidget {
             icon: Icons.lightbulb,
             title: 'Culture Notes',
             subtitle: 'Browse cultural information',
-            onTap: () => Navigator.of(context).pushNamed('/culture'),
+            onTap: () => context.push('/culture'),
             index: 4,
           ),
           _buildMenuItem(

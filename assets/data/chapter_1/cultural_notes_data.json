@@ -1,37 +1,107 @@
 [
-    {
-      "id": 1,
-      "title": "Bowing in Japan",
-      "content": "Bowing (お辞儀, ojigi) is an important custom in Japan used to greet people, express gratitude, apologize, or show respect. The depth and duration of the bow can indicate the level of respect or status relationship. A slight bow of about 15 degrees is common for casual greetings, while a deep bow of 45 degrees or more is used for formal apologies or showing deep respect. In business settings, the person of lower status typically bows deeper and longer than the person of higher status.",
-      "category": "Etiquette",
-      "chapterIntroduced": "chapter_1"
-    },
-    {
-      "id": 2,
-      "title": "Taking off shoes indoors",
-      "content": "In Japan, it is customary to remove your shoes when entering homes, traditional restaurants, and certain other buildings. This practice keeps the indoor space clean and is considered respectful. There is typically a genkan (玄関), or entryway, where you remove your shoes before stepping up into the main living area. Indoor slippers are often provided for guests. Remember to turn your shoes to face the exit after removing them, and never wear outdoor shoes on tatami mats.",
-      "category": "Etiquette",
-      "chapterIntroduced": "chapter_1"
-    },
-    {
-      "id": 3,
-      "title": "School Uniforms in Japan",
-      "content": "Most Japanese schools require students to wear uniforms. The typical uniform consists of a military-style suit for boys and a sailor outfit for girls, though designs vary by school. Uniforms help create a sense of unity and reduce social distinctions among students. Many schools have separate summer and winter uniforms, and strict rules about how the uniform should be worn. Students often customize their uniforms slightly to express individuality within the rules.",
-      "category": "Education",
-      "chapterIntroduced": "chapter_1"
-    },
-    {
-      "id": 4,
-      "title": "Honorific Language",
-      "content": "Japanese has an elaborate system of honorifics (keigo) that change based on the social status relationship between speaker and listener. Using appropriate honorifics is crucial for polite communication in Japan. There are three main types: teineigo (polite language), sonkeigo (respectful language), and kenjougo (humble language). The use of honorifics reflects Japan's hierarchical society and the importance placed on showing proper respect to others based on status, age, and social relationship.",
-      "category": "Language",
-      "chapterIntroduced": "chapter_1"
-    },
-    {
-      "id": 5,
-      "title": "Classroom Etiquette in Japan",
-      "content": "Japanese students typically remain in one classroom while teachers rotate. Students are responsible for cleaning their own classrooms, usually spending time after school each day on cleaning duties (掃除, souji). When a teacher enters, students stand and bow as a sign of respect. During class, raising your hand before speaking is expected, and speaking out of turn is considered disruptive. Students typically address teachers using 'sensei' after their surname, never by first name.",
-      "category": "Education",
-      "chapterIntroduced": "chapter_1"
-    }
-  ]
+  {
+    "id": 1,
+    "title": "Bowing in Japan",
+    "content": "Bowing (お辞儀, ojigi) is an important custom in Japan used to greet people, express gratitude, apologize, or show respect. The depth and duration of the bow can indicate the level of respect or status relationship. A slight bow of about 15 degrees is common for casual greetings, while a deep bow of 45 degrees or more is used for formal apologies or showing deep respect. In business settings, the person of lower status typically bows deeper and longer than the person of higher status.",
+    "category": "Etiquette",
+    "chapterIntroduced": "chapter_1"
+  },
+  {
+    "id": 2,
+    "title": "Taking off shoes indoors",
+    "content": "In Japan, it is customary to remove your shoes when entering homes, traditional restaurants, and certain other buildings. This practice keeps the indoor space clean and is considered respectful. There is typically a genkan (玄関), or entryway, where you remove your shoes before stepping up into the main living area. Indoor slippers are often provided for guests. Remember to turn your shoes to face the exit after removing them, and never wear outdoor shoes on tatami mats.",
+    "category": "Etiquette",
+    "chapterIntroduced": "chapter_1"
+  },
+  {
+    "id": 3,
+    "title": "School Uniforms in Japan",
+    "content": "Most Japanese schools require students to wear uniforms. The typical uniform consists of a military-style suit for boys and a sailor outfit for girls, though designs vary by school. Uniforms help create a sense of unity and reduce social distinctions among students. Many schools have separate summer and winter uniforms, and strict rules about how the uniform should be worn. Students often customize their uniforms slightly to express individuality within the rules.",
+    "category": "Education",
+    "chapterIntroduced": "chapter_1"
+  },
+  {
+    "id": 4,
+    "title": "Honorific Language",
+    "content": "Japanese has an elaborate system of honorifics (keigo) that change based on the social status relationship between speaker and listener. Using appropriate honorifics is crucial for polite communication in Japan. There are three main types: teineigo (polite language), sonkeigo (respectful language), and kenjougo (humble language). The use of honorifics reflects Japan's hierarchical society and the importance placed on showing proper respect to others based on status, age, and social relationship.",
+    "category": "Language",
+    "chapterIntroduced": "chapter_1"
+  },
+  {
+    "id": 5,
+    "title": "Classroom Etiquette in Japan",
+    "content": "Japanese students typically remain in one classroom while teachers rotate. Students are responsible for cleaning their own classrooms, usually spending time after school each day on cleaning duties (掃除, souji). When a teacher enters, students stand and bow as a sign of respect. During class, raising your hand before speaking is expected, and speaking out of turn is considered disruptive. Students typically address teachers using 'sensei' after their surname, never by first name.",
+    "category": "Education",
+    "chapterIntroduced": "chapter_1"
+  },
+  {
+    "id": 6,
+    "title": "Lunch Time at Japanese Schools (Kyushoku)",
+    "content": "In many Japanese schools, students eat lunch together in their classrooms, often taking turns to serve food to their classmates. This system, called kyushoku (給食), teaches cooperation and responsibility. Some schools allow students to bring bento boxes (homemade lunch boxes) instead. Lunch break is typically a social time where students interact freely and form friendships. In high schools, many students eat on the rooftop, a popular social gathering spot with scenic views.",
+    "category": "Education",
+    "chapterIntroduced": "chapter_1"
+  },
+  {
+    "id": 7,
+    "title": "Japanese School Clubs (Bukatsu)",
+    "content": "After-school clubs (部活, bukatsu) are a significant part of Japanese school life. Almost all students participate in at least one club, which can be sports-related (like baseball, soccer, or kendo) or cultural (like calligraphy, tea ceremony, or music). Clubs meet several times a week, often including weekends, and participation is taken very seriously. Being a club president (部長, buchō) is considered an important leadership position and responsibility. Club activities foster discipline, teamwork, and dedication.",
+    "category": "Education",
+    "chapterIntroduced": "chapter_1"
+  },
+  {
+    "id": 8,
+    "title": "Tanabata Festival",
+    "content": "Tanabata (七夕), also known as the Star Festival, is celebrated on July 7th in most of Japan. The festival originates from the legend of two lovers, Orihime (the weaver star Vega) and Hikoboshi (the cowherd star Altair), who were separated by the Milky Way and allowed to meet only once a year. During Tanabata, people write wishes on colorful strips of paper (tanzaku) and hang them on bamboo branches. Cities are decorated with colorful streamers, and many areas hold parades and other festivities.",
+    "category": "Festivals",
+    "chapterIntroduced": "chapter_1"
+  },
+  {
+    "id": 9,
+    "title": "Cherry Blossom Culture",
+    "content": "Cherry blossoms (桜, sakura) hold special significance in Japanese culture. Their brief blooming period (typically just 1-2 weeks) symbolizes the beauty and transience of life. Hanami (花見, 'flower viewing') is the tradition of gathering under blooming cherry trees for picnics and parties, often with food and drink. This centuries-old practice is incredibly popular, with people reserving spots in parks hours or even days in advance. Cherry trees are often found in schools and are considered symbolic of new beginnings, as the Japanese school year starts in April during cherry blossom season.",
+    "category": "Culture",
+    "chapterIntroduced": "chapter_1"
+  },
+  {
+    "id": 10,
+    "title": "Japanese School Libraries",
+    "content": "Libraries in Japanese schools serve as important study spaces and resource centers. They often have strict rules about silence and proper book handling. Many school libraries include sections dedicated to Japanese language learning materials, ranging from simple illustrated stories to more complex texts. Libraries typically have a librarian who helps students find materials and may recommend books appropriate for their reading level. School libraries often showcase seasonal displays and special collections related to current curriculum topics.",
+    "category": "Education",
+    "chapterIntroduced": "chapter_1"
+  },
+  {
+    "id": 11,
+    "title": "Senpai-Kohai Relationship",
+    "content": "The senpai-kohai (先輩・後輩) relationship is a fundamental aspect of Japanese social structure, particularly in schools and workplaces. Senpai refers to someone who has more experience or has been at an institution longer, while kohai are juniors. Kohai are expected to show respect to their senpai through polite language and deference, while senpai are expected to provide guidance and support to their kohai. This hierarchical relationship creates social order and establishes clear roles within groups. In schools, this relationship is evident between students of different grades, with younger students addressing older ones as 'senpai.'",
+    "category": "Social Structure",
+    "chapterIntroduced": "chapter_1"
+  },
+  {
+    "id": 12,
+    "title": "Japanese Student Dormitories",
+    "content": "Student dormitories (寮, ryō) in Japan provide housing for students who live far from their schools. These facilities typically have strict rules, including curfews, scheduled bath times, and shared responsibilities for cleaning. Male and female dormitories are always separate buildings or located in different areas. Many dormitories have common areas for studying and socializing, as well as shared kitchen facilities. Dormitory life helps students develop independence while living within a supportive community structure. House parents or dormitory supervisors often oversee the facilities and enforce rules.",
+    "category": "Education",
+    "chapterIntroduced": "chapter_1"
+  },
+  {
+    "id": 13,
+    "title": "Japanese Cuisine Variety",
+    "content": "Japanese cuisine varies significantly by region, with each area having its own specialties based on local ingredients and traditions. Beyond well-known dishes like sushi and ramen, there are hundreds of regional dishes that many foreigners never encounter. These range from Hokkaido's seafood and dairy products to Okinawa's tropical-influenced dishes. Regional pride in local specialties is strong, and food tourism within Japan is popular. Understanding this diversity is key to appreciating the depth of Japanese culinary culture beyond stereotypical dishes.",
+    "category": "Food",
+    "chapterIntroduced": "chapter_1"
+  },
+  {
+    "id": 14,
+    "title": "Reading Materials for Japanese Learners",
+    "content": "Japan produces a wide range of reading materials specifically designed for language learners. These include books with furigana (small hiragana above kanji characters to indicate pronunciation), graded readers that use controlled vocabulary and grammar, and bilingual materials with side-by-side translations. Many of these materials incorporate cultural elements and everyday situations to help learners understand both the language and its context. Libraries and bookstores in Japan typically have sections dedicated to these materials, making them readily accessible to students at various proficiency levels.",
+    "category": "Education",
+    "chapterIntroduced": "chapter_1"
+  },
+  {
+    "id": 15,
+    "title": "Japanese Gardening Traditions",
+    "content": "Japanese gardening is an ancient art form that combines aesthetics, philosophy, and horticultural knowledge. Traditional gardens are designed to create miniature idealized landscapes and often incorporate elements such as carefully pruned trees, moss, water features, and ornamental stones. School gardening clubs often maintain areas of the school grounds, teaching students about these traditions alongside practical gardening skills. Caring for trees, especially symbolic ones like cherry trees, is taken very seriously and often involves specialized knowledge of pruning techniques and seasonal care requirements.",
+    "category": "Culture",
+    "chapterIntroduced": "chapter_1"
+  }
+]

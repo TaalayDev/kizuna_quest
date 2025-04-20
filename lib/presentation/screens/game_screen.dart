@@ -14,14 +14,17 @@ import 'package:kizuna_quest/presentation/widgets/game/dialogue_box.dart';
 import 'package:kizuna_quest/presentation/widgets/game/game_menu.dart';
 import 'package:kizuna_quest/presentation/widgets/game/grammar_popup.dart';
 import 'package:kizuna_quest/presentation/widgets/game/vocabulary_popup.dart';
+import 'package:kizuna_quest/presentation/widgets/home/settings_panel.dart';
 import 'package:kizuna_quest/providers/database_provider.dart';
 import 'package:kizuna_quest/providers/game_providers.dart';
+import 'package:kizuna_quest/providers/settings_provider.dart';
 import 'package:kizuna_quest/core/utils/app_logger.dart';
 import 'package:kizuna_quest/core/utils/constants.dart';
 import 'package:kizuna_quest/core/utils/extensions.dart';
 import 'package:kizuna_quest/core/utils/screenshot_helper.dart';
 import 'package:screenshot/screenshot.dart';
 
+import '../widgets/common/learning_journal_notification.dart';
 import '../widgets/game/cultural_note_popup.dart';
 
 /// Main game screen for the visual novel
@@ -45,6 +48,7 @@ class GameScreen extends ConsumerStatefulWidget {
 
 class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStateMixin {
   final ScreenshotController _screenshotController = ScreenshotController();
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   // Animation controllers
   late AnimationController _backgroundController;
@@ -61,6 +65,7 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
   Timer? _playTimeTimer;
   bool _isTextComplete = false;
   String _currentBackground = '';
+  bool _isInitializing = true;
 
   // UI state for animations
   bool _showChoices = false;
@@ -77,6 +82,16 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
   // Dynamic content
   Map<String, CharacterModel> _characters = {};
   List<Widget> _characterSprites = [];
+
+  bool _showJournalNotification = false;
+  Map<String, int> _newLearningItems = {
+    'vocab': 0,
+    'grammar': 0,
+    'culture': 0,
+  };
+
+  // Track the last screenshot timestamp to prevent too frequent captures
+  DateTime? _lastScreenshotTime;
 
   @override
   void initState() {
@@ -133,43 +148,77 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
   }
 
   Future<void> _initializeGameSession() async {
-    // Set active chapter in provider
-    if (widget.chapterId != null) {
-      ref.read(activeChapterIdProvider.notifier).state = widget.chapterId;
-    }
+    try {
+      // Set loading state
+      ref.read(isLoadingDialogueProvider.notifier).state = true;
+      setState(() {
+        _isInitializing = true;
+      });
 
-    // If a save ID is provided, load that save
-    if (widget.saveId != null) {
-      final saveId = int.tryParse(widget.saveId!);
-      if (saveId != null) {
-        await ref.read(activeSaveIdProvider.notifier).setActiveSaveId(saveId);
-
-        // Initialize game from save
-        await _loadFromSave(saveId);
+      // Set active chapter in provider
+      if (widget.chapterId != null) {
+        ref.read(activeChapterIdProvider.notifier).state = widget.chapterId;
       }
-    } else {
-      // New game, start from beginning
-      await _initializeNewGame();
-    }
 
-    // Pre-load character data for this chapter
-    await _loadCharactersForChapter();
+      // If a save ID is provided, load that save
+      if (widget.saveId != null) {
+        final saveId = int.tryParse(widget.saveId!);
+        if (saveId != null) {
+          await ref.read(activeSaveIdProvider.notifier).setActiveSaveId(saveId);
+
+          // Initialize game from save
+          await _loadFromSave(saveId);
+        }
+      } else {
+        // New game, start from beginning
+        await _initializeNewGame();
+      }
+
+      // Pre-load character data for this chapter
+      await _loadCharactersForChapter();
+
+      // Capture a background screenshot after initialization
+      await _captureBackgroundScreenshot();
+    } catch (e, stack) {
+      AppLogger.error('Error initializing game session', error: e, stackTrace: stack);
+    } finally {
+      // Reset loading state
+      ref.read(isLoadingDialogueProvider.notifier).state = false;
+
+      if (mounted) {
+        setState(() {
+          _isInitializing = false;
+        });
+      }
+    }
   }
 
   Future<void> _loadFromSave(int saveId) async {
-    final gameRepository = ref.read(gameRepositoryProvider);
-    final saveGame = await gameRepository.getSaveGameById(saveId);
+    try {
+      final gameRepository = ref.read(gameRepositoryProvider);
+      final saveGame = await gameRepository.getSaveGameById(saveId);
 
-    if (saveGame != null) {
-      // Load chapter and scene from save
-      final chapterId = saveGame.currentChapter;
-      final sceneId = saveGame.currentScene;
+      if (saveGame != null) {
+        // Load chapter and scene from save
+        final chapterId = saveGame.currentChapter;
+        final sceneId = saveGame.currentScene;
 
-      ref.read(activeChapterIdProvider.notifier).state = chapterId;
-      ref.read(activeSceneIdProvider.notifier).state = sceneId;
-      ref.read(currentPlayTimeProvider.notifier).state = saveGame.playTimeSeconds;
+        ref.read(activeChapterIdProvider.notifier).state = chapterId;
+        ref.read(activeSceneIdProvider.notifier).state = sceneId;
+        ref.read(currentPlayTimeProvider.notifier).state = saveGame.playTimeSeconds;
 
-      _elapsedPlayTime = saveGame.playTimeSeconds;
+        _elapsedPlayTime = saveGame.playTimeSeconds;
+
+        AppLogger.info('Loaded save game: $saveId, chapter: $chapterId, scene: $sceneId');
+      } else {
+        AppLogger.warning('Save game not found: $saveId');
+        // Handle the case where save game is not found
+        await _initializeNewGame(); // Fall back to a new game
+      }
+    } catch (e, stack) {
+      AppLogger.error('Error loading save game', error: e, stackTrace: stack);
+      // Handle loading error
+      await _initializeNewGame(); // Fall back to a new game
     }
   }
 
@@ -177,62 +226,100 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
     // For a new game, we need to:
     // 1. Create a new save game record
     // 2. Load the first chapter and scene
-    final gameRepository = ref.read(gameRepositoryProvider);
+    try {
+      final gameRepository = ref.read(gameRepositoryProvider);
 
-    final chapterId = widget.chapterId ?? 'chapter_1';
-    final chapter = await gameRepository.loadChapter(chapterId);
+      final chapterId = widget.chapterId ?? 'chapter_1';
+      final chapter = await gameRepository.loadChapter(chapterId);
 
-    if (chapter != null) {
-      // Set initial scene
-      ref.read(activeSceneIdProvider.notifier).state = chapter.startSceneId;
+      if (chapter != null) {
+        // Set initial scene
+        ref.read(activeSceneIdProvider.notifier).state = chapter.startSceneId;
+        // Reset the current dialogue ID to make sure we start fresh
+        ref.read(currentDialogueIdProvider.notifier).state = null;
 
-      // Create a new save game entry
-      final availableSlot = await gameRepository.getAvailableSaveSlot() ?? 1;
-      final playerName = "Player"; // This would come from a name entry screen
+        // Create a new save game entry
+        final availableSlot = await gameRepository.getAvailableSaveSlot() ?? 1;
+        final playerName = "Player"; // This would come from a name entry screen
 
-      final newSaveGame = SaveGameModel.create(
-        slotId: availableSlot,
-        playerName: playerName,
-        currentChapter: chapterId,
-        currentScene: chapter.startSceneId,
+        final newSaveGame = SaveGameModel.create(
+          slotId: availableSlot,
+          playerName: playerName,
+          currentChapter: chapterId,
+          currentScene: chapter.startSceneId,
+        );
+
+        final saveId = await gameRepository.createSaveGame(newSaveGame);
+
+        // Set as active save
+        await ref.read(activeSaveIdProvider.notifier).setActiveSaveId(saveId);
+
+        AppLogger.info('New game initialized: chapter: $chapterId, scene: ${chapter.startSceneId}, save: $saveId');
+      } else {
+        AppLogger.error('Failed to load chapter: $chapterId');
+        // Handle error - chapter not found
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Error loading chapter $chapterId'),
+          ),
+        );
+      }
+    } catch (e, stack) {
+      AppLogger.error('Error initializing new game', error: e, stackTrace: stack);
+      // Handle initialization error
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Error starting new game'),
+        ),
       );
-
-      final saveId = await gameRepository.createSaveGame(newSaveGame);
-
-      // Set as active save
-      await ref.read(activeSaveIdProvider.notifier).setActiveSaveId(saveId);
     }
   }
 
   Future<void> _loadCharactersForChapter() async {
-    final gameRepository = ref.read(gameRepositoryProvider);
-    final characters = await gameRepository.getAllCharacters();
+    try {
+      final gameRepository = ref.read(gameRepositoryProvider);
+      final characters = await gameRepository.getAllCharacters();
 
-    // Create a map for easy access
-    Map<String, CharacterModel> characterMap = {};
-    for (var character in characters) {
-      characterMap[character.id.toString()] = character;
+      // Create a map for easy access
+      Map<String, CharacterModel> characterMap = {};
+      for (var character in characters) {
+        characterMap[character.id.toString()] = character;
+      }
+
+      if (mounted) {
+        setState(() {
+          _characters = characterMap;
+        });
+      }
+
+      AppLogger.info('Loaded ${characters.length} characters');
+    } catch (e, stack) {
+      AppLogger.error('Error loading characters', error: e, stackTrace: stack);
     }
-
-    setState(() {
-      _characters = characterMap;
-    });
   }
 
   void _startPlayTimeTimer() {
     _playTimeTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      setState(() {
-        _elapsedPlayTime++;
-      });
+      if (mounted) {
+        setState(() {
+          _elapsedPlayTime++;
+        });
 
-      // Update provider
-      ref.read(currentPlayTimeProvider.notifier).state = _elapsedPlayTime;
+        // Update provider
+        ref.read(currentPlayTimeProvider.notifier).state = _elapsedPlayTime;
+      }
     });
   }
 
-  Future<String?> _captureScreenshot() async {
+  Future<String?> _captureScreenshot({bool forSaving = false}) async {
     // Don't capture if we're already capturing or if menus/popups are open
-    if (_isCapturingScreenshot || _isMenuOpen || _showVocabPopup || _showGrammarPopup || _showCulturalNotePopup) {
+    if (_isCapturingScreenshot ||
+        _isMenuOpen ||
+        _showVocabPopup ||
+        _showGrammarPopup ||
+        _showCulturalNotePopup ||
+        _isSceneTransitioning ||
+        _isChapterTransitioning) {
       return null;
     }
 
@@ -247,20 +334,25 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
       // Capture and save screenshot
       final activeSaveId = ref.read(activeSaveIdProvider);
       final currentSceneId = ref.read(activeSceneIdProvider);
+      final timestamp = DateTime.now().millisecondsSinceEpoch;
 
-      final fileName = 'save_${activeSaveId}_${currentSceneId ?? 'unknown'}';
+      final fileName = forSaving
+          ? 'save_${activeSaveId}_${currentSceneId ?? 'unknown'}_$timestamp'
+          : 'autosave_${activeSaveId}_${currentSceneId ?? 'unknown'}_$timestamp';
+
       final screenshotPath = await ScreenshotHelper.takeAndSaveScreenshot(
         controller: _screenshotController,
         fileName: fileName,
       );
 
       if (screenshotPath != null) {
+        final size = MediaQuery.sizeOf(context);
         // Generate a thumbnail for the save game
         final thumbnailPath = await ScreenshotHelper.generateThumbnail(
           screenshotPath: screenshotPath,
           thumbnailName: 'thumb_$fileName',
-          width: 320,
-          height: 180,
+          width: (size.width * 0.5).toInt(),
+          height: (size.height * 0.5).toInt(),
         );
 
         return thumbnailPath;
@@ -268,15 +360,37 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
     } catch (e, stack) {
       AppLogger.error('Error capturing screenshot', error: e, stackTrace: stack);
     } finally {
-      setState(() {
-        _isCapturingScreenshot = false;
-      });
+      if (mounted) {
+        setState(() {
+          _isCapturingScreenshot = false;
+        });
+      }
     }
 
     return null;
   }
 
-  Future<void> _quickSave() async {
+  /// Takes a screenshot in the background without UI feedback
+  Future<void> _captureBackgroundScreenshot() async {
+    // Throttle screenshots - only take one every few seconds
+    final now = DateTime.now();
+    if (_lastScreenshotTime != null && now.difference(_lastScreenshotTime!).inSeconds < 5) {
+      return; // Skip if we captured a screenshot recently
+    }
+
+    _lastScreenshotTime = now;
+
+    // Capture in the background without UI indications
+    try {
+      await Future.delayed(const Duration(milliseconds: 300)); // Allow UI to render
+      await _captureScreenshot();
+    } catch (e, stack) {
+      AppLogger.error('Error capturing background screenshot', error: e, stackTrace: stack);
+      // Ignore errors for background screenshots
+    }
+  }
+
+  Future<void> _quickSave({bool saveAndExit = false}) async {
     setState(() {
       _isMenuOpen = false;
     });
@@ -285,28 +399,46 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
     final activeSaveId = ref.read(activeSaveIdProvider);
 
     if (activeSaveId != null) {
-      final save = await gameRepository.getSaveGameById(activeSaveId);
+      try {
+        final save = await gameRepository.getSaveGameById(activeSaveId);
 
-      if (save != null) {
-        final currentChapterId = ref.read(activeChapterIdProvider) ?? save.currentChapter;
-        final currentSceneId = ref.read(activeSceneIdProvider) ?? save.currentScene;
+        if (save != null) {
+          final currentChapterId = ref.read(activeChapterIdProvider) ?? save.currentChapter;
+          final currentSceneId = ref.read(activeSceneIdProvider) ?? save.currentScene;
 
-        final thumbnailPath = await _captureScreenshot();
+          final thumbnailPath = await _captureScreenshot(forSaving: true);
 
-        await gameRepository.createQuickSave(
-          playerName: save.playerName,
-          currentChapter: currentChapterId,
-          currentScene: currentSceneId,
-          playTimeSeconds: _elapsedPlayTime,
-          thumbnailPath: thumbnailPath,
-        );
+          await gameRepository.createQuickSave(
+            playerName: save.playerName,
+            currentChapter: currentChapterId,
+            currentScene: currentSceneId,
+            playTimeSeconds: _elapsedPlayTime,
+            thumbnailPath: thumbnailPath,
+          );
 
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: const Text('Game saved successfully'),
-            behavior: SnackBarBehavior.floating,
-          ),
-        );
+          if (mounted) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('Game saved successfully'),
+                behavior: SnackBarBehavior.floating,
+              ),
+            );
+            if (saveAndExit) context.go(AppConstants.routeHome);
+          }
+
+          AppLogger.info('Game saved: chapter: $currentChapterId, scene: $currentSceneId');
+        }
+      } catch (e, stack) {
+        AppLogger.error('Error saving game', error: e, stackTrace: stack);
+
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: const Text('Error saving game'),
+              behavior: SnackBarBehavior.floating,
+            ),
+          );
+        }
       }
     }
   }
@@ -389,18 +521,21 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
       ref.read(currentDialogueIdProvider.notifier).state = choice.nextId;
     } else {
       // Show message that requirements are not met
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: const Text('You need to learn more Japanese to understand this option.'),
-          behavior: SnackBarBehavior.floating,
-        ),
-      );
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('You need to learn more Japanese to understand this option.'),
+            behavior: SnackBarBehavior.floating,
+          ),
+        );
+      }
     }
   }
 
   bool _canMakeChoice(DialogueChoice choice) {
-    // This would check language level requirements
-    final userLanguageLevel = SettingsService.getLanguageLevel();
+    // Get language level from settings provider instead of service
+    final settings = ref.read(gameplaySettingsProvider);
+    final userLanguageLevel = settings['languageLevel'] as int? ?? 5; // Default to N5
 
     return choice.requiredLevel <= userLanguageLevel;
   }
@@ -416,18 +551,19 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
     }
 
     try {
+      // Set loading state
+      ref.read(isLoadingDialogueProvider.notifier).state = true;
+
       // Get current chapter data
       final chapter = await gameRepository.loadChapter(currentChapterId);
       if (chapter == null) {
-        AppLogger.error('Cannot load next scene: chapter $currentChapterId not found');
-        return;
+        throw Exception('Chapter $currentChapterId not found');
       }
 
       // Find the index of the current scene in the chapter
       final currentSceneIndex = chapter.sceneIds.indexOf(currentSceneId);
       if (currentSceneIndex == -1) {
-        AppLogger.error('Current scene $currentSceneId not found in chapter $currentChapterId');
-        return;
+        throw Exception('Current scene $currentSceneId not found in chapter $currentChapterId');
       }
 
       // Check if there is a next scene
@@ -445,9 +581,12 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
         ref.read(currentDialogueIdProvider.notifier).state = null;
 
         // Save progress
-        _saveProgress(currentChapterId, nextSceneId);
+        await _saveProgress(currentChapterId, nextSceneId);
 
         AppLogger.info('Loaded next scene: $nextSceneId');
+
+        // Take a screenshot of the new scene
+        await _captureBackgroundScreenshot();
       } else {
         // This is the last scene in the chapter
         await _handleChapterEnd(currentChapterId);
@@ -456,14 +595,17 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
       AppLogger.error('Error loading next scene', error: e, stackTrace: stack);
 
       // Show error message to the user
-      if (context.mounted) {
+      if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: const Text('Error loading next scene'),
+            content: Text('Error loading next scene: ${e.toString()}'),
             behavior: SnackBarBehavior.floating,
           ),
         );
       }
+    } finally {
+      // Clear loading state
+      ref.read(isLoadingDialogueProvider.notifier).state = false;
     }
   }
 
@@ -478,8 +620,7 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
       // Find current chapter by ID
       final currentChapterIndex = allChapters.indexWhere((c) => c.id == currentChapterId);
       if (currentChapterIndex == -1) {
-        AppLogger.error('Current chapter $currentChapterId not found in all chapters');
-        return;
+        throw Exception('Current chapter $currentChapterId not found in all chapters');
       }
 
       // Check if there is a next chapter
@@ -491,7 +632,7 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
         await _showChapterTransition(nextChapter.id, nextChapter.title);
 
         // Prompt user to continue to next chapter
-        if (context.mounted) {
+        if (mounted) {
           final goToNextChapter = await showDialog<bool>(
                 context: context,
                 barrierDismissible: false,
@@ -521,12 +662,15 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
             ref.read(currentDialogueIdProvider.notifier).state = null;
 
             // Save progress
-            _saveProgress(nextChapter.id, nextChapter.startSceneId);
+            await _saveProgress(nextChapter.id, nextChapter.startSceneId);
 
             AppLogger.info('Started next chapter: ${nextChapter.id}');
+
+            // Take a screenshot of the new chapter
+            await _captureBackgroundScreenshot();
           } else {
             // Return to home screen
-            if (context.mounted) {
+            if (mounted) {
               context.go(AppConstants.routeHome);
             }
           }
@@ -537,6 +681,16 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
       }
     } catch (e, stack) {
       AppLogger.error('Error handling chapter end', error: e, stackTrace: stack);
+
+      // Show error message to the user
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Error: ${e.toString()}'),
+            behavior: SnackBarBehavior.floating,
+          ),
+        );
+      }
     }
   }
 
@@ -615,7 +769,7 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
 
   /// Shows the game complete screen
   Future<void> _showGameCompleteScreen() async {
-    if (!context.mounted) return;
+    if (!mounted) return;
 
     await showDialog(
       context: context,
@@ -642,18 +796,22 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
 
     if (activeSaveId == null) return;
 
-    // Apply relationship changes
-    for (final entry in choice.relationshipChanges.entries) {
-      final characterId = int.tryParse(entry.key);
-      final pointChange = entry.value;
+    try {
+      // Apply relationship changes
+      for (final entry in choice.relationshipChanges.entries) {
+        final characterId = int.tryParse(entry.key);
+        final pointChange = entry.value;
 
-      if (characterId != null) {
-        await gameRepository.updateRelationshipPoints(
-          activeSaveId,
-          characterId,
-          pointChange,
-        );
+        if (characterId != null) {
+          await gameRepository.updateRelationshipPoints(
+            activeSaveId,
+            characterId,
+            pointChange,
+          );
+        }
       }
+    } catch (e, stack) {
+      AppLogger.error('Error processing relationship changes', error: e, stackTrace: stack);
     }
   }
 
@@ -680,12 +838,19 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
   }
 
   void _startAutoMode() {
-    final autoDelay = SettingsService.getAutoplayDelay();
+    // Read auto delay from settings provider instead of service
+    final settings = ref.read(gameplaySettingsProvider);
+    final autoDelay = settings['autoplayDelay'] as int? ?? 2000; // Default 2 seconds
 
     _autoModeTimer?.cancel();
     _autoModeTimer = Timer.periodic(
       Duration(milliseconds: autoDelay),
       (timer) {
+        if (!mounted) {
+          timer.cancel();
+          return;
+        }
+
         final currentDialogue = ref.read(currentDialogueProvider).valueOrNull;
 
         // Only advance if text is complete and no choices are shown
@@ -697,7 +862,7 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
 
             // Wait a bit longer before advancing to next scene
             Future.delayed(const Duration(seconds: 2), () {
-              if (_isAutoMode) {
+              if (_isAutoMode && mounted) {
                 _advanceDialogue();
                 // Restart auto mode
                 _startAutoMode();
@@ -720,25 +885,33 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
 
     if (_isSkipping) {
       _startSkipping();
+    } else {
+      _autoModeTimer?.cancel();
     }
   }
 
   void _startSkipping() {
     // Skip mode just rapidly advances through dialogue
-    // This is a simplified implementation
     _autoModeTimer?.cancel();
     _autoModeTimer = Timer.periodic(
       const Duration(milliseconds: 300),
       (timer) {
-        if (!_showChoices) {
-          _advanceDialogue();
-        } else {
-          // Stop skipping when choices are encountered
-          setState(() {
-            _isSkipping = false;
-          });
-          _autoModeTimer?.cancel();
+        if (!mounted) {
+          timer.cancel();
+          return;
         }
+
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (!_showChoices) {
+            _advanceDialogue();
+          } else {
+            // Stop skipping when choices are encountered
+            setState(() {
+              _isSkipping = false;
+            });
+            _autoModeTimer?.cancel();
+          }
+        });
       },
     );
   }
@@ -749,7 +922,7 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
     });
   }
 
-  void _updateCharacterSprites(DialogueLine? currentLine) {
+  Future<void> _updateCharacterSprites(DialogueLine? currentLine) async {
     if (currentLine == null) return;
 
     // Process background change if needed
@@ -760,6 +933,9 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
 
       // Animate background change
       _backgroundController.forward(from: 0.0);
+
+      // Capture a screenshot after the background changes
+      await _captureBackgroundScreenshot();
     }
 
     // Process character sprites
@@ -790,36 +966,51 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
 
     // Animate character sprite changes
     _spriteController.forward(from: 0.0);
+
+    // If character sprites changed significantly, take a screenshot
+    if (sprites.isNotEmpty) {
+      await _captureBackgroundScreenshot();
+    }
   }
 
   void _checkForLearningMoments(DialogueLine? currentLine) {
     if (currentLine == null) return;
 
-    // Check if this line has vocabulary to learn
     if (currentLine.vocabularyIds.isNotEmpty) {
       setState(() {
-        _showVocabPopup = true;
+        final vocab = _newLearningItems['vocab'] ?? 0;
+        _newLearningItems['vocab'] = vocab + currentLine.vocabularyIds.length;
       });
 
+      // Still unlock the items
       _unlockVocabularyItems(currentLine.vocabularyIds);
     }
 
-    // Check if this line introduces grammar points
     if (currentLine.grammarIds.isNotEmpty) {
       setState(() {
-        _showGrammarPopup = true;
+        final grammar = _newLearningItems['grammar'] ?? 0;
+        _newLearningItems['grammar'] = grammar + currentLine.grammarIds.length;
       });
 
+      // Still unlock the items
       _unlockGrammarPoints(currentLine.grammarIds);
     }
 
     if (currentLine.culturalNoteIds.isNotEmpty) {
       setState(() {
-        _showCulturalNotePopup = true; // Added cultural notes popup
+        final culture = _newLearningItems['culture'] ?? 0;
+        _newLearningItems['culture'] = culture + currentLine.culturalNoteIds.length;
       });
 
-      // Ensure cultural notes are unlocked even if popup is dismissed
+      // Still unlock the items
       _unlockCulturalNotes(currentLine.culturalNoteIds);
+    }
+
+    // If we have any new items, show the notification
+    if (_newLearningItems['vocab']! > 0 || _newLearningItems['grammar']! > 0 || _newLearningItems['culture']! > 0) {
+      setState(() {
+        _showJournalNotification = true;
+      });
     }
   }
 
@@ -837,11 +1028,15 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
 
     if (activeSaveId == null) return;
 
-    for (final id in vocabIds) {
-      final vocabId = int.tryParse(id);
-      if (vocabId != null) {
-        await gameRepository.unlockVocabulary(activeSaveId, vocabId);
+    try {
+      for (final id in vocabIds) {
+        final vocabId = int.tryParse(id);
+        if (vocabId != null) {
+          await gameRepository.unlockVocabulary(activeSaveId, vocabId);
+        }
       }
+    } catch (e, stack) {
+      AppLogger.error('Error unlocking vocabulary', error: e, stackTrace: stack);
     }
   }
 
@@ -851,11 +1046,15 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
 
     if (activeSaveId == null) return;
 
-    for (final id in noteIds) {
-      final noteId = int.tryParse(id);
-      if (noteId != null) {
-        await gameRepository.unlockCulturalNote(activeSaveId, noteId);
+    try {
+      for (final id in noteIds) {
+        final noteId = int.tryParse(id);
+        if (noteId != null) {
+          await gameRepository.unlockCulturalNote(activeSaveId, noteId);
+        }
       }
+    } catch (e, stack) {
+      AppLogger.error('Error unlocking cultural notes', error: e, stackTrace: stack);
     }
   }
 
@@ -865,11 +1064,15 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
 
     if (activeSaveId == null) return;
 
-    for (final id in grammarIds) {
-      final grammarId = int.tryParse(id);
-      if (grammarId != null) {
-        await gameRepository.unlockGrammar(activeSaveId, grammarId);
+    try {
+      for (final id in grammarIds) {
+        final grammarId = int.tryParse(id);
+        if (grammarId != null) {
+          await gameRepository.unlockGrammar(activeSaveId, grammarId);
+        }
       }
+    } catch (e, stack) {
+      AppLogger.error('Error unlocking grammar points', error: e, stackTrace: stack);
     }
   }
 
@@ -883,10 +1086,14 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
     final activeSaveId = ref.read(activeSaveIdProvider);
 
     if (activeSaveId != null) {
-      final result = await gameRepository.unlockCharacter(activeSaveId, characterId);
+      try {
+        final result = await gameRepository.unlockCharacter(activeSaveId, characterId);
 
-      if (result) {
-        AppLogger.info('Unlocked new character with ID $characterId');
+        if (result) {
+          AppLogger.info('Unlocked new character with ID $characterId');
+        }
+      } catch (e, stack) {
+        AppLogger.error('Error unlocking character', error: e, stackTrace: stack);
       }
     }
   }
@@ -895,7 +1102,13 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
   Widget build(BuildContext context) {
     // Listen to dialogue changes
     final currentDialogue = ref.watch(currentDialogueProvider).valueOrNull;
-    final isLoading = ref.watch(isLoadingDialogueProvider);
+    final isLoading = ref.watch(isLoadingDialogueProvider) || _isInitializing;
+
+    // Get settings from providers
+    final textSpeed = ref.watch(textSpeedProvider);
+    final displaySettings = ref.watch(displaySettingsProvider);
+    final showFurigana = displaySettings['showFurigana'] as bool? ?? true;
+    final showRomaji = displaySettings['showRomaji'] as bool? ?? false;
 
     ref.listen(
       currentDialogueProvider,
@@ -930,6 +1143,12 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
     return Screenshot(
       controller: _screenshotController,
       child: Scaffold(
+        key: _scaffoldKey,
+        endDrawer: SettingsPanel(
+          onClose: () {
+            _scaffoldKey.currentState?.closeEndDrawer();
+          },
+        ),
         body: Stack(
           fit: StackFit.expand,
           children: [
@@ -949,13 +1168,19 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
                 const Spacer(),
 
                 // Dialogue box at the bottom
-                _buildDialogueBox(currentDialogue, isLoading),
+                _buildDialogueBox(
+                  currentDialogue,
+                  isLoading,
+                  textSpeed,
+                  showFurigana,
+                  showRomaji,
+                ),
               ],
             ),
 
             // Dialogue choices (conditionally shown)
             if (_showChoices && currentDialogue != null && currentDialogue.choices.isNotEmpty)
-              _buildChoices(currentDialogue.choices),
+              _buildChoices(currentDialogue.choices, showFurigana),
 
             // Game menu (conditionally shown)
             if (_isMenuOpen) _buildGameMenu(),
@@ -1008,6 +1233,52 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
                   ).animate().fadeIn(duration: 800.ms),
                 ),
               ),
+
+            // Show loading indicator
+            if (isLoading)
+              Container(
+                color: Colors.black.withOpacity(0.5),
+                alignment: Alignment.center,
+                child: const CircularProgressIndicator(),
+              ),
+
+            if (_showJournalNotification)
+              LearningJournalNotification(
+                vocabCount: _newLearningItems['vocab']!,
+                grammarCount: _newLearningItems['grammar']!,
+                cultureCount: _newLearningItems['culture']!,
+                onVocabTap: () {
+                  setState(() {
+                    _showVocabPopup = true;
+                    _showJournalNotification = false;
+                    _newLearningItems['vocab'] = 0;
+                  });
+                },
+                onGrammarTap: () {
+                  setState(() {
+                    _showGrammarPopup = true;
+                    _showJournalNotification = false;
+                    _newLearningItems['grammar'] = 0;
+                  });
+                },
+                onCultureTap: () {
+                  setState(() {
+                    _showCulturalNotePopup = true;
+                    _showJournalNotification = false;
+                    _newLearningItems['culture'] = 0;
+                  });
+                },
+                onDismiss: () {
+                  setState(() {
+                    _showJournalNotification = false;
+                    _newLearningItems = {
+                      'vocab': 0,
+                      'grammar': 0,
+                      'culture': 0,
+                    };
+                  });
+                },
+              ),
           ],
         ),
       ),
@@ -1028,8 +1299,7 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage(
-              //_currentBackground.isNotEmpty ? _currentBackground :
-              'assets/images/backgrounds/car_interior.webp',
+              _currentBackground.isNotEmpty ? _currentBackground : 'assets/images/backgrounds/classroom.webp',
             ),
             fit: BoxFit.cover,
           ),
@@ -1063,21 +1333,21 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
             const Spacer(),
 
             // History button
-            IconButton(
-              onPressed: () => _showHistoryLog(),
-              icon: Icon(
-                Icons.history,
-                color: Colors.white,
-                shadows: [
-                  Shadow(
-                    color: Colors.black.withOpacity(0.6),
-                    blurRadius: 5,
-                    offset: const Offset(1, 1),
-                  ),
-                ],
-              ),
-              tooltip: 'History',
-            ),
+            // IconButton(
+            //   onPressed: () => _showHistoryLog(),
+            //   icon: Icon(
+            //     Icons.history,
+            //     color: Colors.white,
+            //     shadows: [
+            //       Shadow(
+            //         color: Colors.black.withOpacity(0.6),
+            //         blurRadius: 5,
+            //         offset: const Offset(1, 1),
+            //       ),
+            //     ],
+            //   ),
+            //   tooltip: 'History',
+            // ),
 
             // Skip button
             IconButton(
@@ -1135,7 +1405,13 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
     );
   }
 
-  Widget _buildDialogueBox(DialogueNode? currentDialogue, bool isLoading) {
+  Widget _buildDialogueBox(
+    DialogueNode? currentDialogue,
+    bool isLoading,
+    int textSpeed,
+    bool showFurigana,
+    bool showRomaji,
+  ) {
     if (isLoading || currentDialogue == null) {
       return const SizedBox(
         height: 200,
@@ -1165,9 +1441,9 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
                       _isTextComplete = true;
                     });
                   },
-                  textSpeed: SettingsService.getTextSpeed(),
-                  showFurigana: SettingsService.isShowFurigana(),
-                  showRomaji: SettingsService.isShowRomaji(),
+                  textSpeed: textSpeed,
+                  showFurigana: showFurigana,
+                  showRomaji: showRomaji,
                   instantComplete: _isSkipping,
                 ),
               ),
@@ -1183,7 +1459,7 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
     );
   }
 
-  Widget _buildChoices(List<DialogueChoice> choices) {
+  Widget _buildChoices(List<DialogueChoice> choices, bool showFurigana) {
     return Positioned(
       bottom: 220, // Position above dialogue box
       left: 0,
@@ -1210,7 +1486,7 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
                   child: ChoiceButton(
                     choice: choices[i],
                     onTap: () => _makeChoice(choices[i]),
-                    showFurigana: SettingsService.isShowFurigana(),
+                    showFurigana: showFurigana,
                     canMakeChoice: _canMakeChoice(choices[i]),
                     index: i,
                   ),
@@ -1227,14 +1503,12 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
       onClose: _toggleMenu,
       onSave: _quickSave,
       onLoad: () {
-        // Load game logic
+        context.push(AppConstants.routeHome);
       },
       onSettings: () {
-        // Navigate to settings
-        context.push(AppConstants.routeSettings);
+        _scaffoldKey.currentState?.openEndDrawer();
       },
       onExit: () {
-        // Exit to main menu
         context.go(AppConstants.routeHome);
       },
     ).animate().fadeIn(duration: 200.ms);
@@ -1308,10 +1582,7 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
           TextButton(
             onPressed: () async {
               Navigator.of(context).pop();
-              await _quickSave();
-              if (context.mounted) {
-                context.go(AppConstants.routeHome);
-              }
+              await _quickSave(saveAndExit: true);
             },
             child: const Text('Save and Exit'),
           ),

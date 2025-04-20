@@ -60,14 +60,8 @@ class AppDatabase extends _$AppDatabase {
         await _seedInitialData();
       },
 
-      // Handle version upgrades
       onUpgrade: (Migrator m, int from, int to) async {
         AppLogger.info('Upgrading database from $from to $to');
-
-        // Add migration logic here when schema changes
-        if (from < 2) {
-          // Example: if (from < 2) { await m.addColumn(table, column); }
-        }
       },
 
       // Run after migrations
@@ -92,7 +86,7 @@ class AppDatabase extends _$AppDatabase {
 
   static QueryExecutor _openConnection() {
     return driftDatabase(
-      name: kReleaseMode ? _databaseFileName : 'kizuna_quest_dev_2.db',
+      name: kReleaseMode ? _databaseFileName : 'kizuna_quest_dev_3.db',
       web: DriftWebOptions(
         sqlite3Wasm: Uri.parse('sqlite3.wasm'),
         driftWorker: Uri.parse('drift_worker.js'),

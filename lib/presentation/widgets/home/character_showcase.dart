@@ -5,6 +5,8 @@ import 'package:kizuna_quest/data/models/character_model.dart';
 import 'package:kizuna_quest/providers/database_provider.dart';
 import 'package:kizuna_quest/core/utils/extensions.dart';
 
+import 'character_display_dialog.dart';
+
 /// Horizontal scrolling showcase of game characters
 class CharacterShowcase extends ConsumerStatefulWidget {
   /// Creates a CharacterShowcase
@@ -190,133 +192,164 @@ class _CharacterCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedContainer(
-      duration: const Duration(milliseconds: 300),
-      curve: Curves.easeInOut,
-      margin: EdgeInsets.only(
-        right: 16,
-        top: isActive ? 0 : 10,
-        bottom: isActive ? 0 : 10,
-      ),
-      decoration: BoxDecoration(
-        color: context.theme.colorScheme.surface.withOpacity(0.9),
-        borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(isActive ? 0.2 : 0.1),
-            blurRadius: isActive ? 12 : 8,
-            offset: Offset(0, isActive ? 4 : 2),
-          ),
-        ],
-      ),
-      child: Stack(
-        children: [
-          // Character avatar
-          Positioned(
-            top: 0,
-            right: 0,
-            bottom: 0,
-            width: 150,
-            child: ClipRRect(
-              borderRadius: const BorderRadius.only(
-                topRight: Radius.circular(16),
-                bottomRight: Radius.circular(16),
-              ),
-              child: Image.asset(
-                character.avatarPath,
-                fit: BoxFit.cover,
+    return GestureDetector(
+      onTap: () => _showCharacterDetailDialog(context),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeInOut,
+        margin: EdgeInsets.only(
+          right: 16,
+          top: isActive ? 0 : 10,
+          bottom: isActive ? 0 : 10,
+        ),
+        decoration: BoxDecoration(
+          color: context.theme.colorScheme.surface.withOpacity(0.9),
+          borderRadius: BorderRadius.circular(16),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(isActive ? 0.2 : 0.1),
+              blurRadius: isActive ? 12 : 8,
+              offset: Offset(0, isActive ? 4 : 2),
+            ),
+          ],
+        ),
+        child: Stack(
+          children: [
+            // Character avatar
+            Positioned(
+              top: 0,
+              right: 0,
+              bottom: 0,
+              width: 150,
+              child: Hero(
+                tag: 'character_avatar_${character.id}',
+                child: ClipRRect(
+                  borderRadius: const BorderRadius.only(
+                    topRight: Radius.circular(16),
+                    bottomRight: Radius.circular(16),
+                  ),
+                  child: Image.asset(
+                    character.avatarPath,
+                    fit: BoxFit.cover,
+                  ),
+                ),
               ),
             ),
-          ),
 
-          // Content
-          Padding(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                // Relationship level indicator
-                if (character.hasRelationship)
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 8.0,
-                      vertical: 4.0,
+            // Content
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  // Relationship level indicator
+                  if (character.hasRelationship)
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 8.0,
+                        vertical: 4.0,
+                      ),
+                      decoration: BoxDecoration(
+                        color: _getKizunaColor(context, character.kizunaPoints ?? 0),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Text(
+                        character.relationshipLevel,
+                        style: context.textTheme.bodySmall?.copyWith(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
-                    decoration: BoxDecoration(
-                      color: _getKizunaColor(context, character.kizunaPoints ?? 0),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Text(
-                      character.relationshipLevel,
-                      style: context.textTheme.bodySmall?.copyWith(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
+
+                  const SizedBox(height: 12),
+
+                  // Japanese name
+                  Hero(
+                    tag: 'character_name_jp_${character.id}',
+                    child: Material(
+                      color: Colors.transparent,
+                      child: Text(
+                        character.nameJp,
+                        style: context.textTheme.titleLarge?.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: context.theme.colorScheme.primary,
+                        ),
                       ),
                     ),
                   ),
 
-                const SizedBox(height: 12),
-
-                // Japanese name
-                Text(
-                  character.nameJp,
-                  style: context.textTheme.titleLarge?.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: context.theme.colorScheme.primary,
-                  ),
-                ),
-
-                // English name
-                Text(
-                  character.nameEn,
-                  style: context.textTheme.bodyLarge,
-                ),
-
-                const SizedBox(height: 8),
-
-                // Personality description
-                SizedBox(
-                  width: context.screenWidth * 0.4,
-                  child: Text(
-                    character.personality,
-                    style: context.textTheme.bodyMedium?.copyWith(
-                      color: context.theme.colorScheme.onSurface.withOpacity(0.7),
+                  // English name
+                  Hero(
+                    tag: 'character_name_en_${character.id}',
+                    child: Material(
+                      color: Colors.transparent,
+                      child: Text(
+                        character.nameEn,
+                        style: context.textTheme.bodyLarge,
+                      ),
                     ),
-                    maxLines: 3,
-                    overflow: TextOverflow.ellipsis,
                   ),
-                ),
 
-                // Kizuna points display
-                if (character.hasRelationship && character.kizunaPoints != null)
-                  Padding(
-                    padding: const EdgeInsets.only(top: 16.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Icon(
-                          Icons.favorite,
-                          size: 16,
-                          color: _getKizunaColor(context, character.kizunaPoints!),
-                        ),
-                        const SizedBox(width: 4),
-                        Text(
-                          'Kizuna: ${character.kizunaPoints}',
-                          style: context.textTheme.bodySmall?.copyWith(
-                            fontWeight: FontWeight.bold,
+                  const SizedBox(height: 8),
+
+                  // Personality description
+                  SizedBox(
+                    width: context.screenWidth * 0.4,
+                    child: Text(
+                      character.personality,
+                      style: context.textTheme.bodyMedium?.copyWith(
+                        color: context.theme.colorScheme.onSurface.withOpacity(0.7),
+                      ),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+
+                  // Kizuna points display
+                  if (character.hasRelationship && character.kizunaPoints != null)
+                    Padding(
+                      padding: const EdgeInsets.only(top: 16.0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(
+                            Icons.favorite,
+                            size: 16,
                             color: _getKizunaColor(context, character.kizunaPoints!),
                           ),
-                        ),
-                      ],
+                          const SizedBox(width: 4),
+                          Text(
+                            'Kizuna: ${character.kizunaPoints}',
+                            style: context.textTheme.bodySmall?.copyWith(
+                              fontWeight: FontWeight.bold,
+                              color: _getKizunaColor(context, character.kizunaPoints!),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
+      ).animate().fadeIn(delay: (200 + (index * 100)).ms, duration: 400.ms),
+    );
+  }
+
+  void _showCharacterDetailDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => Dialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+        ),
+        insetPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+        child: CharacterDetailDialog(character: character),
       ),
-    ).animate().fadeIn(delay: (200 + (index * 100)).ms, duration: 400.ms);
+    );
   }
 
   Color _getKizunaColor(BuildContext context, int points) {

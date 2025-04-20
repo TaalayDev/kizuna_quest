@@ -121,6 +121,7 @@ class CharacterSprite extends StatelessWidget {
     return Container(
       height: height, // Standard height for character sprites
       width: width, // Standard width for character sprites
+
       decoration: BoxDecoration(
         // Subtle glow effect if speaking
         boxShadow: isSpeaking
@@ -159,7 +160,7 @@ class CharacterSprite extends StatelessWidget {
           Positioned.fill(
             child: Image.asset(
               spritePath,
-              fit: BoxFit.cover,
+              fit: BoxFit.contain,
               // If image fails to load, use a placeholder
               errorBuilder: (context, error, stackTrace) {
                 return ColoredBox(

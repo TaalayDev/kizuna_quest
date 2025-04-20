@@ -1,7 +1,7 @@
 {
     "id": "meeting_tanaka",
     "title": "Meeting Teacher Tanaka",
-    "defaultBackground": "assets/images/backgrounds/car_interior.png",
+    "defaultBackground": "assets/images/backgrounds/car_interior.webp",
     "nodes": {
       "start": {
         "line": {
@@ -10,7 +10,7 @@
           "furiganaJp": "たなかせんせいのくるまにのり、がっこうにむかっています。まどのそとにとうきょうのふうけいがながれていきます。",
           "romajiJp": "Tanaka-sensei no kuruma ni nori, gakkō ni mukatte imasu. Mado no soto ni Tōkyō no fūkei ga nagarete ikimasu.",
           "textEn": "You're in Professor Tanaka's car, heading to the school. The Tokyo scenery flows past outside the window.",
-          "background": "assets/images/backgrounds/car_interior.png",
+          "background": "assets/images/backgrounds/car_interior.webp",
           "nextId": "tanaka_question",
           "tags": ["vocab:16", "vocab:17", "grammar:10"]
         },
@@ -167,7 +167,7 @@
           "furiganaJp": "まどのそとをみると、おおきなこうしゃがみえてきます。さくらのきがまわりにうえられています。",
           "romajiJp": "Mado no soto o miru to, ōkina kōsha ga miete kimasu. Sakura no ki ga mawari ni uerarete imasu.",
           "textEn": "Looking out the window, you can see a large school building. Cherry blossom trees are planted around it.",
-          "background": "assets/images/backgrounds/school_approach.png",
+          "background": "assets/images/backgrounds/school_approach.webp",
           "nextId": "arrive_school",
           "tags": ["vocab:26", "vocab:27", "grammar:17"]
         },
@@ -180,7 +180,7 @@
           "furiganaJp": "くるまはがっこうのまえにとまります。",
           "romajiJp": "Kuruma wa gakkō no mae ni tomarimasu.",
           "textEn": "The car stops in front of the school.",
-          "background": "assets/images/backgrounds/school_entrance.png",
+          "background": "assets/images/backgrounds/school_entrance.webp",
           "nextId": "exit_car",
           "tags": ["vocab:28"]
         },
@@ -265,7 +265,7 @@
           "furiganaJp": "あなたはしんこきゅうして、たなかせんせいについてがっこうのなかにはいります。",
           "romajiJp": "Anata wa shinkokyū shite, Tanaka-sensei ni tsuite gakkō no naka ni hairimasu.",
           "textEn": "You take a deep breath and follow Professor Tanaka into the school.",
-          "background": "assets/images/backgrounds/school_hallway.png",
+          "background": "assets/images/backgrounds/school_hallway.webp",
           "nextId": "scene_end",
           "tags": ["vocab:36", "grammar:23"]
         },
@@ -275,8 +275,7 @@
         "line": {
           "id": "scene_end",
           "textJp": "シーン２：終了",
-          "textEn": "Scene 2: Complete",
-          "background": "assets/images/backgrounds/black.png"
+          "textEn": "Scene 2: Complete"
         },
         "choices": []
       }
