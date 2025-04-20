@@ -13,6 +13,9 @@ import 'package:kizuna_quest/presentation/widgets/home/recent_save_card.dart';
 import 'package:kizuna_quest/core/utils/constants.dart';
 import 'package:kizuna_quest/core/utils/extensions.dart';
 
+import '../../core/services/in_app_review_service.dart';
+import '../../providers/app_providers.dart';
+import '../widgets/home/error_report_dialog.dart';
 import '../widgets/home/save_games_dialog.dart';
 
 /// Home screen of the application
@@ -27,6 +30,15 @@ class HomeScreen extends ConsumerStatefulWidget {
 class _HomeScreenState extends ConsumerState<HomeScreen> {
   bool _showingSavesDialog = false;
   final _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  @override
+  void initState() {
+    // Check if the app should request a review
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      checkAndShowReviewDialog(context, ref);
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -333,131 +345,29 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     );
   }
 
-  void _showRateAppDialog() {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Rate Kizuna Quest'),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Text('Enjoying Kizuna Quest? Your rating helps us grow!'),
-            const SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(
-                  5,
-                  (index) => Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                        child: Icon(
-                          Icons.star,
-                          size: 32,
-                          color: Colors.amber,
-                        ),
-                      )),
-            ),
-          ],
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(),
-            child: const Text('Not Now'),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-              _launchAppStore();
-            },
-            child: const Text('Rate Now'),
-          ),
-        ],
-      ),
-    );
+  void _showRateAppDialog() async {
+    await ref.read(inAppReviewProvider).requestReview();
   }
 
-  void _launchAppStore() {
-    // In a real implementation, this would use url_launcher to open the app store
-    // For example:
-    // if (Platform.isAndroid) {
-    //   launchUrl(Uri.parse('market://details?id=com.yourcompany.kizunaquest'));
-    // } else if (Platform.isIOS) {
-    //   launchUrl(Uri.parse('itms-apps://itunes.apple.com/app/idYOURAPPID'));
-    // }
+  Future<void> checkAndShowReviewDialog(
+    BuildContext context,
+    WidgetRef ref,
+  ) async {
+    final reviewService = ref.read(inAppReviewProvider);
+    final shouldRequest = await reviewService.shouldRequestReview();
 
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('Opening app store...'),
-        behavior: SnackBarBehavior.floating,
-      ),
-    );
+    if (shouldRequest && context.mounted) {
+      // Delay slightly to let the current screen finish loading
+      Future.delayed(const Duration(seconds: 1), () {
+        if (context.mounted) {
+          reviewService.requestReview();
+        }
+      });
+    }
   }
 
   void _showReportErrorDialog() {
-    final TextEditingController descriptionController = TextEditingController();
-
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Report Translation Error'),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              'Help us improve by reporting any translation errors or issues you find.',
-              style: TextStyle(fontSize: 14),
-            ),
-            const SizedBox(height: 16),
-            DropdownButtonFormField<String>(
-              decoration: const InputDecoration(
-                labelText: 'Error Type',
-                border: OutlineInputBorder(),
-              ),
-              items: const [
-                DropdownMenuItem(value: 'translation', child: Text('Translation Error')),
-                DropdownMenuItem(value: 'grammar', child: Text('Grammar Mistake')),
-                DropdownMenuItem(value: 'ui', child: Text('UI Text Problem')),
-                DropdownMenuItem(value: 'other', child: Text('Other Issue')),
-              ],
-              onChanged: (value) {},
-            ),
-            const SizedBox(height: 16),
-            TextField(
-              controller: descriptionController,
-              decoration: const InputDecoration(
-                labelText: 'Description',
-                hintText: 'Please describe the error in detail',
-                border: OutlineInputBorder(),
-              ),
-              maxLines: 5,
-            ),
-          ],
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(),
-            child: const Text('Cancel'),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-
-              // In a real implementation, this would submit the error report
-              // to your backend or email system
-              if (descriptionController.text.isNotEmpty) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text('Thank you for your feedback!'),
-                    behavior: SnackBarBehavior.floating,
-                  ),
-                );
-              }
-            },
-            child: const Text('Submit'),
-          ),
-        ],
-      ),
-    );
+    ErrorReportDialog.show(context);
   }
 
   Widget _buildNewGameButton() {

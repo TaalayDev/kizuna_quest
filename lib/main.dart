@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -10,6 +11,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kizuna_quest/app.dart';
 import 'package:kizuna_quest/core/services/settings_service.dart';
 import 'package:kizuna_quest/core/utils/app_logger.dart';
+import 'package:window_manager/window_manager.dart';
 
 import 'providers/database_provider.dart';
 //import 'package:kizuna_quest/utils/firebase_options.dart';
@@ -35,6 +37,9 @@ void main() async {
     SystemUiMode.edgeToEdge,
     overlays: [SystemUiOverlay.top],
   );
+
+  // Initialize window manager for desktop platforms
+  await initWindowManager();
 
   // Set error handling
   // FlutterError.onError = (FlutterErrorDetails details) {
@@ -142,4 +147,27 @@ class _ProviderObserver extends ProviderObserver {
       // );
     }
   }
+}
+
+Future<void> initWindowManager() async {
+  if (!Platform.isWindows && !Platform.isLinux && !Platform.isMacOS) {
+    return;
+  }
+
+  const size = Size(500, 800);
+  await windowManager.ensureInitialized();
+  const windowOptions = WindowOptions(
+    maximumSize: size,
+    minimumSize: size,
+    size: size,
+    center: true,
+    backgroundColor: Color.fromARGB(255, 255, 255, 255),
+    skipTaskbar: false,
+    titleBarStyle: TitleBarStyle.hidden,
+    title: 'Kizuna Quest',
+  );
+  windowManager.waitUntilReadyToShow(windowOptions, () async {
+    await windowManager.show();
+    await windowManager.focus();
+  });
 }

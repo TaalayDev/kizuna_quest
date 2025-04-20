@@ -24,6 +24,7 @@ import 'package:kizuna_quest/core/utils/extensions.dart';
 import 'package:kizuna_quest/core/utils/screenshot_helper.dart';
 import 'package:screenshot/screenshot.dart';
 
+import '../../providers/app_providers.dart';
 import '../widgets/common/learning_journal_notification.dart';
 import '../widgets/game/cultural_note_popup.dart';
 
@@ -179,6 +180,8 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
 
       // Capture a background screenshot after initialization
       await _captureBackgroundScreenshot();
+
+      ref.read(inAppReviewProvider).incrementSessionCount();
     } catch (e, stack) {
       AppLogger.error('Error initializing game session', error: e, stackTrace: stack);
     } finally {

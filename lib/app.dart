@@ -7,12 +7,45 @@ import 'package:kizuna_quest/config/theme/app_theme.dart';
 import 'package:kizuna_quest/providers/theme_providers.dart';
 import 'package:kizuna_quest/core/utils/constants.dart';
 
+import 'providers/app_providers.dart';
+
 /// The main application widget for Kizuna Quest.
-class KizunaQuestApp extends ConsumerWidget {
+class KizunaQuestApp extends ConsumerStatefulWidget {
   const KizunaQuestApp({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<KizunaQuestApp> createState() => _KizunaQuestAppState();
+}
+
+class _KizunaQuestAppState extends ConsumerState<KizunaQuestApp> with WidgetsBindingObserver {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+
+    _incrementSessionCount();
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      _incrementSessionCount();
+    }
+  }
+
+  void _incrementSessionCount() async {
+    final reviewService = ref.read(inAppReviewProvider);
+    await reviewService.incrementSessionCount();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     // Get the current theme mode from provider
     final themeMode = ref.watch(themeModeProvider);
 
