@@ -3,21 +3,21 @@ import 'dart:convert';
 
 import 'package:drift/drift.dart';
 import 'package:flutter/services.dart';
-import 'package:kizuna_quest/core/database/app_database.dart';
-import 'package:kizuna_quest/core/database/daos/character_dao.dart';
-import 'package:kizuna_quest/core/database/daos/player_progress_dao.dart';
-import 'package:kizuna_quest/core/database/daos/save_game_dao.dart';
-import 'package:kizuna_quest/data/datasources/vocabulary_data_source.dart';
-import 'package:kizuna_quest/data/datasources/grammar_data_source.dart';
-import 'package:kizuna_quest/data/datasources/cultural_notes_data_source.dart';
-import 'package:kizuna_quest/data/models/character_model.dart';
-import 'package:kizuna_quest/data/models/cultural_note_model.dart';
-import 'package:kizuna_quest/data/models/dialogue_model.dart';
-import 'package:kizuna_quest/data/models/game_progress_model.dart';
-import 'package:kizuna_quest/data/models/grammar_point_model.dart';
-import 'package:kizuna_quest/data/models/save_game_model.dart';
-import 'package:kizuna_quest/data/models/vocabulary_model.dart';
-import 'package:kizuna_quest/core/utils/app_logger.dart';
+import 'package:tsuzuki_connect/core/database/app_database.dart';
+import 'package:tsuzuki_connect/core/database/daos/character_dao.dart';
+import 'package:tsuzuki_connect/core/database/daos/player_progress_dao.dart';
+import 'package:tsuzuki_connect/core/database/daos/save_game_dao.dart';
+import 'package:tsuzuki_connect/data/datasources/vocabulary_data_source.dart';
+import 'package:tsuzuki_connect/data/datasources/grammar_data_source.dart';
+import 'package:tsuzuki_connect/data/datasources/cultural_notes_data_source.dart';
+import 'package:tsuzuki_connect/data/models/character_model.dart';
+import 'package:tsuzuki_connect/data/models/cultural_note_model.dart';
+import 'package:tsuzuki_connect/data/models/dialogue_model.dart';
+import 'package:tsuzuki_connect/data/models/game_progress_model.dart';
+import 'package:tsuzuki_connect/data/models/grammar_point_model.dart';
+import 'package:tsuzuki_connect/data/models/save_game_model.dart';
+import 'package:tsuzuki_connect/data/models/vocabulary_model.dart';
+import 'package:tsuzuki_connect/core/utils/app_logger.dart';
 import 'package:path/path.dart' as path;
 
 /// Repository for all game-related data access

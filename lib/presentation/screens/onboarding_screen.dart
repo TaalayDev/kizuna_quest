@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:kizuna_quest/core/services/settings_service.dart';
-import 'package:kizuna_quest/presentation/widgets/common/animated_background.dart';
-import 'package:kizuna_quest/core/utils/constants.dart';
-import 'package:kizuna_quest/core/utils/extensions.dart';
+import 'package:tsuzuki_connect/core/services/settings_service.dart';
+import 'package:tsuzuki_connect/presentation/widgets/common/animated_background.dart';
+import 'package:tsuzuki_connect/core/utils/constants.dart';
+import 'package:tsuzuki_connect/core/utils/extensions.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../providers/sound_controller.dart';
@@ -65,7 +65,7 @@ class OnboardingScreen extends ConsumerWidget {
                     },
                     children: const [
                       _OnboardingPage(
-                        title: 'Welcome to Kizuna Quest!',
+                        title: 'Welcome to Tsuzuki Connect!',
                         description: 'Learn Japanese through an immersive visual novel adventure set in Tokyo.',
                         lottieAsset: 'assets/animations/welcome_tokyo.json',
                         japaneseText: 'ようこそ、絆クエストへ！',
@@ -73,7 +73,7 @@ class OnboardingScreen extends ConsumerWidget {
                       _OnboardingPage(
                         title: 'Build Relationships',
                         description:
-                            'Connect with characters and build "Kizuna" (bonds) as you communicate in Japanese.',
+                            'Connect with characters and build "Tsuzuki" (bonds) as you communicate in Japanese.',
                         lottieAsset: 'assets/animations/characters.json',
                         japaneseText: '登場人物との絆を深めよう',
                       ),

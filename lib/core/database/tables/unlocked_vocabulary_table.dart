@@ -1,5 +1,5 @@
 import 'package:drift/drift.dart';
-import 'package:kizuna_quest/core/database/tables/save_games_table.dart';
+import 'package:tsuzuki_connect/core/database/tables/save_games_table.dart';
 
 /// Table definition for vocabulary items unlocked in each save game
 @DataClassName('UnlockedVocabularyItem')

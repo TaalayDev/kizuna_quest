@@ -9,14 +9,14 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:kizuna_quest/app.dart';
-import 'package:kizuna_quest/core/services/settings_service.dart';
-import 'package:kizuna_quest/core/utils/app_logger.dart';
-import 'package:kizuna_quest/firebase_options.dart';
+import 'package:tsuzuki_connect/app.dart';
+import 'package:tsuzuki_connect/core/services/settings_service.dart';
+import 'package:tsuzuki_connect/core/utils/app_logger.dart';
+import 'package:tsuzuki_connect/firebase_options.dart';
 import 'package:window_manager/window_manager.dart';
 
 import 'providers/database_provider.dart';
-//import 'package:kizuna_quest/utils/firebase_options.dart';
+//import 'package:tsuzuki_connect/utils/firebase_options.dart';
 
 /// Global providers container reference for use in tests
 final ProviderContainer _container = ProviderContainer(
@@ -80,7 +80,7 @@ void main() async {
   runApp(
     UncontrolledProviderScope(
       container: _container,
-      child: const KizunaQuestApp(),
+      child: const TsuzukiConnectApp(),
     ),
   );
 
@@ -145,7 +145,7 @@ Future<void> initWindowManager() async {
     backgroundColor: Color.fromARGB(255, 255, 255, 255),
     skipTaskbar: false,
     titleBarStyle: TitleBarStyle.hidden,
-    title: 'Kizuna Quest',
+    title: 'Tsuzuki Connect',
   );
   windowManager.waitUntilReadyToShow(windowOptions, () async {
     await windowManager.show();

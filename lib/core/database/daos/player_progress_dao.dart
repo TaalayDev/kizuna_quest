@@ -1,12 +1,12 @@
 import 'package:drift/drift.dart';
-import 'package:kizuna_quest/core/database/app_database.dart';
-import 'package:kizuna_quest/core/database/tables/characters_table.dart';
-import 'package:kizuna_quest/core/database/tables/relationships_table.dart';
-import 'package:kizuna_quest/core/database/tables/save_games_table.dart';
-import 'package:kizuna_quest/core/database/tables/unlocked_cultural_notes_table.dart';
-import 'package:kizuna_quest/core/database/tables/unlocked_grammar_table.dart';
-import 'package:kizuna_quest/core/database/tables/unlocked_vocabulary_table.dart';
-import 'package:kizuna_quest/core/utils/app_logger.dart';
+import 'package:tsuzuki_connect/core/database/app_database.dart';
+import 'package:tsuzuki_connect/core/database/tables/characters_table.dart';
+import 'package:tsuzuki_connect/core/database/tables/relationships_table.dart';
+import 'package:tsuzuki_connect/core/database/tables/save_games_table.dart';
+import 'package:tsuzuki_connect/core/database/tables/unlocked_cultural_notes_table.dart';
+import 'package:tsuzuki_connect/core/database/tables/unlocked_grammar_table.dart';
+import 'package:tsuzuki_connect/core/database/tables/unlocked_vocabulary_table.dart';
+import 'package:tsuzuki_connect/core/utils/app_logger.dart';
 
 part 'player_progress_dao.g.dart';
 

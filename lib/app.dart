@@ -2,23 +2,23 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:kizuna_quest/config/router/app_router.dart';
-import 'package:kizuna_quest/config/theme/app_theme.dart';
-import 'package:kizuna_quest/providers/sound_controller.dart';
-import 'package:kizuna_quest/providers/theme_providers.dart';
-import 'package:kizuna_quest/core/utils/constants.dart';
+import 'package:tsuzuki_connect/config/router/app_router.dart';
+import 'package:tsuzuki_connect/config/theme/app_theme.dart';
+import 'package:tsuzuki_connect/providers/sound_controller.dart';
+import 'package:tsuzuki_connect/providers/theme_providers.dart';
+import 'package:tsuzuki_connect/core/utils/constants.dart';
 
 import 'providers/app_providers.dart';
 
-/// The main application widget for Kizuna Quest.
-class KizunaQuestApp extends ConsumerStatefulWidget {
-  const KizunaQuestApp({super.key});
+/// The main application widget for Tsuzuki Connect.
+class TsuzukiConnectApp extends ConsumerStatefulWidget {
+  const TsuzukiConnectApp({super.key});
 
   @override
-  ConsumerState<KizunaQuestApp> createState() => _KizunaQuestAppState();
+  ConsumerState<TsuzukiConnectApp> createState() => _TsuzukiConnectAppState();
 }
 
-class _KizunaQuestAppState extends ConsumerState<KizunaQuestApp> with WidgetsBindingObserver {
+class _TsuzukiConnectAppState extends ConsumerState<TsuzukiConnectApp> with WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();

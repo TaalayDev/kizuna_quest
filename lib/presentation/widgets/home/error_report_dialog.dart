@@ -4,7 +4,7 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:kizuna_quest/core/utils/extensions.dart';
+import 'package:tsuzuki_connect/core/utils/extensions.dart';
 import 'package:screenshot/screenshot.dart';
 
 import '../../../providers/app_providers.dart';

@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:kizuna_quest/data/models/cultural_note_model.dart';
-import 'package:kizuna_quest/providers/database_provider.dart';
-import 'package:kizuna_quest/presentation/widgets/common/animated_background.dart';
-import 'package:kizuna_quest/presentation/widgets/culture/category_selector.dart';
-import 'package:kizuna_quest/presentation/widgets/culture/culture_note_card.dart';
-import 'package:kizuna_quest/core/utils/extensions.dart';
+import 'package:tsuzuki_connect/data/models/cultural_note_model.dart';
+import 'package:tsuzuki_connect/providers/database_provider.dart';
+import 'package:tsuzuki_connect/presentation/widgets/common/animated_background.dart';
+import 'package:tsuzuki_connect/presentation/widgets/culture/category_selector.dart';
+import 'package:tsuzuki_connect/presentation/widgets/culture/culture_note_card.dart';
+import 'package:tsuzuki_connect/core/utils/extensions.dart';
 
 import '../../providers/sound_controller.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:kizuna_quest/data/models/character_model.dart';
+import 'package:tsuzuki_connect/data/models/character_model.dart';
 
 /// Position types for character sprites
 enum SpritePosition {

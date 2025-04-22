@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:kizuna_quest/data/models/character_model.dart';
-import 'package:kizuna_quest/providers/database_provider.dart';
-import 'package:kizuna_quest/core/utils/extensions.dart';
+import 'package:tsuzuki_connect/data/models/character_model.dart';
+import 'package:tsuzuki_connect/providers/database_provider.dart';
+import 'package:tsuzuki_connect/core/utils/extensions.dart';
 
 import 'character_display_dialog.dart';
 
@@ -321,7 +321,7 @@ class _CharacterCard extends StatelessWidget {
                           ),
                           const SizedBox(width: 4),
                           Text(
-                            'Kizuna: ${character.kizunaPoints}',
+                            'Tsuzuki: ${character.kizunaPoints}',
                             style: context.textTheme.bodySmall?.copyWith(
                               fontWeight: FontWeight.bold,
                               color: _getKizunaColor(context, character.kizunaPoints!),

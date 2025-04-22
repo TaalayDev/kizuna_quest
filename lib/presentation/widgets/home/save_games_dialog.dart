@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:kizuna_quest/core/utils/constants.dart';
-import 'package:kizuna_quest/core/utils/extensions.dart';
-import 'package:kizuna_quest/data/models/save_game_model.dart';
-import 'package:kizuna_quest/providers/database_provider.dart';
+import 'package:tsuzuki_connect/core/utils/constants.dart';
+import 'package:tsuzuki_connect/core/utils/extensions.dart';
+import 'package:tsuzuki_connect/data/models/save_game_model.dart';
+import 'package:tsuzuki_connect/providers/database_provider.dart';
 
 class SaveGamesDialog extends ConsumerStatefulWidget {
   final VoidCallback onDismiss;

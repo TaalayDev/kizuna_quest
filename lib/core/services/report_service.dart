@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:kizuna_quest/core/utils/app_logger.dart';
+import 'package:tsuzuki_connect/core/utils/app_logger.dart';
 import 'package:uuid/uuid.dart';
 
 /// Service for handling user feedback and error reports using Firestore

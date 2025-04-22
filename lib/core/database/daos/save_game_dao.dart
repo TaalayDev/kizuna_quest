@@ -1,10 +1,10 @@
 import 'dart:convert';
 
 import 'package:drift/drift.dart';
-import 'package:kizuna_quest/core/database/app_database.dart';
-import 'package:kizuna_quest/core/database/tables/save_games_table.dart';
-import 'package:kizuna_quest/core/utils/app_logger.dart';
-import 'package:kizuna_quest/core/utils/constants.dart';
+import 'package:tsuzuki_connect/core/database/app_database.dart';
+import 'package:tsuzuki_connect/core/database/tables/save_games_table.dart';
+import 'package:tsuzuki_connect/core/utils/app_logger.dart';
+import 'package:tsuzuki_connect/core/utils/constants.dart';
 
 part 'save_game_dao.g.dart';
 

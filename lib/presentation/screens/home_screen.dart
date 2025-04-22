@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:kizuna_quest/core/services/settings_service.dart';
-import 'package:kizuna_quest/data/models/save_game_model.dart';
-import 'package:kizuna_quest/presentation/widgets/home/settings_panel.dart';
-import 'package:kizuna_quest/providers/database_provider.dart';
-import 'package:kizuna_quest/presentation/widgets/common/animated_background.dart';
-import 'package:kizuna_quest/presentation/widgets/home/character_showcase.dart';
-import 'package:kizuna_quest/presentation/widgets/home/feature_button.dart';
-import 'package:kizuna_quest/presentation/widgets/home/recent_save_card.dart';
-import 'package:kizuna_quest/core/utils/constants.dart';
-import 'package:kizuna_quest/core/utils/extensions.dart';
-import 'package:kizuna_quest/providers/sound_controller.dart';
+import 'package:tsuzuki_connect/core/services/settings_service.dart';
+import 'package:tsuzuki_connect/data/models/save_game_model.dart';
+import 'package:tsuzuki_connect/presentation/widgets/home/settings_panel.dart';
+import 'package:tsuzuki_connect/providers/database_provider.dart';
+import 'package:tsuzuki_connect/presentation/widgets/common/animated_background.dart';
+import 'package:tsuzuki_connect/presentation/widgets/home/character_showcase.dart';
+import 'package:tsuzuki_connect/presentation/widgets/home/feature_button.dart';
+import 'package:tsuzuki_connect/presentation/widgets/home/recent_save_card.dart';
+import 'package:tsuzuki_connect/core/utils/constants.dart';
+import 'package:tsuzuki_connect/core/utils/extensions.dart';
+import 'package:tsuzuki_connect/providers/sound_controller.dart';
 
 import '../../core/services/in_app_review_service.dart';
 import '../../providers/app_providers.dart';
@@ -146,7 +146,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
           // Title
           Text(
-            '絆クエスト',
+            '続きコネクト',
             style: context.textTheme.titleLarge?.copyWith(
               fontWeight: FontWeight.bold,
               color: context.theme.colorScheme.primary,
@@ -445,7 +445,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('About Kizuna Quest'),
+        title: const Text('About Tsuzuki Connect'),
         content: const SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -455,7 +455,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               SizedBox(height: 16),
               Text('Learn Japanese through an immersive visual novel experience.'),
               SizedBox(height: 16),
-              Text('© 2025 Kizuna Quest Team'),
+              Text('https://taalaydev.github.io'),
             ],
           ),
         ),

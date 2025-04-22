@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:kizuna_quest/core/utils/extensions.dart';
+import 'package:tsuzuki_connect/core/utils/extensions.dart';
 
 /// Widget for selecting culture note categories
 class CategorySelector extends StatelessWidget {

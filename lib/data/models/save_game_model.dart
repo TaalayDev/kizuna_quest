@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:drift/drift.dart';
 import 'package:equatable/equatable.dart';
-import 'package:kizuna_quest/core/database/app_database.dart';
+import 'package:tsuzuki_connect/core/database/app_database.dart';
 
 /// Domain model for a save game
 class SaveGameModel extends Equatable {

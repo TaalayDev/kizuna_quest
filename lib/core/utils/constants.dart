@@ -1,7 +1,7 @@
 /// Application-wide constants
 class AppConstants {
   // App info
-  static const String appName = 'Kizuna Quest: Tokyo Ties';
+  static const String appName = 'Tsuzuki Connect';
   static const String appDescription = 'A visual novel language learning adventure';
 
   // Routes
@@ -39,6 +39,9 @@ class AppConstants {
   static const double defaultMusicVolume = 0.7;
   static const double defaultSfxVolume = 1.0;
   static const bool defaultAudioEnabled = true;
+
+  static const String privacyPolicyUrl = 'https://taalaydev.github.io/kizuna-quest/privacy-policy.html';
+  static const String termsOfServiceUrl = 'https://taalaydev.github.io/kizuna-quest/terms-of-service.html';
 
   const AppConstants._();
 }

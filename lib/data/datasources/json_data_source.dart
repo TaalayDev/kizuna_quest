@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/services.dart' show rootBundle;
-import 'package:kizuna_quest/core/utils/app_logger.dart';
+import 'package:tsuzuki_connect/core/utils/app_logger.dart';
 
 /// Base abstract class for data sources that read from JSON files in the assets directory
 abstract class JsonDataSource<T> {

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:kizuna_quest/core/utils/extensions.dart';
+import 'package:tsuzuki_connect/core/utils/extensions.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
+import '../../../core/utils/constants.dart';
 import '../../../providers/settings_provider.dart';
 import '../../../providers/sound_controller.dart';
 import '../../../providers/theme_providers.dart';
@@ -115,6 +117,29 @@ class SettingsPanel extends ConsumerWidget {
                           trailing: const Icon(Icons.chevron_right),
                           onTap: onReplayTutorial,
                         ),
+                      Divider(),
+                      ListTile(
+                        leading: Icon(
+                          Icons.privacy_tip,
+                          color: context.theme.colorScheme.primary,
+                        ),
+                        title: const Text('Privacy Policy'),
+                        trailing: const Icon(Icons.chevron_right),
+                        onTap: () {
+                          launchUrlString(AppConstants.privacyPolicyUrl);
+                        },
+                      ),
+                      ListTile(
+                        leading: Icon(
+                          Icons.article,
+                          color: context.theme.colorScheme.primary,
+                        ),
+                        title: const Text('Terms of Service'),
+                        trailing: const Icon(Icons.chevron_right),
+                        onTap: () {
+                          launchUrlString(AppConstants.termsOfServiceUrl);
+                        },
+                      ),
                     ],
                   ),
                 ),

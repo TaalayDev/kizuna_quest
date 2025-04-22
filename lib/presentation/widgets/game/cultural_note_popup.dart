@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:kizuna_quest/data/models/cultural_note_model.dart';
-import 'package:kizuna_quest/providers/database_provider.dart';
-import 'package:kizuna_quest/core/utils/extensions.dart';
+import 'package:tsuzuki_connect/data/models/cultural_note_model.dart';
+import 'package:tsuzuki_connect/providers/database_provider.dart';
+import 'package:tsuzuki_connect/core/utils/extensions.dart';
 
 /// Learning popup for cultural notes
 class CulturalNotePopup extends ConsumerWidget {

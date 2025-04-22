@@ -2,10 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:kizuna_quest/config/theme/custom_colors.dart';
-import 'package:kizuna_quest/data/models/character_model.dart';
-import 'package:kizuna_quest/data/models/dialogue_model.dart';
-import 'package:kizuna_quest/core/utils/extensions.dart';
+import 'package:tsuzuki_connect/config/theme/custom_colors.dart';
+import 'package:tsuzuki_connect/data/models/character_model.dart';
+import 'package:tsuzuki_connect/data/models/dialogue_model.dart';
+import 'package:tsuzuki_connect/core/utils/extensions.dart';
 
 /// Widget that displays the dialogue text box with typing animation
 class DialogueBox extends StatefulWidget {

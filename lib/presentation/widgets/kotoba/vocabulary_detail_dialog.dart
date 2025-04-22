@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:kizuna_quest/data/models/vocabulary_model.dart';
-import 'package:kizuna_quest/providers/database_provider.dart';
-import 'package:kizuna_quest/presentation/widgets/kotoba/mastery_level_badge.dart';
-import 'package:kizuna_quest/core/utils/extensions.dart';
+import 'package:tsuzuki_connect/data/models/vocabulary_model.dart';
+import 'package:tsuzuki_connect/providers/database_provider.dart';
+import 'package:tsuzuki_connect/presentation/widgets/kotoba/mastery_level_badge.dart';
+import 'package:tsuzuki_connect/core/utils/extensions.dart';
 
 import '../../../providers/sound_controller.dart';
 

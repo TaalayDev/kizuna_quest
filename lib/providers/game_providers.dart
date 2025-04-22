@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:kizuna_quest/data/models/dialogue_model.dart';
-import 'package:kizuna_quest/providers/database_provider.dart';
+import 'package:tsuzuki_connect/data/models/dialogue_model.dart';
+import 'package:tsuzuki_connect/providers/database_provider.dart';
 
 /// Provider for the current active chapter ID
 final activeChapterIdProvider = StateProvider<String?>((ref) => null);

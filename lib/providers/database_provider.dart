@@ -1,10 +1,10 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:kizuna_quest/core/database/app_database.dart';
-import 'package:kizuna_quest/data/repositories/game_repository.dart';
-import 'package:kizuna_quest/core/utils/app_logger.dart';
-import 'package:kizuna_quest/data/datasources/vocabulary_data_source.dart';
-import 'package:kizuna_quest/data/datasources/grammar_data_source.dart';
-import 'package:kizuna_quest/data/datasources/cultural_notes_data_source.dart';
+import 'package:tsuzuki_connect/core/database/app_database.dart';
+import 'package:tsuzuki_connect/data/repositories/game_repository.dart';
+import 'package:tsuzuki_connect/core/utils/app_logger.dart';
+import 'package:tsuzuki_connect/data/datasources/vocabulary_data_source.dart';
+import 'package:tsuzuki_connect/data/datasources/grammar_data_source.dart';
+import 'package:tsuzuki_connect/data/datasources/cultural_notes_data_source.dart';
 
 import '../core/services/settings_service.dart';
 import '../data/models/character_model.dart';

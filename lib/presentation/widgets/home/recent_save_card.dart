@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:kizuna_quest/data/models/save_game_model.dart';
-import 'package:kizuna_quest/core/utils/extensions.dart';
+import 'package:tsuzuki_connect/data/models/save_game_model.dart';
+import 'package:tsuzuki_connect/core/utils/extensions.dart';
 
 /// Card widget displaying a recent save game
 class RecentSaveCard extends StatelessWidget {

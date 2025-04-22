@@ -7,7 +7,7 @@ import 'package:flutter/rendering.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as path;
 import 'package:screenshot/screenshot.dart';
-import 'package:kizuna_quest/core/utils/app_logger.dart';
+import 'package:tsuzuki_connect/core/utils/app_logger.dart';
 
 /// Helper class for managing screenshot operations
 class ScreenshotHelper {

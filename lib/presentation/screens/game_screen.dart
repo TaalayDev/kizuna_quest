@@ -4,25 +4,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:kizuna_quest/core/services/settings_service.dart';
-import 'package:kizuna_quest/data/models/character_model.dart';
-import 'package:kizuna_quest/data/models/dialogue_model.dart';
-import 'package:kizuna_quest/data/models/save_game_model.dart';
-import 'package:kizuna_quest/presentation/widgets/game/character_sprite.dart';
-import 'package:kizuna_quest/presentation/widgets/game/choice_button.dart';
-import 'package:kizuna_quest/presentation/widgets/game/dialogue_box.dart';
-import 'package:kizuna_quest/presentation/widgets/game/game_menu.dart';
-import 'package:kizuna_quest/presentation/widgets/game/grammar_popup.dart';
-import 'package:kizuna_quest/presentation/widgets/game/vocabulary_popup.dart';
-import 'package:kizuna_quest/presentation/widgets/home/settings_panel.dart';
-import 'package:kizuna_quest/providers/database_provider.dart';
-import 'package:kizuna_quest/providers/game_providers.dart';
-import 'package:kizuna_quest/providers/settings_provider.dart';
-import 'package:kizuna_quest/core/utils/app_logger.dart';
-import 'package:kizuna_quest/core/utils/constants.dart';
-import 'package:kizuna_quest/core/utils/extensions.dart';
-import 'package:kizuna_quest/core/utils/screenshot_helper.dart';
-import 'package:kizuna_quest/providers/sound_controller.dart';
+import 'package:tsuzuki_connect/core/services/settings_service.dart';
+import 'package:tsuzuki_connect/data/models/character_model.dart';
+import 'package:tsuzuki_connect/data/models/dialogue_model.dart';
+import 'package:tsuzuki_connect/data/models/save_game_model.dart';
+import 'package:tsuzuki_connect/presentation/widgets/game/character_sprite.dart';
+import 'package:tsuzuki_connect/presentation/widgets/game/choice_button.dart';
+import 'package:tsuzuki_connect/presentation/widgets/game/dialogue_box.dart';
+import 'package:tsuzuki_connect/presentation/widgets/game/game_menu.dart';
+import 'package:tsuzuki_connect/presentation/widgets/game/grammar_popup.dart';
+import 'package:tsuzuki_connect/presentation/widgets/game/vocabulary_popup.dart';
+import 'package:tsuzuki_connect/presentation/widgets/home/settings_panel.dart';
+import 'package:tsuzuki_connect/providers/database_provider.dart';
+import 'package:tsuzuki_connect/providers/game_providers.dart';
+import 'package:tsuzuki_connect/providers/settings_provider.dart';
+import 'package:tsuzuki_connect/core/utils/app_logger.dart';
+import 'package:tsuzuki_connect/core/utils/constants.dart';
+import 'package:tsuzuki_connect/core/utils/extensions.dart';
+import 'package:tsuzuki_connect/core/utils/screenshot_helper.dart';
+import 'package:tsuzuki_connect/providers/sound_controller.dart';
 import 'package:screenshot/screenshot.dart';
 
 import '../../providers/app_providers.dart';
@@ -782,7 +782,7 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
       barrierDismissible: false,
       builder: (context) => AlertDialog(
         title: const Text('Congratulations!'),
-        content: const Text('You have completed all available chapters of Kizuna Quest. Thank you for playing!'),
+        content: const Text('You have completed all available chapters of Tsuzuki Connect. Thank you for playing!'),
         actions: [
           TextButton(
             onPressed: () {

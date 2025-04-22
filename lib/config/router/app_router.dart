@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:kizuna_quest/config/router/route_transitions.dart';
-import 'package:kizuna_quest/presentation/screens/culture_notes_screen.dart';
-import 'package:kizuna_quest/presentation/screens/game_screen.dart';
-import 'package:kizuna_quest/presentation/screens/home_screen.dart';
-import 'package:kizuna_quest/presentation/screens/kotoba_log_screen.dart';
-import 'package:kizuna_quest/presentation/screens/onboarding_screen.dart';
-import 'package:kizuna_quest/presentation/screens/settings_screen.dart';
-import 'package:kizuna_quest/presentation/screens/splash_screen.dart';
-import 'package:kizuna_quest/core/utils/app_logger.dart';
-import 'package:kizuna_quest/core/utils/constants.dart';
+import 'package:tsuzuki_connect/config/router/route_transitions.dart';
+import 'package:tsuzuki_connect/presentation/screens/culture_notes_screen.dart';
+import 'package:tsuzuki_connect/presentation/screens/game_screen.dart';
+import 'package:tsuzuki_connect/presentation/screens/home_screen.dart';
+import 'package:tsuzuki_connect/presentation/screens/kotoba_log_screen.dart';
+import 'package:tsuzuki_connect/presentation/screens/onboarding_screen.dart';
+import 'package:tsuzuki_connect/presentation/screens/settings_screen.dart';
+import 'package:tsuzuki_connect/presentation/screens/splash_screen.dart';
+import 'package:tsuzuki_connect/core/utils/app_logger.dart';
+import 'package:tsuzuki_connect/core/utils/constants.dart';
 
 /// Provider for the app router
 final appRouterProvider = Provider<GoRouter>((ref) {

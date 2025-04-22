@@ -1,8 +1,8 @@
 // lib/presentation/widgets/home/character_detail_dialog.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:kizuna_quest/data/models/character_model.dart';
-import 'package:kizuna_quest/core/utils/extensions.dart';
+import 'package:tsuzuki_connect/data/models/character_model.dart';
+import 'package:tsuzuki_connect/core/utils/extensions.dart';
 
 /// Dialog that displays detailed information about a character
 class CharacterDetailDialog extends StatelessWidget {
@@ -154,7 +154,7 @@ class CharacterDetailDialog extends StatelessWidget {
                                   ),
                                   const SizedBox(height: 8),
                                   Text(
-                                    'Kizuna Points: ${character.kizunaPoints ?? 0}/100',
+                                    'Tsuzuki Points: ${character.kizunaPoints ?? 0}/100',
                                     style: context.textTheme.bodyMedium,
                                   ),
                                   const SizedBox(height: 16),

@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:kizuna_quest/core/utils/app_logger.dart';
+import 'package:tsuzuki_connect/core/utils/app_logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// Service class to handle application settings persistence

@@ -1,5 +1,5 @@
-import 'package:kizuna_quest/data/datasources/json_data_source.dart';
-import 'package:kizuna_quest/data/models/vocabulary_model.dart';
+import 'package:tsuzuki_connect/data/datasources/json_data_source.dart';
+import 'package:tsuzuki_connect/data/models/vocabulary_model.dart';
 
 /// Data source for vocabulary items from JSON file
 class VocabularyDataSource extends JsonDataSource<VocabularyModel> {

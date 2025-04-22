@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:kizuna_quest/core/services/settings_service.dart';
-import 'package:kizuna_quest/core/utils/app_logger.dart';
+import 'package:tsuzuki_connect/core/services/settings_service.dart';
+import 'package:tsuzuki_connect/core/utils/app_logger.dart';
 
 /// An enum representing the available theme options
 enum AppThemeMode {
