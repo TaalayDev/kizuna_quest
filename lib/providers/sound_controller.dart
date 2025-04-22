@@ -101,7 +101,7 @@ class SoundController extends StateNotifier<SoundState> {
         isMusicEnabled: musicEnabled,
         isVibrationEnabled: vibrationEnabled,
         soundVolume: soundVolume?.toDouble() ?? 1.0,
-        musicVolume: musicVolume?.toDouble() ?? 0.7,
+        musicVolume: musicVolume?.toDouble() ?? 0.5,
       );
     } catch (e) {
       // Default values already set
@@ -113,7 +113,7 @@ class SoundController extends StateNotifier<SoundState> {
   String _getSoundFile(SoundType type) {
     switch (type) {
       case SoundType.bgm:
-        return 'assets/audio/theme.mp3';
+        return 'assets/audio/menu_music.mp3';
 
       case SoundType.click:
         return 'assets/audio/click.mp3';

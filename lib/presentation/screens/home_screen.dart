@@ -16,6 +16,7 @@ import 'package:tsuzuki_connect/providers/sound_controller.dart';
 
 import '../../core/services/in_app_review_service.dart';
 import '../../providers/app_providers.dart';
+import '../widgets/common/about_dialog.dart';
 import '../widgets/home/error_report_dialog.dart';
 import '../widgets/home/save_games_dialog.dart';
 
@@ -442,34 +443,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   void _showAboutDialog() {
     ref.read(soundControllerProvider.notifier).playClick();
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('About Tsuzuki Connect'),
-        content: const SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text('Version 1.0.0'),
-              SizedBox(height: 16),
-              Text('Learn Japanese through an immersive visual novel experience.'),
-              SizedBox(height: 16),
-              Text('https://taalaydev.github.io'),
-            ],
-          ),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () {
-              ref.read(soundControllerProvider.notifier).playClick();
-              Navigator.of(context).pop();
-            },
-            child: const Text('Close'),
-          ),
-        ],
-      ),
-    );
+
+    AboutAppDialog.show(context);
   }
 
   void _replayTutorial() {
