@@ -135,7 +135,7 @@ Future<void> initWindowManager() async {
     return;
   }
 
-  const size = Size(500, 800);
+  const size = Size(700, 1000);
   await windowManager.ensureInitialized();
   const windowOptions = WindowOptions(
     maximumSize: size,
