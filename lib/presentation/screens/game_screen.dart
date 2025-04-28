@@ -1439,7 +1439,6 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
                   // Pass callbacks for learning buttons
                   onVocabTap: currentDialogue.line.vocabularyIds.isNotEmpty
                       ? () => setState(() {
-                            print('Vocab tapped');
                             _showVocabPopup = true;
                           })
                       : null,
