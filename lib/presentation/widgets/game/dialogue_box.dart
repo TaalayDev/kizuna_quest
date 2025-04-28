@@ -2,13 +2,15 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tsuzuki_connect/config/theme/custom_colors.dart';
 import 'package:tsuzuki_connect/data/models/character_model.dart';
 import 'package:tsuzuki_connect/data/models/dialogue_model.dart';
 import 'package:tsuzuki_connect/core/utils/extensions.dart';
+import 'package:tsuzuki_connect/providers/sound_controller.dart';
 
 /// Widget that displays the dialogue text box with typing animation
-class DialogueBox extends StatefulWidget {
+class DialogueBox extends ConsumerStatefulWidget {
   /// Current dialogue line to display
   final DialogueLine line;
 
@@ -30,6 +32,15 @@ class DialogueBox extends StatefulWidget {
   /// Callback when the text is fully displayed
   final VoidCallback onTextComplete;
 
+  /// Callback when vocab button is tapped
+  final VoidCallback? onVocabTap;
+
+  /// Callback when grammar button is tapped
+  final VoidCallback? onGrammarTap;
+
+  /// Callback when cultural note button is tapped
+  final VoidCallback? onCultureTap;
+
   /// Creates a DialogueBox widget
   const DialogueBox({
     super.key,
@@ -40,13 +51,16 @@ class DialogueBox extends StatefulWidget {
     required this.showRomaji,
     this.instantComplete = false,
     required this.onTextComplete,
+    this.onVocabTap,
+    this.onGrammarTap,
+    this.onCultureTap,
   });
 
   @override
-  State<DialogueBox> createState() => _DialogueBoxState();
+  ConsumerState<DialogueBox> createState() => _DialogueBoxState();
 }
 
-class _DialogueBoxState extends State<DialogueBox> with SingleTickerProviderStateMixin {
+class _DialogueBoxState extends ConsumerState<DialogueBox> with SingleTickerProviderStateMixin {
   // Typing animation state
   String _currentJapaneseText = '';
   String _currentEnglishText = '';
@@ -76,7 +90,7 @@ class _DialogueBoxState extends State<DialogueBox> with SingleTickerProviderStat
   }
 
   @override
-  void didUpdateWidget(DialogueBox oldWidget) {
+  void didUpdateWidget(covariant DialogueBox oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     // If line changes, restart typing
@@ -164,6 +178,12 @@ class _DialogueBoxState extends State<DialogueBox> with SingleTickerProviderStat
   Widget build(BuildContext context) {
     final customColors = Theme.of(context).extension<CustomColors>()!;
 
+    // Check if any learning buttons should be shown
+    final hasVocab = widget.line.vocabularyIds.isNotEmpty && widget.onVocabTap != null;
+    final hasGrammar = widget.line.grammarIds.isNotEmpty && widget.onGrammarTap != null;
+    final hasCulture = widget.line.culturalNoteIds.isNotEmpty && widget.onCultureTap != null;
+    final showLearningButtons = hasVocab || hasGrammar || hasCulture;
+
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       width: double.infinity,
@@ -239,29 +259,37 @@ class _DialogueBoxState extends State<DialogueBox> with SingleTickerProviderStat
                   ),
                 ),
 
-                // Continue indicator (only if typing is complete)
+                // Learning items buttons and continue indicator row
                 if (_isTypingComplete)
-                  Align(
-                    alignment: Alignment.bottomRight,
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 8),
-                      child: AnimatedBuilder(
-                        animation: _pulseController,
-                        builder: (context, child) {
-                          return Transform.scale(
-                            scale: 0.8 + (_pulseController.value * 0.2),
-                            child: Opacity(
-                              opacity: 0.5 + (_pulseController.value * 0.5),
-                              child: child,
-                            ),
-                          );
-                        },
-                        child: Icon(
-                          Icons.arrow_forward_ios,
-                          size: 20,
-                          color: customColors.dialogBoxText.withOpacity(0.5),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 12),
+                    child: Row(
+                      children: [
+                        // Learning buttons (only if completed typing and buttons are needed)
+                        if (showLearningButtons) ...[
+                          _buildLearningButtonsRow(hasVocab, hasGrammar, hasCulture),
+                          const Spacer(),
+                        ],
+
+                        // Continue indicator
+                        AnimatedBuilder(
+                          animation: _pulseController,
+                          builder: (context, child) {
+                            return Transform.scale(
+                              scale: 0.8 + (_pulseController.value * 0.2),
+                              child: Opacity(
+                                opacity: 0.5 + (_pulseController.value * 0.5),
+                                child: child,
+                              ),
+                            );
+                          },
+                          child: Icon(
+                            Icons.arrow_forward_ios,
+                            size: 20,
+                            color: customColors.dialogBoxText.withOpacity(0.5),
+                          ),
                         ),
-                      ),
+                      ],
                     ),
                   ),
               ],
@@ -278,7 +306,7 @@ class _DialogueBoxState extends State<DialogueBox> with SingleTickerProviderStat
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
       decoration: BoxDecoration(
         color: customColors.nameTag,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: const BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16)),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.2),
@@ -295,5 +323,83 @@ class _DialogueBoxState extends State<DialogueBox> with SingleTickerProviderStat
         ),
       ),
     ).animate().fadeIn(duration: 300.ms);
+  }
+
+  Widget _buildLearningButtonsRow(bool hasVocab, bool hasGrammar, bool hasCulture) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        if (hasVocab)
+          _buildLearningButton(
+            icon: Icons.menu_book,
+            color: Colors.amber.shade600,
+            count: widget.line.vocabularyIds.length,
+            onTap: widget.onVocabTap!,
+          ),
+        if (hasGrammar)
+          _buildLearningButton(
+            icon: Icons.school,
+            color: Colors.deepPurple.shade400,
+            count: widget.line.grammarIds.length,
+            onTap: widget.onGrammarTap!,
+          ),
+        if (hasCulture)
+          _buildLearningButton(
+            icon: Icons.lightbulb_outline,
+            color: Colors.teal.shade400,
+            count: widget.line.culturalNoteIds.length,
+            onTap: widget.onCultureTap!,
+          ),
+      ],
+    ).animate().fadeIn(duration: 300.ms).scale(
+          begin: const Offset(0.8, 0.8),
+          end: const Offset(1.0, 1.0),
+          duration: 300.ms,
+        );
+  }
+
+  Widget _buildLearningButton({
+    required IconData icon,
+    required Color color,
+    required int count,
+    required VoidCallback onTap,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.only(right: 8.0),
+      child: InkWell(
+        onTap: () {
+          ref.read(soundControllerProvider.notifier).playClick();
+          onTap();
+        },
+        borderRadius: BorderRadius.circular(16),
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+          decoration: BoxDecoration(
+            color: color.withOpacity(0.2),
+            borderRadius: BorderRadius.circular(16),
+            border: Border.all(color: color, width: 1),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(
+                icon,
+                size: 16,
+                color: color,
+              ),
+              const SizedBox(width: 4),
+              Text(
+                '+$count',
+                style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold,
+                  color: color,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }

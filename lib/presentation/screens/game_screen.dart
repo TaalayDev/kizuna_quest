@@ -986,40 +986,18 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
     if (currentLine == null) return;
 
     if (currentLine.vocabularyIds.isNotEmpty) {
-      setState(() {
-        final vocab = _newLearningItems['vocab'] ?? 0;
-        _newLearningItems['vocab'] = vocab + currentLine.vocabularyIds.length;
-      });
-
-      // Still unlock the items
+      // Still unlock the vocabulary items
       _unlockVocabularyItems(currentLine.vocabularyIds);
     }
 
     if (currentLine.grammarIds.isNotEmpty) {
-      setState(() {
-        final grammar = _newLearningItems['grammar'] ?? 0;
-        _newLearningItems['grammar'] = grammar + currentLine.grammarIds.length;
-      });
-
-      // Still unlock the items
+      // Still unlock the grammar points
       _unlockGrammarPoints(currentLine.grammarIds);
     }
 
     if (currentLine.culturalNoteIds.isNotEmpty) {
-      setState(() {
-        final culture = _newLearningItems['culture'] ?? 0;
-        _newLearningItems['culture'] = culture + currentLine.culturalNoteIds.length;
-      });
-
-      // Still unlock the items
+      // Still unlock the cultural notes
       _unlockCulturalNotes(currentLine.culturalNoteIds);
-    }
-
-    // If we have any new items, show the notification
-    if (_newLearningItems['vocab']! > 0 || _newLearningItems['grammar']! > 0 || _newLearningItems['culture']! > 0) {
-      setState(() {
-        _showJournalNotification = true;
-      });
     }
   }
 
@@ -1458,6 +1436,23 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
                   showFurigana: showFurigana,
                   showRomaji: showRomaji,
                   instantComplete: _isSkipping,
+                  // Pass callbacks for learning buttons
+                  onVocabTap: currentDialogue.line.vocabularyIds.isNotEmpty
+                      ? () => setState(() {
+                            print('Vocab tapped');
+                            _showVocabPopup = true;
+                          })
+                      : null,
+                  onGrammarTap: currentDialogue.line.grammarIds.isNotEmpty
+                      ? () => setState(() {
+                            _showGrammarPopup = true;
+                          })
+                      : null,
+                  onCultureTap: currentDialogue.line.culturalNoteIds.isNotEmpty
+                      ? () => setState(() {
+                            _showCulturalNotePopup = true;
+                          })
+                      : null,
                 ),
               ),
             );
