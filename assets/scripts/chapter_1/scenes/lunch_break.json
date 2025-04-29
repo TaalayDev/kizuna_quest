@@ -1,728 +1,754 @@
 {
-    "id": "lunch_break",
-    "title": "Lunch with Classmates",
-    "defaultBackground": "assets/images/backgrounds/classroom_lunch.webp",
-    "nodes": {
-      "start": {
-        "line": {
-          "id": "start",
-          "textJp": "授業が終わり、お昼休みのチャイムが鳴ります。",
-          "furiganaJp": "じゅぎょうがおわり、おひるやすみのチャイムがなります。",
-          "romajiJp": "Jugyō ga owari, ohiru yasumi no chaimu ga narimasu.",
-          "textEn": "Class ends and the lunch break bell rings.",
-          "nextId": "classroom_lunch_preparation",
-          "background": "assets/images/backgrounds/classroom_lunch.webp",
-          "tags": ["vocab:69", "vocab:70"]
-        },
-        "choices": []
+  "id": "lunch_break",
+  "title": "Lunch with Classmates",
+  "defaultBackground": "assets/images/backgrounds/classroom_lunch.webp",
+  "nodes": {
+    "start": {
+      "line": {
+        "id": "start",
+        "textJp": "授業が終わり、お昼休みのチャイムが鳴ります。",
+        "furiganaJp": "じゅぎょうがおわり、おひるやすみのチャイムがなります。",
+        "romajiJp": "Jugyō ga owari, ohiru yasumi no chaimu ga narimasu.",
+        "textEn": "Class ends and the lunch break bell rings.",
+        "nextId": "classroom_lunch_preparation",
+        "background": "assets/images/backgrounds/classroom_lunch.webp",
+        "tags": ["vocab:69", "vocab:70"]
       },
-      "classroom_lunch_preparation": {
-        "line": {
-          "id": "classroom_lunch_preparation",
-          "textJp": "クラスメイトたちは机を合わせ始めます。日本では、多くの学生が教室で一緒に昼食を食べます。",
-          "furiganaJp": "クラスメイトたちはつくえをあわせはじめます。にほんでは、おおくのがくせいがきょうしつでいっしょにちゅうしょくをたべます。",
-          "romajiJp": "Kurasumeito-tachi wa tsukue o awase hajimemasu. Nihon dewa, ōku no gakusei ga kyōshitsu de issho ni chūshoku o tabemasu.",
-          "textEn": "Your classmates begin pushing desks together. In Japan, many students eat lunch together in the classroom.",
-          "nextId": "yuki_lunch_invitation",
-          "tags": ["vocab:71", "vocab:72", "culture:5"]
-        },
-        "choices": []
-      },
-      "yuki_lunch_invitation": {
-        "line": {
-          "id": "yuki_lunch_invitation",
-          "characterId": "1",
-          "speakerName": "ユキ",
-          "sprite": "happy",
-          "position": "right",
-          "textJp": "一緒にお昼ごはん食べない？私、お弁当持ってきたよ。",
-          "furiganaJp": "いっしょにおひるごはんたべない？わたし、おべんとうもってきたよ。",
-          "romajiJp": "Issho ni ohiru gohan tabenai? Watashi, obentō motte kita yo.",
-          "textEn": "Would you like to eat lunch together? I brought a bento box.",
-          "nextId": "lunch_response_choice",
-          "tags": ["vocab:73", "vocab:74"]
-        },
-        "choices": []
-      },
-      "lunch_response_choice": {
-        "line": {
-          "id": "lunch_response_choice",
-          "textJp": "どう返事をしますか？",
-          "textEn": "How will you respond?",
-          "isChoice": true
-        },
-        "choices": [
-          {
-            "id": "choice_accept_lunch",
-            "textJp": "はい、ありがとう！一緒に食べましょう。",
-            "furiganaJp": "はい、ありがとう！いっしょにたべましょう。",
-            "textEn": "Yes, thank you! Let's eat together.",
-            "meaning": "Accept the lunch invitation enthusiastically",
-            "nextId": "accept_lunch_reaction",
-            "requiredLevel": 1,
-            "requiredItems": [],
-            "relationshipChanges": {
-              "1": 5
-            },
-            "tags": []
-          },
-          {
-            "id": "choice_confused_lunch",
-            "textJp": "すみません、お弁当を持ってきていません...",
-            "furiganaJp": "すみません、おべんとうをもってきていません...",
-            "textEn": "I'm sorry, I didn't bring a bento...",
-            "meaning": "Express concern about not having a lunch",
-            "nextId": "no_bento_reaction",
-            "requiredLevel": 1,
-            "requiredItems": [],
-            "relationshipChanges": {
-              "1": 3
-            },
-            "tags": ["vocab:75"]
-          },
-          {
-            "id": "choice_cafeteria_question",
-            "textJp": "学校に食堂はありますか？",
-            "furiganaJp": "がっこうにしょくどうはありますか？",
-            "textEn": "Is there a cafeteria at school?",
-            "meaning": "Ask if the school has a cafeteria",
-            "nextId": "cafeteria_explanation",
-            "requiredLevel": 2,
-            "requiredItems": [],
-            "relationshipChanges": {
-              "1": 4
-            },
-            "tags": ["vocab:76"]
-          }
-        ]
-      },
-      "accept_lunch_reaction": {
-        "line": {
-          "id": "accept_lunch_reaction",
-          "characterId": "1",
-          "speakerName": "ユキ",
-          "sprite": "excited",
-          "position": "right",
-          "textJp": "やった！あっ、でも今日は初日だから、お弁当は持ってきてないよね？心配しないで、私のを少し分けてあげるよ！",
-          "furiganaJp": "やった！あっ、でもきょうははつびだから、おべんとうはもってきてないよね？しんぱいしないで、わたしのをすこしわけてあげるよ！",
-          "romajiJp": "Yatta! A, demo kyō wa hatsu-bi dakara, obentō wa motte konai yo ne? Shinpai shinaide, watashi no o sukoshi wakete ageru yo!",
-          "textEn": "Great! Oh, but today is your first day, so you probably didn't bring a bento, right? Don't worry, I'll share some of mine with you!",
-          "nextId": "mei_introduction",
-          "tags": ["vocab:77", "vocab:78", "grammar:45"]
-        },
-        "choices": []
-      },
-      "no_bento_reaction": {
-        "line": {
-          "id": "no_bento_reaction",
-          "characterId": "1",
-          "speakerName": "ユキ",
-          "sprite": "friendly",
-          "position": "right",
-          "textJp": "大丈夫！初日だもんね。私のお弁当を分けるよ。あと、パンを買いに行くこともできるよ。",
-          "furiganaJp": "だいじょうぶ！はつびだもんね。わたしのおべんとうをわけるよ。あと、パンをかいにいくこともできるよ。",
-          "romajiJp": "Daijōbu! Hatsu-bi da mon ne. Watashi no obentō o wakeru yo. Ato, pan o kai ni iku koto mo dekiru yo.",
-          "textEn": "That's okay! It's your first day after all. I can share my bento with you. Also, we could go buy some bread if you'd like.",
-          "nextId": "mei_introduction",
-          "tags": ["vocab:79", "vocab:80"]
-        },
-        "choices": []
-      },
-      "cafeteria_explanation": {
-        "line": {
-          "id": "cafeteria_explanation",
-          "characterId": "1",
-          "speakerName": "ユキ",
-          "sprite": "friendly",
-          "position": "right",
-          "textJp": "うちの学校には大きな食堂はないんだ。でも、パンを売っている小さな売店があるよ。一緒に行ってみる？",
-          "furiganaJp": "うちのがっこうにはおおきなしょくどうはないんだ。でも、パンをうっているちいさなばいてんがあるよ。いっしょにいってみる？",
-          "romajiJp": "Uchi no gakkō ni wa ōkina shokudō wa nain da. Demo, pan o utte iru chiisana baiten ga aru yo. Issho ni itte miru?",
-          "textEn": "Our school doesn't have a big cafeteria. But there's a small shop that sells bread. Want to go there together?",
-          "nextId": "bread_shop_choice",
-          "tags": ["vocab:81", "vocab:82", "grammar:46"]
-        },
-        "choices": []
-      },
-      "bread_shop_choice": {
-        "line": {
-          "id": "bread_shop_choice",
-          "textJp": "パン屋さんに行きますか？",
-          "textEn": "Will you go to the bread shop?",
-          "isChoice": true
-        },
-        "choices": [
-          {
-            "id": "choice_go_bread_shop",
-            "textJp": "はい、一緒に行きましょう！",
-            "furiganaJp": "はい、いっしょにいきましょう！",
-            "textEn": "Yes, let's go together!",
-            "meaning": "Go to the bread shop with Yuki",
-            "nextId": "bread_shop_scene",
-            "requiredLevel": 1,
-            "requiredItems": [],
-            "relationshipChanges": {
-              "1": 4
-            },
-            "tags": []
-          },
-          {
-            "id": "choice_stay_classroom",
-            "textJp": "ここにいたいです。お弁当を少し分けてもらえますか？",
-            "furiganaJp": "ここにいたいです。おべんとうをすこしわけてもらえますか？",
-            "textEn": "I'd rather stay here. Could you share some of your bento with me?",
-            "meaning": "Ask to stay and share Yuki's bento",
-            "nextId": "share_bento_scene",
-            "requiredLevel": 2,
-            "requiredItems": [],
-            "relationshipChanges": {
-              "1": 3
-            },
-            "tags": ["vocab:83", "grammar:47"]
-          }
-        ]
-      },
-      "bread_shop_scene": {
-        "line": {
-          "id": "bread_shop_scene",
-          "textJp": "あなたはユキと一緒に学校のパン屋さんに行きます。そこはとても混んでいます。",
-          "furiganaJp": "あなたはユキといっしょにがっこうのパンやさんにいきます。そこはとてもこんでいます。",
-          "romajiJp": "Anata wa Yuki to issho ni gakkō no pan-ya-san ni ikimasu. Soko wa totemo konde imasu.",
-          "textEn": "You go to the school's bread shop with Yuki. It's very crowded.",
-          "background": "assets/images/backgrounds/school_shop.webp",
-          "nextId": "bread_types",
-          "tags": ["vocab:84", "vocab:85"]
-        },
-        "choices": []
-      },
-      "bread_types": {
-        "line": {
-          "id": "bread_types",
-          "characterId": "1",
-          "speakerName": "ユキ",
-          "sprite": "happy",
-          "position": "right",
-          "textJp": "色々なパンがあるよ！メロンパン、カレーパン、あんぱん...何が食べたい？",
-          "furiganaJp": "いろいろなパンがあるよ！メロンパン、カレーパン、あんぱん...なにがたべたい？",
-          "romajiJp": "Iroiro na pan ga aru yo! Meronpan, karēpan, anpan... Nani ga tabetai?",
-          "textEn": "There are many types of bread! Melon bread, curry bread, anpan (sweet bean paste bread)... What would you like?",
-          "nextId": "bread_choice",
-          "tags": ["vocab:86", "vocab:87", "culture:6"]
-        },
-        "choices": []
-      },
-      "bread_choice": {
-        "line": {
-          "id": "bread_choice",
-          "textJp": "どのパンを選びますか？",
-          "textEn": "Which bread will you choose?",
-          "isChoice": true
-        },
-        "choices": [
-          {
-            "id": "choice_melon_bread",
-            "textJp": "メロンパンをください。",
-            "furiganaJp": "メロンパンをください。",
-            "textEn": "I'd like melon bread, please.",
-            "meaning": "Choose the popular sweet melon bread",
-            "nextId": "melon_bread_reaction",
-            "requiredLevel": 1,
-            "requiredItems": [],
-            "relationshipChanges": {
-              "1": 2
-            },
-            "tags": ["vocab:88", "grammar:48"]
-          },
-          {
-            "id": "choice_curry_bread",
-            "textJp": "カレーパンを食べてみたいです。",
-            "furiganaJp": "カレーパンをたべてみたいです。",
-            "textEn": "I'd like to try curry bread.",
-            "meaning": "Choose the savory curry-filled bread",
-            "nextId": "curry_bread_reaction",
-            "requiredLevel": 1,
-            "requiredItems": [],
-            "relationshipChanges": {
-              "1": 2
-            },
-            "tags": ["vocab:89", "grammar:49"]
-          },
-          {
-            "id": "choice_anpan",
-            "textJp": "あんぱんは何ですか？",
-            "furiganaJp": "あんぱんはなんですか？",
-            "textEn": "What is anpan?",
-            "meaning": "Ask about the traditional sweet bean paste bread",
-            "nextId": "anpan_explanation",
-            "requiredLevel": 1,
-            "requiredItems": [],
-            "relationshipChanges": {
-              "1": 3
-            },
-            "tags": ["vocab:90"]
-          }
-        ]
-      },
-      "melon_bread_reaction": {
-        "line": {
-          "id": "melon_bread_reaction",
-          "characterId": "1",
-          "speakerName": "ユキ",
-          "sprite": "happy",
-          "position": "right",
-          "textJp": "メロンパン、いい選択だね！私も大好き。実はメロンの味はしないんだよ。表面のカリカリした部分がメロンの模様に似てるから、その名前なんだ。",
-          "furiganaJp": "メロンパン、いいせんたくだね！わたしもだいすき。じつはメロンのあじはしないんだよ。ひょうめんのカリカリしたぶぶんがメロンのもようににてるから、そのなまえなんだ。",
-          "romajiJp": "Meronpan, ii sentaku da ne! Watashi mo daisuki. Jitsu wa meron no aji wa shinai n da yo. Hyōmen no karikari shita bubun ga meron no moyō ni niteru kara, sono namae nan da.",
-          "textEn": "Melon bread, good choice! I love it too. Actually, it doesn't taste like melon. It's called that because the crispy pattern on top looks like a melon's skin.",
-          "nextId": "return_with_bread",
-          "tags": ["vocab:91", "vocab:92", "culture:7"]
-        },
-        "choices": []
-      },
-      "curry_bread_reaction": {
-        "line": {
-          "id": "curry_bread_reaction",
-          "characterId": "1",
-          "speakerName": "ユキ",
-          "sprite": "excited",
-          "position": "right",
-          "textJp": "カレーパン！私も好きだよ。外はサクサク、中はカレーがたっぷり入ってて美味しいよ。でも熱いから気をつけてね！",
-          "furiganaJp": "カレーパン！わたしもすきだよ。そとはサクサク、なかはカレーがたっぷりはいってておいしいよ。でもあついからきをつけてね！",
-          "romajiJp": "Karēpan! Watashi mo suki da yo. Soto wa sakusaku, naka wa karē ga tappuri haittete oishii yo. Demo atsui kara ki o tsukete ne!",
-          "textEn": "Curry bread! I like it too. The outside is crispy, and it's filled with lots of curry. But be careful, it's hot!",
-          "nextId": "return_with_bread",
-          "tags": ["vocab:93", "vocab:94"]
-        },
-        "choices": []
-      },
-      "anpan_explanation": {
-        "line": {
-          "id": "anpan_explanation",
-          "characterId": "1",
-          "speakerName": "ユキ",
-          "sprite": "friendly",
-          "position": "right",
-          "textJp": "あんぱんは伝統的な日本のパンだよ。中には甘い小豆あんこが入ってるんだ。初めてなら、ぜひ試してみるべきだよ！",
-          "furiganaJp": "あんぱんはでんとうてきなにほんのパンだよ。なかにはあまいあずきあんこがはいってるんだ。はじめてなら、ぜひためしてみるべきだよ！",
-          "romajiJp": "Anpan wa dentōteki na Nihon no pan da yo. Naka ni wa amai azuki anko ga haitteru n da. Hajimete nara, zehi tameshite miru beki da yo!",
-          "textEn": "Anpan is a traditional Japanese bread. It's filled with sweet red bean paste. If it's your first time, you should definitely try it!",
-          "nextId": "anpan_choice",
-          "tags": ["vocab:95", "vocab:96", "culture:8"]
-        },
-        "choices": []
-      },
-      "anpan_choice": {
-        "line": {
-          "id": "anpan_choice",
-          "textJp": "あんぱんを選びますか？",
-          "textEn": "Will you choose anpan?",
-          "isChoice": true
-        },
-        "choices": [
-          {
-            "id": "choice_try_anpan",
-            "textJp": "はい、あんぱんを食べてみます。",
-            "furiganaJp": "はい、あんぱんをたべてみます。",
-            "textEn": "Yes, I'll try anpan.",
-            "meaning": "Try the traditional sweet bean bread",
-            "nextId": "try_anpan_reaction",
-            "requiredLevel": 1,
-            "requiredItems": [],
-            "relationshipChanges": {
-              "1": 4
-            },
-            "tags": ["grammar:50"]
-          },
-          {
-            "id": "choice_different_bread",
-            "textJp": "やっぱりメロンパンにします。",
-            "furiganaJp": "やっぱりメロンパンにします。",
-            "textEn": "I think I'll go with melon bread after all.",
-            "meaning": "Choose melon bread instead",
-            "nextId": "melon_bread_reaction",
-            "requiredLevel": 1,
-            "requiredItems": [],
-            "relationshipChanges": {
-              "1": 2
-            },
-            "tags": ["vocab:97", "grammar:51"]
-          }
-        ]
-      },
-      "try_anpan_reaction": {
-        "line": {
-          "id": "try_anpan_reaction",
-          "characterId": "1",
-          "speakerName": "ユキ",
-          "sprite": "excited",
-          "position": "right",
-          "textJp": "いいね！日本の伝統的なお菓子に興味があるんだね。あんこの甘さはちょっと特別だけど、きっと気に入ると思うよ！",
-          "furiganaJp": "いいね！にほんのでんとうてきなおかしにきょうみがあるんだね。あんこのあまさはちょっととくべつだけど、きっときにいるとおもうよ！",
-          "romajiJp": "Ii ne! Nihon no dentōteki na okashi ni kyōmi ga aru n da ne. Anko no amasa wa chotto tokubetsu dakedo, kitto ki ni iru to omou yo!",
-          "textEn": "Great! You're interested in traditional Japanese sweets. The sweetness of anko is a bit unique, but I think you'll like it!",
-          "nextId": "return_with_bread",
-          "tags": ["vocab:98", "vocab:99"]
-        },
-        "choices": []
-      },
-      "return_with_bread": {
-        "line": {
-          "id": "return_with_bread",
-          "textJp": "パンを買った後、あなたとユキは教室に戻ります。",
-          "furiganaJp": "パンをかったあと、あなたとユキはきょうしつにもどります。",
-          "romajiJp": "Pan o katta ato, anata to Yuki wa kyōshitsu ni modorimasu.",
-          "textEn": "After buying bread, you and Yuki return to the classroom.",
-          "background": "assets/images/backgrounds/classroom_lunch.webp",
-          "nextId": "mei_introduction",
-          "tags": ["vocab:100"]
-        },
-        "choices": []
-      },
-      "share_bento_scene": {
-        "line": {
-          "id": "share_bento_scene",
-          "characterId": "1",
-          "speakerName": "ユキ",
-          "sprite": "friendly",
-          "position": "right",
-          "textJp": "もちろん！ほら、私のお弁当。お母さんが作ってくれたんだ。日本のお弁当を食べるのは初めて？",
-          "furiganaJp": "もちろん！ほら、わたしのおべんとう。おかあさんがつくってくれたんだ。にほんのおべんとうをたべるのははじめて？",
-          "romajiJp": "Mochiron! Hora, watashi no obentō. Okāsan ga tsukutte kureta n da. Nihon no obentō o taberu no wa hajimete?",
-          "textEn": "Of course! Here's my bento. My mother made it for me. Is this your first time eating a Japanese bento?",
-          "nextId": "bento_explanation",
-          "tags": ["vocab:101", "vocab:102", "grammar:52"]
-        },
-        "choices": []
-      },
-      "bento_explanation": {
-        "line": {
-          "id": "bento_explanation",
-          "characterId": "1",
-          "speakerName": "ユキ",
-          "sprite": "friendly",
-          "position": "right",
-          "textJp": "お弁当は「おかず」と呼ばれるおかずと、ご飯で構成されているんだ。これはおにぎり、これは卵焼き、こっちは唐揚げ...全部食べてみて！",
-          "furiganaJp": "おべんとうは「おかず」とよばれるおかずと、ごはんでこうせいされているんだ。これはおにぎり、これはたまごやき、こっちはからあげ...ぜんぶたべてみて！",
-          "romajiJp": "Obentō wa 'okazu' to yobareru okazu to, gohan de kōsei sarete iru n da. Kore wa onigiri, kore wa tamago-yaki, kocchi wa karaage... Zenbu tabete mite!",
-          "textEn": "A bento consists of rice and side dishes called 'okazu'. This is an onigiri (rice ball), this is tamagoyaki (rolled omelet), and this is karaage (fried chicken)... Try them all!",
-          "nextId": "mei_introduction",
-          "tags": ["vocab:103", "vocab:104", "vocab:105", "vocab:106", "culture:9"]
-        },
-        "choices": []
-      },
-      "mei_introduction": {
-        "line": {
-          "id": "mei_introduction",
-          "characterId": "4",
-          "speakerName": "メイ",
-          "sprite": "avatar",
-          "position": "left",
-          "textJp": "あの、一緒に食べてもいい？私はメイ。よろしく！",
-          "furiganaJp": "あの、いっしょにたべてもいい？わたしはメイ。よろしく！",
-          "romajiJp": "Ano, issho ni tabete mo ii? Watashi wa Mei. Yoroshiku!",
-          "textEn": "Um, may I join you? I'm Mei. Nice to meet you!",
-          "nextId": "mei_join_choice",
-          "tags": ["vocab:107", "grammar:53"]
-        },
-        "choices": []
-      },
-      "mei_join_choice": {
-        "line": {
-          "id": "mei_join_choice",
-          "textJp": "どう答えますか？",
-          "textEn": "How will you respond?",
-          "isChoice": true
-        },
-        "choices": [
-          {
-            "id": "choice_welcome_mei",
-            "textJp": "もちろん！どうぞ、一緒に食べましょう。",
-            "furiganaJp": "もちろん！どうぞ、いっしょにたべましょう。",
-            "textEn": "Of course! Please, let's eat together.",
-            "meaning": "Welcome Mei to join you",
-            "nextId": "mei_sits_down",
-            "requiredLevel": 1,
-            "requiredItems": [],
-            "relationshipChanges": {
-              "1": 2,
-              "4": 5
-            },
-            "tags": ["grammar:54"]
-          },
-          {
-            "id": "choice_introduce_yourself",
-            "textJp": "はじめまして、メイさん。私は＿＿＿です。どうぞ、座ってください。",
-            "furiganaJp": "はじめまして、メイさん。わたしは＿＿＿です。どうぞ、すわってください。",
-            "textEn": "Nice to meet you, Mei. I'm ___. Please, have a seat.",
-            "meaning": "Introduce yourself to Mei and invite her to sit",
-            "nextId": "mei_sits_down",
-            "requiredLevel": 2,
-            "requiredItems": [],
-            "relationshipChanges": {
-              "1": 3,
-              "4": 6
-            },
-            "tags": ["vocab:108", "grammar:55"]
-          }
-        ]
-      },
-      "mei_sits_down": {
-        "line": {
-          "id": "mei_sits_down",
-          "characterId": "4",
-          "speakerName": "メイ",
-          "sprite": "happy",
-          "position": "left",
-          "textJp": "ありがとう！あなたは留学生なんだよね。どこから来たの？",
-          "furiganaJp": "ありがとう！あなたはりゅうがくせいなんだよね。どこからきたの？",
-          "romajiJp": "Arigatō! Anata wa ryūgakusei nan da yo ne. Doko kara kita no?",
-          "textEn": "Thank you! You're the exchange student, right? Where are you from?",
-          "nextId": "origin_choice",
-          "tags": ["vocab:109", "grammar:56"]
-        },
-        "choices": []
-      },
-      "origin_choice": {
-        "line": {
-          "id": "origin_choice",
-          "textJp": "どこから来たと言いますか？",
-          "textEn": "Where will you say you're from?",
-          "isChoice": true
-        },
-        "choices": [
-          {
-            "id": "choice_country",
-            "textJp": "私は＿＿＿から来ました。",
-            "furiganaJp": "わたしは＿＿＿からきました。",
-            "textEn": "I'm from ___.",
-            "meaning": "Tell them your country of origin",
-            "nextId": "mei_country_reaction",
-            "requiredLevel": 1,
-            "requiredItems": [],
-            "relationshipChanges": {
-              "4": 3
-            },
-            "tags": ["grammar:57"]
-          },
-          {
-            "id": "choice_detailed_origin",
-            "textJp": "＿＿＿の＿＿＿という町から来ました。小さな町ですが、とても美しいところです。",
-            "furiganaJp": "＿＿＿の＿＿＿というまちからきました。ちいさなまちですが、とてもうつくしいところです。",
-            "textEn": "I'm from a town called ___ in ___. It's a small town, but a very beautiful place.",
-            "meaning": "Give more detailed information about your hometown",
-            "nextId": "mei_detailed_reaction",
-            "requiredLevel": 3,
-            "requiredItems": [],
-            "relationshipChanges": {
-              "1": 4,
-              "4": 6
-            },
-            "tags": ["vocab:110", "vocab:111", "grammar:58"]
-          }
-        ]
-      },
-      "mei_country_reaction": {
-        "line": {
-          "id": "mei_country_reaction",
-          "characterId": "4",
-          "speakerName": "メイ",
-          "sprite": "excited",
-          "position": "left",
-          "textJp": "そうなんだ！いつか行ってみたいな。日本と比べて、どう違う？",
-          "furiganaJp": "そうなんだ！いつかいってみたいな。にほんとくらべて、どうちがう？",
-          "romajiJp": "Sō nan da! Itsuka itte mitai na. Nihon to kurabete, dō chigau?",
-          "textEn": "I see! I'd like to visit someday. How is it different from Japan?",
-          "nextId": "kenta_arrival",
-          "tags": ["vocab:112", "grammar:59"]
-        },
-        "choices": []
-      },
-      "mei_detailed_reaction": {
-        "line": {
-          "id": "mei_detailed_reaction",
-          "characterId": "4",
-          "speakerName": "メイ",
-          "sprite": "impressed",
-          "position": "left",
-          "textJp": "すごい！日本語が上手だね！そのまちのしゃしんを見せてくれる？私、地理と外国の文化に興味があるんだ。",
-          "furiganaJp": "すごい！にほんごがじょうずだね！そのまちのしゃしんをみせてくれる？わたし、ちりとがいこくのぶんかにきょうみがあるんだ。",
-          "romajiJp": "Sugoi! Nihongo ga jōzu da ne! Sono machi no shashin o misete kureru? Watashi, chiri to gaikoku no bunka ni kyōmi ga aru n da.",
-          "textEn": "Amazing! Your Japanese is good! Could you show me pictures of that town? I'm interested in geography and foreign cultures.",
-          "nextId": "kenta_arrival",
-          "tags": ["vocab:113", "vocab:114", "grammar:60"]
-        },
-        "choices": []
-      },
-      "kenta_arrival": {
-        "line": {
-          "id": "kenta_arrival",
-          "characterId": "5",
-          "speakerName": "ケンタ",
-          "sprite": "smiling",
-          "position": "center",
-          "textJp": "よう！新入り！俺はケンタ。サッカー部のキャプテンだ。放課後、部活見学に来ないか？",
-          "furiganaJp": "よう！しんいり！おれはケンタ。サッカーぶのキャプテンだ。ほうかご、ぶかつけんがくにこないか？",
-          "romajiJp": "Yo! Shin'iri! Ore wa Kenta. Sakkā-bu no kyaputen da. Hōkago, bukatsu kengaku ni konai ka?",
-          "textEn": "Hey! Newbie! I'm Kenta, captain of the soccer club. Want to come check out our club activities after school?",
-          "nextId": "club_choice",
-          "tags": ["vocab:115", "vocab:116", "vocab:117", "grammar:61"]
-        },
-        "choices": []
-      },
-      "club_choice": {
-        "line": {
-          "id": "club_choice",
-          "textJp": "サッカー部の見学に行きますか？",
-          "textEn": "Will you visit the soccer club?",
-          "isChoice": true
-        },
-        "choices": [
-          {
-            "id": "choice_accept_club",
-            "textJp": "はい、ぜひ見学したいです。",
-            "furiganaJp": "はい、ぜひけんがくしたいです。",
-            "textEn": "Yes, I'd love to visit.",
-            "meaning": "Accept the invitation to visit the soccer club",
-            "nextId": "kenta_excited",
-            "requiredLevel": 1,
-            "requiredItems": [],
-            "relationshipChanges": {
-              "5": 6
-            },
-            "tags": ["vocab:118", "grammar:62"]
-          },
-          {
-            "id": "choice_decline_club",
-            "textJp": "今日は難しいかも...また今度お願いします。",
-            "furiganaJp": "きょうはむずかしいかも...またこんどおねがいします。",
-            "textEn": "Today might be difficult... Maybe another time, please.",
-            "meaning": "Politely decline the invitation",
-            "nextId": "kenta_disappointed",
-            "requiredLevel": 2,
-            "requiredItems": [],
-            "relationshipChanges": {
-              "5": 2
-            },
-            "tags": ["vocab:119", "grammar:63"]
-          },
-          {
-            "id": "choice_ask_clubs",
-            "textJp": "他にどんな部活がありますか？",
-            "furiganaJp": "ほかにどんなぶかつがありますか？",
-            "textEn": "What other clubs are there?",
-            "meaning": "Ask about other available clubs",
-            "nextId": "yuki_clubs_explanation",
-            "requiredLevel": 2,
-            "requiredItems": [],
-            "relationshipChanges": {
-              "1": 4,
-              "5": 3
-            },
-            "tags": ["vocab:120", "grammar:64"]
-          }
-        ]
-      },
-      "kenta_excited": {
-        "line": {
-          "id": "kenta_excited",
-          "characterId": "5",
-          "speakerName": "ケンタ",
-          "sprite": "smiling",
-          "position": "center",
-          "textJp": "よっしゃ！放課後、体育館の前で待ってるぜ！サッカーやったことある？",
-          "furiganaJp": "よっしゃ！ほうかご、たいいくかんのまえでまってるぜ！サッカーやったことある？",
-          "romajiJp": "Yossha! Hōkago, taiikukan no mae de matteru ze! Sakkā yatta koto aru?",
-          "textEn": "Awesome! I'll wait for you in front of the gym after school! Have you played soccer before?",
-          "nextId": "lunch_end_bell",
-          "tags": ["vocab:121", "vocab:122", "grammar:65"]
-        },
-        "choices": []
-      },
-      "kenta_disappointed": {
-        "line": {
-          "id": "kenta_disappointed",
-          "characterId": "5",
-          "speakerName": "ケンタ",
-          "sprite": "disappointed",
-          "position": "center",
-          "textJp": "そっか...まあ、いつでも歓迎だからな！考え直したら、いつでも来いよ。",
-          "furiganaJp": "そっか...まあ、いつでもかんげいだからな！かんがえなおしたら、いつでもこいよ。",
-          "romajiJp": "Sokka... Maa, itsudemo kangei dakara na! Kangae naoshitara, itsudemo koi yo.",
-          "textEn": "I see... Well, you're welcome anytime! If you change your mind, feel free to come by.",
-          "nextId": "lunch_end_bell",
-          "tags": ["vocab:123", "vocab:124", "grammar:66"]
-        },
-        "choices": []
-      },
-      "yuki_clubs_explanation": {
-        "line": {
-          "id": "yuki_clubs_explanation",
-          "characterId": "1",
-          "speakerName": "ユキ",
-          "sprite": "friendly",
-          "position": "right",
-          "textJp": "運動部はサッカー、野球、バスケ、テニス、水泳...文化部は美術部、写真部、茶道部、書道部、漫画研究部などがあるよ！",
-          "furiganaJp": "うんどうぶはサッカー、やきゅう、バスケ、テニス、すいえい...ぶんかぶはびじゅつぶ、しゃしんぶ、さどうぶ、しょどうぶ、まんがけんきゅうぶなどがあるよ！",
-          "romajiJp": "Undō-bu wa sakkā, yakyū, basuke, tenisu, suiei... Bunka-bu wa bijutsu-bu, shashin-bu, sadō-bu, shodō-bu, manga kenkyū-bu nado ga aru yo!",
-          "textEn": "For sports clubs, there's soccer, baseball, basketball, tennis, swimming... For cultural clubs, there's art club, photography club, tea ceremony club, calligraphy club, manga research club, and more!",
-          "nextId": "mei_club_comment",
-          "tags": ["vocab:125", "vocab:126", "vocab:127", "vocab:128", "culture:10"]
-        },
-        "choices": []
-      },
-      "mei_club_comment": {
-        "line": {
-          "id": "mei_club_comment",
-          "characterId": "4",
-          "speakerName": "メイ",
-          "sprite": "happy",
-          "position": "left",
-          "textJp": "私は茶道部だよ。もし興味があれば、今度一緒に見学しない？日本の伝統文化を体験できるよ。",
-          "furiganaJp": "わたしはさどうぶだよ。もしきょうみがあれば、こんどいっしょにけんがくしない？にほんのでんとうぶんかをたいけんできるよ。",
-          "romajiJp": "Watashi wa sadō-bu da yo. Moshi kyōmi ga areba, kondo issho ni kengaku shinai? Nihon no dentō bunka o taiken dekiru yo.",
-          "textEn": "I'm in the tea ceremony club. If you're interested, would you like to visit with me sometime? You can experience traditional Japanese culture.",
-          "nextId": "lunch_end_bell",
-          "tags": ["vocab:129", "vocab:130", "grammar:67"]
-        },
-        "choices": []
-      },
-      "lunch_end_bell": {
-        "line": {
-          "id": "lunch_end_bell",
-          "textJp": "チャイムが鳴り、お昼休みが終わります。",
-          "furiganaJp": "チャイムがなり、おひるやすみがおわります。",
-          "romajiJp": "Chaimu ga nari, ohiru yasumi ga owarimasu.",
-          "textEn": "The bell rings, signaling the end of lunch break.",
-          "nextId": "return_to_class",
-          "tags": ["vocab:131"]
-        },
-        "choices": []
-      },
-      "return_to_class": {
-        "line": {
-          "id": "return_to_class",
-          "characterId": "1",
-          "speakerName": "ユキ",
-          "sprite": "friendly",
-          "position": "right",
-          "textJp": "次の授業は英語だよ。また一緒に勉強しよう！",
-          "furiganaJp": "つぎのじゅぎょうはえいごだよ。またいっしょにべんきょうしよう！",
-          "romajiJp": "Tsugi no jugyō wa eigo da yo. Mata issho ni benkyō shiyō!",
-          "textEn": "The next class is English. Let's study together again!",
-          "nextId": "scene_end",
-          "tags": ["vocab:132", "grammar:68"]
-        },
-        "choices": []
-      },
-      "scene_end": {
-        "line": {
-          "id": "scene_end",
-          "textJp": "シーン４：終了",
-          "textEn": "Scene 4: Complete"
-        },
-        "choices": []
-      }
+      "choices": []
     },
-    "startNodeId": "start",
-    "tags": ["chapter_1", "lunch", "meeting_classmates"]
-  }
+    "classroom_lunch_preparation": {
+      "line": {
+        "id": "classroom_lunch_preparation",
+        "textJp": "クラスメイトたちは机を合わせ始めます。日本では、多くの学生が教室で一緒に昼食を食べます。",
+        "furiganaJp": "クラスメイトたちはつくえをあわせはじめます。にほんでは、おおくのがくせいがきょうしつでいっしょにちゅうしょくをたべます。",
+        "romajiJp": "Kurasumeito-tachi wa tsukue o awase hajimemasu. Nihon dewa, ōku no gakusei ga kyōshitsu de issho ni chūshoku o tabemasu.",
+        "textEn": "Your classmates begin pushing desks together. In Japan, many students eat lunch together in the classroom.",
+        "nextId": "yuki_lunch_invitation",
+        "tags": ["vocab:71", "vocab:72", "culture:5"]
+      },
+      "choices": []
+    },
+    "yuki_lunch_invitation": {
+      "line": {
+        "id": "yuki_lunch_invitation",
+        "characterId": "1",
+        "speakerName": "ユキ",
+        "sprite": "happy",
+        "position": "right",
+        "textJp": "ねえ、一緒にお昼ごはん食べない？私、お弁当持ってきたんだ。",
+        "furiganaJp": "ねえ、いっしょにおひるごはんたべない？わたし、おべんとうもってきたんだ。",
+        "romajiJp": "Nee, issho ni ohiru gohan tabenai? Watashi, obentō motte kita n da.",
+        "textEn": "Hey, want to eat lunch together? I brought a bento box.",
+        "nextId": "lunch_response_choice",
+        "tags": ["vocab:73", "vocab:74"]
+      },
+      "choices": []
+    },
+    "lunch_response_choice": {
+      "line": {
+        "id": "lunch_response_choice",
+        "textJp": "どう返事をしますか？",
+        "textEn": "How will you respond?",
+        "isChoice": true
+      },
+      "choices": [
+        {
+          "id": "choice_accept_lunch",
+          "textJp": "はい、ありがとう！ぜひ一緒に食べましょう。",
+          "furiganaJp": "はい、ありがとう！ぜひいっしょにたべましょう。",
+          "textEn": "Yes, thank you! I'd love to eat together.",
+          "meaning": "Accept the lunch invitation enthusiastically",
+          "nextId": "accept_lunch_reaction",
+          "requiredLevel": 1,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "1": 5
+          },
+          "tags": []
+        },
+        {
+          "id": "choice_confused_lunch",
+          "textJp": "すみません、お弁当を持ってきていませんでした...",
+          "furiganaJp": "すみません、おべんとうをもってきていませんでした...",
+          "textEn": "I'm sorry, I didn't bring a bento...",
+          "meaning": "Express concern about not having a lunch",
+          "nextId": "no_bento_reaction",
+          "requiredLevel": 1,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "1": 3
+          },
+          "tags": ["vocab:75"]
+        },
+        {
+          "id": "choice_cafeteria_question",
+          "textJp": "学校に食堂はありますか？どこかで買えますか？",
+          "furiganaJp": "がっこうにしょくどうはありますか？どこかでかえますか？",
+          "textEn": "Is there a cafeteria at school? Can I buy something somewhere?",
+          "meaning": "Ask if the school has a cafeteria",
+          "nextId": "cafeteria_explanation",
+          "requiredLevel": 2,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "1": 4
+          },
+          "tags": ["vocab:76"]
+        }
+      ]
+    },
+    "accept_lunch_reaction": {
+      "line": {
+        "id": "accept_lunch_reaction",
+        "characterId": "1",
+        "speakerName": "ユキ",
+        "sprite": "excited",
+        "position": "right",
+        "textJp": "やった！わーい！でも、そうだよね、今日は初日だから、お弁当は持ってきてないか。大丈夫、大丈夫！私のを少し分けてあげるよ！",
+        "furiganaJp": "やった！わーい！でも、そうだよね、きょうはしょにちだから、おべんとうはもってきてないか。だいじょうぶ、だいじょうぶ！わたしのをすこしわけてあげるよ！",
+        "romajiJp": "Yatta! Wāi! Demo, sō da yo ne, kyō wa shonichi dakara, obentō wa motte konai ka. Daijōbu, daijōbu! Watashi no o sukoshi wakete ageru yo!",
+        "textEn": "Yay! Alright! But, ah, that's right, it's your first day today, so you probably didn't bring a bento, huh? It's okay, it's okay! I'll share some of mine with you!",
+        "nextId": "mei_approaches",
+        "tags": ["vocab:77", "vocab:78", "grammar:45"]
+      },
+      "choices": []
+    },
+    "no_bento_reaction": {
+      "line": {
+        "id": "no_bento_reaction",
+        "characterId": "1",
+        "speakerName": "ユキ",
+        "sprite": "friendly",
+        "position": "right",
+        "textJp": "あ、そっか！大丈夫だよ、初日だもんね。私のがあるから、それを分けるのでもいいし、それかパンを買いに行くこともできるよ。",
+        "furiganaJp": "あ、そっか！だいじょうぶだよ、しょにちだもんね。わたしのがあるから、それをわけるのでもいいし、それかパンをかいにいくこともできるよ。",
+        "romajiJp": "A, sokka! Daijōbu da yo, shonichi da mon ne. Watashi no ga aru kara, sore o wakeru no demo ii shi, sore ka pan o kai ni iku koto mo dekiru yo.",
+        "textEn": "Oh, right! That's totally okay, it's your first day after all. I have mine, so we can share that, or we could go buy some bread if you'd like.",
+        "nextId": "mei_approaches",
+        "tags": ["vocab:79", "vocab:80"]
+      },
+      "choices": []
+    },
+    "cafeteria_explanation": {
+      "line": {
+        "id": "cafeteria_explanation",
+        "characterId": "1",
+        "speakerName": "ユキ",
+        "sprite": "friendly",
+        "position": "right",
+        "textJp": "うん、大きな学生食堂みたいなのはないんだ。でも、購買部にパンとか軽食が売ってるよ。一緒に行ってみる？",
+        "furiganaJp": "うん、おおきながくせいしょくどうみたいなのはないんだ。でも、こうばいぶにパンとかけいしょくがうってるよ。いっしょにいってみる？",
+        "romajiJp": "Un, ōkina gakusei shokudō mitai na no wa nain da. Demo, kōbai-bu ni pan to ka keishoku ga utteru yo. Issho ni itte miru?",
+        "textEn": "Yeah, we don't have a big student cafeteria like some schools. But there's a school store (kōbai) that sells bread and light meals. Want to go there together?",
+        "nextId": "bread_shop_choice",
+        "tags": ["vocab:81", "vocab:82", "grammar:46"]
+      },
+      "choices": []
+    },
+    "bread_shop_choice": {
+      "line": {
+        "id": "bread_shop_choice",
+        "textJp": "パン屋さんに行きますか？",
+        "textEn": "Will you go to the bread shop?",
+        "isChoice": true
+      },
+      "choices": [
+        {
+          "id": "choice_go_bread_shop",
+          "textJp": "はい、一緒に行きましょう！",
+          "furiganaJp": "はい、いっしょにいきましょう！",
+          "textEn": "Yes, let's go together!",
+          "meaning": "Go to the bread shop with Yuki",
+          "nextId": "bread_shop_scene",
+          "requiredLevel": 1,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "1": 4
+          },
+          "tags": []
+        },
+        {
+          "id": "choice_stay_classroom",
+          "textJp": "パン屋さんより、ここでユキさんと話したいです。",
+          "furiganaJp": "パンやさんより、ここでユキさんと話したいです。",
+          "textEn": "Rather than the bread shop, I'd like to talk with you here, Yuki.",
+          "meaning": "Choose to stay and talk with Yuki (implying sharing bento)",
+          "nextId": "share_bento_scene",
+          "requiredLevel": 2,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "1": 5
+          },
+          "tags": ["vocab:83", "grammar:47"]
+        }
+      ]
+    },
+    "bread_shop_scene": {
+      "line": {
+        "id": "bread_shop_scene",
+        "textJp": "あなたはユキと一緒に学校の購買部へ行きました。お昼休みで、小さな売店はたくさんの生徒でとても混雑しています。",
+        "furiganaJp": "あなたはユキといっしょにがっこうのこうばいぶへいきました。おひるやすみで、ちいさなばいてんはたくさんのせいとでとてもこんざつしています。",
+        "romajiJp": "Anata wa Yuki to issho ni gakkō no kōbai-bu e ikimashita. Ohiru yasumi de, chiisana baiten wa takusan no seito de totemo konzatsu shite imasu.",
+        "textEn": "You went to the school store with Yuki. It's lunchtime, and the small shop is very crowded with many students.",
+        "background": "assets/images/backgrounds/school_shop.webp",
+        "nextId": "bread_types",
+        "tags": ["vocab:84", "vocab:85"]
+      },
+      "choices": []
+    },
+    "bread_types": {
+      "line": {
+        "id": "bread_types",
+        "characterId": "1",
+        "speakerName": "ユキ",
+        "sprite": "happy",
+        "position": "right",
+        "textJp": "見て！色々なパンがあるよ！定番のメロンパン、カレーパン、あんぱん...初めて見るパンもあるかもね。何か気になるのある？",
+        "furiganaJp": "みて！いろいろなパンがあるよ！ていばんのメロンパン、カレーパン、あんぱん...はじめてみるパンもあるかもね。なにかきになるのある？",
+        "romajiJp": "Mite! Iroiro na pan ga aru yo! Teiban no meronpan, karēpan, anpan... Hajimete miru pan mo aru kamo ne. Nanika ki ni naru no aru?",
+        "textEn": "Look! There are many types of bread! Classic melon bread, curry bread, anpan... Maybe there are some breads you're seeing for the first time. Is there anything you're curious about?",
+        "nextId": "bread_choice",
+        "tags": ["vocab:86", "vocab:87", "culture:6"]
+      },
+      "choices": []
+    },
+    "bread_choice": {
+      "line": {
+        "id": "bread_choice",
+        "textJp": "どのパンを選びますか？",
+        "textEn": "Which bread will you choose?",
+        "isChoice": true
+      },
+      "choices": [
+        {
+          "id": "choice_melon_bread",
+          "textJp": "メロンパンをください。",
+          "furiganaJp": "メロンパンをください。",
+          "textEn": "I'd like melon bread, please.",
+          "meaning": "Choose the popular sweet melon bread",
+          "nextId": "melon_bread_reaction",
+          "requiredLevel": 1,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "1": 2
+          },
+          "tags": ["vocab:88", "grammar:48"]
+        },
+        {
+          "id": "choice_curry_bread",
+          "textJp": "カレーパンを食べてみたいです。",
+          "furiganaJp": "カレーパンをたべてみたいです。",
+          "textEn": "I'd like to try curry bread.",
+          "meaning": "Choose the savory curry-filled bread",
+          "nextId": "curry_bread_reaction",
+          "requiredLevel": 1,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "1": 2
+          },
+          "tags": ["vocab:89", "grammar:49"]
+        },
+        {
+          "id": "choice_anpan",
+          "textJp": "「あんぱん」って何ですか？どんなパンですか？",
+          "furiganaJp": "「あんぱん」ってなんですか？どんなパンですか？",
+          "textEn": "What is 'anpan'? What kind of bread is it?",
+          "meaning": "Ask about the traditional sweet bean paste bread",
+          "nextId": "anpan_explanation",
+          "requiredLevel": 1,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "1": 3
+          },
+          "tags": ["vocab:90"]
+        }
+      ]
+    },
+    "melon_bread_reaction": {
+      "line": {
+        "id": "melon_bread_reaction",
+        "characterId": "1",
+        "speakerName": "ユキ",
+        "sprite": "happy",
+        "position": "right",
+        "textJp": "メロンパン、良いね！美味しいよね〜。私も大好き。実はね、メロンの味は全然しないんだよ。表面のサクサクしたクッキー生地の部分が、メロンの模様にちょっと似てるから、その名前になったんだって。",
+        "furiganaJp": "メロンパン、いいね！おいしいよね〜。わたしもだいすき。じつはね、メロンのあじはぜんぜんしないんだよ。ひょうめんのサクサクしたクッキーきじのぶぶんが、メロンのもようにちょっとにてるから、そのなまえになったんだって。",
+        "romajiJp": "Meronpan, ii ne! Oishii yo ne~. Watashi mo daisuki. Jitsu wa ne, meron no aji wa zenzen shinai n da yo. Hyōmen no sakusaku shita kukkī kiji no bubun ga, meron no moyō ni chotto niteru kara, sono namae ni natta n da tte.",
+        "textEn": "Melon bread, good choice! It's delicious, right~. I love it too. Actually, it doesn't taste like melon at all. It's said that it got that name because the crispy cookie dough part on the surface looks a bit like a melon's pattern.",
+        "nextId": "return_with_bread",
+        "tags": ["vocab:91", "vocab:92", "culture:7"]
+      },
+      "choices": []
+    },
+    "curry_bread_reaction": {
+      "line": {
+        "id": "curry_bread_reaction",
+        "characterId": "1",
+        "speakerName": "ユキ",
+        "sprite": "excited",
+        "position": "right",
+        "textJp": "お、カレーパンに興味あるんだ！スパイシーで美味しいよね。外はカリッとしてて、中にはとろっとしたカレーがたっぷり。焼きたてだと特に美味しいけど、熱いから気をつけてね！",
+        "furiganaJp": "お、カレーパンにきょうみあるんだ！スパイシーでおいしいよね。そとはカリッとしてて、なかにはとろっとしたカレーがたっぷり。やきたてだととくにおいしいけど、あついからきをつけてね！",
+        "romajiJp": "O, karēpan ni kyōmi aru n da! Supaishī de oishii yo ne. Soto wa karittoshitete, naka ni wa torotto shita karē ga tappuri. Yakitate da to toku ni oishii kedo, atsui kara ki o tsukete ne!",
+        "textEn": "Oh, you're interested in curry bread! It's spicy and delicious, right? The outside is crispy, and it's full of thick curry inside. It's especially good when freshly baked, but be careful because it's hot!",
+        "nextId": "return_with_bread",
+        "tags": ["vocab:93", "vocab:94"]
+      },
+      "choices": []
+    },
+    "anpan_explanation": {
+      "line": {
+        "id": "anpan_explanation",
+        "characterId": "1",
+        "speakerName": "ユキ",
+        "sprite": "friendly",
+        "position": "right",
+        "textJp": "あんぱんはね、日本の伝統的な菓子パンだよ。パン生地の中に甘い小豆のあんこがぎっしり詰まってるんだ。初めて食べるなら、日本の味を知るのにぴったりかも！",
+        "furiganaJp": "あんぱんはね、にほんのでんとうてきなかしパンだよ。パンきじのなかにあまいあずきのあんこがぎっしりつまってるんだ。はじめてたべるなら、にほんのあじをしるのにぴったりかも！",
+        "romajiJp": "Anpan wa ne, Nihon no dentōteki na kashi-pan da yo. Pan-kiji no naka ni amai azuki no anko ga gisshiri tsumatteru n da. Hajimete taberu nara, Nihon no aji o shiru no ni pittari kamo!",
+        "textEn": "Anpan, you see, is a traditional Japanese sweet bread. It's filled tightly with sweet red bean paste (anko) inside the bread dough. If it's your first time trying it, it might be perfect for getting to know Japanese taste!",
+        "nextId": "anpan_choice",
+        "tags": ["vocab:95", "vocab:96", "culture:8"]
+      },
+      "choices": []
+    },
+    "anpan_choice": {
+      "line": {
+        "id": "anpan_choice",
+        "textJp": "あんぱんを選んでみますか？それとも別のパンにしますか？",
+        "textEn": "Will you try anpan, or choose a different bread?",
+        "isChoice": true
+      },
+      "choices": [
+        {
+          "id": "choice_try_anpan",
+          "textJp": "はい、せっかくだからあんぱんを食べてみます。",
+          "furiganaJp": "はい、せっかくだからあんぱんをたべてみます。",
+          "textEn": "Yes, since it's a chance, I'll try anpan.",
+          "meaning": "Try the traditional sweet bean bread",
+          "nextId": "try_anpan_reaction",
+          "requiredLevel": 1,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "1": 4
+          },
+          "tags": ["grammar:50"]
+        },
+        {
+          "id": "choice_different_bread",
+          "textJp": "うーん、やっぱり慣れているメロンパンがいいです。",
+          "furiganaJp": "うーん、やっぱりなれているメロンパンがいいです。",
+          "textEn": "Hmm, I think I'll stick with the melon bread I'm used to after all.",
+          "meaning": "Choose melon bread instead",
+          "nextId": "melon_bread_reaction",
+          "requiredLevel": 1,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "1": 2
+          },
+          "tags": ["vocab:97", "grammar:51"]
+        }
+      ]
+    },
+    "try_anpan_reaction": {
+      "line": {
+        "id": "try_anpan_reaction",
+        "characterId": "1",
+        "speakerName": "ユキ",
+        "sprite": "excited",
+        "position": "right",
+        "textJp": "わあ、いいね！日本の伝統的なお菓子にも興味があるんだね。あんこの甘さはちょっと独特だけど、きっと面白い発見になると思うよ！感想教えてね！",
+        "furiganaJp": "わあ、いいね！にほんのでんとうてきなおかしにもきょうみがあるんだね。あんこのあまさはちょっとどくとくだけど、きっとおもしろいはっけんになるとおもうよ！かんそうおしえてね！",
+        "romajiJp": "Wā, ii ne! Nihon no dentōteki na okashi ni mo kyōmi ga aru n da ne. Anko no amasa wa chotto tokutoku dakedo, kitto omoshiroi hakken ni naru to omou yo! Kansō oshiete ne!",
+        "textEn": "Wow, great! You're interested in traditional Japanese sweets too. The sweetness of anko is a bit unique, but I'm sure it'll be an interesting discovery! Let me know what you think!",
+        "nextId": "return_with_bread",
+        "tags": ["vocab:98", "vocab:99"]
+      },
+      "choices": []
+    },
+    "return_with_bread": {
+      "line": {
+        "id": "return_with_bread",
+        "textJp": "パンを買った後、あなたとユキは教室に戻りました。",
+        "furiganaJp": "パンをかったあと、あなたとユキはきょうしつにもどりました。",
+        "romajiJp": "Pan o katta ato, anata to Yuki wa kyōshitsu ni modorimashita.",
+        "textEn": "After buying bread, you and Yuki returned to the classroom.",
+        "background": "assets/images/backgrounds/classroom_lunch.webp",
+        "nextId": "mei_approaches",
+        "tags": ["vocab:100"]
+      },
+      "choices": []
+    },
+    "share_bento_scene": {
+      "line": {
+        "id": "share_bento_scene",
+        "characterId": "1",
+        "speakerName": "ユキ",
+        "sprite": "friendly",
+        "position": "right",
+        "textJp": "もちろん！どうぞどうぞ、遠慮しないで。ほら、私のお弁当。お母さんが今朝早く起きて作ってくれたんだ。日本の家庭のお弁当を食べるのは初めて？",
+        "furiganaJp": "もちろん！どうぞどうぞ、えんりょしないで。ほら、わたしのおべんとう。おかあさんがけさ はやくおきてつくってくれたんだ。にほんのかていのおべんとうをたべるのははじめて？",
+        "romajiJp": "Mochiron! Dōzo dōzo, enryo shinaide. Hora, watashi no obentō. Okāsan ga kesa hayaku okite tsukutte kureta n da. Nihon no katei no obentō o taberu no wa hajimete?",
+        "textEn": "Of course! Please, please, don't hesitate. Here's my bento. My mother woke up early this morning to make it for me. Is this your first time eating a homemade Japanese bento?",
+        "nextId": "bento_explanation",
+        "tags": ["vocab:101", "vocab:102", "grammar:52"]
+      },
+      "choices": []
+    },
+    "bento_explanation": {
+      "line": {
+        "id": "bento_explanation",
+        "characterId": "1",
+        "speakerName": "ユキ",
+        "sprite": "friendly",
+        "position": "right",
+        "textJp": "お弁当はご飯と、「おかず」って呼ばれる色々な副菜で構成されてるんだ。これはね、おにぎり、これは卵焼き、こっちは唐揚げだよ。全部、お母さんの手作り！よかったら、どれでも好きなもの食べてみて！",
+        "furiganaJp": "おべんとうはごはんと、「おかず」ってよばれるいろいろなふくさいでこうせいされてるんだ。これはね、おにぎり、これはたまごやき、こっちはからあげだよ。ぜんぶ、おかあさんのてづくり！よかったら、どれでもすきなたべてみて！",
+        "romajiJp": "Obentō wa gohan to, 'okazu' tte yobareru iroiro na fukusai de kōsei sareteru n da. Kore wa ne, onigiri, kore wa tamago-yaki, kocchi wa karaage da yo. Zenbu, okāsan no tezukuri! Yokattara, dore demo suki na mono tabete mite!",
+        "textEn": "A bento consists of rice and various side dishes called 'okazu'. This one, you see, is an onigiri (rice ball), this is tamagoyaki (rolled omelet), and this is karaage (fried chicken). It's all homemade by my mother! If you'd like, please try anything you like!",
+        "nextId": "mei_approaches",
+        "tags": ["vocab:103", "vocab:104", "vocab:105", "vocab:106", "culture:9"]
+      },
+      "choices": []
+    },
+    "mei_approaches": {
+      "line": {
+        "id": "mei_approaches",
+        "textJp": "あなたたちが話しているところに、別のクラスメイトが近づいてきました。",
+        "furiganaJp": "あなたたちがはなしているところに、べつのクラスメイトがちかづいてきました。",
+        "romajiJp": "Anata-tachi ga hanashite iru tokoro ni, betsu no kurasumeito ga chikadzuite kimashita.",
+        "textEn": "As you were talking, another classmate approached.",
+        "nextId": "mei_introduction",
+        "tags": []
+      },
+      "choices": []
+    },
+    "mei_introduction": {
+      "line": {
+        "id": "mei_introduction",
+        "characterId": "4",
+        "speakerName": "メイ",
+        "sprite": "avatar",
+        "position": "left",
+        "textJp": "あの、ここいいかな？一緒に食べてもいい？私はメイです。よろしくね！",
+        "furiganaJp": "あの、ここいいかな？いっしょにたべてもいい？わたしはメイです。よろしくね！",
+        "romajiJp": "Ano, koko ii kana? Issho ni tabete mo ii? Watashi wa Mei desu. Yoroshiku ne!",
+        "textEn": "Um, is this spot okay? May I join you for lunch? I'm Mei. Nice to meet you!",
+        "nextId": "mei_join_choice",
+        "tags": ["vocab:107", "grammar:53"]
+      },
+      "choices": []
+    },
+    "mei_join_choice": {
+      "line": {
+        "id": "mei_join_choice",
+        "textJp": "どう答えますか？",
+        "textEn": "How will you respond?",
+        "isChoice": true
+      },
+      "choices": [
+        {
+          "id": "choice_welcome_mei",
+          "textJp": "もちろん！どうぞ、一緒に食べましょう。",
+          "furiganaJp": "もちろん！どうぞ、いっしょにたべましょう。",
+          "textEn": "Of course! Please, let's eat together.",
+          "meaning": "Welcome Mei to join you",
+          "nextId": "mei_sits_down",
+          "requiredLevel": 1,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "1": 2,
+            "4": 5
+          },
+          "tags": ["grammar:54"]
+        },
+        {
+          "id": "choice_introduce_yourself",
+          "textJp": "はじめまして、メイさん。私は＿＿＿です。ぜひ、どうぞ座ってください。",
+          "furiganaJp": "はじめまして、メイさん。わたしは＿＿＿です。ぜひ、どうぞすわってください。",
+          "romajiJp": "Hajimemashite, Mei-san. Watashi wa __ desu. Zehi, dōzo suwatte kudasai.",
+          "textEn": "Nice to meet you, Mei. I'm ___. Please, do have a seat.",
+          "meaning": "Introduce yourself to Mei and invite her to sit",
+          "nextId": "mei_sits_down",
+          "requiredLevel": 2,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "1": 3,
+            "4": 6
+          },
+          "tags": ["vocab:108", "grammar:55"]
+        }
+      ]
+    },
+    "mei_sits_down": {
+      "line": {
+        "id": "mei_sits_down",
+        "characterId": "4",
+        "speakerName": "メイ",
+        "sprite": "happy",
+        "position": "left",
+        "textJp": "ありがとう！助かるよ。あなたは新しい留学生さんだよね。どこから来たの？",
+        "furiganaJp": "ありがとう！たすかるよ。あなたわあたらしいりゅうがくせいさんだよね。どこからきたの？",
+        "romajiJp": "Arigatō! Tasukaru yo. Anata wa atarashii ryūgakusei-san da yo ne. Doko kara kita no?",
+        "textEn": "Thank you! That's helpful. You're the new exchange student, right? Where are you from?",
+        "nextId": "origin_choice",
+        "tags": ["vocab:109", "grammar:56"]
+      },
+      "choices": []
+    },
+    "origin_choice": {
+      "line": {
+        "id": "origin_choice",
+        "textJp": "どこから来たと言いますか？",
+        "textEn": "Where will you say you're from?",
+        "isChoice": true
+      },
+      "choices": [
+        {
+          "id": "choice_country",
+          "textJp": "私は＿＿＿から来ました。",
+          "furiganaJp": "わたしは＿＿＿からきました。",
+          "textEn": "I'm from ___.",
+          "meaning": "Tell them your country of origin",
+          "nextId": "kenta_approaches",
+          "requiredLevel": 1,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "4": 3
+          },
+          "tags": ["grammar:57"]
+        },
+        {
+          "id": "choice_detailed_origin",
+          "textJp": "＿＿＿の＿＿＿という町から来ました。あまり有名じゃないけど、とても美しいところです。",
+          "furiganaJp": "＿＿＿の＿＿＿というまちからきました。あまりゆうめいじゃないけど、とてもうつくしいところです。",
+          "romajiJp": "___ no ___ to iu machi kara kimashita. Amari yūmei ja nai kedo, totemo utsukushii tokoro desu.",
+          "textEn": "I'm from a town called ___ in ___. It's not very famous, but it's a very beautiful place.",
+          "meaning": "Give more detailed information about your hometown",
+          "nextId": "kenta_approaches",
+          "requiredLevel": 3,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "1": 4,
+            "4": 6
+          },
+          "tags": ["vocab:110", "vocab:111", "grammar:58"]
+        }
+      ]
+    },
+    "mei_country_reaction": {
+      "line": {
+        "id": "mei_country_reaction",
+        "characterId": "4",
+        "speakerName": "メイ",
+        "sprite": "excited",
+        "position": "left",
+        "textJp": "そうなんだ！いいところって聞くね。いつか行ってみたいなあ。日本と比べて、どんなところが違う？面白い習慣とかある？",
+        "furiganaJp": "そうなんだ！いいところってきくね。いつかいってみたいなあ。にほんとくらべて、どんなところがちがう？おもしろいしゅうかんとかある？",
+        "romajiJp": "Sō nan da! Ii tokoro tte kiku ne. Itsuka itte mitai naa. Nihon to kurabete, donna tokoro ga chigau? Omoshiroi shūkan to ka aru?",
+        "textEn": "I see! I hear it's a nice place. I'd really like to visit someday. Compared to Japan, what kind of things are different? Are there any interesting customs?",
+        "nextId": "kenta_approaches",
+        "tags": ["vocab:112", "grammar:59"]
+      },
+      "choices": []
+    },
+    "mei_detailed_reaction": {
+      "line": {
+        "id": "mei_detailed_reaction",
+        "characterId": "4",
+        "speakerName": "メイ",
+        "sprite": "impressed",
+        "position": "left",
+        "textJp": "わあ、そうなんだ！詳しいね！日本語もすごく上手。そのまちのしゃしんとか、今度見せてもらえない？私、地理とか外国の文化にすごく興味があるんだ。",
+        "furiganaJp": "わあ、そうなんだ！くわしいね！にほんごもすごくじょうず。そのまちのしゃしんとか、こんどみせてもらえない？わたし、ちりとかがいこくのぶんかにすごくきょうみがあるんだ。",
+        "romajiJp": "Wā, sō nan da! Kuwashii ne! Nihongo mo sugoku jōzu. Sono machi no shashin to ka, kondo misete moraenai? Watashi, chiri to ka gaikoku no bunka ni sugoku kyōmi ga aru n da.",
+        "textEn": "Wow, is that right! You know a lot! Your Japanese is also very good. Could you show me pictures of that town sometime? I'm really interested in geography and foreign cultures.",
+        "nextId": "kenta_approaches",
+        "tags": ["vocab:113", "vocab:114", "grammar:60"]
+      },
+      "choices": []
+    },
+    "kenta_approaches": {
+      "line": {
+        "id": "kenta_approaches",
+        "textJp": "会話に花を咲かせていると、遠くから元気な声が聞こえてきました。",
+        "furiganaJp": "かいわにはなをさかせていると、とおくからげんきなこえがきこえてきました。",
+        "romajiJp": "Kaiwa ni hana o sakasete iru to, tōku kara genki na koe ga kikoete kimashita.",
+        "textEn": "As your conversation was in full swing, a cheerful voice could be heard from a distance.",
+        "nextId": "kenta_arrival",
+        "tags": []
+      },
+      "choices": []
+    },
+    "kenta_arrival": {
+      "line": {
+        "id": "kenta_arrival",
+        "characterId": "5",
+        "speakerName": "ケンタ",
+        "sprite": "smiling",
+        "position": "center",
+        "textJp": "よう！新入り！楽しんでるか？俺はケンタ！サッカー部のキャプテンだ！放課後、俺たちの部活、見学に来ないか？",
+        "furiganaJp": "よう！しんいり！たのしんでるか？おれはケンタ！サッカーぶのキャプテンだ！ほうかご、おれたちのぶかつ、けんがくにこないか？",
+        "romajiJp": "Yo! Shin'iri! Tanoshinderu ka? Ore wa Kenta! Sakkā-bu no kyaputen da! Hōkago, oretachi no bukatsu, kengaku ni konai ka?",
+        "textEn": "Hey! Newbie! Are you having fun? I'm Kenta! Captain of the soccer club! Want to come check out our club activities after school?",
+        "nextId": "club_choice",
+        "tags": ["vocab:115", "vocab:116", "vocab:117", "grammar:61"]
+      },
+      "choices": []
+    },
+    "club_choice": {
+      "line": {
+        "id": "club_choice",
+        "textJp": "サッカー部の見学に行ってみますか？",
+        "textEn": "Will you visit the soccer club?",
+        "isChoice": true
+      },
+      "choices": [
+        {
+          "id": "choice_accept_club",
+          "textJp": "はい、ぜひ見学したいです！",
+          "furiganaJp": "はい、ぜひけんがくしたいです！",
+          "textEn": "Yes, I'd love to visit!",
+          "meaning": "Accept the invitation to visit the soccer club",
+          "nextId": "kenta_excited",
+          "requiredLevel": 1,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "5": 6
+          },
+          "tags": ["vocab:118", "grammar:62"]
+        },
+        {
+          "id": "choice_decline_club",
+          "textJp": "今日はちょっと難しいかもしれません...また別の機会にお願いできますか？",
+          "furiganaJp": "きょうはちょっとむずかしいかもしれません...またべつのきかいにおねがいできますか？",
+          "textEn": "Today might be a bit difficult... Could I ask about it another time?",
+          "meaning": "Politely decline the invitation",
+          "nextId": "kenta_disappointed",
+          "requiredLevel": 2,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "5": 2
+          },
+          "tags": ["vocab:119", "grammar:63"]
+        },
+        {
+          "id": "choice_ask_clubs",
+          "textJp": "サッカー部の他に、どんな部活がありますか？",
+          "furiganaJp": "サッカーぶのほかに、どんなぶかつがありますか？",
+          "textEn": "Other than the soccer club, what kind of clubs are there?",
+          "meaning": "Ask about other available clubs",
+          "nextId": "yuki_clubs_explanation",
+          "requiredLevel": 2,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "1": 4,
+            "5": 3
+          },
+          "tags": ["vocab:120", "grammar:64"]
+        }
+      ]
+    },
+    "kenta_excited": {
+      "line": {
+        "id": "kenta_excited",
+        "characterId": "5",
+        "speakerName": "ケンタ",
+        "sprite": "smiling",
+        "position": "center",
+        "textJp": "よっしゃあ！待ってるぜ！放課後、体育館の前な！そういえば、お前サッカーやったことあるのか？",
+        "furiganaJp": "よっしゃあ！まってるぜ！ほうかご、たいいくかんのまえな！そういえば、おまえサッカーやったことあるのか？",
+        "romajiJp": "Yosshaa! Matteru ze! Hōkago, taiikukan no mae na! Sō ieba, omae sakkā yatta koto aru no ka?",
+        "textEn": "Alright! I'll be waiting! In front of the gym after school! Speaking of which, have you ever played soccer?",
+        "nextId": "lunch_end_bell",
+        "tags": ["vocab:121", "vocab:122", "grammar:65"]
+      },
+      "choices": []
+    },
+    "kenta_disappointed": {
+      "line": {
+        "id": "kenta_disappointed",
+        "characterId": "5",
+        "speakerName": "ケンタ",
+        "sprite": "disappointed",
+        "position": "center",
+        "textJp": "そっか、残念！でも、いつでも見学は大歓迎だからな！気が向いたら、本当にいつでも来てくれよ！",
+        "furiganaJp": "そっか、ざんねん！でも、いつでもけんがくはだいかんげいだからな！きがむいたら、ほんとうにいつでもきてくれよ！",
+        "romajiJp": "Sokka, zannen! Demo, itsudemo kengaku wa dai kangei dakara na! Ki ga muitara, hontō ni itsudemo kite kure yo!",
+        "textEn": "I see, too bad! But you're always welcome to visit anytime! If you feel like it, please really do come whenever!",
+        "nextId": "lunch_end_bell",
+        "tags": ["vocab:123", "vocab:124", "grammar:66"]
+      },
+      "choices": []
+    },
+    "yuki_clubs_explanation": {
+      "line": {
+        "id": "yuki_clubs_explanation",
+        "characterId": "1",
+        "speakerName": "ユキ",
+        "sprite": "friendly",
+        "position": "right",
+        "textJp": "えっとね、運動部はケンタくんのサッカー部の他に、野球部、バスケ部、テニス部、水泳部とかかな。文化部は美術部、写真部、茶道部、書道部、あと漫画研究部とかもあるよ！結構色々な種類があるんだ。",
+        "furiganaJp": "えっとね、うんどうぶはケンタくんのサッカーぶのほかに、やきゅうぶ、バスケぶ、テニスぶ、すいえいぶとかかな。ぶんかぶはびじゅつぶ、しゃしんぶ、さどうぶ、しょどうぶ、あとまんがけんきゅうぶとかもあるよ！けっこういろいろなしゅるいがあるんだ。",
+        "romajiJp": "Etto ne, undō-bu wa Kenta-kun no sakkā-bu no hoka ni, yakyū-bu, basuke-bu, tenisu-bu, suiei-bu to ka kana. Bunka-bu wa bijutsu-bu, shashin-bu, sadō-bu, shodō-bu, ato manga kenkyū-bu to ka mo aru yo! Kekkō iroiro na shurui ga aru n da.",
+        "textEn": "Hmm, well, for sports clubs, besides Kenta's soccer club, there's baseball club, basketball club, tennis club, swimming club, and so on. For cultural clubs, there's art club, photography club, tea ceremony club, calligraphy club, and also manga research club and such! There are quite a few different types.",
+        "nextId": "mei_club_comment",
+        "tags": ["vocab:125", "vocab:126", "vocab:127", "vocab:128", "culture:10"]
+      },
+      "choices": []
+    },
+    "mei_club_comment": {
+      "line": {
+        "id": "mei_club_comment",
+        "characterId": "4",
+        "speakerName": "メイ",
+        "sprite": "happy",
+        "position": "left",
+        "textJp": "そうそう！私は茶道部に入ってるんだ。もし日本の伝統文化に興味があるなら、今度一緒に見学に行ってみない？お茶の点て方を体験できるよ。",
+        "furiganaJp": "そうそう！わたしはさどうぶにはいってるんだ。もしにほんのでんとうぶんかにきょうみがあるなら、こんどいっしょにけんがくにいってみない？おちゃのたてかたをたいけんできるよ。",
+        "romajiJp": "Sō sō! Watashi wa sadō-bu ni haitteru n da. Moshi Nihon no dentō bunka ni kyōmi ga aru nara, kondo issho ni kengaku ni itte minai? Ocha no tatekata o taiken dekiru yo.",
+        "textEn": "Oh, right! I'm in the tea ceremony club. If you're interested in traditional Japanese culture, would you like to go visit it with me sometime? You can experience how to prepare tea.",
+        "nextId": "lunch_end_bell",
+        "tags": ["vocab:129", "vocab:130", "grammar:67"]
+      },
+      "choices": []
+    },
+    "lunch_end_bell": {
+      "line": {
+        "id": "lunch_end_bell",
+        "textJp": "チャイムが鳴り、楽しいお昼休みが終わりの時間を告げます。",
+        "furiganaJp": "チャイムがなり、たのしいおひるやすみがおわりのじかんをつげます。",
+        "romajiJp": "Chaimu ga nari, tanoshii ohiru yasumi ga owari no jikan o tsugemasu.",
+        "textEn": "The bell rings, signaling the end of the enjoyable lunch break.",
+        "nextId": "return_to_class",
+        "tags": ["vocab:131"]
+      },
+      "choices": []
+    },
+    "return_to_class": {
+      "line": {
+        "id": "return_to_class",
+        "characterId": "1",
+        "speakerName": "ユキ",
+        "sprite": "friendly",
+        "position": "right",
+        "textJp": "さて、お昼休みも終わりだね。次の授業は英語だよ。また午後も一緒に頑張ろう！",
+        "furiganaJp": "さて、おひるやすみもおわりだね。つぎのじゅぎょうはえいごだよ。またごごもいっしょにがんばろう！",
+        "romajiJp": "Sate, ohiru yasumi mo owari da ne. Tsugi no jugyō wa eigo da yo. Mata gogo mo issho ni ganbarou!",
+        "textEn": "Alright, lunch break is over. The next class is English. Let's do our best together again this afternoon!",
+        "nextId": "scene_end",
+        "tags": ["vocab:132", "grammar:68"]
+      },
+      "choices": []
+    },
+    "scene_end": {
+      "line": {
+        "id": "scene_end",
+        "textJp": "シーン４：終了",
+        "textEn": "Scene 4: Complete"
+      },
+      "choices": []
+    }
+  },
+  "startNodeId": "start",
+  "tags": ["chapter_1", "lunch", "meeting_classmates"]
+}

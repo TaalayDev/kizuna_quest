@@ -81,7 +81,7 @@ For different build targets:
 The project follows a clean architecture approach:
 
 ```
-kizuna_quest/
+tsuzuki_connect/
 ├── lib/
 │   ├── core/               # Core functionality
 │   │   ├── database/       # Local database with Drift

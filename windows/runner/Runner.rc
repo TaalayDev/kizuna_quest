@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "io.github.taalaydev" "\0"
-            VALUE "FileDescription", "kizuna_quest" "\0"
+            VALUE "FileDescription", "tsuzuki_connect" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "kizuna_quest" "\0"
+            VALUE "InternalName", "tsuzuki_connect" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2025 io.github.taalaydev. All rights reserved." "\0"
-            VALUE "OriginalFilename", "kizuna_quest.exe" "\0"
-            VALUE "ProductName", "kizuna_quest" "\0"
+            VALUE "OriginalFilename", "tsuzuki_connect.exe" "\0"
+            VALUE "ProductName", "tsuzuki_connect" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

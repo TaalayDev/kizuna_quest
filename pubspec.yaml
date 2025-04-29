@@ -3,7 +3,7 @@ description: "A visual novel language learning adventure."
 publish_to: 'none' # Prevents accidental publishing to pub.dev
 
 # Version follows semantic versioning (major.minor.patch+build)
-version: 1.0.0+1
+version: 1.0.1+2
 
 environment:
   sdk: '>=3.3.0 <4.0.0'

@@ -398,15 +398,13 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   }
 
   Widget _buildSettingsPanel() {
-    return Positioned.fill(
-      child: SafeArea(
-        child: SettingsPanel(
-          onShowAbout: _showAboutDialog,
-          onReplayTutorial: _replayTutorial,
-          onClose: () {
-            _scaffoldKey.currentState?.closeEndDrawer();
-          },
-        ),
+    return SafeArea(
+      child: SettingsPanel(
+        onShowAbout: _showAboutDialog,
+        onReplayTutorial: _replayTutorial,
+        onClose: () {
+          _scaffoldKey.currentState?.closeEndDrawer();
+        },
       ),
     );
   }
