@@ -92,7 +92,7 @@ final isGameMenuOpenProvider = StateProvider<bool>((ref) => false);
 final characterSpritesProvider = StateProvider<Map<String, String>>((ref) => {});
 
 /// Provider to add dialogue to history
-final Function(DialogueLine) addToHistoryProvider = (DialogueLine line) => (ref) {
+final addToHistoryProvider = (DialogueLine line) => (ref) {
       final history = ref.read(dialogueHistoryProvider);
 
       // Add line to history, maintaining max size of 20

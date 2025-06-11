@@ -40,10 +40,9 @@ class ScreenshotHelper {
       }
 
       // Create file path
-      final timestamp = DateTime.now().millisecondsSinceEpoch;
       final filePath = path.join(
         screenshotsDir.path,
-        '${fileName}_$timestamp.jpg',
+        '$fileName.jpg',
       );
 
       // Write to file
@@ -102,11 +101,9 @@ class ScreenshotHelper {
         await thumbnailsDir.create(recursive: true);
       }
 
-      // Create file path
-      final timestamp = DateTime.now().millisecondsSinceEpoch;
       final thumbnailPath = path.join(
         thumbnailsDir.path,
-        '${thumbnailName}_$timestamp.jpg',
+        '$thumbnailName.jpg',
       );
 
       // Write to file

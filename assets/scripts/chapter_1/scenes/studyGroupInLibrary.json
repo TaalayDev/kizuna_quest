@@ -1,0 +1,776 @@
+{
+  "id": "studyGroupInLibrary",
+  "title": "Study Group Session in the Library",
+  "defaultBackground": "assets/images/backgrounds/library.webp",
+  "nodes": {
+    "library_entrance": {
+      "line": {
+        "id": "library_entrance",
+        "textJp": "放課後、三人で学校の図書館に向かいました。静かで勉強に集中できそうな環境です。",
+        "furiganaJp": "ほうかご、さんにんでがっこうのとしょかんにむかいました。しずかでべんきょうにしゅうちゅうできそうなかんきょうです。",
+        "romajiJp": "Hōkago, san-nin de gakkō no toshokan ni mukaimashita. Shizuka de benkyō ni shūchū dekisō na kankyō desu.",
+        "textEn": "After school, the three of you headed to the school library. It's a quiet environment where you can concentrate on studying.",
+        "background": "assets/images/backgrounds/library.webp",
+        "nextId": "find_table",
+        "tags": ["vocab:159", "vocab:160", "grammar:96"]
+      },
+      "choices": []
+    },
+    "find_table": {
+      "line": {
+        "id": "find_table",
+        "characterId": "1",
+        "speakerName": "ユキ",
+        "sprite": "avatar",
+        "position": "left",
+        "textJp": "あそこの角のテーブルはどうですか？窓の近くで明るいし、静かそうです。",
+        "furiganaJp": "あそこのかどのテーブルはどうですか？まどのちかくであかるいし、しずかそうです。",
+        "romajiJp": "Asoko no kado no tēburu wa dō desu ka? Mado no chikaku de akarui shi, shizuka-sō desu.",
+        "textEn": "How about that table in the corner? It's near the window so it's bright, and it looks quiet.",
+        "nextId": "kenta_agrees",
+        "tags": ["vocab:161", "vocab:162", "grammar:97"]
+      },
+      "choices": []
+    },
+    "kenta_agrees": {
+      "line": {
+        "id": "kenta_agrees",
+        "characterId": "5",
+        "speakerName": "ケンタ",
+        "sprite": "confident",
+        "position": "right",
+        "textJp": "いいね！そこにしよう。教科書とノートを出して、宿題を始めようか。",
+        "furiganaJp": "いいね！そこにしよう。きょうかしょとノートをだして、しゅくだいをはじめようか。",
+        "romajiJp": "Ii ne! Soko ni shiyō. Kyōkasho to nōto o dashite, shukudai o hajimeyō ka.",
+        "textEn": "Good! Let's sit there. Let's take out our textbooks and notebooks and start the homework.",
+        "nextId": "homework_start",
+        "tags": ["vocab:163", "grammar:98"]
+      },
+      "choices": []
+    },
+    "homework_start": {
+      "line": {
+        "id": "homework_start",
+        "textJp": "三人はテーブルに座って、宿題の15ページを開きます。「〜ています」の練習問題がたくさんあります。",
+        "furiganaJp": "さんにんはテーブルにすわって、しゅくだいのじゅうごページをひらきます。「〜ています」のれんしゅうもんだいがたくさんあります。",
+        "romajiJp": "San-nin wa tēburu ni suwatte, shukudai no jūgo pēji o hirakimasu. '~Te imasu' no renshū mondai ga takusan arimasu.",
+        "textEn": "The three of you sit at the table and open to page 15 of the homework. There are many practice problems for '~te imasu'.",
+        "nextId": "first_problem",
+        "tags": ["vocab:164", "grammar:99"]
+      },
+      "choices": []
+    },
+    "first_problem": {
+      "line": {
+        "id": "first_problem",
+        "characterId": "1",
+        "speakerName": "ユキ",
+        "sprite": "explaining",
+        "position": "left",
+        "textJp": "最初の問題を見てみましょう。「彼は毎日新聞を＿＿＿。」答えは何でしょうか？",
+        "furiganaJp": "さいしょのもんだいをみてみましょう。「かれはまいにちしんぶんを＿＿＿。」こたえはなんでしょうか？",
+        "romajiJp": "Saisho no mondai o mite mimasho. 'Kare wa mainichi shinbun o ___.' Kotae wa nan deshō ka?",
+        "textEn": "Let's look at the first problem. 'He ___ the newspaper every day.' What's the answer?",
+        "nextId": "problem_choice",
+        "tags": ["vocab:165", "vocab:166"]
+      },
+      "choices": []
+    },
+    "problem_choice": {
+      "line": {
+        "id": "problem_choice",
+        "textJp": "この問題の答えは何だと思いますか？",
+        "textEn": "What do you think the answer to this problem is?",
+        "isChoice": true
+      },
+      "choices": [
+        {
+          "id": "choice_reading",
+          "textJp": "読んでいます",
+          "furiganaJp": "よんでいます",
+          "textEn": "yonde imasu (is reading)",
+          "meaning": "Choose the habit/regular action form of 'to read'",
+          "nextId": "correct_answer",
+          "requiredLevel": 2,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "1": 3,
+            "5": 3
+          },
+          "tags": ["grammar:100"]
+        },
+        {
+          "id": "choice_read",
+          "textJp": "読みます",
+          "furiganaJp": "よみます",
+          "textEn": "yomimasu (reads)",
+          "meaning": "Choose the simple present form",
+          "nextId": "explain_difference",
+          "requiredLevel": 1,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "1": 2
+          },
+          "tags": []
+        },
+        {
+          "id": "choice_confused",
+          "textJp": "よくわかりません...",
+          "furiganaJp": "よくわかりません...",
+          "textEn": "I don't really understand...",
+          "meaning": "Admit you're confused and ask for help",
+          "nextId": "friends_help",
+          "requiredLevel": 1,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "1": 4,
+            "5": 4
+          },
+          "tags": ["vocab:167"]
+        }
+      ]
+    },
+    "correct_answer": {
+      "line": {
+        "id": "correct_answer",
+        "characterId": "5",
+        "speakerName": "ケンタ",
+        "sprite": "encouraging",
+        "position": "right",
+        "textJp": "正解だ！「毎日」があるから習慣を表す「〜ています」だね。君は理解が早いな！",
+        "furiganaJp": "せいかいだ！「まいにち」があるからしゅうかんをあらわす「〜ています」だね。きみはりかいがはやいな！",
+        "romajiJp": "Seikai da! 'Mainichi' ga aru kara shūkan o arawasu '~te imasu' da ne. Kimi wa rikai ga hayai na!",
+        "textEn": "Correct! Because there's 'every day', it's the habitual '~te imasu'. You understand quickly!",
+        "nextId": "next_problem",
+        "tags": ["vocab:168", "grammar:101"]
+      },
+      "choices": []
+    },
+    "explain_difference": {
+      "line": {
+        "id": "explain_difference",
+        "characterId": "1",
+        "speakerName": "ユキ",
+        "sprite": "explaining",
+        "position": "left",
+        "textJp": "惜しいですね。「読みます」も正しいですが、「毎日」がある時は「〜ています」を使うとより自然です。",
+        "furiganaJp": "おしいですね。「よみます」もただしいですが、「まいにち」があるときは「〜ています」をつかうとよりしぜんです。",
+        "romajiJp": "Oshii desu ne. 'Yomimasu' mo tadashii desu ga, 'mainichi' ga aru toki wa '~te imasu' o tsukau to yori shizen desu.",
+        "textEn": "That's close. 'Yomimasu' is also correct, but when there's 'every day', using '~te imasu' is more natural.",
+        "nextId": "next_problem",
+        "tags": ["vocab:169", "grammar:102"]
+      },
+      "choices": []
+    },
+    "friends_help": {
+      "line": {
+        "id": "friends_help",
+        "characterId": "1",
+        "speakerName": "ユキ",
+        "sprite": "avatar",
+        "position": "left",
+        "textJp": "大丈夫ですよ。一緒に考えましょう。「毎日」は習慣を表すので、「〜ています」を使います。",
+        "furiganaJp": "だいじょうぶですよ。いっしょにかんがえましょう。「まいにち」はしゅうかんをあらわすので、「〜ています」をつかいます。",
+        "romajiJp": "Daijōbu desu yo. Issho ni kangaemashō. 'Mainichi' wa shūkan o arawasu no de, '~te imasu' o tsukaimasu.",
+        "textEn": "It's okay. Let's think together. 'Every day' expresses habit, so we use '~te imasu'.",
+        "nextId": "understanding_moment",
+        "tags": ["vocab:170", "grammar:103"]
+      },
+      "choices": []
+    },
+    "understanding_moment": {
+      "line": {
+        "id": "understanding_moment",
+        "characterId": "5",
+        "speakerName": "ケンタ",
+        "sprite": "encouraging",
+        "position": "right",
+        "textJp": "そうそう！時間を表す言葉に注意すると、どの意味かわかりやすいよ。「今」なら進行、「毎日」なら習慣だね。",
+        "furiganaJp": "そうそう！じかんをあらわすことばにちゅういすると、どのいみかわかりやすいよ。「いま」ならしんこう、「まいにち」ならしゅうかんだね。",
+        "romajiJp": "Sō sō! Jikan o arawasu kotoba ni chūi suru to, dono imi ka wakari yasui yo. 'Ima' nara shinkō, 'mainichi' nara shūkan da ne.",
+        "textEn": "That's right! If you pay attention to time expressions, it's easier to understand which meaning it is. 'Now' is progressive, 'every day' is habitual.",
+        "nextId": "next_problem",
+        "tags": ["vocab:171", "grammar:104"]
+      },
+      "choices": []
+    },
+    "next_problem": {
+      "line": {
+        "id": "next_problem",
+        "textJp": "次の問題に進みます。順調に宿題を進めていると、他の学生が近づいてきます。",
+        "furiganaJp": "つぎのもんだいにすすみます。じゅんちょうにしゅくだいをすすめていると、ほかのがくせいがちかづいてきます。",
+        "romajiJp": "Tsugi no mondai ni susumimasu. Junchō ni shukudai o susumete iru to, hoka no gakusei ga chikazuite kimasu.",
+        "textEn": "You move on to the next problem. As you're making good progress on homework, another student approaches.",
+        "nextId": "meet_mei",
+        "tags": ["vocab:172", "grammar:105"]
+      },
+      "choices": []
+    },
+    "meet_mei": {
+      "line": {
+        "id": "meet_mei",
+        "characterId": "4",
+        "speakerName": "メイ",
+        "sprite": "avatar",
+        "position": "center",
+        "textJp": "すみません、日本語の勉強をしていますか？私はメイといいます。台湾から来ました。",
+        "furiganaJp": "すみません、にほんごのべんきょうをしていますか？わたしはメイといいます。たいわんからきました。",
+        "romajiJp": "Sumimasen, Nihongo no benkyō o shite imasu ka? Watashi wa Mei to iimasu. Taiwan kara kimashita.",
+        "textEn": "Excuse me, are you studying Japanese? My name is Mei. I came from Taiwan.",
+        "nextId": "mei_request",
+        "tags": ["vocab:173", "vocab:174"]
+      },
+      "choices": []
+    },
+    "mei_request": {
+      "line": {
+        "id": "mei_request",
+        "characterId": "4",
+        "speakerName": "メイ",
+        "sprite": "talking",
+        "position": "center",
+        "textJp": "もしよろしければ、一緒に勉強させていただけませんか？漢字は得意ですが、会話が苦手で...",
+        "furiganaJp": "もしよろしければ、いっしょにべんきょうさせていただけませんか？かんじはとくいですが、かいわがにがてで...",
+        "romajiJp": "Moshi yoroshikereba, issho ni benkyō sasete itadakemasen ka? Kanji wa tokui desu ga, kaiwa ga nigate de...",
+        "textEn": "If it's alright, could you please let me study with you? I'm good at kanji, but I'm not good at conversation...",
+        "nextId": "group_response",
+        "tags": ["vocab:175", "vocab:176", "grammar:106", "culture:17"]
+      },
+      "choices": []
+    },
+    "group_response": {
+      "line": {
+        "id": "group_response",
+        "textJp": "メイさんの申し出にどう答えますか？",
+        "textEn": "How will you respond to Mei-san's request?",
+        "isChoice": true
+      },
+      "choices": [
+        {
+          "id": "choice_welcome",
+          "textJp": "もちろんです！一緒に勉強しましょう。",
+          "furiganaJp": "もちろんです！いっしょにべんきょうしましょう。",
+          "textEn": "Of course! Let's study together.",
+          "meaning": "Warmly welcome her to join the study group",
+          "nextId": "warm_welcome",
+          "requiredLevel": 1,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "4": 5,
+            "1": 3,
+            "5": 3
+          },
+          "tags": []
+        },
+        {
+          "id": "choice_helpful",
+          "textJp": "私たちも色々教えてもらえると嬉しいです。",
+          "furiganaJp": "わたしたちもいろいろおしえてもらえるとうれしいです。",
+          "textEn": "We'd be happy if you could teach us various things too.",
+          "meaning": "Show mutual benefit and that you can learn from each other",
+          "nextId": "mutual_help",
+          "requiredLevel": 2,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "4": 6,
+            "1": 4,
+            "5": 4
+          },
+          "tags": ["grammar:107"]
+        },
+        {
+          "id": "choice_ask_others",
+          "textJp": "ユキさんとケンタさんはどう思いますか？",
+          "furiganaJp": "ユキさんとケンタさんはどうおもいますか？",
+          "textEn": "What do Yuki-san and Kenta-san think?",
+          "meaning": "Considerately ask the others' opinions first",
+          "nextId": "check_with_others",
+          "requiredLevel": 1,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "4": 3,
+            "1": 5,
+            "5": 5
+          },
+          "tags": ["culture:18"]
+        }
+      ]
+    },
+    "warm_welcome": {
+      "line": {
+        "id": "warm_welcome",
+        "characterId": "4",
+        "speakerName": "メイ",
+        "sprite": "impressed",
+        "position": "center",
+        "textJp": "ありがとうございます！とても嬉しいです。よろしくお願いします。",
+        "furiganaJp": "ありがとうございます！とてもうれしいです。よろしくおねがいします。",
+        "romajiJp": "Arigatō gozaimasu! Totemo ureshii desu. Yoroshiku onegai shimasu.",
+        "textEn": "Thank you so much! I'm very happy. Please treat me well.",
+        "nextId": "group_formation",
+        "tags": ["vocab:177"]
+      },
+      "choices": []
+    },
+    "mutual_help": {
+      "line": {
+        "id": "mutual_help",
+        "characterId": "4",
+        "speakerName": "メイ",
+        "sprite": "impressed",
+        "position": "center",
+        "textJp": "本当ですか？私は漢字の読み方や意味を説明できます。お互いに助け合いましょう。",
+        "furiganaJp": "ほんとうですか？わたしはかんじのよみかたやいみをせつめいできます。おたがいにたすけあいましょう。",
+        "romajiJp": "Hontō desu ka? Watashi wa kanji no yomi-kata ya imi o setsumei dekimasu. Otagai ni tasuke aimasho.",
+        "textEn": "Really? I can explain kanji readings and meanings. Let's help each other.",
+        "nextId": "group_formation",
+        "tags": ["vocab:178", "vocab:179", "grammar:108"]
+      },
+      "choices": []
+    },
+    "check_with_others": {
+      "line": {
+        "id": "check_with_others",
+        "characterId": "1",
+        "speakerName": "ユキ",
+        "sprite": "laugh",
+        "position": "left",
+        "textJp": "私は大歓迎です！人数が多い方が楽しいですし、色々な視点から学べますね。",
+        "furiganaJp": "わたしはだいかんげいです！にんずうがおおいほうがたのしいですし、いろいろなしてんからまなべますね。",
+        "romajiJp": "Watashi wa dai-kangei desu! Ninzū ga ōi hō ga tanoshii desu shi, iroiro na shiten kara manabemasu ne.",
+        "textEn": "I'm very welcoming! Having more people is more fun, and we can learn from various perspectives.",
+        "nextId": "kenta_agrees_too",
+        "tags": ["vocab:180", "vocab:181", "grammar:109"]
+      },
+      "choices": []
+    },
+    "kenta_agrees_too": {
+      "line": {
+        "id": "kenta_agrees_too",
+        "characterId": "5",
+        "speakerName": "ケンタ",
+        "sprite": "encouraging",
+        "position": "right",
+        "textJp": "僕も同感だ！メイさん、ぜひ一緒にやろう。台湾の話も聞かせてよ！",
+        "furiganaJp": "ぼくもどうかんだ！メイさん、ぜひいっしょにやろう。たいわんのはなしもきかせてよ！",
+        "romajiJp": "Boku mo dōkan da! Mei-san, zehi issho ni yarō. Taiwan no hanashi mo kikasete yo!",
+        "textEn": "I feel the same way! Mei-san, let's definitely do this together. Tell us about Taiwan too!",
+        "nextId": "group_formation",
+        "tags": ["vocab:182", "grammar:110"]
+      },
+      "choices": []
+    },
+    "group_formation": {
+      "line": {
+        "id": "group_formation",
+        "textJp": "四人の勉強グループができました。メイさんも座って、一緒に宿題を続けます。",
+        "furiganaJp": "よにんのべんきょうグループができました。メイさんもすわって、いっしょにしゅくだいをつづけます。",
+        "romajiJp": "Yo-nin no benkyō gurūpu ga dekimashita. Mei-san mo suwatte, issho ni shukudai o tsuzukemasu.",
+        "textEn": "A four-person study group has formed. Mei-san also sits down and continues homework together.",
+        "nextId": "kanji_help",
+        "tags": ["vocab:183", "grammar:111"]
+      },
+      "choices": []
+    },
+    "kanji_help": {
+      "line": {
+        "id": "kanji_help",
+        "characterId": "4",
+        "speakerName": "メイ",
+        "sprite": "talking",
+        "position": "center",
+        "textJp": "あ、この漢字「読」は中国語では「dú」と読みます。意味は同じで「読む」ですね。",
+        "furiganaJp": "あ、このかんじ「よ」はちゅうごくごでは「dú」とよみます。いみはおなじで「よむ」ですね。",
+        "romajiJp": "A, kono kanji 'yo' wa Chūgoku-go de wa 'dú' to yomimasu. Imi wa onaji de 'yomu' desu ne.",
+        "textEn": "Ah, this kanji '読' is read as 'dú' in Chinese. The meaning is the same - 'to read'.",
+        "nextId": "kanji_learning",
+        "tags": ["vocab:184", "vocab:185", "culture:19"]
+      },
+      "choices": []
+    },
+    "kanji_learning": {
+      "line": {
+        "id": "kanji_learning",
+        "characterId": "1",
+        "speakerName": "ユキ",
+        "sprite": "impressed",
+        "position": "left",
+        "textJp": "へえ、面白いですね！中国語と日本語で漢字の読み方が違うんですね。勉強になります。",
+        "furiganaJp": "へえ、おもしろいですね！ちゅうごくごとにほんごでかんじのよみかたがちがうんですね。べんきょうになります。",
+        "romajiJp": "Hē, omoshiroi desu ne! Chūgoku-go to Nihongo de kanji no yomi-kata ga chigau n desu ne. Benkyō ni narimasu.",
+        "textEn": "Wow, that's interesting! The way kanji is read differs between Chinese and Japanese. That's educational.",
+        "nextId": "difficult_problem",
+        "tags": ["vocab:186", "grammar:112"]
+      },
+      "choices": []
+    },
+    "difficult_problem": {
+      "line": {
+        "id": "difficult_problem",
+        "textJp": "宿題を進めていると、難しい問題に出会います。みんなで頭を悩ませています。",
+        "furiganaJp": "しゅくだいをすすめていると、むずかしいもんだいにであいます。みんなであたまをなやませています。",
+        "romajiJp": "Shukudai o susumete iru to, muzukashii mondai ni demaimasu. Minna de atama o nayamasete imasu.",
+        "textEn": "As you progress through the homework, you encounter a difficult problem. Everyone is puzzling over it.",
+        "nextId": "problem_discussion",
+        "tags": ["vocab:187", "grammar:113"]
+      },
+      "choices": []
+    },
+    "problem_discussion": {
+      "line": {
+        "id": "problem_discussion",
+        "characterId": "5",
+        "speakerName": "ケンタ",
+        "sprite": "confident",
+        "position": "right",
+        "textJp": "この問題、ちょっと難しくない？「彼女は疲れて＿＿＿。」の答えがわからないよ。",
+        "furiganaJp": "このもんだい、ちょっとむずかしくない？「かのじょはつかれて＿＿＿。」のこたえがわからないよ。",
+        "romajiJp": "Kono mondai, chotto muzukashiku nai? 'Kanojo wa tsukarete ___.' no kotae ga wakaranai yo.",
+        "textEn": "Isn't this problem a bit difficult? I don't know the answer to 'She is tired and ___.'",
+        "nextId": "problem_solving",
+        "tags": ["vocab:188", "grammar:114"]
+      },
+      "choices": []
+    },
+    "problem_solving": {
+      "line": {
+        "id": "problem_solving",
+        "textJp": "この難しい問題をどう解決しますか？",
+        "textEn": "How will you solve this difficult problem?",
+        "isChoice": true
+      },
+      "choices": [
+        {
+          "id": "choice_think_together",
+          "textJp": "みんなで一緒に考えてみましょう。",
+          "furiganaJp": "みんなでいっしょにかんがえてみましょう。",
+          "textEn": "Let's all think about it together.",
+          "meaning": "Suggest collaborative problem-solving",
+          "nextId": "group_thinking",
+          "requiredLevel": 1,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "1": 3,
+            "4": 3,
+            "5": 3
+          },
+          "tags": ["grammar:115"]
+        },
+        {
+          "id": "choice_ask_teacher",
+          "textJp": "明日、田中先生に質問してみませんか？",
+          "furiganaJp": "あした、たなかせんせいにしつもんしてみませんか？",
+          "textEn": "How about asking Tanaka-sensei tomorrow?",
+          "meaning": "Suggest asking the teacher for help",
+          "nextId": "teacher_suggestion",
+          "requiredLevel": 2,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "2": 3
+          },
+          "tags": ["vocab:189", "grammar:116"]
+        },
+        {
+          "id": "choice_try_answer",
+          "textJp": "「います」だと思います。状態を表しているのでは？",
+          "furiganaJp": "「います」だとおもいます。じょうたいをあらわしているのでは？",
+          "textEn": "I think it's 'imasu'. Isn't it expressing a state?",
+          "meaning": "Try to give an answer based on your understanding",
+          "nextId": "attempt_explanation",
+          "requiredLevel": 3,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "1": 4,
+            "4": 4,
+            "5": 4
+          },
+          "tags": ["grammar:117"]
+        }
+      ]
+    },
+    "group_thinking": {
+      "line": {
+        "id": "group_thinking",
+        "characterId": "4",
+        "speakerName": "メイ",
+        "sprite": "talking",
+        "position": "center",
+        "textJp": "そうですね。「疲れて」の後に何が来るでしょうか？状態を表すなら「います」かもしれません。",
+        "furiganaJp": "そうですね。「つかれて」のあとになにがくるでしょうか？じょうたいをあらわすなら「います」かもしれません。",
+        "romajiJp": "Sō desu ne. 'Tsukarete' no ato ni nani ga kuru deshō ka? Jōtai o arawasu nara 'imasu' kamoshiremasen.",
+        "textEn": "That's right. What comes after 'tsukarete'? If it expresses a state, it might be 'imasu'.",
+        "nextId": "group_success",
+        "tags": ["vocab:190", "grammar:118"]
+      },
+      "choices": []
+    },
+    "teacher_suggestion": {
+      "line": {
+        "id": "teacher_suggestion",
+        "characterId": "1",
+        "speakerName": "ユキ",
+        "sprite": "explaining",
+        "position": "left",
+        "textJp": "それもいいアイデアですね。先生に聞くのが一番確実ですし、他の質問もできますね。",
+        "furiganaJp": "それもいいアイデアですね。せんせいにきくのがいちばんかくじつですし、ほかのしつもんもできますね。",
+        "romajiJp": "Sore mo ii aidea desu ne. Sensei ni kiku no ga ichiban kakujitsu desu shi, hoka no shitsumon mo dekimasu ne.",
+        "textEn": "That's also a good idea. Asking the teacher is the most reliable, and we can ask other questions too.",
+        "nextId": "continue_homework",
+        "tags": ["vocab:191", "grammar:119"]
+      },
+      "choices": []
+    },
+    "attempt_explanation": {
+      "line": {
+        "id": "attempt_explanation",
+        "characterId": "5",
+        "speakerName": "ケンタ",
+        "sprite": "explaining",
+        "position": "right",
+        "textJp": "おお、それはいい考えだ！「疲れています」は確かに状態を表すよね。君は文法をよく理解してるね。",
+        "furiganaJp": "おお、それはいいかんがえだ！「つかれています」はたしかにじょうたいをあらわすよね。きみはぶんぽうをよくりかいしてるね。",
+        "romajiJp": "Ō, sore wa ii kangae da! 'Tsukarete imasu' wa tashika ni jōtai o arawasu yo ne. Kimi wa bunpō o yoku rikai shiteru ne.",
+        "textEn": "Oh, that's a good idea! 'Tsukarete imasu' certainly expresses a state. You understand grammar well.",
+        "nextId": "group_success",
+        "tags": ["vocab:192", "grammar:120"]
+      },
+      "choices": []
+    },
+    "group_success": {
+      "line": {
+        "id": "group_success",
+        "textJp": "みんなで協力して、難しい問題も解決できました。チームワークの大切さを実感します。",
+        "furiganaJp": "みんなできょうりょくして、むずかしいもんだいもかいけつできました。チームワークのたいせつさをじっかんします。",
+        "romajiJp": "Minna de kyōryoku shite, muzukashii mondai mo kaiketsu dekimashita. Chīmuwāku no taisetsu-sa o jikkan shimasu.",
+        "textEn": "By cooperating together, you were able to solve even the difficult problems. You really feel the importance of teamwork.",
+        "nextId": "time_passes",
+        "tags": ["vocab:193", "vocab:194", "grammar:121"]
+      },
+      "choices": []
+    },
+    "continue_homework": {
+      "line": {
+        "id": "continue_homework",
+        "textJp": "宿題を続けて、他の問題も順調に解いていきます。みんなで勉強すると効率的です。",
+        "furiganaJp": "しゅくだいをつづけて、ほかのもんだいもじゅんちょうにといていきます。みんなでべんきょうするとこうりつてきです。",
+        "romajiJp": "Shukudai o tsuzukete, hoka no mondai mo junchō ni toite ikimasu. Minna de benkyō suru to kōritsu-teki desu.",
+        "textEn": "Continuing with homework, you solve other problems smoothly. Studying with everyone is efficient.",
+        "nextId": "time_passes",
+        "tags": ["vocab:195", "grammar:122"]
+      },
+      "choices": []
+    },
+    "time_passes": {
+      "line": {
+        "id": "time_passes",
+        "textJp": "時間が経って、宿題もほとんど終わりました。図書館も静かで、集中して勉強できました。",
+        "furiganaJp": "じかんがたって、しゅくだいもほとんどおわりました。としょかんもしずかで、しゅうちゅうしてべんきょうできました。",
+        "romajiJp": "Jikan ga tatte, shukudai mo hotondo owarimashita. Toshokan mo shizuka de, shūchū shite benkyō dekimashita.",
+        "textEn": "Time has passed, and homework is almost finished. The library was quiet too, so you could study with concentration.",
+        "nextId": "cultural_exchange",
+        "tags": ["vocab:196", "grammar:123"]
+      },
+      "choices": []
+    },
+    "cultural_exchange": {
+      "line": {
+        "id": "cultural_exchange",
+        "characterId": "4",
+        "speakerName": "メイ",
+        "sprite": "talking",
+        "position": "center",
+        "textJp": "勉強の休憩に、台湾のことを少し話してもいいですか？日本と似ているところもあるんですよ。",
+        "furiganaJp": "べんきょうのきゅうけいに、たいわんのことをすこしはなしてもいいですか？にほんとにているところもあるんですよ。",
+        "romajiJp": "Benkyō no kyūkei ni, Taiwan no koto o sukoshi hanashite mo ii desu ka? Nihon to nite iru tokoro mo aru n desu yo.",
+        "textEn": "For a study break, may I talk a little about Taiwan? There are places that are similar to Japan too.",
+        "nextId": "culture_interest",
+        "tags": ["vocab:197", "vocab:198", "culture:20"]
+      },
+      "choices": []
+    },
+    "culture_interest": {
+      "line": {
+        "id": "culture_interest",
+        "textJp": "メイさんの文化の話にどう反応しますか？",
+        "textEn": "How will you react to Mei-san's cultural story?",
+        "isChoice": true
+      },
+      "choices": [
+        {
+          "id": "choice_very_interested",
+          "textJp": "とても興味があります！ぜひ聞かせてください。",
+          "furiganaJp": "とてもきょうみがあります！ぜひきかせてください。",
+          "textEn": "I'm very interested! Please tell us.",
+          "meaning": "Show strong interest in learning about Taiwan",
+          "nextId": "cultural_sharing",
+          "requiredLevel": 1,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "4": 5
+          },
+          "tags": []
+        },
+        {
+          "id": "choice_ask_specific",
+          "textJp": "どんなところが似ていますか？",
+          "furiganaJp": "どんなところがにていますか？",
+          "textEn": "What parts are similar?",
+          "meaning": "Ask for specific details about similarities",
+          "nextId": "specific_comparisons",
+          "requiredLevel": 2,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "4": 4
+          },
+          "tags": ["vocab:199"]
+        },
+        {
+          "id": "choice_share_own",
+          "textJp": "私の国のことも話しましょうか？",
+          "furiganaJp": "わたしのくにのこともはなしましょうか？",
+          "textEn": "Should I talk about my country too?",
+          "meaning": "Offer to share about your own country as well",
+          "nextId": "mutual_sharing",
+          "requiredLevel": 2,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "4": 6,
+            "1": 4,
+            "5": 4
+          },
+          "tags": ["grammar:124"]
+        }
+      ]
+    },
+    "cultural_sharing": {
+      "line": {
+        "id": "cultural_sharing",
+        "characterId": "4",
+        "speakerName": "メイ",
+        "sprite": "avatar",
+        "position": "center",
+        "textJp": "ありがとうございます！台湾でも日本と同じように、お辞儀をしたり、礼儀を大切にしたりします。",
+        "furiganaJp": "ありがとうございます！たいわんでもにほんとおなじように、おじぎをしたり、れいぎをたいせつにしたりします。",
+        "romajiJp": "Arigatō gozaimasu! Taiwan de mo Nihon to onaji yō ni, ojigi o shitari, reigi o taisetsu ni shitari shimasu.",
+        "textEn": "Thank you! In Taiwan too, like Japan, we bow and value courtesy.",
+        "nextId": "learning_from_culture",
+        "tags": ["vocab:200", "culture:21"]
+      },
+      "choices": []
+    },
+    "specific_comparisons": {
+      "line": {
+        "id": "specific_comparisons",
+        "characterId": "4",
+        "speakerName": "メイ",
+        "sprite": "talking",
+        "position": "center",
+        "textJp": "例えば、食べ物では醤油や味噌を使います。それに、年上の人を敬う文化も共通していますね。",
+        "furiganaJp": "たとえば、たべものではしょうゆやみそをつかいます。それに、としうえのひとをうやまうぶんかもきょうつうしていますね。",
+        "romajiJp": "Tatoeba, tabemono de wa shōyu ya miso o tsukaimasu. Sore ni, toshiue no hito o uyamau bunka mo kyōtsū shite imasu ne.",
+        "textEn": "For example, in food, we use soy sauce and miso. Also, the culture of respecting older people is common.",
+        "nextId": "learning_from_culture",
+        "tags": ["vocab:201", "vocab:202", "culture:22"]
+      },
+      "choices": []
+    },
+    "mutual_sharing": {
+      "line": {
+        "id": "mutual_sharing",
+        "characterId": "1",
+        "speakerName": "ユキ",
+        "sprite": "explaining",
+        "position": "left",
+        "textJp": "それはいいアイデアですね！みんなの国の文化を知ることができて、勉強にもなります。",
+        "furiganaJp": "それはいいアイデアですね！みんなのくにのぶんかをしることができて、べんきょうにもなります。",
+        "romajiJp": "Sore wa ii aidea desu ne! Minna no kuni no bunka o shiru koto ga dekite, benkyō ni mo narimasu.",
+        "textEn": "That's a good idea! We can learn about everyone's country's culture, and it's educational too.",
+        "nextId": "learning_from_culture",
+        "tags": ["vocab:203", "grammar:125"]
+      },
+      "choices": []
+    },
+    "learning_from_culture": {
+      "line": {
+        "id": "learning_from_culture",
+        "characterId": "5",
+        "speakerName": "ケンタ",
+        "sprite": "avatar",
+        "position": "right",
+        "textJp": "文化を知ると、日本語も理解しやすくなるよね。言葉と文化は密接に関係しているから。",
+        "furiganaJp": "ぶんかをしると、にほんごもりかいしやすくなるよね。ことばとぶんかはみっせつにかんけいしているから。",
+        "romajiJp": "Bunka o shiru to, Nihongo mo rikai shi yasuku naru yo ne. Kotoba to bunka wa missetsu ni kankei shite iru kara.",
+        "textEn": "When you know culture, Japanese becomes easier to understand too. Because language and culture are closely related.",
+        "nextId": "study_session_end",
+        "tags": ["vocab:204", "vocab:205", "grammar:126"]
+      },
+      "choices": []
+    },
+    "study_session_end": {
+      "line": {
+        "id": "study_session_end",
+        "textJp": "勉強も文化交流も楽しく終わりました。図書館の閉館時間が近づいています。",
+        "furiganaJp": "べんきょうもぶんかこうりゅうもたのしくおわりました。としょかんのへいかんじかんがちかづいています。",
+        "romajiJp": "Benkyō mo bunka kōryū mo tanoshiku owarimashita. Toshokan no heikan jikan ga chikazuite imasu.",
+        "textEn": "Both studying and cultural exchange have ended enjoyably. The library's closing time is approaching.",
+        "nextId": "future_plans",
+        "tags": ["vocab:206", "vocab:207"]
+      },
+      "choices": []
+    },
+    "future_plans": {
+      "line": {
+        "id": "future_plans",
+        "characterId": "1",
+        "speakerName": "ユキ",
+        "sprite": "avatar",
+        "position": "left",
+        "textJp": "また明日も一緒に勉強しませんか？今日はとても有意義でした。",
+        "furiganaJp": "またあしたもいっしょにべんきょうしませんか？きょうはとてもゆういぎでした。",
+        "romajiJp": "Mata ashita mo issho ni benkyō shimasen ka? Kyō wa totemo yūigi deshita。",
+        "textEn": "Would you like to study together again tomorrow? Today was very meaningful.",
+        "nextId": "group_agreement",
+        "tags": ["vocab:208", "grammar:127"]
+      },
+      "choices": []
+    },
+    "group_agreement": {
+      "line": {
+        "id": "group_agreement",
+        "characterId": "4",
+        "speakerName": "メイ",
+        "sprite": "talking",
+        "position": "center",
+        "textJp": "はい！私もとても楽しかったです。みんなと勉強すると、日本語がもっと好きになります。",
+        "furiganaJp": "はい！わたしもとてもたのしかったです。みんなとべんきょうすると、にほんごがもっとすきになります。",
+        "romajiJp": "Hai! Watashi mo totemo tanoshikatta desu. Minna to benkyō suru to, Nihongo ga motto suki ni narimasu.",
+        "textEn": "Yes! I had a lot of fun too. When I study with everyone, I like Japanese even more.",
+        "nextId": "leaving_library",
+        "tags": ["vocab:209", "grammar:128"]
+      },
+      "choices": []
+    },
+    "leaving_library": {
+      "line": {
+        "id": "leaving_library",
+        "textJp": "四人は図書館を出て、それぞれの寮に帰ります。今日は勉強だけでなく、新しい友情も築けた一日でした。",
+        "furiganaJp": "よにんはとしょかんをでて、それぞれのりょうにかえります。きょうはべんきょうだけでなく、あたらしいゆうじょうもきずけたいちにちでした。",
+        "romajiJp": "Yo-nin wa toshokan o dete, sorezore no ryō ni kaerimasu. Kyō wa benkyō dake de naku, atarashii yūjō mo kizuketa ichinichi deshita.",
+        "textEn": "The four of you leave the library and return to your respective dormitories. Today was a day when you not only studied, but also built new friendships.",
+        "nextId": "scene_end",
+        "tags": ["vocab:210", "vocab:211", "grammar:129"]
+      },
+      "choices": []
+    },
+    "scene_end": {
+      "line": {
+        "id": "scene_end",
+        "textJp": "シーン５：終了",
+        "textEn": "Scene 5: Complete"
+      },
+      "choices": []
+    }
+  },
+  "startNodeId": "library_entrance",
+  "tags": ["chapter_1", "study_group", "library_session", "friendship_building", "cultural_exchange", "collaborative_learning"]
+}

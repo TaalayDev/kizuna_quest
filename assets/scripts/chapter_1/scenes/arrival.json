@@ -1,6 +1,6 @@
 {
     "id": "arrival",
-    "title": "Arrival at Narita Airport",
+    "title": "Arrival for Japanese Language Course",
     "defaultBackground": "assets/images/backgrounds/airport.webp",
     "nodes": {
       "start": {
@@ -19,10 +19,10 @@
       "arrival_thoughts": {
         "line": {
           "id": "arrival_thoughts",
-          "textJp": "長いフライトの後、やっと日本に来ました。興奮していますが、少し緊張もしています。",
-          "furiganaJp": "ながいフライトのあと、やっとにほんにきました。こうふんしていますが、すこしきんちょうもしています。",
-          "romajiJp": "Nagai furaito no ato, yatto Nihon ni kimashita. Kōfun shite imasu ga, sukoshi kinchō mo shite imasu.",
-          "textEn": "After a long flight, you've finally made it to Japan. You're excited, but also a bit nervous.",
+          "textJp": "長いフライトの後、やっと日本に来ました。日本語コースが始まるので、興奮していますが、日本語があまり話せないので少し緊張もしています。",
+          "furiganaJp": "ながいフライトのあと、やっとにほんにきました。にほんごコースがはじまるので、こうふんしていますが、にほんごがあまりはなせないのですこしきんちょうもしています。",
+          "romajiJp": "Nagai furaito no ato, yatto Nihon ni kimashita. Nihongo kōsu ga hajimaru no de, kōfun shite imasu ga, Nihongo ga amari hanasenai no de sukoshi kinchō mo shite imasu.",
+          "textEn": "After a long flight, you've finally made it to Japan. Since your Japanese course is about to start, you're excited, but also a bit nervous because you can't speak much Japanese.",
           "nextId": "look_around",
           "tags": ["vocab:2", "vocab:3", "grammar:2"]
         },
@@ -43,10 +43,10 @@
       "spot_guide": {
         "line": {
           "id": "spot_guide",
-          "textJp": "出口に向かって歩いていると、「留学生」と書かれた看板を持った人が見えます。",
-          "furiganaJp": "でぐちにむかってあるいていると、「りゅうがくせい」とかかれたかんばんをもったひとがみえます。",
-          "romajiJp": "Deguchi ni mukatte aruite iru to, 'ryūgakusei' to kakareta kanban o motta hito ga miemasu.",
-          "textEn": "As you walk towards the exit, you notice someone holding a sign that says 'Exchange Student'.",
+          "textJp": "出口に向かって歩いていると、「日本語コース学生」と書かれた看板を持った人が見えます。",
+          "furiganaJp": "でぐちにむかってあるいていると、「にほんごコースがくせい」とかかれたかんばんをもったひとがみえます。",
+          "romajiJp": "Deguchi ni mukatte aruite iru to, 'Nihongo kōsu gakusei' to kakareta kanban o motta hito ga miemasu.",
+          "textEn": "As you walk towards the exit, you notice someone holding a sign that says 'Japanese Course Student'.",
           "nextId": "meet_tanaka_intro",
           "tags": ["vocab:5", "vocab:6"]
         },
@@ -57,12 +57,12 @@
           "id": "meet_tanaka_intro",
           "characterId": "2",
           "speakerName": "田中先生",
-          "sprite": "formal",
+          "sprite": "avatar",
           "position": "center",
-          "textJp": "あ、あなたが新しい留学生ですね。ようこそ日本へ！",
-          "furiganaJp": "あ、あなたがあたらしいりゅうがくせいですね。ようこそにほんへ！",
-          "romajiJp": "A, anata ga atarashii ryūgakusei desu ne. Yōkoso Nihon e!",
-          "textEn": "Ah, you must be the new exchange student. Welcome to Japan!",
+          "textJp": "あ、あなたが新しい日本語コースの学生さんですね。ようこそ日本へ！",
+          "furiganaJp": "あ、あなたがあたらしいにほんごコースのがくせいさんですね。ようこそにほんへ！",
+          "romajiJp": "A, anata ga atarashii Nihongo kōsu no gakusei-san desu ne. Yōkoso Nihon e!",
+          "textEn": "Ah, you must be the new Japanese course student. Welcome to Japan!",
           "nextId": "tanaka_introduction",
           "tags": ["vocab:7", "grammar:4"]
         },
@@ -75,10 +75,10 @@
           "speakerName": "田中先生",
           "sprite": "smile",
           "position": "center",
-          "textJp": "私は田中と申します。あなたの日本語の先生です。",
-          "furiganaJp": "わたしはたなかともうします。あなたのにほんごのせんせいです。",
-          "romajiJp": "Watashi wa Tanaka to mōshimasu. Anata no Nihongo no sensei desu.",
-          "textEn": "My name is Tanaka. I will be your Japanese language teacher.",
+          "textJp": "私は田中と申します。東京日本語学校であなたの日本語の先生をします。学校からお迎えに来ました。",
+          "furiganaJp": "わたしはたなかともうします。とうきょうにほんごがっこうであなたのにほんごのせんせいをします。がっこうからおむかえにきました。",
+          "romajiJp": "Watashi wa Tanaka to mōshimasu. Tōkyō Nihongo Gakkō de anata no Nihongo no sensei o shimasu. Gakkō kara omukae ni kimashita.",
+          "textEn": "My name is Tanaka. I will be your Japanese teacher at Tokyo Japanese Language School. I came to pick you up from the school.",
           "nextId": "greet_choice",
           "tags": ["vocab:8", "grammar:5"]
         },
@@ -97,42 +97,42 @@
             "textJp": "はじめまして、よろしくお願いします。",
             "furiganaJp": "はじめまして、よろしくおねがいします。",
             "textEn": "Nice to meet you. Please take care of me.",
-            "meaning": "Respond with a formal, polite greeting",
+            "meaning": "Respond with a polite, formal student greeting",
             "nextId": "response_formal",
             "requiredLevel": 1,
             "requiredItems": [],
             "relationshipChanges": {
               "2": 5
             },
-            "tags": ["grammar:6"]
+            "tags": ["grammar:6", "culture:1"]
           },
           {
-            "id": "choice_casual",
-            "textJp": "よろしく！日本に来れて嬉しいです。",
-            "furiganaJp": "よろしく！にほんにこれてうれしいです。",
-            "textEn": "Nice to meet you! I'm happy to be in Japan.",
-            "meaning": "Respond more casually but express enthusiasm",
-            "nextId": "response_casual",
+            "id": "choice_eager",
+            "textJp": "ありがとうございます！日本語を勉強するのがとても楽しみです。",
+            "furiganaJp": "ありがとうございます！にほんごをべんきょうするのがとてもたのしみです。",
+            "textEn": "Thank you! I'm really looking forward to studying Japanese.",
+            "meaning": "Express enthusiasm about learning Japanese",
+            "nextId": "response_eager",
+            "requiredLevel": 1,
+            "requiredItems": [],
+            "relationshipChanges": {
+              "2": 4
+            },
+            "tags": ["vocab:9", "grammar:7"]
+          },
+          {
+            "id": "choice_nervous",
+            "textJp": "すみません、まだ日本語があまり上手ではありません...",
+            "furiganaJp": "すみません、まだにほんごがあまりじょうずではありません...",
+            "textEn": "I'm sorry, my Japanese isn't very good yet...",
+            "meaning": "Admit that your Japanese skills are still developing",
+            "nextId": "response_nervous",
             "requiredLevel": 1,
             "requiredItems": [],
             "relationshipChanges": {
               "2": 3
             },
-            "tags": []
-          },
-          {
-            "id": "choice_confused",
-            "textJp": "すみません、わかりません...",
-            "furiganaJp": "すみません、わかりません...",
-            "textEn": "I'm sorry, I don't understand...",
-            "meaning": "Admit that you don't understand much Japanese yet",
-            "nextId": "response_confused",
-            "requiredLevel": 1,
-            "requiredItems": [],
-            "relationshipChanges": {
-              "2": 2
-            },
-            "tags": ["vocab:9"]
+            "tags": ["vocab:10", "grammar:8"]
           }
         ]
       },
@@ -143,44 +143,44 @@
           "speakerName": "田中先生",
           "sprite": "happy",
           "position": "center",
-          "textJp": "とても丁寧ですね！素晴らしい。日本語が上手ですね。",
-          "furiganaJp": "とてもていねいですね！すばらしい。にほんごがじょうずですね。",
-          "romajiJp": "Totemo teinei desu ne! Subarashii. Nihongo ga jōzu desu ne.",
-          "textEn": "Very polite! Wonderful. Your Japanese is good.",
+          "textJp": "とても丁寧な挨拶ですね！日本の学生らしい礼儀正しさです。素晴らしいスタートですね。",
+          "furiganaJp": "とてもていねいなあいさつですね！にほんのがくせいらしいれいぎただしさです。すばらしいスタートですね。",
+          "romajiJp": "Totemo teinei na aisatsu desu ne! Nihon no gakusei rashii reigi tadashisa desu. Subarashii sutāto desu ne.",
+          "textEn": "What a polite greeting! That's the kind of respectfulness befitting a Japanese student. What a wonderful start.",
           "nextId": "leaving_airport",
-          "tags": ["vocab:10", "grammar:7", "culture:1"]
+          "tags": ["vocab:11", "vocab:12", "culture:2"]
         },
         "choices": []
       },
-      "response_casual": {
+      "response_eager": {
         "line": {
-          "id": "response_casual",
+          "id": "response_eager",
           "characterId": "2",
           "speakerName": "田中先生",
           "sprite": "smile",
           "position": "center",
-          "textJp": "元気ですね。日本での生活を楽しみにしているようで良いですね。",
-          "furiganaJp": "げんきですね。にほんでのせいかつをたのしみにしているようでいいですね。",
-          "romajiJp": "Genki desu ne. Nihon de no seikatsu o tanoshimi ni shite iru yō de ii desu ne.",
-          "textEn": "You're energetic. It's good that you seem to be looking forward to life in Japan.",
+          "textJp": "その気持ちが一番大切です！やる気のある学生を教えるのは楽しいです。一緒に頑張りましょう。",
+          "furiganaJp": "そのきもちがいちばんたいせつです！やるきのあるがくせいをおしえるのはたのしいです。いっしょにがんばりましょう。",
+          "romajiJp": "Sono kimochi ga ichiban taisetsu desu! Yaruki no aru gakusei o oshieru no wa tanoshii desu. Issho ni ganbarimasho.",
+          "textEn": "That attitude is the most important thing! It's enjoyable to teach motivated students. Let's work hard together.",
           "nextId": "leaving_airport",
-          "tags": ["vocab:11"]
+          "tags": ["vocab:13", "vocab:14", "grammar:9"]
         },
         "choices": []
       },
-      "response_confused": {
+      "response_nervous": {
         "line": {
-          "id": "response_confused",
+          "id": "response_nervous",
           "characterId": "2",
           "speakerName": "田中先生",
-          "sprite": "concerned",
+          "sprite": "encouraging",
           "position": "center",
-          "textJp": "大丈夫ですよ。これから一緒に日本語を勉強しましょう。ゆっくり話します。",
-          "furiganaJp": "だいじょうぶですよ。これからいっしょににほんごをべんきょうしましょう。ゆっくりはなします。",
-          "romajiJp": "Daijōbu desu yo. Kore kara issho ni Nihongo o benkyō shimashō. Yukkuri hanashimasu.",
-          "textEn": "It's alright. Let's study Japanese together from now on. I'll speak slowly.",
+          "textJp": "大丈夫ですよ！みんな最初はそうです。少しずつ上達していきます。私も英語が話せますから安心してください。",
+          "furiganaJp": "だいじょうぶですよ！みんなさいしょはそうです。すこしずつじょうたつしていきます。わたしもえいごがはなせますからあんしんしてください。",
+          "romajiJp": "Daijōbu desu yo! Minna saisho wa sō desu. Sukoshi zutsu jōtatsu shite ikimasu. Watashi mo eigo ga hanasemasu kara anshin shite kudasai.",
+          "textEn": "It's okay! Everyone is like that at first. You'll improve little by little. I can speak English too, so please don't worry.",
           "nextId": "leaving_airport",
-          "tags": ["vocab:12", "grammar:8"]
+          "tags": ["vocab:15", "vocab:16", "grammar:10"]
         },
         "choices": []
       },
@@ -189,27 +189,27 @@
           "id": "leaving_airport",
           "characterId": "2",
           "speakerName": "田中先生",
-          "sprite": "formal",
+          "sprite": "avatar",
           "position": "center",
-          "textJp": "では、荷物を持って車に行きましょう。学校まで一緒に行きます。",
-          "furiganaJp": "では、にもつをもってくるまにいきましょう。がっこうまでいっしょにいきます。",
-          "romajiJp": "Dewa, nimotsu o motte kuruma ni ikimashō. Gakkō made issho ni ikimasu.",
-          "textEn": "Now, let's take your luggage and go to the car. We'll go to the school together.",
-          "nextId": "exit_scene",
-          "tags": ["vocab:13", "vocab:14"]
+          "textJp": "では、荷物を持って車に行きましょう。まず寮まで一緒に行きます。道中で学校や授業について説明しますね。",
+          "furiganaJp": "では、にもつをもってくるまにいきましょう。まずりょうまでいっしょにいきます。どうちゅうでがっこうやじゅぎょうについてせつめいしますね。",
+          "romajiJp": "Dewa, nimotsu o motte kuruma ni ikimashō. Mazu ryō made issho ni ikimasu. Dōchū de gakkō ya jugyō ni tsuite setsumei shimasu ne.",
+          "textEn": "Now, let's take your luggage and go to the car. First we'll go to the dormitory together. During the trip, I'll explain about the school and classes.",
+          "nextId": "car_journey",
+          "tags": ["vocab:17", "vocab:18"]
         },
         "choices": []
       },
-      "exit_scene": {
+      "car_journey": {
         "line": {
-          "id": "exit_scene",
-          "textJp": "田中先生について、空港を出ます。日本での新生活が始まります。",
-          "furiganaJp": "たなかせんせいについて、くうこうをでます。にほんでのしんせいかつがはじまります。",
-          "romajiJp": "Tanaka-sensei ni tsuite, kūkō o demasu. Nihon de no shinseikatsu ga hajimarimasu.",
-          "textEn": "You follow Professor Tanaka and leave the airport. Your new life in Japan begins.",
+          "id": "car_journey",
+          "textJp": "田中先生の車で空港を出発します。窓から東京の景色を見ながら、日本語の勉強への期待が高まります。",
+          "furiganaJp": "たなかせんせいのくるまでくうこうをしゅっぱつします。まどからとうきょうのけしきをみながら、にほんごのべんきょうへのきたいがたかまります。",
+          "romajiJp": "Tanaka-sensei no kuruma de kūkō o shuppatsu shimasu. Mado kara Tōkyō no keshiki o mi nagara, Nihongo no benkyō e no kitai ga takamarimasu.",
+          "textEn": "You depart from the airport in Professor Tanaka's car. While looking at Tokyo's scenery through the window, your expectations for studying Japanese grow.",
           "nextId": "scene_end",
           "background": "assets/images/backgrounds/airport_exit.webp",
-          "tags": ["vocab:15", "grammar:9"]
+          "tags": ["vocab:19", "vocab:20", "grammar:11"]
         },
         "choices": []
       },
@@ -223,5 +223,5 @@
       }
     },
     "startNodeId": "start",
-    "tags": ["chapter_1", "introduction", "airport"]
+    "tags": ["chapter_1", "introduction", "airport", "language_student"]
   }

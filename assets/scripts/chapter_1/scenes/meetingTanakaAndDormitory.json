@@ -1,0 +1,451 @@
+{
+  "id": "meetingTanakaAndDormitory",
+  "title": "Car Ride with Tanaka-sensei and Dormitory Arrival",
+  "defaultBackground": "assets/images/backgrounds/car_interior.webp",
+  "nodes": {
+    "car_ride_start": {
+      "line": {
+        "id": "car_ride_start",
+        "textJp": "田中先生の車に乗り、寮に向かっています。窓の外に東京の風景が流れていきます。",
+        "furiganaJp": "たなかせんせいのくるまにのり、りょうにむかっています。まどのそとにとうきょうのふうけいがながれていきます。",
+        "romajiJp": "Tanaka-sensei no kuruma ni nori, ryō ni mukatte imasu. Mado no soto ni Tōkyō no fūkei ga nagarete ikimasu.",
+        "textEn": "You're in Professor Tanaka's car, heading to the dormitory. The Tokyo scenery flows past outside the window.",
+        "background": "assets/images/backgrounds/car_interior.webp",
+        "nextId": "tanaka_question",
+        "tags": ["vocab:16", "vocab:17", "grammar:10"]
+      },
+      "choices": []
+    },
+    "tanaka_question": {
+      "line": {
+        "id": "tanaka_question",
+        "characterId": "2",
+        "speakerName": "田中先生",
+        "sprite": "driving",
+        "position": "right",
+        "textJp": "日本は初めてですか？",
+        "furiganaJp": "にほんははじめてですか？",
+        "romajiJp": "Nihon wa hajimete desu ka?",
+        "textEn": "Is this your first time in Japan?",
+        "nextId": "japan_experience_choice",
+        "tags": ["vocab:18", "grammar:11"]
+      },
+      "choices": []
+    },
+    "japan_experience_choice": {
+      "line": {
+        "id": "japan_experience_choice",
+        "textJp": "どう答えますか？",
+        "textEn": "How will you answer?",
+        "isChoice": true
+      },
+      "choices": [
+        {
+          "id": "choice_first_time",
+          "textJp": "はい、初めてです。とても楽しみです！",
+          "furiganaJp": "はい、はじめてです。とてもたのしみです！",
+          "textEn": "Yes, it's my first time. I'm very excited!",
+          "meaning": "Tell them it's your first time in Japan and express excitement",
+          "nextId": "response_first_time",
+          "requiredLevel": 1,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "2": 3
+          },
+          "tags": []
+        },
+        {
+          "id": "choice_been_before",
+          "textJp": "いいえ、以前に一度来たことがあります。",
+          "furiganaJp": "いいえ、いぜんにいちどきたことがあります。",
+          "textEn": "No, I've been here once before.",
+          "meaning": "Tell them you've visited Japan once before",
+          "nextId": "response_been_before",
+          "requiredLevel": 2,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "2": 4
+          },
+          "tags": ["grammar:12"]
+        },
+        {
+          "id": "choice_anime_fan",
+          "textJp": "初めてですが、アニメでたくさん見ました！",
+          "furiganaJp": "はじめてですが、アニメでたくさんみました！",
+          "textEn": "It's my first time, but I've seen a lot in anime!",
+          "meaning": "Say it's your first visit but you know Japan from anime",
+          "nextId": "response_anime_fan",
+          "requiredLevel": 2,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "2": 2
+          },
+          "tags": ["vocab:19"]
+        }
+      ]
+    },
+    "response_first_time": {
+      "line": {
+        "id": "response_first_time",
+        "characterId": "2",
+        "speakerName": "田中先生",
+        "sprite": "smile",
+        "position": "left",
+        "textJp": "そうですか。日本の文化や言葉について、いろいろ教えますよ。",
+        "furiganaJp": "そうですか。にほんのぶんかやことばについて、いろいろおしえますよ。",
+        "romajiJp": "Sō desu ka. Nihon no bunka ya kotoba ni tsuite, iroiro oshiemasu yo.",
+        "textEn": "I see. I'll teach you a lot about Japanese culture and language.",
+        "nextId": "approaching_dormitory",
+        "tags": ["vocab:20", "vocab:21", "grammar:13"]
+      },
+      "choices": []
+    },
+    "response_been_before": {
+      "line": {
+        "id": "response_been_before",
+        "characterId": "2",
+        "speakerName": "田中先生",
+        "sprite": "happy",
+        "position": "left",
+        "textJp": "そうなんですか！日本語もうまいですね。どこに行きましたか？",
+        "furiganaJp": "そうなんですか！にほんごもうまいですね。どこにいきましたか？",
+        "romajiJp": "Sō nan desu ka! Nihongo mo umai desu ne. Doko ni ikimashita ka?",
+        "textEn": "Is that so! Your Japanese is good too. Where did you go?",
+        "nextId": "mention_tokyo",
+        "tags": ["vocab:22", "grammar:14"]
+      },
+      "choices": []
+    },
+    "mention_tokyo": {
+      "line": {
+        "id": "mention_tokyo",
+        "textJp": "東京に行ったと言います。田中先生は頷きます。",
+        "furiganaJp": "とうきょうにいったといいます。たなかせんせいはうなずきます。",
+        "romajiJp": "Tōkyō ni itta to iimasu. Tanaka-sensei wa unazukimasu.",
+        "textEn": "You tell her you went to Tokyo. Professor Tanaka nods.",
+        "nextId": "approaching_dormitory",
+        "tags": ["vocab:23"]
+      },
+      "choices": []
+    },
+    "response_anime_fan": {
+      "line": {
+        "id": "response_anime_fan",
+        "characterId": "2",
+        "speakerName": "田中先生",
+        "sprite": "happy",
+        "position": "left",
+        "textJp": "あら、アニメファンですか。でも、実際の日本は少し違いますよ。",
+        "furiganaJp": "あら、アニメファンですか。でも、じっさいのにほんはすこしちがいますよ。",
+        "romajiJp": "Ara, anime fan desu ka. Demo, jissai no Nihon wa sukoshi chigaimasu yo.",
+        "textEn": "Oh, you're an anime fan. But the real Japan is a bit different, you know.",
+        "nextId": "approaching_dormitory",
+        "tags": ["vocab:24", "grammar:15"]
+      },
+      "choices": []
+    },
+    "approaching_dormitory": {
+      "line": {
+        "id": "approaching_dormitory",
+        "characterId": "2",
+        "speakerName": "田中先生",
+        "sprite": "driving",
+        "position": "right",
+        "textJp": "あ、もうすぐ学生寮に着きます。あそこに見えるのが国際学生寮です。",
+        "furiganaJp": "あ、もうすぐがくせいりょうにつきます。あそこにみえるのがこくさいがくせいりょうです。",
+        "romajiJp": "A, mō sugu gakusei-ryō ni tsukimasu. Asoko ni mieru no ga kokusai gakusei-ryō desu.",
+        "textEn": "Ah, we're almost at the student dormitory. That building you can see over there is the International Student Dormitory.",
+        "nextId": "dormitory_view",
+        "tags": ["vocab:25", "vocab:26", "grammar:16"]
+      },
+      "choices": []
+    },
+    "dormitory_view": {
+      "line": {
+        "id": "dormitory_view",
+        "textJp": "窓の外を見ると、大きな寮の建物が見えてきます。きれいで現代的な建物です。",
+        "furiganaJp": "まどのそとをみると、おおきなりょうのたてものがみえてきます。きれいでげんだいてきなたてものです。",
+        "romajiJp": "Mado no soto o miru to, ōkina ryō no tatemono ga miete kimasu. Kirei de gendai-teki na tatemono desu.",
+        "textEn": "Looking out the window, you can see a large dormitory building. It's a clean and modern building.",
+        "background": "assets/images/backgrounds/dormitory_approach.webp",
+        "nextId": "arrive_dormitory",
+        "tags": ["vocab:27", "vocab:28", "grammar:17"]
+      },
+      "choices": []
+    },
+    "arrive_dormitory": {
+      "line": {
+        "id": "arrive_dormitory",
+        "textJp": "車は寮の前に停まります。",
+        "furiganaJp": "くるまはりょうのまえにとまります。",
+        "romajiJp": "Kuruma wa ryō no mae ni tomarimasu.",
+        "textEn": "The car stops in front of the dormitory.",
+        "background": "assets/images/backgrounds/dormitory_exterior.webp",
+        "nextId": "exit_car",
+        "tags": ["vocab:29"]
+      },
+      "choices": []
+    },
+    "exit_car": {
+      "line": {
+        "id": "exit_car",
+        "characterId": "2",
+        "speakerName": "田中先生",
+        "sprite": "avatar",
+        "position": "center",
+        "textJp": "では、降りましょう。荷物をお手伝いします。",
+        "furiganaJp": "では、おりましょう。にもつをおてつだいします。",
+        "romajiJp": "Dewa, orimashō. Nimotsu o otetsudai shimasu.",
+        "textEn": "Well then, let's get out. I'll help you with your luggage.",
+        "nextId": "entering_dormitory",
+        "tags": ["vocab:30", "grammar:18"]
+      },
+      "choices": []
+    },
+    "entering_dormitory": {
+      "line": {
+        "id": "entering_dormitory",
+        "textJp": "寮の中に入ると、受付があります。そこには親切そうな女性が座っています。",
+        "furiganaJp": "りょうのなかにはいると、うけつけがあります。そこにはしんせつそうなじょせいがすわっています。",
+        "romajiJp": "Ryō no naka ni hairu to, uketsuke ga arimasu. Soko ni wa shinsetsu-sō na josei ga suwatte imasu.",
+        "textEn": "When you enter the dormitory, there's a reception desk. A kind-looking woman is sitting there.",
+        "nextId": "meet_supervisor",
+        "background": "assets/images/backgrounds/dormitory_lobby.webp",
+        "tags": ["vocab:31", "vocab:32"]
+      },
+      "choices": []
+    },
+    "meet_supervisor": {
+      "line": {
+        "id": "meet_supervisor",
+        "characterId": "6",
+        "speakerName": "中村",
+        "sprite": "greeting",
+        "position": "center",
+        "textJp": "いらっしゃいませ。私は寮母の中村と申します。お疲れさまでした。",
+        "furiganaJp": "いらっしゃいませ。わたしはりょうぼのなかむらともうします。おつかれさまでした。",
+        "romajiJp": "Irasshaimase. Watashi wa ryōbo no Nakamura to mōshimasu. Otsukaresama deshita.",
+        "textEn": "Welcome. I am Nakamura, the dormitory supervisor. You must be tired.",
+        "nextId": "introduction_choice",
+        "tags": ["vocab:33", "vocab:34", "culture:3"]
+      },
+      "choices": []
+    },
+    "introduction_choice": {
+      "line": {
+        "id": "introduction_choice",
+        "textJp": "中村さんにどう自己紹介しますか？",
+        "textEn": "How will you introduce yourself to Nakamura-san?",
+        "isChoice": true
+      },
+      "choices": [
+        {
+          "id": "choice_polite",
+          "textJp": "はじめまして。よろしくお願いいたします。",
+          "furiganaJp": "はじめまして。よろしくおねがいいたします。",
+          "textEn": "Nice to meet you. Please take care of me.",
+          "meaning": "Use very polite, formal language",
+          "nextId": "response_polite",
+          "requiredLevel": 1,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "6": 5
+          },
+          "tags": ["grammar:19", "culture:4"]
+        },
+        {
+          "id": "choice_grateful",
+          "textJp": "ありがとうございます。お世話になります。",
+          "furiganaJp": "ありがとうございます。おせわになります。",
+          "textEn": "Thank you. I will be in your care.",
+          "meaning": "Express gratitude for her care",
+          "nextId": "response_grateful",
+          "requiredLevel": 2,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "6": 4
+          },
+          "tags": ["vocab:35", "culture:5"]
+        },
+        {
+          "id": "choice_nervous",
+          "textJp": "初めての寮生活で緊張しています...",
+          "furiganaJp": "はじめてのりょうせいかつできんちょうしています...",
+          "textEn": "I'm nervous about dormitory life for the first time...",
+          "meaning": "Admit your nervousness about living in a dorm",
+          "nextId": "response_nervous",
+          "requiredLevel": 1,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "6": 3
+          },
+          "tags": ["vocab:36", "vocab:37"]
+        }
+      ]
+    },
+    "response_polite": {
+      "line": {
+        "id": "response_polite",
+        "characterId": "6",
+        "speakerName": "中村",
+        "sprite": "smile",
+        "position": "center",
+        "textJp": "とても丁寧ですね。こちらこそ、よろしくお願いします。お部屋を案内しますね。",
+        "furiganaJp": "とてもていねいですね。こちらこそ、よろしくおねがいします。おへやをあんないしますね。",
+        "romajiJp": "Totemo teinei desu ne. Kochira koso, yoroshiku onegai shimasu. Oheya o annai shimasu ne.",
+        "textEn": "How polite. I should be the one saying that. Let me show you to your room.",
+        "nextId": "room_tour",
+        "tags": ["vocab:38", "grammar:20"]
+      },
+      "choices": []
+    },
+    "response_grateful": {
+      "line": {
+        "id": "response_grateful",
+        "characterId": "6",
+        "speakerName": "中村",
+        "sprite": "happy",
+        "position": "center",
+        "textJp": "こちらこそ。何かわからないことがあれば、遠慮しないで聞いてくださいね。",
+        "furiganaJp": "こちらこそ。なにかわからないことがあれば、えんりょしないできいてくださいね。",
+        "romajiJp": "Kochira koso. Nanika wakaranai koto ga areba, enryo shinaide kiite kudasai ne.",
+        "textEn": "Not at all. If there's anything you don't understand, please don't hesitate to ask.",
+        "nextId": "room_tour",
+        "tags": ["vocab:39", "grammar:21"]
+      },
+      "choices": []
+    },
+    "response_nervous": {
+      "line": {
+        "id": "response_nervous",
+        "characterId": "6",
+        "speakerName": "中村",
+        "sprite": "smile",
+        "position": "center",
+        "textJp": "大丈夫ですよ。最初はみんなそうです。すぐに慣れますから、安心してください。",
+        "furiganaJp": "だいじょうぶですよ。さいしょはみんなそうです。すぐになれますから、あんしんしてください。",
+        "romajiJp": "Daijōbu desu yo. Saisho wa minna sō desu. Sugu ni naremasu kara, anshin shite kudasai.",
+        "textEn": "It's okay. Everyone is like that at first. You'll get used to it quickly, so please don't worry.",
+        "nextId": "room_tour",
+        "tags": ["vocab:40", "grammar:22"]
+      },
+      "choices": []
+    },
+    "room_tour": {
+      "line": {
+        "id": "room_tour",
+        "textJp": "中村さんが部屋まで案内してくれます。廊下を歩きながら、寮の説明をしてくれます。",
+        "furiganaJp": "なかむらさんがへやまであんないしてくれます。ろうかをあるきながら、りょうのせつめいをしてくれます。",
+        "romajiJp": "Nakamura-san ga heya made annai shite kuremasu. Rōka o aruki nagara, ryō no setsumei o shite kuremasu.",
+        "textEn": "Nakamura-san guides you to your room. While walking down the hallway, she explains about the dormitory.",
+        "nextId": "dormitory_rules",
+        "background": "assets/images/backgrounds/dormitory_hallway.webp",
+        "tags": ["vocab:41", "grammar:23"]
+      },
+      "choices": []
+    },
+    "dormitory_rules": {
+      "line": {
+        "id": "dormitory_rules",
+        "characterId": "6",
+        "speakerName": "中村",
+        "sprite": "avatar",
+        "position": "center",
+        "textJp": "食事は一階の食堂で食べられます。門限は夜11時です。洗濯室は二階にあります。",
+        "furiganaJp": "しょくじはいっかいのしょくどうでたべられます。もんげんはよるじゅういちじです。せんたくしつはにかいにあります。",
+        "romajiJp": "Shokuji wa ikkai no shokudō de taberaremasu. Mongen wa yoru jūichi-ji desu. Sentaku-shitsu wa nikai ni arimasu.",
+        "textEn": "Meals can be eaten in the cafeteria on the first floor. Curfew is at 11 PM. The laundry room is on the second floor.",
+        "nextId": "arrive_room",
+        "tags": ["vocab:42", "vocab:43", "vocab:44"]
+      },
+      "choices": []
+    },
+    "arrive_room": {
+      "line": {
+        "id": "arrive_room",
+        "characterId": "6",
+        "speakerName": "中村",
+        "sprite": "avatar",
+        "position": "center",
+        "textJp": "こちらがあなたのお部屋です。ルームメイトのケンタさんを紹介しますね。",
+        "furiganaJp": "こちらがあなたのおへやです。ルームメイトのケンタさんをしょうかいしますね。",
+        "romajiJp": "Kochira ga anata no oheya desu. Rūmumeito no Kenta-san o shōkai shimasu ne.",
+        "textEn": "This is your room. Let me introduce your roommate, Kenta-san.",
+        "nextId": "meet_kenta",
+        "background": "assets/images/backgrounds/dormitory_room.webp",
+        "tags": ["vocab:45", "vocab:46"]
+      },
+      "choices": []
+    },
+    "meet_kenta": {
+      "line": {
+        "id": "meet_kenta",
+        "characterId": "5",
+        "speakerName": "ケンタ",
+        "sprite": "greeting",
+        "position": "center",
+        "textJp": "やあ！僕はケンタだよ！よろしく！君と一緒に住めるなんて、すごく楽しみなんだ！",
+        "furiganaJp": "やあ！ぼくはケンタだよ！よろしく！きみといっしょにすめるなんて、すごくたのしみなんだ！",
+        "romajiJp": "Yā! Boku wa Kenta da yo! Yoroshiku! Kimi to issho ni sumeru nante, sugoku tanoshimi nan da!",
+        "textEn": "Hey! I'm Kenta! Nice to meet you! I'm so excited to be living with you!",
+        "nextId": "kenta_helpful",
+        "tags": ["vocab:47", "grammar:24"]
+      },
+      "choices": []
+    },
+    "kenta_helpful": {
+      "line": {
+        "id": "kenta_helpful",
+        "characterId": "5",
+        "speakerName": "ケンタ",
+        "sprite": "explaining",
+        "position": "center",
+        "textJp": "明日から授業が始まるんだ！僕は会話クラスにいるよ。一緒に日本語の練習をしよう！話すのが一番大切だから。",
+        "furiganaJp": "あしたからじゅぎょうがはじまるんだ！ぼくはかいわクラスにいるよ。いっしょににほんごのれんしゅうをしよう！はなすのがいちばんたいせつだから。",
+        "romajiJp": "Ashita kara jugyō ga hajimaru n da! Boku wa kaiwa kurasu ni iru yo. Issho ni Nihongo no renshū o shiyō! Hanasu no ga ichiban taisetsu da kara.",
+        "textEn": "Classes start tomorrow! I'm in the conversation class. Let's practice Japanese together! Speaking is the most important thing.",
+        "nextId": "kenta_enthusiasm",
+        "tags": ["vocab:48", "vocab:49", "grammar:25"]
+      },
+      "choices": []
+    },
+    "kenta_enthusiasm": {
+      "line": {
+        "id": "kenta_enthusiasm",
+        "characterId": "5",
+        "speakerName": "ケンタ",
+        "sprite": "encouraging",
+        "position": "center",
+        "textJp": "心配しないで！僕がたくさん手伝うから。日本語って楽しいんだよ！一緒に頑張ろう！",
+        "furiganaJp": "しんぱいしないで！ぼくがたくさんてつだうから。にほんごってたのしいんだよ！いっしょにがんばろう！",
+        "romajiJp": "Shinpai shinaide! Boku ga takusan tetsudau kara. Nihongo tte tanoshii n da yo! Issho ni ganbarō!",
+        "textEn": "Don't worry! I'll help you a lot. Japanese is fun! Let's do our best together!",
+        "nextId": "settling_in",
+        "tags": ["vocab:50", "vocab:51", "grammar:26"]
+      },
+      "choices": []
+    },
+    "settling_in": {
+      "line": {
+        "id": "settling_in",
+        "textJp": "荷物を片付けて、新しい部屋に慣れます。ケンタの元気な性格のおかげで、緊張がほぐれていきます。明日から始まる日本語の勉強に期待が高まります。",
+        "furiganaJp": "にもつをかたづけて、あたらしいへやになれます。ケンタのげんきなせいかくのおかげで、きんちょうがほぐれていきます。あしたからはじまるにほんごのべんきょうにきたいがたかまります。",
+        "romajiJp": "Nimotsu o katazukete, atarashii heya ni naremasu. Kenta no genki na seikaku no okage de, kinchō ga hogurete ikimasu. Ashita kara hajimaru Nihongo no benkyō ni kitai ga takamarimasu.",
+        "textEn": "You put away your luggage and get used to your new room. Thanks to Kenta's energetic personality, your nervousness starts to fade. Your expectations for Japanese study starting tomorrow grow.",
+        "nextId": "scene_end",
+        "tags": ["vocab:52", "vocab:53", "grammar:27"]
+      },
+      "choices": []
+    },
+    "scene_end": {
+      "line": {
+        "id": "scene_end",
+        "textJp": "シーン２：終了",
+        "textEn": "Scene 2: Complete"
+      },
+      "choices": []
+    }
+  },
+  "startNodeId": "car_ride_start",
+  "tags": ["chapter_1", "car_ride", "dormitory_arrival", "meeting_supervisor", "meeting_roommate"]
+}

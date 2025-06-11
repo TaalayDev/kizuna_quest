@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tsuzuki_connect/core/services/settings_service.dart';
 import 'package:tsuzuki_connect/data/models/character_model.dart';
 import 'package:tsuzuki_connect/data/models/dialogue_model.dart';
 import 'package:tsuzuki_connect/data/models/save_game_model.dart';
@@ -29,15 +28,10 @@ import '../../providers/app_providers.dart';
 import '../widgets/common/learning_journal_notification.dart';
 import '../widgets/game/cultural_note_popup.dart';
 
-/// Main game screen for the visual novel
 class GameScreen extends ConsumerStatefulWidget {
-  /// ID of the chapter to load
   final String? chapterId;
-
-  /// ID of the save game to load (optional)
   final String? saveId;
 
-  /// Creates a GameScreen
   const GameScreen({
     super.key,
     this.chapterId,
@@ -52,7 +46,6 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
   final ScreenshotController _screenshotController = ScreenshotController();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  // Animation controllers
   late AnimationController _backgroundController;
   late AnimationController _dialogueController;
   late AnimationController _spriteController;
@@ -340,9 +333,7 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
       final currentSceneId = ref.read(activeSceneIdProvider);
       final timestamp = DateTime.now().millisecondsSinceEpoch;
 
-      final fileName = forSaving
-          ? 'save_${activeSaveId}_${currentSceneId ?? 'unknown'}_$timestamp'
-          : 'autosave_${activeSaveId}_${currentSceneId ?? 'unknown'}_$timestamp';
+      final fileName = 'save_${activeSaveId}';
 
       final screenshotPath = await ScreenshotHelper.takeAndSaveScreenshot(
         controller: _screenshotController,

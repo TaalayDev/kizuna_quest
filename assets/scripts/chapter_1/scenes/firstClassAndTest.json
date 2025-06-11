@@ -1,0 +1,622 @@
+{
+  "id": "firstClassAndLevelTest",
+  "title": "First Day of Class and Japanese Level Test",
+  "defaultBackground": "assets/images/backgrounds/dormitory_room.webp",
+  "nodes": {
+    "morning_wake_up": {
+      "line": {
+        "id": "morning_wake_up",
+        "textJp": "朝になりました。目覚まし時計の音で目が覚めます。今日から日本語の授業が始まります。",
+        "furiganaJp": "あさになりました。めざましどけいのおとでめがさめます。きょうからにほんごのじゅぎょうがはじまります。",
+        "romajiJp": "Asa ni narimashita. Mezamashi-dokei no oto de me ga samemasu. Kyō kara Nihongo no jugyō ga hajimarimasu.",
+        "textEn": "Morning has come. You wake up to the sound of your alarm clock. Japanese classes start today.",
+        "background": "assets/images/backgrounds/dormitory_room.webp",
+        "nextId": "kenta_morning",
+        "tags": ["vocab:54", "vocab:55", "grammar:28"]
+      },
+      "choices": []
+    },
+    "kenta_morning": {
+      "line": {
+        "id": "kenta_morning",
+        "characterId": "5",
+        "speakerName": "ケンタ",
+        "sprite": "greeting",
+        "position": "center",
+        "textJp": "おはよう！今日は記念すべき最初の日だね！一緒に学校に行こうよ！",
+        "furiganaJp": "おはよう！きょうはきねんすべきさいしょのひだね！いっしょにがっこうにいこうよ！",
+        "romajiJp": "Ohayō! Kyō wa kinen subeki saisho no hi da ne! Issho ni gakkō ni ikō yo!",
+        "textEn": "Good morning! Today is the memorable first day! Let's go to school together!",
+        "nextId": "morning_choice",
+        "tags": ["vocab:56", "vocab:57", "grammar:29"]
+      },
+      "choices": []
+    },
+    "morning_choice": {
+      "line": {
+        "id": "morning_choice",
+        "textJp": "ケンタの提案にどう答えますか？",
+        "textEn": "How will you respond to Kenta's suggestion?",
+        "isChoice": true
+      },
+      "choices": [
+        {
+          "id": "choice_excited",
+          "textJp": "はい！とても楽しみです！",
+          "furiganaJp": "はい！とてもたのしみです！",
+          "textEn": "Yes! I'm very excited!",
+          "meaning": "Express enthusiasm about going to school together",
+          "nextId": "response_excited",
+          "requiredLevel": 1,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "5": 4
+          },
+          "tags": []
+        },
+        {
+          "id": "choice_nervous",
+          "textJp": "ちょっと緊張しています...",
+          "furiganaJp": "ちょっときんちょうしています...",
+          "textEn": "I'm a bit nervous...",
+          "meaning": "Admit you're feeling nervous about the first day",
+          "nextId": "response_nervous",
+          "requiredLevel": 1,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "5": 3
+          },
+          "tags": ["vocab:58"]
+        },
+        {
+          "id": "choice_prepared",
+          "textJp": "準備はできています。よろしくお願いします。",
+          "furiganaJp": "じゅんびはできています。よろしくおねがいします。",
+          "textEn": "I'm prepared. Please take care of me.",
+          "meaning": "Show that you're ready and ask for his guidance",
+          "nextId": "response_prepared",
+          "requiredLevel": 2,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "5": 5
+          },
+          "tags": ["vocab:59", "grammar:30"]
+        }
+      ]
+    },
+    "response_excited": {
+      "line": {
+        "id": "response_excited",
+        "characterId": "5",
+        "speakerName": "ケンタ",
+        "sprite": "avatar",
+        "position": "center",
+        "textJp": "その調子だよ！きっと楽しい一日になるよ。急いで準備しよう！",
+        "furiganaJp": "そのちょうしだよ！きっとたのしいいちにちになるよ。いそいでじゅんびしよう！",
+        "romajiJp": "Sono chōshi da yo! Kitto tanoshii ichinichi ni naru yo. Isoide junbi shiyō!",
+        "textEn": "That's the spirit! It'll definitely be a fun day. Let's hurry and get ready!",
+        "nextId": "getting_ready",
+        "tags": ["vocab:60", "grammar:31"]
+      },
+      "choices": []
+    },
+    "response_nervous": {
+      "line": {
+        "id": "response_nervous",
+        "characterId": "5",
+        "speakerName": "ケンタ",
+        "sprite": "encouraging",
+        "position": "center",
+        "textJp": "大丈夫だよ！みんな最初は緊張するんだ。僕がついているから安心して！",
+        "furiganaJp": "だいじょうぶだよ！みんなさいしょはきんちょうするんだ。ぼくがついているからあんしんして！",
+        "romajiJp": "Daijōbu da yo! Minna saisho wa kinchō suru n da. Boku ga tsuite iru kara anshin shite!",
+        "textEn": "It's okay! Everyone gets nervous at first. I'm with you, so don't worry!",
+        "nextId": "getting_ready",
+        "tags": ["vocab:61", "grammar:32"]
+      },
+      "choices": []
+    },
+    "response_prepared": {
+      "line": {
+        "id": "response_prepared",
+        "characterId": "5",
+        "speakerName": "ケンタ",
+        "sprite": "encouraging",
+        "position": "center",
+        "textJp": "すごいね！君はとても真面目だ。きっといい学生になるよ。行こう！",
+        "furiganaJp": "すごいね！きみはとてもまじめだ。きっといいがくせいになるよ。いこう！",
+        "romajiJp": "Sugoi ne! Kimi wa totemo majime da. Kitto ii gakusei ni naru yo. Ikō!",
+        "textEn": "Amazing! You're very serious. You'll definitely be a good student. Let's go!",
+        "nextId": "getting_ready",
+        "tags": ["vocab:62", "grammar:33"]
+      },
+      "choices": []
+    },
+    "getting_ready": {
+      "line": {
+        "id": "getting_ready",
+        "textJp": "急いで準備をして、ケンタと一緒に学校に向かいます。",
+        "furiganaJp": "いそいでじゅんびをして、ケンタといっしょにがっこうにむかいます。",
+        "romajiJp": "Isoide junbi o shite, Kenta to issho ni gakkō ni mukaimasu.",
+        "textEn": "You quickly get ready and head to school together with Kenta.",
+        "nextId": "walk_to_school",
+        "background": "assets/images/backgrounds/tokyo_streets.webp",
+        "tags": ["vocab:63", "grammar:34"]
+      },
+      "choices": []
+    },
+    "walk_to_school": {
+      "line": {
+        "id": "walk_to_school",
+        "characterId": "5",
+        "speakerName": "ケンタ",
+        "sprite": "explaining",
+        "position": "center",
+        "textJp": "学校まで歩いて15分くらいだよ。途中でコンビニもあるから、何か買いたいものがあったら言ってね。",
+        "furiganaJp": "がっこうまであるいてじゅうごふんくらいだよ。とちゅうでコンビニもあるから、なにかかいたいものがあったらいってね。",
+        "romajiJp": "Gakkō made aruite jūgo-fun kurai da yo. Tochū de konbini mo aru kara, nanika kaitai mono ga attara itte ne.",
+        "textEn": "It's about a 15-minute walk to school. There's also a convenience store on the way, so let me know if you want to buy something.",
+        "nextId": "school_building",
+        "tags": ["vocab:64", "vocab:65", "grammar:35"]
+      },
+      "choices": []
+    },
+    "school_building": {
+      "line": {
+        "id": "school_building",
+        "textJp": "東京日本語学校の建物が見えてきました。たくさんの学生が校門から入っていきます。",
+        "furiganaJp": "とうきょうにほんごがっこうのたてものがみえてきました。たくさんのがくせいがこうもんからはいっていきます。",
+        "romajiJp": "Tōkyō Nihongo Gakkō no tatemono ga miete kimashita. Takusan no gakusei ga kōmon kara haitte ikimasu.",
+        "textEn": "The Tokyo Japanese Language School building comes into view. Many students are entering through the school gate.",
+        "nextId": "enter_school",
+        "background": "assets/images/backgrounds/school_gate.webp",
+        "tags": ["vocab:66", "vocab:67"]
+      },
+      "choices": []
+    },
+    "enter_school": {
+      "line": {
+        "id": "enter_school",
+        "characterId": "5",
+        "speakerName": "ケンタ",
+        "sprite": "explaining",
+        "position": "center",
+        "textJp": "こっちだよ！教室は2階にあるんだ。エレベーターもあるけど、階段で行こう。",
+        "furiganaJp": "こっちだよ！きょうしつはにかいにあるんだ。エレベーターもあるけど、かいだんでいこう。",
+        "romajiJp": "Kocchi da yo! Kyōshitsu wa nikai ni aru n da. Erebētā mo aru kedo, kaidan de ikō.",
+        "textEn": "This way! The classroom is on the second floor. There's an elevator too, but let's take the stairs.",
+        "nextId": "classroom_arrival",
+        "background": "assets/images/backgrounds/school_hallway.webp",
+        "tags": ["vocab:68", "vocab:69", "grammar:36"]
+      },
+      "choices": []
+    },
+    "classroom_arrival": {
+      "line": {
+        "id": "classroom_arrival",
+        "textJp": "教室に入ると、すでに何人かの学生が座っています。みんな違う国から来ているようです。",
+        "furiganaJp": "きょうしつにはいると、すでになんにんかのがくせいがすわっています。みんなちがうくにからきているようです。",
+        "romajiJp": "Kyōshitsu ni hairu to, sude ni nannin ka no gakusei ga suwatte imasu. Minna chigau kuni kara kite iru yō desu.",
+        "textEn": "When you enter the classroom, several students are already seated. They all seem to be from different countries.",
+        "nextId": "tanaka_enters",
+        "background": "assets/images/backgrounds/classroom.webp",
+        "tags": ["vocab:70", "vocab:71", "grammar:37"]
+      },
+      "choices": []
+    },
+    "tanaka_enters": {
+      "line": {
+        "id": "tanaka_enters",
+        "characterId": "2",
+        "speakerName": "田中先生",
+        "sprite": "avatar",
+        "position": "center",
+        "textJp": "おはようございます、皆さん。今日から新学期が始まります。私が担任の田中です。",
+        "furiganaJp": "おはようございます、みなさん。きょうからしんがっきがはじまります。わたしがたんにんのたなかです。",
+        "romajiJp": "Ohayō gozaimasu, mina-san. Kyō kara shin-gakki ga hajimarimasu. Watashi ga tan'nin no Tanaka desu.",
+        "textEn": "Good morning, everyone. The new semester starts today. I am Tanaka, your homeroom teacher.",
+        "nextId": "class_introduction",
+        "tags": ["vocab:72", "vocab:73", "culture:6"]
+      },
+      "choices": []
+    },
+    "class_introduction": {
+      "line": {
+        "id": "class_introduction",
+        "characterId": "2",
+        "speakerName": "田中先生",
+        "sprite": "encouraging",
+        "position": "center",
+        "textJp": "まず、日本語のレベルテストを行います。このテストで皆さんのクラス分けを決めます。",
+        "furiganaJp": "まず、にほんごのレベルテストをおこないます。このテストでみなさんのクラスわけをきめます。",
+        "romajiJp": "Mazu, Nihongo no reberu tesuto o okonaimasu. Kono tesuto de mina-san no kurasu-wake o kimemasu.",
+        "textEn": "First, we will conduct a Japanese level test. This test will determine your class placement.",
+        "nextId": "test_explanation",
+        "tags": ["vocab:74", "vocab:75", "grammar:38"]
+      },
+      "choices": []
+    },
+    "test_explanation": {
+      "line": {
+        "id": "test_explanation",
+        "characterId": "2",
+        "speakerName": "田中先生",
+        "sprite": "encouraging",
+        "position": "center",
+        "textJp": "テストは三つの部分があります。文法、語彙、そして会話です。心配しないでください。全力を出してくださいね。",
+        "furiganaJp": "テストはみっつのぶぶんがあります。ぶんぽう、ごい、そしてかいわです。しんぱいしないでください。ぜんりょくをだしてくださいね。",
+        "romajiJp": "Tesuto wa mittsu no bubun ga arimasu. Bunpō, goi, soshite kaiwa desu. Shinpai shinaide kudasai. Zenryoku o dashite kudasai ne.",
+        "textEn": "The test has three parts: grammar, vocabulary, and conversation. Please don't worry. Just do your best.",
+        "nextId": "test_starts",
+        "tags": ["vocab:76", "vocab:77", "grammar:39"]
+      },
+      "choices": []
+    },
+    "test_starts": {
+      "line": {
+        "id": "test_starts",
+        "textJp": "テストが始まります。最初は文法と語彙の筆記テストです。",
+        "furiganaJp": "テストがはじまります。さいしょはぶんぽうとごいのひっきテストです。",
+        "romajiJp": "Tesuto ga hajimarimasu. Saisho wa bunpō to goi no hikki tesuto desu.",
+        "textEn": "The test begins. First is the written grammar and vocabulary test.",
+        "nextId": "written_test",
+        "tags": ["vocab:78", "culture:7"]
+      },
+      "choices": []
+    },
+    "written_test": {
+      "line": {
+        "id": "written_test",
+        "textJp": "筆記テストの問題は思ったより難しいです。でも、習った文法や語彙が出てきて、少し安心します。",
+        "furiganaJp": "ひっきテストのもんだいはおもったよりむずかしいです。でも、ならったぶんぽうやごいがでてきて、すこしあんしんします。",
+        "romajiJp": "Hikki tesuto no mondai wa omotta yori muzukashii desu. Demo, naratta bunpō ya goi ga dete kite, sukoshi anshin shimasu.",
+        "textEn": "The written test questions are harder than you expected. But familiar grammar and vocabulary appear, which is somewhat reassuring.",
+        "nextId": "conversation_test",
+        "tags": ["vocab:79", "grammar:40"]
+      },
+      "choices": []
+    },
+    "conversation_test": {
+      "line": {
+        "id": "conversation_test",
+        "characterId": "2",
+        "speakerName": "田中先生",
+        "sprite": "happy",
+        "position": "center",
+        "textJp": "では、会話テストを始めましょう。簡単な質問をしますので、自然に答えてください。",
+        "furiganaJp": "では、かいわテストをはじめましょう。かんたんなしつもんをしますので、しぜんにこたえてください。",
+        "romajiJp": "Dewa, kaiwa tesuto o hajimemashō. Kantan na shitsumon o shimasu no de, shizen ni kotaete kudasai.",
+        "textEn": "Now, let's begin the conversation test. I'll ask simple questions, so please answer naturally.",
+        "nextId": "conversation_question",
+        "tags": ["vocab:80", "grammar:41"]
+      },
+      "choices": []
+    },
+    "conversation_question": {
+      "line": {
+        "id": "conversation_question",
+        "characterId": "2",
+        "speakerName": "田中先生",
+        "sprite": "avatar",
+        "position": "center",
+        "textJp": "お名前と出身地を教えてください。そして、なぜ日本語を勉強したいのですか？",
+        "furiganaJp": "おなまえとしゅっしんちをおしえてください。そして、なぜにほんごをべんきょうしたいのですか？",
+        "romajiJp": "Onamae to shusshin-chi o oshiete kudasai. Soshite, naze Nihongo o benkyō shitai no desu ka?",
+        "textEn": "Please tell me your name and where you're from. And why do you want to study Japanese?",
+        "nextId": "conversation_response",
+        "tags": ["vocab:81", "grammar:42"]
+      },
+      "choices": []
+    },
+    "conversation_response": {
+      "line": {
+        "id": "conversation_response",
+        "textJp": "田中先生の質問にどう答えますか？",
+        "textEn": "How will you answer Tanaka-sensei's questions?",
+        "isChoice": true
+      },
+      "choices": [
+        {
+          "id": "choice_basic",
+          "textJp": "私の名前は...です。アメリカから来ました。日本の文化が好きです。",
+          "furiganaJp": "わたしのなまえは...です。アメリカからきました。にほんのぶんかがすきです。",
+          "textEn": "My name is... I came from America. I like Japanese culture.",
+          "meaning": "Give a basic, simple response",
+          "nextId": "response_basic",
+          "requiredLevel": 1,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "2": 3
+          },
+          "tags": ["vocab:82"]
+        },
+        {
+          "id": "choice_detailed",
+          "textJp": "私は...と申します。アメリカのカリフォルニア出身です。日本のアニメと漫画に興味があって、いつか日本で働きたいです。",
+          "furiganaJp": "わたしは...ともうします。アメリカのカリフォルニアしゅっしんです。にほんのアニメとまんがにきょうみがあって、いつかにほんではたらきたいです。",
+          "textEn": "My name is... I'm from California, America. I'm interested in Japanese anime and manga, and someday I want to work in Japan.",
+          "meaning": "Give a detailed, polite response with specific goals",
+          "nextId": "response_detailed",
+          "requiredLevel": 3,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "2": 5
+          },
+          "tags": ["vocab:83", "vocab:84", "grammar:43"]
+        },
+        {
+          "id": "choice_humble",
+          "textJp": "すみません、まだ日本語があまり上手ではありませんが、一生懸命勉強したいです。",
+          "furiganaJp": "すみません、まだにほんごがあまりじょうずではありませんが、いっしょうけんめいべんきょうしたいです。",
+          "textEn": "I'm sorry, my Japanese isn't very good yet, but I want to study very hard.",
+          "meaning": "Show humility and express determination to study hard",
+          "nextId": "response_humble",
+          "requiredLevel": 2,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "2": 4
+          },
+          "tags": ["vocab:85", "grammar:44", "culture:8"]
+        }
+      ]
+    },
+    "response_basic": {
+      "line": {
+        "id": "response_basic",
+        "characterId": "2",
+        "speakerName": "田中先生",
+        "sprite": "encouraging",
+        "position": "center",
+        "textJp": "そうですね。基本はできていますね。もう少し文法を勉強すると、もっと上手になりますよ。",
+        "furiganaJp": "そうですね。きほんはできていますね。もうすこしぶんぽうをべんきょうすると、もっとじょうずになりますよ。",
+        "romajiJp": "Sō desu ne. Kihon wa dekite imasu ne. Mō sukoshi bunpō o benkyō suru to, motto jōzu ni narimasu yo.",
+        "textEn": "I see. You have the basics down. If you study grammar a bit more, you'll become even better.",
+        "nextId": "test_completion",
+        "tags": ["vocab:86", "grammar:45"]
+      },
+      "choices": []
+    },
+    "response_detailed": {
+      "line": {
+        "id": "response_detailed",
+        "characterId": "2",
+        "speakerName": "田中先生",
+        "sprite": "happy",
+        "position": "center",
+        "textJp": "素晴らしいですね！とても流暢に話せますね。敬語も使えているし、上級クラスが良いかもしれません。",
+        "furiganaJp": "すばらしいですね！とてもりゅうちょうにはなせますね。けいごもつかえているし、じょうきゅうクラスがいいかもしれません。",
+        "romajiJp": "Subarashii desu ne! Totemo ryūchō ni hanasemasu ne. Keigo mo tsukaete iru shi, jōkyū kurasu ga ii kamoshiremasen.",
+        "textEn": "Excellent! You can speak very fluently. You can use polite language too, so an advanced class might be good for you.",
+        "nextId": "test_completion",
+        "tags": ["vocab:87", "vocab:88", "grammar:46"]
+      },
+      "choices": []
+    },
+    "response_humble": {
+      "line": {
+        "id": "response_humble",
+        "characterId": "2",
+        "speakerName": "田中先生",
+        "sprite": "happy",
+        "position": "center",
+        "textJp": "謙虚で素敵ですね。でも、もう十分上手ですよ。その気持ちがあれば、きっと上達しますよ。",
+        "furiganaJp": "けんきょですてきですね。でも、もうじゅうぶんじょうずですよ。そのきもちがあれば、きっとじょうたつしますよ。",
+        "romajiJp": "Kenkyo de suteki desu ne. Demo, mō jūbun jōzu desu yo. Sono kimochi ga areba, kitto jōtatsu shimasu yo.",
+        "textEn": "How humble and lovely. But you're already quite good. With that attitude, you'll definitely improve.",
+        "nextId": "test_completion",
+        "tags": ["vocab:89", "culture:9"]
+      },
+      "choices": []
+    },
+    "test_completion": {
+      "line": {
+        "id": "test_completion",
+        "characterId": "2",
+        "speakerName": "田中先生",
+        "sprite": "avatar",
+        "position": "center",
+        "textJp": "テストは以上です。結果は午後にお知らせします。それまで、他の学生と話してみてください。",
+        "furiganaJp": "テストはいじょうです。けっかはごごにおしらせします。それまで、ほかのがくせいとはなしてみてください。",
+        "romajiJp": "Tesuto wa ijō desu. Kekka wa gogo ni oshirase shimasu. Sore made, hoka no gakusei to hanashite mite kudasai.",
+        "textEn": "That concludes the test. I'll announce the results this afternoon. Until then, please try talking with other students.",
+        "nextId": "meet_classmates",
+        "tags": ["vocab:90", "grammar:47"]
+      },
+      "choices": []
+    },
+    "meet_classmates": {
+      "line": {
+        "id": "meet_classmates",
+        "textJp": "教室で他の学生と話をする機会があります。隣に座っている学生が話しかけてきます。",
+        "furiganaJp": "きょうしつでほかのがくせいとはなしをするきかいがあります。となりにすわっているがくせいがはなしかけてきます。",
+        "romajiJp": "Kyōshitsu de hoka no gakusei to hanashi o suru kikai ga arimasu. Tonari ni suwatte iru gakusei ga hanashikakete kimasu.",
+        "textEn": "You have an opportunity to talk with other students in the classroom. A student sitting next to you starts talking to you.",
+        "nextId": "meet_yuki",
+        "tags": ["vocab:91", "grammar:48"]
+      },
+      "choices": []
+    },
+    "meet_yuki": {
+      "line": {
+        "id": "meet_yuki",
+        "characterId": "1",
+        "speakerName": "ユキ",
+        "sprite": "greeting",
+        "position": "center",
+        "textJp": "こんにちは！私はユキです。テストはどうでしたか？ちょっと難しかったですね。",
+        "furiganaJp": "こんにちは！わたしはユキです。テストはどうでしたか？ちょっとむずかしかったですね。",
+        "romajiJp": "Konnichiwa! Watashi wa Yuki desu. Tesuto wa dō deshita ka? Chotto muzukashikatta desu ne.",
+        "textEn": "Hello! I'm Yuki. How was the test? It was a bit difficult, wasn't it?",
+        "nextId": "yuki_conversation",
+        "tags": ["vocab:92"]
+      },
+      "choices": []
+    },
+    "yuki_conversation": {
+      "line": {
+        "id": "yuki_conversation",
+        "textJp": "ユキとの会話にどう応じますか？",
+        "textEn": "How will you respond to Yuki's conversation?",
+        "isChoice": true
+      },
+      "choices": [
+        {
+          "id": "choice_agree",
+          "textJp": "そうですね。でも、頑張りました。",
+          "furiganaJp": "そうですね。でも、がんばりました。",
+          "textEn": "Yes, it was. But I did my best.",
+          "meaning": "Agree that it was difficult but show you tried hard",
+          "nextId": "yuki_supportive",
+          "requiredLevel": 1,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "1": 3
+          },
+          "tags": []
+        },
+        {
+          "id": "choice_confident",
+          "textJp": "まあまあでした。語彙はよく知っていましたが、文法が少し難しかったです。",
+          "furiganaJp": "まあまあでした。ごいはよくしっていましたが、ぶんぽうがすこしむずかしかったです。",
+          "textEn": "It was okay. I knew the vocabulary well, but the grammar was a bit difficult.",
+          "meaning": "Show confidence in some areas while acknowledging challenges",
+          "nextId": "yuki_impressed",
+          "requiredLevel": 2,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "1": 4
+          },
+          "tags": ["vocab:93"]
+        },
+        {
+          "id": "choice_worried",
+          "textJp": "とても心配です。全然わからない問題がたくさんありました...",
+          "furiganaJp": "とてもしんぱいです。ぜんぜんわからないもんだいがたくさんありました...",
+          "textEn": "I'm very worried. There were many problems I didn't understand at all...",
+          "meaning": "Express genuine worry about your performance",
+          "nextId": "yuki_encouraging",
+          "requiredLevel": 1,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "1": 5
+          },
+          "tags": ["vocab:94", "grammar:49"]
+        }
+      ]
+    },
+    "yuki_supportive": {
+      "line": {
+        "id": "yuki_supportive",
+        "characterId": "1",
+        "speakerName": "ユキ",
+        "sprite": "explaining",
+        "position": "center",
+        "textJp": "それが一番大切ですよ！きっと良い結果になると思います。一緒に頑張りましょう！",
+        "furiganaJp": "それがいちばんたいせつですよ！きっといいけっかになるとおもいます。いっしょにがんばりましょう！",
+        "romajiJp": "Sore ga ichiban taisetsu desu yo! Kitto ii kekka ni naru to omoimasu. Issho ni ganbarimasho!",
+        "textEn": "That's the most important thing! I think you'll get good results. Let's work hard together!",
+        "nextId": "results_announcement",
+        "tags": ["vocab:95", "grammar:50"]
+      },
+      "choices": []
+    },
+    "yuki_impressed": {
+      "line": {
+        "id": "yuki_impressed",
+        "characterId": "1",
+        "speakerName": "ユキ",
+        "sprite": "impressed",
+        "position": "center",
+        "textJp": "すごいですね！私は語彙が全然だめでした。今度、一緒に勉強しませんか？",
+        "furiganaJp": "すごいですね！わたしはごいがぜんぜんだめでした。こんど、いっしょにべんきょうしませんか？",
+        "romajiJp": "Sugoi desu ne! Watashi wa goi ga zenzen dame deshita. Kondo, issho ni benkyō shimasen ka?",
+        "textEn": "Amazing! My vocabulary was terrible. Would you like to study together sometime?",
+        "nextId": "results_announcement",
+        "tags": ["vocab:96", "grammar:51"]
+      },
+      "choices": []
+    },
+    "yuki_encouraging": {
+      "line": {
+        "id": "yuki_encouraging",
+        "characterId": "1",
+        "speakerName": "ユキ",
+        "sprite": "explaining",
+        "position": "center",
+        "textJp": "大丈夫ですよ！私も最初はそうでした。みんなで助け合いましょう。きっと上手になりますから！",
+        "furiganaJp": "だいじょうぶですよ！わたしもさいしょはそうでした。みんなでたすけあいましょう。きっとじょうずになりますから！",
+        "romajiJp": "Daijōbu desu yo! Watashi mo saisho wa sō deshita. Minna de tasuke aimasho. Kitto jōzu ni narimasu kara!",
+        "textEn": "It's okay! I was like that at first too. Let's all help each other. You'll definitely get better!",
+        "nextId": "results_announcement",
+        "tags": ["vocab:97", "grammar:52"]
+      },
+      "choices": []
+    },
+    "results_announcement": {
+      "line": {
+        "id": "results_announcement",
+        "characterId": "2",
+        "speakerName": "田中先生",
+        "sprite": "avatar",
+        "position": "center",
+        "textJp": "皆さん、テスト結果が出ました。クラス分けを発表します。初級クラス、中級クラス、上級クラスがあります。",
+        "furiganaJp": "みなさん、テストけっかがでました。クラスわけをはっぴょうします。しょきゅうクラス、ちゅうきゅうクラス、じょうきゅうクラスがあります。",
+        "romajiJp": "Mina-san, tesuto kekka ga demashita. Kurasu-wake o happyō shimasu. Shokyū kurasu, chūkyū kurasu, jōkyū kurasu ga arimasu.",
+        "textEn": "Everyone, the test results are out. I'll announce the class assignments. There are beginner, intermediate, and advanced classes.",
+        "nextId": "class_assignment",
+        "tags": ["vocab:98", "vocab:99", "culture:10"]
+      },
+      "choices": []
+    },
+    "class_assignment": {
+      "line": {
+        "id": "class_assignment",
+        "textJp": "あなたは中級クラスに配属されました。ユキさんとケンタさんも同じクラスです。",
+        "furiganaJp": "あなたはちゅうきゅうクラスにはいぞくされました。ユキさんとケンタさんもおなじクラスです。",
+        "romajiJp": "Anata wa chūkyū kurasu ni haizoku saremashita. Yuki-san to Kenta-san mo onaji kurasu desu.",
+        "textEn": "You have been assigned to the intermediate class. Yuki-san and Kenta-san are in the same class too.",
+        "nextId": "first_lesson_preview",
+        "tags": ["vocab:100", "grammar:53"]
+      },
+      "choices": []
+    },
+    "first_lesson_preview": {
+      "line": {
+        "id": "first_lesson_preview",
+        "characterId": "2",
+        "speakerName": "田中先生",
+        "sprite": "encouraging",
+        "position": "center",
+        "textJp": "明日から本格的な授業が始まります。教科書を配りますので、今日は軽く予習をしてみてください。",
+        "furiganaJp": "あしたからほんかくてきなじゅぎょうがはじまります。きょうかしょをくばりますので、きょうはかるくよしゅうをしてみてください。",
+        "romajiJp": "Ashita kara honkaku-teki na jugyō ga hajimarimasu. Kyōkasho o kubarimasu no de, kyō wa karuku yoshū o shite mite kudasai.",
+        "textEn": "Full-scale classes will begin tomorrow. I'll distribute textbooks, so please try some light preparation today.",
+        "nextId": "day_end",
+        "tags": ["vocab:101", "vocab:102", "grammar:54"]
+      },
+      "choices": []
+    },
+    "day_end": {
+      "line": {
+        "id": "day_end",
+        "textJp": "初日が終わりました。テストとクラス分け、そして新しい友達との出会い。明日から本格的な日本語の勉強が始まります。",
+        "furiganaJp": "しょにちがおわりました。テストとクラスわけ、そしてあたらしいともだちとのであい。あしたからほんかくてきなにほんごのべんきょうがはじまります。",
+        "romajiJp": "Shonichi ga owarimashita. Tesuto to kurasu-wake, soshite atarashii tomodachi to no deai. Ashita kara honkaku-teki na Nihongo no benkyō ga hajimarimasu.",
+        "textEn": "The first day has ended. The test and class placement, and meeting new friends. Full-scale Japanese study begins tomorrow.",
+        "nextId": "scene_end",
+        "tags": ["vocab:103", "vocab:104"]
+      },
+      "choices": []
+    },
+    "scene_end": {
+      "line": {
+        "id": "scene_end",
+        "textJp": "シーン３：終了",
+        "textEn": "Scene 3: Complete"
+      },
+      "choices": []
+    }
+  },
+  "startNodeId": "morning_wake_up",
+  "tags": ["chapter_1", "first_day", "level_test", "class_placement", "meeting_classmates", "school_introduction"]
+}

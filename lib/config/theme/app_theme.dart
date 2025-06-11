@@ -45,7 +45,7 @@ class AppTheme {
         fontWeight: FontWeight.bold,
       ),
     ),
-    cardTheme: const CardTheme(
+    cardTheme: const CardThemeData(
       clipBehavior: Clip.antiAlias,
       elevation: 2,
     ),
@@ -53,7 +53,7 @@ class AppTheme {
       elevation: 1,
       side: BorderSide.none,
     ),
-    dialogTheme: DialogTheme(
+    dialogTheme: DialogThemeData(
       titleTextStyle: TextStyle(
         fontFamily: _defaultFont,
         fontSize: 20,
@@ -112,7 +112,7 @@ class AppTheme {
         fontWeight: FontWeight.bold,
       ),
     ),
-    cardTheme: const CardTheme(
+    cardTheme: const CardThemeData(
       clipBehavior: Clip.antiAlias,
       elevation: 3,
     ),
@@ -120,7 +120,7 @@ class AppTheme {
       elevation: 1,
       side: BorderSide.none,
     ),
-    dialogTheme: DialogTheme(
+    dialogTheme: DialogThemeData(
       titleTextStyle: TextStyle(
         fontFamily: _defaultFont,
         fontSize: 20,

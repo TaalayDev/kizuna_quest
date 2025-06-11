@@ -6,10 +6,8 @@ import 'package:tsuzuki_connect/core/utils/extensions.dart';
 
 /// Dialog that displays detailed information about a character
 class CharacterDetailDialog extends StatelessWidget {
-  /// The character to display
   final CharacterModel character;
 
-  /// Creates a CharacterDetailDialog
   const CharacterDetailDialog({
     super.key,
     required this.character,
@@ -17,38 +15,37 @@ class CharacterDetailDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Choose a default sprite from the character's sprite folder
     final defaultSprite = '${character.spriteFolder}/avatar.webp';
 
     return Container(
       width: context.screenWidth * 0.9,
       height: context.screenHeight * 0.7,
       decoration: BoxDecoration(
-        color: context.theme.colorScheme.surface,
+        color: context.theme.colorScheme.primary,
         borderRadius: BorderRadius.circular(20),
+        border: Border.all(
+          color: context.theme.colorScheme.primaryContainer,
+          width: 2,
+        ),
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(20),
         child: Stack(
           children: [
-            // Background gradient
             Container(
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: [
-                    context.theme.colorScheme.surface,
-                    context.theme.colorScheme.surfaceVariant,
+                    context.theme.colorScheme.primary,
+                    context.theme.colorScheme.primaryContainer,
                   ],
                 ),
               ),
             ),
-
-            // Content layout
             Row(
               children: [
-                // Left side - Character info
                 Expanded(
                   flex: 3,
                   child: Padding(
@@ -56,7 +53,6 @@ class CharacterDetailDialog extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        // Names
                         Hero(
                           tag: 'character_name_jp_${character.id}',
                           child: Material(
@@ -65,7 +61,7 @@ class CharacterDetailDialog extends StatelessWidget {
                               character.nameJp,
                               style: context.textTheme.headlineMedium?.copyWith(
                                 fontWeight: FontWeight.bold,
-                                color: context.theme.colorScheme.primary,
+                                color: context.theme.colorScheme.onPrimaryContainer,
                               ),
                             ),
                           ),
@@ -80,10 +76,7 @@ class CharacterDetailDialog extends StatelessWidget {
                             ),
                           ),
                         ),
-
                         const SizedBox(height: 24),
-
-                        // Relationship status
                         if (character.hasRelationship)
                           Container(
                             padding: const EdgeInsets.symmetric(
@@ -97,15 +90,12 @@ class CharacterDetailDialog extends StatelessWidget {
                             child: Text(
                               character.relationshipLevel,
                               style: context.textTheme.bodyMedium?.copyWith(
-                                color: Colors.white,
                                 fontWeight: FontWeight.bold,
+                                color: _getOnKizunaColor(context, character.kizunaPoints ?? 0),
                               ),
                             ),
                           ),
-
                         const SizedBox(height: 16),
-
-                        // Full personality description
                         Expanded(
                           child: SingleChildScrollView(
                             child: Column(
@@ -122,10 +112,7 @@ class CharacterDetailDialog extends StatelessWidget {
                                   character.personality,
                                   style: context.textTheme.bodyLarge,
                                 ),
-
                                 const SizedBox(height: 24),
-
-                                // Additional character information
                                 if (character.hasRelationship) ...[
                                   Text(
                                     'Interests',
@@ -149,7 +136,7 @@ class CharacterDetailDialog extends StatelessWidget {
                                   LinearProgressIndicator(
                                     value: (character.kizunaPoints ?? 0) / 100,
                                     color: _getKizunaColor(context, character.kizunaPoints ?? 0),
-                                    backgroundColor: context.theme.colorScheme.surfaceVariant,
+                                    backgroundColor: context.theme.colorScheme.onPrimaryContainer.withOpacity(0.2),
                                     borderRadius: BorderRadius.circular(4),
                                   ),
                                   const SizedBox(height: 8),
@@ -171,33 +158,51 @@ class CharacterDetailDialog extends StatelessWidget {
                     ),
                   ),
                 ),
-
-                // Right side - Character sprite
                 Expanded(
                   flex: 2,
                   child: Align(
                     alignment: Alignment.bottomCenter,
                     child: Hero(
                       tag: 'character_avatar_${character.id}',
-                      child: Image.asset(
-                        defaultSprite,
-                        fit: BoxFit.cover,
-                        height: context.screenHeight * 0.4,
-                        errorBuilder: (context, error, stackTrace) {
-                          // Fallback to avatar if sprite not found
-                          return Image.asset(
-                            character.avatarPath,
+                      child: Stack(
+                        children: [
+                          Image.asset(
+                            defaultSprite,
                             fit: BoxFit.cover,
-                          );
-                        },
+                            height: context.screenHeight * 0.6,
+                            errorBuilder: (context, error, stackTrace) {
+                              // Fallback to avatar if sprite not found
+                              return Image.asset(
+                                character.avatarPath,
+                                fit: BoxFit.cover,
+                              );
+                            },
+                          ),
+                          // Shadow effect
+                          Positioned(
+                            right: -10,
+                            bottom: -10,
+                            child: Image.asset(
+                              defaultSprite,
+                              fit: BoxFit.cover,
+                              height: context.screenHeight * 0.6,
+                              color: Colors.black.withOpacity(0.2),
+                              errorBuilder: (context, error, stackTrace) {
+                                // Fallback to avatar if sprite not found
+                                return Image.asset(
+                                  character.avatarPath,
+                                  fit: BoxFit.cover,
+                                );
+                              },
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
                 ),
               ],
             ),
-
-            // Close button
             Positioned(
               top: 8,
               right: 8,
@@ -225,7 +230,15 @@ class CharacterDetailDialog extends StatelessWidget {
     } else if (points >= 25) {
       return Colors.teal;
     } else {
-      return Colors.grey;
+      return Colors.white.withOpacity(0.8);
+    }
+  }
+
+  Color _getOnKizunaColor(BuildContext context, int points) {
+    if (points >= 25) {
+      return context.theme.colorScheme.onPrimaryContainer;
+    } else {
+      return Colors.black.withOpacity(0.7);
     }
   }
 

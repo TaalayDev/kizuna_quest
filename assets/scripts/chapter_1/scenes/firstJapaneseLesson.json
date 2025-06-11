@@ -1,0 +1,834 @@
+{
+  "id": "firstJapaneseLesson",
+  "title": "First Japanese Lesson - Intermediate Class",
+  "defaultBackground": "assets/images/backgrounds/classroom.webp",
+  "nodes": {
+    "next_morning": {
+      "line": {
+        "id": "next_morning",
+        "textJp": "次の日の朝、本格的な授業が始まります。教科書を持って教室に向かいます。",
+        "furiganaJp": "つぎのひのあさ、ほんかくてきなじゅぎょうがはじまります。きょうかしょをもってきょうしつにむかいます。",
+        "romajiJp": "Tsugi no hi no asa, honkaku-teki na jugyō ga hajimarimasu. Kyōkasho o motte kyōshitsu ni mukaimasu.",
+        "textEn": "The next morning, full-scale classes begin. You head to the classroom with your textbook.",
+        "background": "assets/images/backgrounds/classroom.webp",
+        "nextId": "meet_classmates_again",
+        "tags": ["vocab:105", "grammar:55"]
+      },
+      "choices": []
+    },
+    "meet_classmates_again": {
+      "line": {
+        "id": "meet_classmates_again",
+        "characterId": "1",
+        "speakerName": "ユキ",
+        "sprite": "waving",
+        "position": "left",
+        "textJp": "おはようございます！昨日はお疲れさまでした。今日から一緒に勉強できて嬉しいです。",
+        "furiganaJp": "おはようございます！きのうはおつかれさまでした。きょうからいっしょにべんきょうできてうれしいです。",
+        "romajiJp": "Ohayō gozaimasu! Kinō wa otsukaresama deshita. Kyō kara issho ni benkyō dekite ureshii desu。",
+        "textEn": "Good morning! Thank you for your hard work yesterday. I'm happy we can study together from today.",
+        "nextId": "kenta_joins",
+        "tags": ["vocab:106", "culture:11"]
+      },
+      "choices": []
+    },
+    "kenta_joins": {
+      "line": {
+        "id": "kenta_joins",
+        "characterId": "5",
+        "speakerName": "ケンタ",
+        "sprite": "greeting",
+        "position": "right",
+        "textJp": "やあ、おはよう！僕たち三人とも中級クラスなんて、すごい偶然だね！",
+        "furiganaJp": "やあ、おはよう！ぼくたちさんにんともちゅうきゅうクラスなんて、すごいぐうぜんだね！",
+        "romajiJp": "Yā, ohayō! Bokutachi san-nin tomo chūkyū kurasu nante, sugoi gūzen da ne!",
+        "textEn": "Hey, good morning! What an amazing coincidence that all three of us are in the intermediate class!",
+        "nextId": "lesson_begins",
+        "tags": ["vocab:107", "grammar:56"]
+      },
+      "choices": []
+    },
+    "lesson_begins": {
+      "line": {
+        "id": "lesson_begins",
+        "characterId": "2",
+        "speakerName": "田中先生",
+        "sprite": "avatar",
+        "position": "center",
+        "textJp": "おはようございます、皆さん。今日から中級クラスの授業を始めます。まず、自己紹介をもう一度やってみましょう。",
+        "furiganaJp": "おはようございます、みなさん。きょうからちゅうきゅうクラスのじゅぎょうをはじめます。まず、じこしょうかいをもういちどやってみましょう。",
+        "romajiJp": "Ohayō gozaimasu, mina-san. Kyō kara chūkyū kurasu no jugyō o hajimemasu. Mazu, jikoshōkai o mō ichido yatte mimasho.",
+        "textEn": "Good morning, everyone. Today we begin intermediate class lessons. First, let's try self-introductions once more.",
+        "nextId": "introduction_explanation",
+        "tags": ["vocab:108", "grammar:57"]
+      },
+      "choices": []
+    },
+    "introduction_explanation": {
+      "line": {
+        "id": "introduction_explanation",
+        "characterId": "2",
+        "speakerName": "田中先生",
+        "sprite": "explaining",
+        "position": "center",
+        "textJp": "今度は敬語を使って、より丁寧な自己紹介をしてみてください。職業や趣味についても話してみましょう。",
+        "furiganaJp": "こんどはけいごをつかって、よりていねいなじこしょうかいをしてみてください。しょくぎょうやしゅみについてもはなしてみましょう。",
+        "romajiJp": "Kondo wa keigo o tsukatte, yori teinei na jikoshōkai o shite mite kudasai. Shokugyō ya shumi ni tsuite mo hanashite mimasho.",
+        "textEn": "This time, please try a more polite self-introduction using honorific language. Let's also talk about occupations and hobbies.",
+        "nextId": "introduction_turn",
+        "tags": ["vocab:109", "vocab:110", "grammar:58", "culture:12"]
+      },
+      "choices": []
+    },
+    "introduction_turn": {
+      "line": {
+        "id": "introduction_turn",
+        "characterId": "2",
+        "speakerName": "田中先生",
+        "sprite": "happy",
+        "position": "center",
+        "textJp": "では、どなたから始めましょうか？",
+        "furiganaJp": "では、どなたからはじめましょうか？",
+        "romajiJp": "Dewa, donata kara hajimemashō ka?",
+        "textEn": "Well then, who would like to start?",
+        "nextId": "volunteer_choice",
+        "tags": ["vocab:111", "grammar:59"]
+      },
+      "choices": []
+    },
+    "volunteer_choice": {
+      "line": {
+        "id": "volunteer_choice",
+        "textJp": "どうしますか？",
+        "textEn": "What will you do?",
+        "isChoice": true
+      },
+      "choices": [
+        {
+          "id": "choice_volunteer",
+          "textJp": "私からやってみます。",
+          "furiganaJp": "わたしからやってみます。",
+          "textEn": "I'll try going first.",
+          "meaning": "Volunteer to go first and show confidence",
+          "nextId": "player_introduction",
+          "requiredLevel": 1,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "2": 4,
+            "1": 3,
+            "5": 3
+          },
+          "tags": ["grammar:60"]
+        },
+        {
+          "id": "choice_wait",
+          "textJp": "他の人から聞きたいです。",
+          "furiganaJp": "ほかのひとからききたいです。",
+          "textEn": "I'd like to hear from others first.",
+          "meaning": "Wait and listen to others first to learn",
+          "nextId": "yuki_introduction",
+          "requiredLevel": 1,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "1": 2
+          },
+          "tags": []
+        },
+        {
+          "id": "choice_nervous",
+          "textJp": "ちょっと緊張しているので、後でもいいですか？",
+          "furiganaJp": "ちょっときんちょうしているので、あとでもいいですか？",
+          "textEn": "I'm a bit nervous, so could I go later?",
+          "meaning": "Express nervousness and ask to go later",
+          "nextId": "teacher_understanding",
+          "requiredLevel": 2,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "2": 3
+          },
+          "tags": ["vocab:112", "grammar:61"]
+        }
+      ]
+    },
+    "player_introduction": {
+      "line": {
+        "id": "player_introduction",
+        "textJp": "あなたの自己紹介の番です。どのように話しますか？",
+        "textEn": "It's your turn for self-introduction. How will you speak?",
+        "nextId": "introduction_response_choice",
+        "tags": []
+      },
+      "choices": []
+    },
+    "introduction_response_choice": {
+      "line": {
+        "id": "introduction_response_choice",
+        "textJp": "どのように自己紹介しますか？",
+        "textEn": "How will you introduce yourself?",
+        "isChoice": true
+      },
+      "choices": [
+        {
+          "id": "choice_formal_intro",
+          "textJp": "初めまして。私は[名前]と申します。アメリカから参りました。どうぞよろしくお願いいたします。",
+          "furiganaJp": "はじめまして。わたしは[なまえ]ともうします。アメリカからまいりました。どうぞよろしくおねがいいたします。",
+          "textEn": "Nice to meet you. My name is [name]. I came from America. Please treat me favorably.",
+          "meaning": "Use very formal, polite language with humble forms",
+          "nextId": "teacher_impressed_formal",
+          "requiredLevel": 3,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "2": 5
+          },
+          "tags": ["vocab:113", "grammar:62", "culture:13"]
+        },
+        {
+          "id": "choice_hobby_intro",
+          "textJp": "こんにちは。私は[名前]です。趣味は読書と映画鑑賞です。日本の文化に興味があります。",
+          "furiganaJp": "こんにちは。わたしは[なまえ]です。しゅみはどくしょとえいがかんしょうです。にほんのぶんかにきょうみがあります。",
+          "textEn": "Hello. I'm [name]. My hobbies are reading and watching movies. I'm interested in Japanese culture.",
+          "meaning": "Include personal interests and hobbies in introduction",
+          "nextId": "teacher_pleased_hobby",
+          "requiredLevel": 2,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "2": 4,
+            "1": 4
+          },
+          "tags": ["vocab:114", "vocab:115", "grammar:63"]
+        },
+        {
+          "id": "choice_goal_intro",
+          "textJp": "私は将来、日本で働きたいです。そのために、日本語を一生懸命勉強しています。",
+          "furiganaJp": "わたしはしょうらい、にほんではたらきたいです。そのために、にほんごをいっしょうけんめいべんきょうしています。",
+          "textEn": "In the future, I want to work in Japan. For that purpose, I'm studying Japanese very hard.",
+          "meaning": "Focus on future goals and motivation for learning",
+          "nextId": "teacher_motivated",
+          "requiredLevel": 3,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "2": 5,
+            "5": 4
+          },
+          "tags": ["vocab:116", "vocab:117", "grammar:64"]
+        }
+      ]
+    },
+    "teacher_impressed_formal": {
+      "line": {
+        "id": "teacher_impressed_formal",
+        "characterId": "2",
+        "speakerName": "田中先生",
+        "sprite": "encouraging",
+        "position": "center",
+        "textJp": "素晴らしい敬語の使い方ですね！謙譲語もちゃんと使えています。とても上手です。",
+        "furiganaJp": "すばらしいけいごのつかいかたですね！けんじょうごもちゃんとつかえています。とてもじょうずです。",
+        "romajiJp": "Subarashii keigo no tsukai-kata desu ne! Kenjōgo mo chanto tsukaete imasu. Totemo jōzu desu.",
+        "textEn": "Excellent use of honorific language! You're using humble forms properly too. Very skillful.",
+        "nextId": "grammar_lesson_start",
+        "tags": ["vocab:118", "culture:14"]
+      },
+      "choices": []
+    },
+    "teacher_pleased_hobby": {
+      "line": {
+        "id": "teacher_pleased_hobby",
+        "characterId": "2",
+        "speakerName": "田中先生",
+        "sprite": "smile",
+        "position": "center",
+        "textJp": "いいですね！趣味について話すのは大切です。どんな本や映画が好きですか？今度教えてくださいね。",
+        "furiganaJp": "いいですね！しゅみについてはなすのはたいせつです。どんなほんやえいががすきですか？こんどおしえてくださいね。",
+        "romajiJp": "Ii desu ne! Shumi ni tsuite hanasu no wa taisetsu desu. Donna hon ya eiga ga suki desu ka? Kondo oshiete kudasai ne.",
+        "textEn": "That's good! Talking about hobbies is important. What kind of books and movies do you like? Please tell me sometime.",
+        "nextId": "grammar_lesson_start",
+        "tags": ["vocab:119", "grammar:65"]
+      },
+      "choices": []
+    },
+    "teacher_motivated": {
+      "line": {
+        "id": "teacher_motivated",
+        "characterId": "2",
+        "speakerName": "田中先生",
+        "sprite": "encouraging",
+        "position": "center",
+        "textJp": "立派な目標ですね！その気持ちがあれば、きっと夢を実現できますよ。応援しています。",
+        "furiganaJp": "りっぱなもくひょうですね！そのきもちがあれば、きっとゆめをじつげんできますよ。おうえんしています。",
+        "romajiJp": "Rippa na mokuhyō desu ne! Sono kimochi ga areba, kitto yume o jitsugen dekimasu yo. Ōen shite imasu.",
+        "textEn": "That's an admirable goal! With that spirit, you'll surely realize your dream. I'm cheering you on.",
+        "nextId": "grammar_lesson_start",
+        "tags": ["vocab:120", "vocab:121", "grammar:66"]
+      },
+      "choices": []
+    },
+    "yuki_introduction": {
+      "line": {
+        "id": "yuki_introduction",
+        "characterId": "1",
+        "speakerName": "ユキ",
+        "sprite": "explaining",
+        "position": "left",
+        "textJp": "私からやってみます。私は田中ユキと申します。大学で国際関係を勉強していました。よろしくお願いします。",
+        "furiganaJp": "わたしからやってみます。わたしはたなかユキともうします。だいがくでこくさいかんけいをべんきょうしていました。よろしくおねがいします。",
+        "romajiJp": "Watashi kara yatte mimasu. Watashi wa Tanaka Yuki to mōshimasu. Daigaku de kokusai kankei o benkyō shite imashita. Yoroshiku onegai shimasu.",
+        "textEn": "I'll try going first. My name is Tanaka Yuki. I was studying international relations at university. Please treat me well.",
+        "nextId": "player_turn_after_yuki",
+        "tags": ["vocab:122", "grammar:67"]
+      },
+      "choices": []
+    },
+    "teacher_understanding": {
+      "line": {
+        "id": "teacher_understanding",
+        "characterId": "2",
+        "speakerName": "田中先生",
+        "sprite": "encouraging",
+        "position": "center",
+        "textJp": "もちろんです。緊張するのは当然ですよ。他の人の自己紹介を聞いてから、やってみてくださいね。",
+        "furiganaJp": "もちろんです。きんちょうするのはとうぜんですよ。ほかのひとのじこしょうかいをきいてから、やってみてくださいね。",
+        "romajiJp": "Mochiron desu. Kinchō suru no wa tōzen desu yo. Hoka no hito no jikoshōkai o kiite kara, yatte mite kudasai ne.",
+        "textEn": "Of course. It's natural to be nervous. Please try after listening to other people's self-introductions.",
+        "nextId": "yuki_introduction",
+        "tags": ["vocab:123", "grammar:68"]
+      },
+      "choices": []
+    },
+    "player_turn_after_yuki": {
+      "line": {
+        "id": "player_turn_after_yuki",
+        "characterId": "2",
+        "speakerName": "田中先生",
+        "sprite": "encouraging",
+        "position": "center",
+        "textJp": "では、次はあなたの番ですね。頑張ってください。",
+        "furiganaJp": "では、つぎはあなたのばんですね。がんばってください。",
+        "romajiJp": "Dewa, tsugi wa anata no ban desu ne. Ganbatte kudasai.",
+        "textEn": "Well then, it's your turn next. Please do your best.",
+        "nextId": "introduction_response_choice",
+        "tags": []
+      },
+      "choices": []
+    },
+    "grammar_lesson_start": {
+      "line": {
+        "id": "grammar_lesson_start",
+        "characterId": "2",
+        "speakerName": "田中先生",
+        "sprite": "explaining",
+        "position": "center",
+        "textJp": "では、今日の文法レッスンを始めましょう。今日は「〜ています」の使い方を勉強します。",
+        "furiganaJp": "では、きょうのぶんぽうレッスンをはじめましょう。きょうは「〜ています」のつかいかたをべんきょうします。",
+        "romajiJp": "Dewa, kyō no bunpō ressun o hajimemashō. Kyō wa '~te imasu' no tsukai-kata o benkyō shimasu.",
+        "textEn": "Now, let's begin today's grammar lesson. Today we'll study how to use '~te imasu' (present progressive form).",
+        "nextId": "grammar_explanation",
+        "tags": ["vocab:124", "grammar:69"]
+      },
+      "choices": []
+    },
+    "grammar_explanation": {
+      "line": {
+        "id": "grammar_explanation",
+        "characterId": "2",
+        "speakerName": "田中先生",
+        "sprite": "explaining",
+        "position": "center",
+        "textJp": "「〜ています」は三つの意味があります。進行中の動作、習慣、そして状態です。例を見てみましょう。",
+        "furiganaJp": "「〜ています」はみっつのいみがあります。しんこうちゅうのどうさ、しゅうかん、そしてじょうたいです。れいをみてみましょう。",
+        "romajiJp": "'~Te imasu' wa mittsu no imi ga arimasu. Shinkō-chū no dōsa, shūkan, soshite jōtai desu. Rei o mite mimasho.",
+        "textEn": "'~Te imasu' has three meanings: ongoing action, habit, and state. Let's look at examples.",
+        "nextId": "grammar_examples",
+        "tags": ["vocab:125", "vocab:126", "grammar:70"]
+      },
+      "choices": []
+    },
+    "grammar_examples": {
+      "line": {
+        "id": "grammar_examples",
+        "characterId": "2",
+        "speakerName": "田中先生",
+        "sprite": "smile",
+        "position": "center",
+        "textJp": "「今、勉強しています」は進行中。「毎日運動しています」は習慣。「結婚しています」は状態です。",
+        "furiganaJp": "「いま、べんきょうしています」はしんこうちゅう。「まいにちうんどうしています」はしゅうかん。「けっこんしています」はじょうたいです。",
+        "romajiJp": "'Ima, benkyō shite imasu' wa shinkō-chū. 'Mainichi undō shite imasu' wa shūkan. 'Kekkon shite imasu' wa jōtai desu.",
+        "textEn": "'Now, I am studying' is ongoing. 'I exercise every day' is habit. 'I am married' is a state.",
+        "nextId": "practice_time",
+        "tags": ["vocab:127", "vocab:128", "grammar:71"]
+      },
+      "choices": []
+    },
+    "practice_time": {
+      "line": {
+        "id": "practice_time",
+        "characterId": "2",
+        "speakerName": "田中先生",
+        "sprite": "explaining",
+        "position": "center",
+        "textJp": "では、練習してみましょう。「〜ています」を使って文を作ってください。どなたか例を言ってみてください。",
+        "furiganaJp": "では、れんしゅうしてみましょう。「〜ています」をつかってぶんをつくってください。どなたかれいをいってみてください。",
+        "romajiJp": "Dewa, renshū shite mimasho. '~Te imasu' o tsukatte bun o tsukutte kudasai. Donata ka rei o itte mite kudasai.",
+        "textEn": "Now, let's practice. Please make sentences using '~te imasu'. Could someone give an example?",
+        "nextId": "practice_choice",
+        "tags": ["vocab:129", "grammar:72"]
+      },
+      "choices": []
+    },
+    "practice_choice": {
+      "line": {
+        "id": "practice_choice",
+        "textJp": "どの例文を言いますか？",
+        "textEn": "Which example sentence will you say?",
+        "isChoice": true
+      },
+      "choices": [
+        {
+          "id": "choice_ongoing",
+          "textJp": "私は今、日本語を勉強しています。",
+          "furiganaJp": "わたしはいま、にほんごをべんきょうしています。",
+          "textEn": "I am studying Japanese now.",
+          "meaning": "Use the ongoing action meaning of ~te imasu",
+          "nextId": "teacher_correct_ongoing",
+          "requiredLevel": 2,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "2": 3
+          },
+          "tags": ["grammar:73"]
+        },
+        {
+          "id": "choice_habit",
+          "textJp": "毎朝、コーヒーを飲んでいます。",
+          "furiganaJp": "まいあさ、コーヒーをのんでいます。",
+          "textEn": "I drink coffee every morning.",
+          "meaning": "Use the habitual meaning of ~te imasu",
+          "nextId": "teacher_correct_habit",
+          "requiredLevel": 2,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "2": 4
+          },
+          "tags": ["vocab:130", "grammar:74"]
+        },
+        {
+          "id": "choice_state",
+          "textJp": "ケンタさんは元気な性格をしています。",
+          "furiganaJp": "ケンタさんはげんきなせいかくをしています。",
+          "textEn": "Kenta-san has an energetic personality.",
+          "meaning": "Use the state meaning of ~te imasu",
+          "nextId": "teacher_excellent_state",
+          "requiredLevel": 3,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "2": 5,
+            "5": 3
+          },
+          "tags": ["vocab:131", "grammar:75"]
+        }
+      ]
+    },
+    "teacher_correct_ongoing": {
+      "line": {
+        "id": "teacher_correct_ongoing",
+        "characterId": "2",
+        "speakerName": "田中先生",
+        "sprite": "encouraging",
+        "position": "center",
+        "textJp": "はい、正解です！進行中の動作を表していますね。「今」があるので、現在進行形だとわかります。",
+        "furiganaJp": "はい、せいかいです！しんこうちゅうのどうさをあらわしていますね。「いま」があるので、げんざいしんこうけいだとわかります。",
+        "romajiJp": "Hai, seikai desu! Shinkō-chū no dōsa o arawashite imasu ne. 'Ima' ga aru no de, genzai shinkō-kei da to wakarimasu.",
+        "textEn": "Yes, that's correct! It expresses an ongoing action. Because there's 'now', we can tell it's present progressive.",
+        "nextId": "kenta_example",
+        "tags": ["vocab:132", "grammar:76"]
+      },
+      "choices": []
+    },
+    "teacher_correct_habit": {
+      "line": {
+        "id": "teacher_correct_habit",
+        "characterId": "2",
+        "speakerName": "田中先生",
+        "sprite": "happy",
+        "position": "center",
+        "textJp": "とても良い例ですね！「毎朝」があるので、習慣を表していることがわかります。素晴らしいです。",
+        "furiganaJp": "とてもよいれいですね！「まいあさ」があるので、しゅうかんをあらわしていることがわかります。すばらしいです。",
+        "romajiJp": "Totemo yoi rei desu ne! 'Maiasa' ga aru no de, shūkan o arawashite iru koto ga wakarimasu. Subarashii desu.",
+        "textEn": "That's a very good example! Because there's 'every morning', we can tell it expresses a habit. Excellent.",
+        "nextId": "kenta_example",
+        "tags": ["vocab:133", "grammar:77"]
+      },
+      "choices": []
+    },
+    "teacher_excellent_state": {
+      "line": {
+        "id": "teacher_excellent_state",
+        "characterId": "2",
+        "speakerName": "田中先生",
+        "sprite": "encouraging",
+        "position": "center",
+        "textJp": "素晴らしい！状態を表す「〜ています」の使い方、完璧ですね。上級レベルの例文です。",
+        "furiganaJp": "すばらしい！じょうたいをあらわす「〜ています」のつかいかた、かんぺきですね。じょうきゅうレベルのれいぶんです。",
+        "romajiJp": "Subarashii! Jōtai o arawasu '~te imasu' no tsukai-kata, kanpeki desu ne. Jōkyū reberu no reibun desu.",
+        "textEn": "Excellent! Your use of '~te imasu' to express a state is perfect. That's an advanced-level example sentence.",
+        "nextId": "kenta_example",
+        "tags": ["vocab:134", "grammar:78"]
+      },
+      "choices": []
+    },
+    "kenta_example": {
+      "line": {
+        "id": "kenta_example",
+        "characterId": "5",
+        "speakerName": "ケンタ",
+        "sprite": "confident",
+        "position": "right",
+        "textJp": "僕も言ってみます！「友達と楽しく話しています！」これは進行中ですか？",
+        "furiganaJp": "ぼくもいってみます！「ともだちとたのしくはなしています！」これはしんこうちゅうですか？",
+        "romajiJp": "Boku mo itte mimasu! 'Tomodachi to tanoshiku hanashite imasu!' Kore wa shinkō-chū desu ka?",
+        "textEn": "I'll try too! 'I'm talking happily with friends!' Is this ongoing?",
+        "nextId": "teacher_kenta_response",
+        "tags": ["vocab:135", "grammar:79"]
+      },
+      "choices": []
+    },
+    "teacher_kenta_response": {
+      "line": {
+        "id": "teacher_kenta_response",
+        "characterId": "2",
+        "speakerName": "田中先生",
+        "sprite": "encouraging",
+        "position": "center",
+        "textJp": "はい、そうですね！ケンタさんは今、実際に話しているので進行中の動作です。よくわかりましたね。",
+        "furiganaJp": "はい、そうですね！ケンタさんはいま、じっさいにはなしているのでしんこうちゅうのどうさです。よくわかりましたね。",
+        "romajiJp": "Hai, sō desu ne! Kenta-san wa ima, jissai ni hanashite iru no de shinkō-chū no dōsa desu. Yoku wakarimashita ne.",
+        "textEn": "Yes, that's right! Since Kenta-san is actually talking right now, it's an ongoing action. You understood well.",
+        "nextId": "vocabulary_practice",
+        "tags": ["vocab:136", "grammar:80"]
+      },
+      "choices": []
+    },
+    "vocabulary_practice": {
+      "line": {
+        "id": "vocabulary_practice",
+        "characterId": "2",
+        "speakerName": "田中先生",
+        "sprite": "smile",
+        "position": "center",
+        "textJp": "では、次は語彙の練習をしましょう。今日は感情を表す言葉を覚えましょう。嬉しい、悲しい、怒る、驚く...",
+        "furiganaJp": "では、つぎはごいのれんしゅうをしましょう。きょうはかんじょうをあらわすことばをおぼえましょう。うれしい、かなしい、おこる、おどろく...",
+        "romajiJp": "Dewa, tsugi wa goi no renshū o shimasho. Kyō wa kanjō o arawasu kotoba o oboemasho. Ureshii, kanashii, okoru, odoroku...",
+        "textEn": "Now, let's practice vocabulary. Today let's learn words that express emotions. Happy, sad, angry, surprised...",
+        "nextId": "emotion_practice",
+        "tags": ["vocab:137", "vocab:138", "vocab:139", "vocab:140"]
+      },
+      "choices": []
+    },
+    "emotion_practice": {
+      "line": {
+        "id": "emotion_practice",
+        "characterId": "2",
+        "speakerName": "田中先生",
+        "sprite": "avatar",
+        "position": "center",
+        "textJp": "では、感情の言葉を使って、昨日の気持ちを表現してみてください。",
+        "furiganaJp": "では、かんじょうのことばをつかって、きのうのきもちをひょうげんしてみてください。",
+        "romajiJp": "Dewa, kanjō no kotoba o tsukatte, kinō no kimochi o hyōgen shite mite kudasai.",
+        "textEn": "Now, please try expressing yesterday's feelings using emotion words.",
+        "nextId": "emotion_choice",
+        "tags": ["vocab:141", "grammar:81"]
+      },
+      "choices": []
+    },
+    "emotion_choice": {
+      "line": {
+        "id": "emotion_choice",
+        "textJp": "昨日の気持ちをどう表現しますか？",
+        "textEn": "How will you express yesterday's feelings?",
+        "isChoice": true
+      },
+      "choices": [
+        {
+          "id": "choice_excited",
+          "textJp": "新しいクラスが始まるので、とてもワクワクしていました。",
+          "furiganaJp": "あたらしいクラスがはじまるので、とてもワクワクしていました。",
+          "textEn": "I was very excited because new classes were starting.",
+          "meaning": "Express excitement about starting classes",
+          "nextId": "teacher_excited_response",
+          "requiredLevel": 2,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "2": 3,
+            "1": 3,
+            "5": 3
+          },
+          "tags": ["vocab:142", "grammar:82"]
+        },
+        {
+          "id": "choice_nervous",
+          "textJp": "ちょっと緊張していましたが、友達がいるので安心でした。",
+          "furiganaJp": "ちょっときんちょうしていましたが、ともだちがいるのであんしんでした。",
+          "textEn": "I was a bit nervous, but I felt relieved because I have friends.",
+          "meaning": "Express mixed feelings of nervousness and relief",
+          "nextId": "teacher_understanding_response",
+          "requiredLevel": 2,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "2": 4,
+            "1": 4,
+            "5": 4
+          },
+          "tags": ["vocab:143", "grammar:83"]
+        },
+        {
+          "id": "choice_grateful",
+          "textJp": "みんなが親切にしてくれて、とても感謝していました。",
+          "furiganaJp": "みんながしんせつにしてくれて、とてもかんしゃしていました。",
+          "textEn": "I was very grateful because everyone was kind to me.",
+          "meaning": "Express gratitude for others' kindness",
+          "nextId": "teacher_grateful_response",
+          "requiredLevel": 3,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "2": 5,
+            "1": 5,
+            "5": 5
+          },
+          "tags": ["vocab:144", "grammar:84"]
+        }
+      ]
+    },
+    "teacher_excited_response": {
+      "line": {
+        "id": "teacher_excited_response",
+        "characterId": "2",
+        "speakerName": "田中先生",
+        "sprite": "encouraging",
+        "position": "center",
+        "textJp": "素晴らしいですね！「ワクワクする」は期待や興奮を表すとてもいい表現です。",
+        "furiganaJp": "すばらしいですね！「ワクワクする」はきたいやこうふんをあらわすとてもいいひょうげんです。",
+        "romajiJp": "Subarashii desu ne! 'Wakuwaku suru' wa kitai ya kōfun o arawasu totemo ii hyōgen desu.",
+        "textEn": "Wonderful! 'Wakuwaku suru' is a very good expression that shows anticipation and excitement.",
+        "nextId": "class_ending",
+        "tags": ["vocab:145", "culture:15"]
+      },
+      "choices": []
+    },
+    "teacher_understanding_response": {
+      "line": {
+        "id": "teacher_understanding_response",
+        "characterId": "2",
+        "speakerName": "田中先生",
+        "sprite": "happy",
+        "position": "center",
+        "textJp": "とてもいい表現ですね。複雑な気持ちを上手に説明できています。友達がいると心強いですね。",
+        "furiganaJp": "とてもいいひょうげんですね。ふくざつなきもちをじょうずにせつめいできています。ともだちがいるとこころづよいですね。",
+        "romajiJp": "Totemo ii hyōgen desu ne. Fukuzatsu na kimochi o jōzu ni setsumei dekite imasu. Tomodachi ga iru to kokorozuyoi desu ne.",
+        "textEn": "That's a very good expression. You can explain complex feelings skillfully. Having friends gives you strength, doesn't it?",
+        "nextId": "class_ending",
+        "tags": ["vocab:146", "grammar:85"]
+      },
+      "choices": []
+    },
+    "teacher_grateful_response": {
+      "line": {
+        "id": "teacher_grateful_response",
+        "characterId": "2",
+        "speakerName": "田中先生",
+        "sprite": "happy",
+        "position": "center",
+        "textJp": "感謝の気持ちを表現するのは素晴らしいことです。日本では「感謝」はとても大切な概念ですよ。",
+        "furiganaJp": "かんしゃのきもちをひょうげんするのはすばらしいことです。にほんでは「かんしゃ」はとてもたいせつながいねんですよ。",
+        "romajiJp": "Kansha no kimochi o hyōgen suru no wa subarashii koto desu. Nihon de wa 'kansha' wa totemo taisetsu na gainen desu yo.",
+        "textEn": "Expressing gratitude is a wonderful thing. In Japan, 'gratitude' is a very important concept.",
+        "nextId": "class_ending",
+        "tags": ["vocab:147", "culture:16"]
+      },
+      "choices": []
+    },
+    "class_ending": {
+      "line": {
+        "id": "class_ending",
+        "characterId": "2",
+        "speakerName": "田中先生",
+        "sprite": "avatar",
+        "position": "center",
+        "textJp": "今日の授業はここまでです。宿題は教科書の15ページの練習問題です。明日も頑張りましょう。",
+        "furiganaJp": "きょうのじゅぎょうはここまでです。しゅくだいはきょうかしょのじゅうごページのれんしゅうもんだいです。あしたもがんばりましょう。",
+        "romajiJp": "Kyō no jugyō wa koko made desu. Shukudai wa kyōkasho no jūgo pēji no renshū mondai desu. Ashita mo ganbarimasho.",
+        "textEn": "Today's class ends here. The homework is the practice problems on page 15 of the textbook. Let's do our best tomorrow too.",
+        "nextId": "after_class",
+        "tags": ["vocab:148", "vocab:149"]
+      },
+      "choices": []
+    },
+    "after_class": {
+      "line": {
+        "id": "after_class",
+        "textJp": "授業が終わった後、ユキさんとケンタさんが話しかけてきます。",
+        "furiganaJp": "じゅぎょうがおわったあと、ユキさんとケンタさんがはなしかけてきます。",
+        "romajiJp": "Jugyō ga owatta ato, Yuki-san to Kenta-san ga hanashikakete kimasu.",
+        "textEn": "After class ends, Yuki-san and Kenta-san approach you to talk.",
+        "nextId": "friends_suggestion",
+        "tags": ["vocab:150", "grammar:86"]
+      },
+      "choices": []
+    },
+    "friends_suggestion": {
+      "line": {
+        "id": "friends_suggestion",
+        "characterId": "1",
+        "speakerName": "ユキ",
+        "sprite": "avatar",
+        "position": "left",
+        "textJp": "お疲れさまでした！今日の授業、とても面白かったですね。一緒に図書館で宿題をやりませんか？",
+        "furiganaJp": "おつかれさまでした！きょうのじゅぎょう、とてもおもしろかったですね。いっしょにとしょかんでしゅくだいをやりませんか？",
+        "romajiJp": "Otsukaresama deshita! Kyō no jugyō, totemo omoshirokatta desu ne. Issho ni toshokan de shukudai o yarimasen ka?",
+        "textEn": "Good work today! Today's class was very interesting, wasn't it? Would you like to do homework together in the library?",
+        "nextId": "kenta_agreement",
+        "tags": ["vocab:151", "grammar:87"]
+      },
+      "choices": []
+    },
+    "kenta_agreement": {
+      "line": {
+        "id": "kenta_agreement",
+        "characterId": "5",
+        "speakerName": "ケンタ",
+        "sprite": "encouraging",
+        "position": "right",
+        "textJp": "いいアイデアだ！みんなでやれば、わからないところを教え合えるよ。どう？",
+        "furiganaJp": "いいアイデアだ！みんなでやれば、わからないところをおしえあえるよ。どう？",
+        "romajiJp": "Ii aidea da! Minna de yareba, wakaranai tokoro o oshie aeru yo. Dō?",
+        "textEn": "Good idea! If we all do it together, we can help each other with parts we don't understand. How about it?",
+        "nextId": "study_group_choice",
+        "tags": ["vocab:152", "grammar:88"]
+      },
+      "choices": []
+    },
+    "study_group_choice": {
+      "line": {
+        "id": "study_group_choice",
+        "textJp": "友達の提案にどう答えますか？",
+        "textEn": "How will you respond to your friends' suggestion?",
+        "isChoice": true
+      },
+      "choices": [
+        {
+          "id": "choice_join_enthusiastic",
+          "textJp": "はい！ぜひお願いします。みんなで勉強すると楽しそうです。",
+          "furiganaJp": "はい！ぜひおねがいします。みんなでべんきょうするとたのしそうです。",
+          "textEn": "Yes! Please let me join. Studying with everyone seems fun.",
+          "meaning": "Enthusiastically agree to join the study group",
+          "nextId": "enthusiastic_response",
+          "requiredLevel": 1,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "1": 5,
+            "5": 5
+          },
+          "tags": ["grammar:89"]
+        },
+        {
+          "id": "choice_join_grateful",
+          "textJp": "ありがとうございます。一人で勉強するより、みんなの方がいいですね。",
+          "furiganaJp": "ありがとうございます。ひとりでべんきょうするより、みんなのほうがいいですね。",
+          "textEn": "Thank you. Studying with everyone is better than studying alone.",
+          "meaning": "Gratefully accept while showing you appreciate not being alone",
+          "nextId": "grateful_response",
+          "requiredLevel": 2,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "1": 4,
+            "5": 4
+          },
+          "tags": ["grammar:90"]
+        },
+        {
+          "id": "choice_join_helpful",
+          "textJp": "いいですね。私もわからないところがあったら、質問できますか？",
+          "furiganaJp": "いいですね。わたしもわからないところがあったら、しつもんできますか？",
+          "textEn": "That sounds good. If I have parts I don't understand, can I ask questions too?",
+          "meaning": "Accept while asking if you can get help when needed",
+          "nextId": "helpful_response",
+          "requiredLevel": 2,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "1": 3,
+            "5": 3
+          },
+          "tags": ["vocab:153", "grammar:91"]
+        }
+      ]
+    },
+    "enthusiastic_response": {
+      "line": {
+        "id": "enthusiastic_response",
+        "characterId": "1",
+        "speakerName": "ユキ",
+        "sprite": "laugh",
+        "position": "left",
+        "textJp": "やった！これで勉強グループができましたね。お互いに頑張りましょう！",
+        "furiganaJp": "やった！これでべんきょうグループができましたね。おたがいにがんばりましょう！",
+        "romajiJp": "Yatta! Kore de benkyō gurūpu ga dekimashita ne. Otagai ni ganbarimasho!",
+        "textEn": "Yay! Now we have a study group. Let's work hard together!",
+        "nextId": "scene_conclusion",
+        "tags": ["vocab:154", "grammar:92"]
+      },
+      "choices": []
+    },
+    "grateful_response": {
+      "line": {
+        "id": "grateful_response",
+        "characterId": "5",
+        "speakerName": "ケンタ",
+        "sprite": "explaining",
+        "position": "right",
+        "textJp": "そうだよ！一人より三人の方が絶対にいい。わからないことがあったら、遠慮しないで聞いてよ。",
+        "furiganaJp": "そうだよ！ひとりよりさんにんのほうがぜったいにいい。わからないことがあったら、えんりょしないできいてよ。",
+        "romajiJp": "Sō da yo! Hitori yori san-nin no hō ga zettai ni ii. Wakaranai koto ga attara, enryo shinaide kiite yo.",
+        "textEn": "That's right! Three people is definitely better than one. If there's anything you don't understand, don't hesitate to ask.",
+        "nextId": "scene_conclusion",
+        "tags": ["vocab:155", "grammar:93"]
+      },
+      "choices": []
+    },
+    "helpful_response": {
+      "line": {
+        "id": "helpful_response",
+        "characterId": "1",
+        "speakerName": "ユキ",
+        "sprite": "avatar",
+        "position": "left",
+        "textJp": "もちろんです！私たちも質問があると思いますから、お互いに助け合いましょう。",
+        "furiganaJp": "もちろんです！わたしたちもしつもんがあるとおもいますから、おたがいにたすけあいましょう。",
+        "romajiJp": "Mochiron desu! Watashitachi mo shitsumon ga aru to omoimasu kara, otagai ni tasuke aimasho.",
+        "textEn": "Of course! We'll probably have questions too, so let's help each other.",
+        "nextId": "scene_conclusion",
+        "tags": ["vocab:156", "grammar:94"]
+      },
+      "choices": []
+    },
+    "scene_conclusion": {
+      "line": {
+        "id": "scene_conclusion",
+        "textJp": "初めての本格的な日本語の授業が終わりました。新しい文法と語彙を学び、友達と一緒に勉強する約束もできました。日本語学習の旅が本格的に始まります。",
+        "furiganaJp": "はじめてのほんかくてきなにほんごのじゅぎょうがおわりました。あたらしいぶんぽうとごいをまなび、ともだちといっしょにべんきょうするやくそくもできました。にほんごがくしゅうのたびがほんかくてきにはじまります。",
+        "romajiJp": "Hajimete no honkaku-teki na Nihongo no jugyō ga owarimashita. Atarashii bunpō to goi o manabi, tomodachi to issho ni benkyō suru yakusoku mo dekimashita. Nihongo gakushū no tabi ga honkaku-teki ni hajimarimasu.",
+        "textEn": "Your first full-scale Japanese lesson has ended. You learned new grammar and vocabulary, and made plans to study together with friends. Your Japanese learning journey begins in earnest.",
+        "nextId": "scene_end",
+        "tags": ["vocab:157", "vocab:158", "grammar:95"]
+      },
+      "choices": []
+    },
+    "scene_end": {
+      "line": {
+        "id": "scene_end",
+        "textJp": "シーン４：終了",
+        "textEn": "Scene 4: Complete"
+      },
+      "choices": []
+    }
+  },
+  "startNodeId": "next_morning",
+  "tags": ["chapter_1", "first_lesson", "grammar_lesson", "vocabulary_practice", "study_group", "friendship_building"]
+}

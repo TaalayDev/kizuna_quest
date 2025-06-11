@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tsuzuki_connect/config/theme/custom_colors.dart';
 import 'package:tsuzuki_connect/data/models/character_model.dart';
 import 'package:tsuzuki_connect/providers/database_provider.dart';
 import 'package:tsuzuki_connect/core/utils/extensions.dart';
@@ -9,7 +10,6 @@ import 'character_display_dialog.dart';
 
 /// Horizontal scrolling showcase of game characters
 class CharacterShowcase extends ConsumerStatefulWidget {
-  /// Creates a CharacterShowcase
   const CharacterShowcase({super.key});
 
   @override
@@ -17,7 +17,7 @@ class CharacterShowcase extends ConsumerStatefulWidget {
 }
 
 class _CharacterShowcaseState extends ConsumerState<CharacterShowcase> {
-  final PageController _pageController = PageController(viewportFraction: 0.85);
+  final _pageController = PageController(viewportFraction: 0.4);
   int _currentPage = 0;
 
   @override
@@ -178,7 +178,6 @@ class _CharacterShowcaseState extends ConsumerState<CharacterShowcase> {
   }
 }
 
-/// Card widget for a single character
 class _CharacterCard extends StatelessWidget {
   final CharacterModel character;
   final bool isActive;
@@ -212,10 +211,17 @@ class _CharacterCard extends StatelessWidget {
               offset: Offset(0, isActive ? 4 : 2),
             ),
           ],
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              context.theme.colorScheme.primary,
+              context.theme.colorScheme.primaryContainer,
+            ],
+          ),
         ),
         child: Stack(
           children: [
-            // Character avatar
             Positioned(
               top: 0,
               right: 0,
@@ -257,7 +263,7 @@ class _CharacterCard extends StatelessWidget {
                       child: Text(
                         character.relationshipLevel,
                         style: context.textTheme.bodySmall?.copyWith(
-                          color: Colors.white,
+                          color: _getOnKizunaColor(context, character.kizunaPoints ?? 0),
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -274,7 +280,7 @@ class _CharacterCard extends StatelessWidget {
                         character.nameJp,
                         style: context.textTheme.titleLarge?.copyWith(
                           fontWeight: FontWeight.bold,
-                          color: context.theme.colorScheme.primary,
+                          color: context.theme.colorScheme.primaryFixed,
                         ),
                       ),
                     ),
@@ -353,14 +359,12 @@ class _CharacterCard extends StatelessWidget {
   }
 
   Color _getKizunaColor(BuildContext context, int points) {
-    if (points >= 75) {
-      return Colors.purple;
-    } else if (points >= 50) {
-      return Colors.blue;
-    } else if (points >= 25) {
-      return Colors.teal;
-    } else {
-      return Colors.grey;
-    }
+    return Theme.of(context).extension<CustomColors>()?.getKizunaColor(context, points) ??
+        context.theme.colorScheme.primary;
+  }
+
+  Color _getOnKizunaColor(BuildContext context, int points) {
+    return Theme.of(context).extension<CustomColors>()?.getOnKizunaColor(context, points) ??
+        context.theme.colorScheme.onPrimaryContainer;
   }
 }

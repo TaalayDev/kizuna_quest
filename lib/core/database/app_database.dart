@@ -86,7 +86,7 @@ class AppDatabase extends _$AppDatabase {
 
   static QueryExecutor _openConnection() {
     return driftDatabase(
-      name: kReleaseMode ? _databaseFileName : 'kizuna_quest_dev_3.db',
+      name: kReleaseMode ? _databaseFileName : 'tsuzuki_connect_dev_3.db',
       web: DriftWebOptions(
         sqlite3Wasm: Uri.parse('sqlite3.wasm'),
         driftWorker: Uri.parse('drift_worker.js'),
@@ -128,49 +128,49 @@ class AppDatabase extends _$AppDatabase {
       CharactersCompanion.insert(
         nameJp: 'ユキ',
         nameEn: 'Yuki',
-        personality: 'Friendly and studious classmate',
+        personality: 'Friendly classmate who loves helping international students',
         avatarPath: 'assets/images/characters/yuki/avatar.webp',
         spriteFolder: 'assets/images/characters/yuki',
       ),
       CharactersCompanion.insert(
         nameJp: '田中先生',
         nameEn: 'Tanaka-sensei',
-        personality: 'Strict but fair Japanese teacher',
+        personality: 'Experienced Japanese language teacher with a passion for cultural exchange',
         avatarPath: 'assets/images/characters/tanaka/avatar.webp',
         spriteFolder: 'assets/images/characters/tanaka',
       ),
       CharactersCompanion.insert(
         nameJp: '佐藤',
         nameEn: 'Sato',
-        personality: 'Friendly neighborhood shopkeeper',
+        personality: 'Kind shopkeeper near the school who enjoys chatting with students',
         avatarPath: 'assets/images/characters/sato/avatar.webp',
         spriteFolder: 'assets/images/characters/sato',
       ),
       CharactersCompanion.insert(
         nameEn: 'Mei',
         nameJp: 'メイ',
-        personality: 'Curious and knowledgeable about Japanese culture classmate',
+        personality: 'Advanced Japanese student from Taiwan who offers study tips',
         avatarPath: 'assets/images/characters/mei/avatar.webp',
         spriteFolder: 'assets/images/characters/mei',
       ),
       CharactersCompanion.insert(
         nameEn: 'Kenta',
         nameJp: 'ケンタ',
-        personality: 'Athletic and competitive classmate',
+        personality: 'Energetic conversation partner who helps with speaking practice',
         avatarPath: 'assets/images/characters/kenta/avatar.webp',
         spriteFolder: 'assets/images/characters/kenta',
       ),
       CharactersCompanion.insert(
         nameEn: 'Nakamura',
         nameJp: '中村',
-        personality: 'A gentle elderly woman.',
+        personality: 'Gentle homestay mother who teaches daily life Japanese',
         avatarPath: 'assets/images/characters/nakamura/avatar.webp',
         spriteFolder: 'assets/images/characters/nakamura',
       ),
       CharactersCompanion.insert(
         nameEn: 'Hiroshi',
         nameJp: 'ヒロシ',
-        personality: 'Tour guide with a passion for history.',
+        personality: 'Local university student who organizes cultural exchange events',
         avatarPath: 'assets/images/characters/hiroshi/avatar.webp',
         spriteFolder: 'assets/images/characters/hiroshi',
       ),

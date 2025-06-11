@@ -110,6 +110,26 @@ class CustomColors extends ThemeExtension<CustomColors> {
       culturalNote: Color.lerp(culturalNote, other.culturalNote, t)!,
     );
   }
+
+  Color getKizunaColor(BuildContext context, int points) {
+    if (points >= 75) {
+      return Colors.purple;
+    } else if (points >= 50) {
+      return Colors.blue;
+    } else if (points >= 25) {
+      return Colors.teal;
+    } else {
+      return Colors.white.withOpacity(0.8);
+    }
+  }
+
+  Color getOnKizunaColor(BuildContext context, int points) {
+    if (points >= 25) {
+      return Theme.of(context).colorScheme.onPrimaryContainer;
+    } else {
+      return Colors.black.withOpacity(0.7);
+    }
+  }
 }
 
 /// Light theme custom colors

@@ -2,28 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:tsuzuki_connect/data/models/character_model.dart';
 
-/// Position types for character sprites
 enum SpritePosition {
   left,
   center,
   right,
 }
 
-/// Widget that displays a character sprite
 class CharacterSprite extends StatelessWidget {
-  /// The character to display
   final CharacterModel character;
-
-  /// The expression/pose of the character
   final String expression;
-
-  /// Position on screen (left, center, right)
   final String position;
-
-  /// Whether this character is currently speaking
   final bool isSpeaking;
 
-  /// Creates a CharacterSprite widget
   const CharacterSprite({
     super.key,
     required this.character,
@@ -34,7 +24,6 @@ class CharacterSprite extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Determine sprite position
     SpritePosition spritePosition;
     switch (position.toLowerCase()) {
       case 'left':
@@ -63,22 +52,17 @@ class CharacterSprite extends StatelessWidget {
       case SpritePosition.left:
         return 0;
       case SpritePosition.center:
-        return (screenWidth / 2) - 150; // Center sprite (assuming 300px width)
+        return (screenWidth / 2) - 150;
       case SpritePosition.right:
-        return null; // Will be positioned from right
+        return null;
     }
   }
 
   Widget _buildSpriteContainer(BuildContext context, SpritePosition spritePosition) {
     final spritePath = '${character.spriteFolder}/$expression.webp';
 
-    // Apply different animations based on position
     var animatedSprite = _buildSprite(MediaQuery.sizeOf(context), spritePath);
 
-    print('Sprite path: $spritePath');
-    print('Sprite position: $spritePosition');
-
-    // Add position-specific animations
     switch (spritePosition) {
       case SpritePosition.left:
         animatedSprite = animatedSprite
@@ -100,7 +84,6 @@ class CharacterSprite extends StatelessWidget {
         break;
     }
 
-    // Add breathing animation for all sprites
     return animatedSprite
         .animate(
           onPlay: (controller) => controller.repeat(reverse: true),
@@ -114,16 +97,13 @@ class CharacterSprite extends StatelessWidget {
   }
 
   Widget _buildSprite(Size size, String spritePath) {
-    // Build the basic sprite with shadow and highlight if speaking
-    final height = size.height * 0.8; // Adjust height based on screen size
-    final width = size.width; // Adjust width based on screen size
+    final height = size.height * 0.8;
+    final width = size.width;
 
     return Container(
-      height: height, // Standard height for character sprites
-      width: width, // Standard width for character sprites
-
+      height: height,
+      width: width,
       decoration: BoxDecoration(
-        // Subtle glow effect if speaking
         boxShadow: isSpeaking
             ? [
                 BoxShadow(
@@ -136,7 +116,6 @@ class CharacterSprite extends StatelessWidget {
       ),
       child: Stack(
         children: [
-          // Bottom shadow
           if (isSpeaking)
             Positioned(
               bottom: -5,
@@ -155,13 +134,19 @@ class CharacterSprite extends StatelessWidget {
                 ),
               ),
             ),
-
-          // Character image
+          // Positioned.fill(
+          //   right: -15,
+          //   bottom: -15,
+          //   child: Image.asset(
+          //     spritePath,
+          //     fit: BoxFit.contain,
+          //     color: Colors.black.withOpacity(0.3),
+          //   ),
+          // ),
           Positioned.fill(
             child: Image.asset(
               spritePath,
               fit: BoxFit.contain,
-              // If image fails to load, use a placeholder
               errorBuilder: (context, error, stackTrace) {
                 return ColoredBox(
                   color: Colors.black.withOpacity(0.1),
@@ -176,27 +161,6 @@ class CharacterSprite extends StatelessWidget {
               },
             ),
           ),
-
-          // Speaking indicator (subtle highlight)
-          if (isSpeaking)
-            Positioned.fill(
-              child: Container(
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Colors.white.withOpacity(0.2),
-                    width: 2,
-                  ),
-                ),
-              )
-                  .animate(
-                    onPlay: (controller) => controller.repeat(reverse: true),
-                  )
-                  .fadeIn(
-                    begin: 0.1,
-                    duration: 1.seconds,
-                    curve: Curves.easeInOut,
-                  ),
-            ),
         ],
       ),
     );

@@ -2,15 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:tsuzuki_connect/data/models/save_game_model.dart';
 import 'package:tsuzuki_connect/core/utils/extensions.dart';
 
-/// Card widget displaying a recent save game
 class RecentSaveCard extends StatelessWidget {
-  /// The save game to display
   final SaveGameModel saveGame;
-
-  /// Callback when card is tapped
   final VoidCallback onTap;
 
-  /// Creates a RecentSaveCard
   const RecentSaveCard({
     super.key,
     required this.saveGame,
@@ -33,6 +28,14 @@ class RecentSaveCard extends StatelessWidget {
               offset: const Offset(0, 2),
             ),
           ],
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              context.theme.colorScheme.primary,
+              context.theme.colorScheme.primaryContainer,
+            ],
+          ),
         ),
         child: Row(
           children: [
@@ -102,13 +105,13 @@ class RecentSaveCard extends StatelessWidget {
                         Icon(
                           Icons.timer,
                           size: 14,
-                          color: context.theme.colorScheme.primary,
+                          color: context.theme.colorScheme.onSurface,
                         ),
                         const SizedBox(width: 4),
                         Text(
                           saveGame.formattedPlayTime,
                           style: context.textTheme.bodySmall?.copyWith(
-                            color: context.theme.colorScheme.onSurface.withOpacity(0.7),
+                            color: context.theme.colorScheme.onSurface,
                           ),
                         ),
 
@@ -118,14 +121,14 @@ class RecentSaveCard extends StatelessWidget {
                         Icon(
                           Icons.calendar_today,
                           size: 14,
-                          color: context.theme.colorScheme.primary,
+                          color: context.theme.colorScheme.onSurface,
                         ),
                         const SizedBox(width: 4),
                         Expanded(
                           child: Text(
                             _getRelativeTimeString(saveGame.lastSavedAt),
                             style: context.textTheme.bodySmall?.copyWith(
-                              color: context.theme.colorScheme.onSurface.withOpacity(0.7),
+                              color: context.theme.colorScheme.onSurface,
                             ),
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,

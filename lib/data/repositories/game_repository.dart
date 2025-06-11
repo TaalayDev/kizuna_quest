@@ -187,8 +187,6 @@ class GameRepository {
     // Get unlocked status from database
     final unlockedItems = await _playerProgressDao.getUnlockedVocabulary(saveId);
 
-    print('Unlocked items: $unlockedItems');
-
     // Create a map of vocabulary ID to unlocked info
     final Map<int, UnlockedVocabularyItem> unlockedMap = {};
     for (final item in unlockedItems) {

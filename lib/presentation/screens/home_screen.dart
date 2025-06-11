@@ -14,7 +14,6 @@ import 'package:tsuzuki_connect/core/utils/constants.dart';
 import 'package:tsuzuki_connect/core/utils/extensions.dart';
 import 'package:tsuzuki_connect/providers/sound_controller.dart';
 
-import '../../core/services/in_app_review_service.dart';
 import '../../providers/app_providers.dart';
 import '../widgets/common/about_dialog.dart';
 import '../widgets/home/error_report_dialog.dart';
@@ -35,7 +34,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   @override
   void initState() {
-    // Check if the app should request a review
     WidgetsBinding.instance.addPostFrameCallback((_) {
       checkAndShowReviewDialog(context, ref);
     });
@@ -189,10 +187,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               return _buildNoSavesMessage();
             }
 
-            // Sort by last saved (most recent first)
             final sortedSaves = [...saves]..sort((a, b) => b.lastSavedAt.compareTo(a.lastSavedAt));
 
-            // Take up to 3 most recent saves
             final recentSaves = sortedSaves.take(3).toList();
 
             return Column(
