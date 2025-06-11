@@ -12,13 +12,10 @@ import 'package:tsuzuki_connect/core/utils/extensions.dart';
 
 import '../../providers/sound_controller.dart';
 
-/// Provider for the current filter in the Kotoba Log
 final kotobaFilterProvider = StateProvider.autoDispose<KotobaFilter>((ref) => KotobaFilter.all);
 
-/// Provider for the current search query in the Kotoba Log
 final kotobaSearchQueryProvider = StateProvider.autoDispose<String>((ref) => '');
 
-/// Enum for filtering vocabulary items
 enum KotobaFilter {
   all('All', 0),
   new_('New', 1),
@@ -32,7 +29,6 @@ enum KotobaFilter {
   const KotobaFilter(this.label, this.masteryLevel);
 }
 
-/// Provider for filtered vocabulary items
 final filteredVocabularyProvider = Provider.autoDispose<List<VocabularyModel>>((ref) {
   final vocabularyAsync = ref.watch(vocabularyWithStatusProvider);
 
@@ -44,10 +40,8 @@ final filteredVocabularyProvider = Provider.autoDispose<List<VocabularyModel>>((
       List<VocabularyModel> filteredList = [];
 
       if (filter == KotobaFilter.all) {
-        // For "All", show only unlocked items
         filteredList = vocabulary.where((vocab) => vocab.isUnlocked).toList();
       } else if (filter == KotobaFilter.new_) {
-        // For "New", show recently unlocked items with low mastery
         filteredList = vocabulary
             .where((vocab) =>
                 vocab.isUnlocked &&
@@ -55,12 +49,10 @@ final filteredVocabularyProvider = Provider.autoDispose<List<VocabularyModel>>((
                 (vocab.lastReviewed == null || DateTime.now().difference(vocab.lastReviewed!).inDays < 3))
             .toList();
       } else {
-        // For other filters, filter by mastery level
         filteredList =
             vocabulary.where((vocab) => vocab.isUnlocked && vocab.masteryLevel == filter.masteryLevel).toList();
       }
 
-      // Apply search filter if there's a query
       if (searchQuery.isNotEmpty) {
         filteredList = filteredList
             .where((vocab) =>
@@ -70,13 +62,11 @@ final filteredVocabularyProvider = Provider.autoDispose<List<VocabularyModel>>((
             .toList();
       }
 
-      // Sort by recently unlocked first, then by mastery level (lowest to highest)
       filteredList.sort((a, b) {
         if (a.masteryLevel != b.masteryLevel) {
           return a.masteryLevel.compareTo(b.masteryLevel);
         }
 
-        // If mastery levels are the same, sort by unlock date (newest first)
         if (a.unlockedAt != null && b.unlockedAt != null) {
           return b.unlockedAt!.compareTo(a.unlockedAt!);
         } else if (a.unlockedAt != null) {
@@ -85,7 +75,6 @@ final filteredVocabularyProvider = Provider.autoDispose<List<VocabularyModel>>((
           return 1;
         }
 
-        // If no unlock dates, sort alphabetically
         return a.wordJp.compareTo(b.wordJp);
       });
 
@@ -95,7 +84,6 @@ final filteredVocabularyProvider = Provider.autoDispose<List<VocabularyModel>>((
   );
 });
 
-/// Statistics for the Kotoba Log
 final kotobaStatsProvider = Provider.autoDispose<Map<String, int>>((ref) {
   final vocabularyAsync = ref.watch(vocabularyWithStatusProvider);
 
@@ -133,9 +121,7 @@ final kotobaStatsProvider = Provider.autoDispose<Map<String, int>>((ref) {
   );
 });
 
-/// Screen for displaying and reviewing vocabulary (Kotoba Log)
 class KotobaLogScreen extends ConsumerStatefulWidget {
-  /// Creates a KotobaLogScreen
   const KotobaLogScreen({super.key});
 
   @override
@@ -161,43 +147,34 @@ class _KotobaLogScreenState extends ConsumerState<KotobaLogScreen> {
     return Scaffold(
       body: Stack(
         children: [
-          // Background
           const AnimatedBackground(
             backgroundAsset: 'assets/images/backgrounds/classroom.webp',
             showParticles: false,
           ),
-
-          // Main content
           SafeArea(
-            child: Column(
-              children: [
-                // App bar
-                _buildAppBar(context),
-
-                // Search bar (animated)
-                AnimatedSize(
-                  duration: const Duration(milliseconds: 300),
-                  curve: Curves.easeInOut,
-                  child: _showSearch ? _buildSearchBar() : const SizedBox(height: 0),
+            child: Center(
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 800),
+                child: Column(
+                  children: [
+                    _buildAppBar(context),
+                    AnimatedSize(
+                      duration: const Duration(milliseconds: 300),
+                      curve: Curves.easeInOut,
+                      child: _showSearch ? _buildSearchBar() : const SizedBox(height: 0),
+                    ),
+                    _buildFilterChips(filter, stats),
+                    _buildProgressIndicator(stats),
+                    Expanded(
+                      child: vocabulary.isEmpty ? _buildEmptyState() : _buildVocabularyList(vocabulary),
+                    ),
+                  ],
                 ),
-
-                // Filter chips
-                _buildFilterChips(filter, stats),
-
-                // Progress indicator
-                _buildProgressIndicator(stats),
-
-                // Vocabulary list
-                Expanded(
-                  child: vocabulary.isEmpty ? _buildEmptyState() : _buildVocabularyList(vocabulary),
-                ),
-              ],
+              ),
             ),
           ),
         ],
       ),
-      // FAB for practice
-      // floatingActionButton: _buildPracticeButton(),
     );
   }
 
@@ -534,7 +511,6 @@ class _KotobaLogScreenState extends ConsumerState<KotobaLogScreen> {
   }
 }
 
-/// Card for displaying a vocabulary item
 class _VocabularyCard extends StatelessWidget {
   final VocabularyModel vocabulary;
   final int index;
@@ -562,10 +538,8 @@ class _VocabularyCard extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Left - JLPT level badge and mastery level
               Column(
                 children: [
-                  // JLPT level
                   Container(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 8.0,
@@ -583,32 +557,23 @@ class _VocabularyCard extends StatelessWidget {
                       ),
                     ),
                   ),
-
                   const SizedBox(height: 8),
-
-                  // Mastery level badge
                   MasteryLevelBadge(
                     masteryLevel: vocabulary.masteryLevel,
                   ),
                 ],
               ),
-
               const SizedBox(width: 16),
-
-              // Middle - The vocabulary content
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Japanese word
                     Text(
                       vocabulary.wordJp,
                       style: context.textTheme.titleLarge?.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-
-                    // Reading (if different from word)
                     if (vocabulary.reading != vocabulary.wordJp)
                       Text(
                         vocabulary.reading,
@@ -616,18 +581,12 @@ class _VocabularyCard extends StatelessWidget {
                           color: context.theme.colorScheme.primary,
                         ),
                       ),
-
                     const SizedBox(height: 4),
-
-                    // English meaning
                     Text(
                       vocabulary.meaningEn,
                       style: context.textTheme.bodyMedium,
                     ),
-
                     const SizedBox(height: 4),
-
-                    // Part of speech
                     Text(
                       vocabulary.partOfSpeech,
                       style: context.textTheme.bodySmall?.copyWith(
@@ -638,12 +597,9 @@ class _VocabularyCard extends StatelessWidget {
                   ],
                 ),
               ),
-
-              // Right - Action buttons
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // Audio button (if implemented)
                   // IconButton(
                   //   icon: Icon(
                   //     Icons.volume_up,

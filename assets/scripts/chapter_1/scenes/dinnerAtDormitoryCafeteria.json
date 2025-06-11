@@ -1,0 +1,894 @@
+{
+  "id": "dinnerAtDormitoryCafeteria",
+  "title": "First Evening - Dinner at the Dormitory Cafeteria",
+  "defaultBackground": "assets/images/backgrounds/dormitory_room.webp",
+  "nodes": {
+    "evening_return": {
+      "line": {
+        "id": "evening_return",
+        "textJp": "図書館から寮に戻ると、もう夕方です。今日一日でたくさんのことを学び、新しい友達もできました。",
+        "furiganaJp": "としょかんからりょうにもどると、もうゆうがたです。きょういちにちでたくさんのことをまなび、あたらしいともだちもできました。",
+        "romajiJp": "Toshokan kara ryō ni modoru to, mō yūgata desu. Kyō ichinichi de takusan no koto o manabi, atarashii tomodachi mo dekimashita.",
+        "textEn": "When you return to the dormitory from the library, it's already evening. You learned many things in one day and made new friends too.",
+        "background": "assets/images/backgrounds/dormitory_room.webp",
+        "nextId": "kenta_greeting",
+        "tags": ["vocab:212", "vocab:213", "grammar:130"]
+      },
+      "choices": []
+    },
+    "kenta_greeting": {
+      "line": {
+        "id": "kenta_greeting",
+        "characterId": "5",
+        "speakerName": "ケンタ",
+        "sprite": "greeting",
+        "position": "center",
+        "textJp": "おかえり！どうだった？図書館での勉強は楽しかった？",
+        "furiganaJp": "おかえり！どうだった？としょかんでのべんきょうはたのしかった？",
+        "romajiJp": "Okaeri! Dō datta? Toshokan de no benkyō wa tanoshikatta?",
+        "textEn": "We're finally at home! How was it? Was studying at the library fun?",
+        "nextId": "study_report_choice",
+        "tags": ["vocab:214", "culture:23"]
+      },
+      "choices": []
+    },
+    "study_report_choice": {
+      "line": {
+        "id": "study_report_choice",
+        "textJp": "ケンタに今日の勉強についてどう報告しますか？",
+        "textEn": "How will you answer to Kenta about today's studying?",
+        "isChoice": true
+      },
+      "choices": [
+        {
+          "id": "choice_very_good",
+          "textJp": "とても良かったです！新しい友達のメイさんも加わりました。",
+          "furiganaJp": "とてもよかったです！あたらしいともだちのメイさんもくわわりました。",
+          "textEn": "It was very good! A new friend, Mei-san, joined us too.",
+          "meaning": "Enthusiastically share the positive experience",
+          "nextId": "kenta_excited",
+          "requiredLevel": 1,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "5": 3
+          },
+          "tags": ["vocab:215"]
+        },
+        {
+          "id": "choice_learned_much",
+          "textJp": "たくさん勉強になりました。みんなで教え合えて効果的でした。",
+          "furiganaJp": "たくさんべんきょうになりました。みんなでおしえあえてこうかてきでした。",
+          "textEn": "I learned a lot. Teaching each other was effective.",
+          "meaning": "Focus on the educational benefits of group study",
+          "nextId": "kenta_impressed",
+          "requiredLevel": 2,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "5": 4
+          },
+          "tags": ["vocab:216", "grammar:131"]
+        },
+        {
+          "id": "choice_challenging",
+          "textJp": "難しい問題もありましたが、みんなで解決できました。",
+          "furiganaJp": "むずかしいもんだいもありましたが、みんなでかいけつできました。",
+          "textEn": "There were difficult problems too, but we could solve them together.",
+          "meaning": "Mention challenges but emphasize teamwork",
+          "nextId": "kenta_supportive",
+          "requiredLevel": 2,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "5": 5
+          },
+          "tags": ["vocab:217", "grammar:132"]
+        }
+      ]
+    },
+    "kenta_excited": {
+      "line": {
+        "id": "kenta_excited",
+        "characterId": "5",
+        "speakerName": "ケンタ",
+        "sprite": "encouraging",
+        "position": "center",
+        "textJp": "それは素晴らしいね！友達が増えるのは最高だよ。今度僕も紹介してもらえる？",
+        "furiganaJp": "それはすばらしいね！ともだちがふえるのはさいこうだよ。こんどぼくもしょうかいしてもらえる？",
+        "romajiJp": "Sore wa subarashii ne! Tomodachi ga fueru no wa saikō da yo. Kondo boku mo shōkai shite moraeru?",
+        "textEn": "That's wonderful! Making more friends is the best.",
+        "nextId": "dinner_suggestion",
+        "tags": ["vocab:218", "grammar:133"]
+      },
+      "choices": []
+    },
+    "kenta_impressed": {
+      "line": {
+        "id": "kenta_impressed",
+        "characterId": "5",
+        "speakerName": "ケンタ",
+        "sprite": "encouraging",
+        "position": "center",
+        "textJp": "流石だね！グループ勉強は本当に効果的だと思う。お互いの得意分野を活かせるからね。",
+        "furiganaJp": "さすがだね！グループべんきょうはほんとうにこうかてきだとおもう。おたがいのとくいぶんやをいかせるからね。",
+        "romajiJp": "Sasuga da ne! Gurūpu benkyō wa hontō ni kōka-teki da to omou. Otagai no tokui bun'ya o ikaseru kara ne.",
+        "textEn": "As expected! I think group study is really effective. Because you can make use of each other's strong areas.",
+        "nextId": "dinner_suggestion",
+        "tags": ["vocab:219", "vocab:220", "grammar:134"]
+      },
+      "choices": []
+    },
+    "kenta_supportive": {
+      "line": {
+        "id": "kenta_supportive",
+        "characterId": "5",
+        "speakerName": "ケンタ",
+        "sprite": "avatar",
+        "position": "center",
+        "textJp": "それがチームワークってやつだね！一人じゃ解けない問題も、みんなでなら何とかなるものさ。",
+        "furiganaJp": "それがチームワークってやつだね！ひとりじゃとけないもんだいも、みんなでならなんとかなるものさ。",
+        "romajiJp": "Sore ga chīmuwāku tte yatsu da ne! Hitori ja tokenai mondai mo, minna de nara nantoka naru mono sa.",
+        "textEn": "That's what teamwork is all about! Even problems you can't solve alone somehow work out when everyone's together.",
+        "nextId": "dinner_suggestion",
+        "tags": ["vocab:221", "grammar:135"]
+      },
+      "choices": []
+    },
+    "dinner_suggestion": {
+      "line": {
+        "id": "dinner_suggestion",
+        "characterId": "5",
+        "speakerName": "ケンタ",
+        "sprite": "avatar",
+        "position": "center",
+        "textJp": "そうそう、もうすぐ夕飯の時間だよ。食堂に行こうか。今日のメニューは何だろう？",
+        "furiganaJp": "そうそう、もうすぐゆうはんのじかんだよ。しょくどうにいこうか。きょうのメニューはなんだろう？",
+        "romajiJp": "Sō sō, mō sugu yūhan no jikan da yo. Shokudō ni ikō ka. Kyō no menyū wa nan darō?",
+        "textEn": "Oh right, it's almost dinner time. Shall we go to the cafeteria? I wonder what today's menu is?",
+        "nextId": "to_cafeteria",
+        "tags": ["vocab:222", "vocab:223"]
+      },
+      "choices": []
+    },
+    "to_cafeteria": {
+      "line": {
+        "id": "to_cafeteria",
+        "textJp": "ケンタと一緒に一階の食堂に向かいます。廊下には美味しそうな匂いが漂っています。",
+        "furiganaJp": "ケンタといっしょにいっかいのしょくどうにむかいます。ろうかにはおいしそうなにおいがただよっています。",
+        "romajiJp": "Kenta to issho ni ikkai no shokudō ni mukaimasu. Rōka ni wa oishisō na nioi ga tadayotte imasu.",
+        "textEn": "You head to the first-floor cafeteria together with Kenta. Delicious smells are drifting through the hallway.",
+        "nextId": "cafeteria_entrance",
+        "background": "assets/images/backgrounds/dormitory_hallway.webp",
+        "tags": ["vocab:224", "vocab:225", "grammar:136"]
+      },
+      "choices": []
+    },
+    "cafeteria_entrance": {
+      "line": {
+        "id": "cafeteria_entrance",
+        "textJp": "食堂に入ると、たくさんの国際学生が食事をしています。活気のある雰囲気です。",
+        "furiganaJp": "しょくどうにはいると、たくさんのこくさいがくせいがしょくじをしています。かっきのあるふんいきです。",
+        "romajiJp": "Shokudō ni hairu to, takusan no kokusai gakusei ga shokuji o shite imasu. Kakki no aru fun'iki desu.",
+        "textEn": "When you enter the cafeteria, many international students are eating. It's a lively atmosphere.",
+        "nextId": "menu_board",
+        "background": "assets/images/backgrounds/cafeteria.webp",
+        "tags": ["vocab:226", "vocab:227", "grammar:137"]
+      },
+      "choices": []
+    },
+    "menu_board": {
+      "line": {
+        "id": "menu_board",
+        "characterId": "5",
+        "speakerName": "ケンタ",
+        "sprite": "explaining",
+        "position": "center",
+        "textJp": "あそこにメニューボードがあるよ。今日は生姜焼き定食、カレーライス、それに野菜炒めがあるね。",
+        "furiganaJp": "あそこにメニューボードがあるよ。きょうはしょうがやきていしょく、カレーライス、それにやさいいためがあるね。",
+        "romajiJp": "Asoko ni menyū bōdo ga aru yo. Kyō wa shōgayaki teishoku, karē raisu, sore ni yasai itame ga aru ne.",
+        "textEn": "There's a menu board over there. Today there's ginger pork set meal, curry rice, and stir-fried vegetables.",
+        "nextId": "food_choice",
+        "tags": ["vocab:228", "vocab:229", "vocab:230", "culture:24"]
+      },
+      "choices": []
+    },
+    "food_choice": {
+      "line": {
+        "id": "food_choice",
+        "textJp": "何を注文しますか？",
+        "textEn": "What will you order?",
+        "isChoice": true
+      },
+      "choices": [
+        {
+          "id": "choice_ginger_pork",
+          "textJp": "生姜焼き定食をお願いします。",
+          "furiganaJp": "しょうがやきていしょくをおねがいします。",
+          "textEn": "Ginger pork set meal, please.",
+          "meaning": "Order a traditional Japanese meal",
+          "nextId": "ginger_pork_reaction",
+          "requiredLevel": 2,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "5": 3
+          },
+          "tags": ["culture:25"]
+        },
+        {
+          "id": "choice_curry",
+          "textJp": "カレーライスにします。",
+          "furiganaJp": "カレーライスにします。",
+          "textEn": "I'll have curry rice.",
+          "meaning": "Choose a familiar but Japanese-style dish",
+          "nextId": "curry_reaction",
+          "requiredLevel": 1,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "5": 2
+          },
+          "tags": []
+        },
+        {
+          "id": "choice_ask_recommendation",
+          "textJp": "ケンタさんのおすすめは何ですか？",
+          "furiganaJp": "ケンタさんのおすすめはなんですか？",
+          "textEn": "What do you recommend, Kenta-san?",
+          "meaning": "Ask for local advice on food",
+          "nextId": "kenta_recommendation",
+          "requiredLevel": 1,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "5": 4
+          },
+          "tags": ["vocab:231"]
+        }
+      ]
+    },
+    "ginger_pork_reaction": {
+      "line": {
+        "id": "ginger_pork_reaction",
+        "characterId": "5",
+        "speakerName": "ケンタ",
+        "sprite": "encouraging",
+        "position": "center",
+        "textJp": "いい選択だね！生姜焼き定食は日本の家庭料理の代表だよ。ご飯と味噌汁、漬物も付いてくるからお得だ。",
+        "furiganaJp": "いいせんたくだね！しょうがやきていしょくはにほんのかていりょうりのだいひょうだよ。ごはんとみそしる、つけものもついてくるからおとくだ。",
+        "romajiJp": "Ii sentaku da ne! Shōgayaki teishoku wa Nihon no katei ryōri no daihyō da yo. Gohan to misoshiru, tsukemono mo tsuite kuru kara otoku da.",
+        "textEn": "Good choice! The ginger pork set meal is representative of Japanese home cooking. It comes with rice, miso soup, and pickles, so it's a good deal.",
+        "nextId": "getting_food",
+        "tags": ["vocab:232", "vocab:233", "vocab:234", "culture:26"]
+      },
+      "choices": []
+    },
+    "curry_reaction": {
+      "line": {
+        "id": "curry_reaction",
+        "characterId": "5",
+        "speakerName": "ケンタ",
+        "sprite": "avatar",
+        "position": "center",
+        "textJp": "カレーも人気だよ！日本のカレーは少し甘めで、外国のカレーとはちょっと違うかもしれないけど、美味しいよ。",
+        "furiganaJp": "カレーもにんきだよ！にほんのカレーはすこしあまめで、がいこくのカレーとはちょっとちがうかもしれないけど、おいしいよ。",
+        "romajiJp": "Karē mo ninki da yo! Nihon no karē wa sukoshi amame de, gaikoku no karē to wa chotto chigau kamoshirenai kedo, oishii yo.",
+        "textEn": "Curry is popular too! Japanese curry is a bit on the sweet side, so it might be a little different from foreign curry, but it's delicious.",
+        "nextId": "getting_food",
+        "tags": ["vocab:235", "culture:27"]
+      },
+      "choices": []
+    },
+    "kenta_recommendation": {
+      "line": {
+        "id": "kenta_recommendation",
+        "characterId": "5",
+        "speakerName": "ケンタ",
+        "sprite": "explaining",
+        "position": "center",
+        "textJp": "僕のおすすめは生姜焼き定食だな。君にとって初めての日本の定食だから、本格的な和食を味わってみるといいよ。",
+        "furiganaJp": "ぼくのおすすめはしょうがやきていしょくだな。きみにとってはじめてのにほんのていしょくだから、ほんかくてきなわしょくをあじわってみるといいよ。",
+        "romajiJp": "Boku no osusume wa shōgayaki teishoku da na. Kimi ni totte hajimete no Nihon no teishoku da kara, honkaku-teki na washoku o ajiwatte miru to ii yo.",
+        "textEn": "My recommendation is the ginger pork set meal. Since it's your first Japanese set meal, it would be good to try authentic Japanese food.",
+        "nextId": "accept_recommendation",
+        "tags": ["vocab:236", "vocab:237", "culture:28"]
+      },
+      "choices": []
+    },
+    "accept_recommendation": {
+      "line": {
+        "id": "accept_recommendation",
+        "textJp": "ケンタの推薦を受け入れて、生姜焼き定食を注文することにしました。",
+        "furiganaJp": "ケンタのすいせんをうけいれて、しょうがやきていしょくをちゅうもんすることにしました。",
+        "romajiJp": "Kenta no suisen o ukeirete, shōgayaki teishoku o chūmon suru koto ni shimashita.",
+        "textEn": "You decided to accept Kenta's recommendation and order the ginger pork set meal.",
+        "nextId": "getting_food",
+        "tags": ["vocab:238", "grammar:138"]
+      },
+      "choices": []
+    },
+    "getting_food": {
+      "line": {
+        "id": "getting_food",
+        "textJp": "カウンターで注文をして、トレーに料理を載せてもらいます。食券システムは初めての体験です。",
+        "furiganaJp": "カウンターでちゅうもんをして、トレーにりょうりをのせてもらいます。しょっけんシステムははじめてのたいけんです。",
+        "romajiJp": "Kauntā de chūmon o shite, torē ni ryōri o nosete moraimasu. Shokken shisutemu wa hajimete no taiken desu.",
+        "textEn": "You order at the counter and have the food placed on your tray. The meal ticket system is a first-time experience.",
+        "nextId": "finding_seats",
+        "tags": ["vocab:239", "vocab:240", "grammar:139"]
+      },
+      "choices": []
+    },
+    "finding_seats": {
+      "line": {
+        "id": "finding_seats",
+        "characterId": "5",
+        "speakerName": "ケンタ",
+        "sprite": "avatar",
+        "position": "center",
+        "textJp": "あそこに空いている席があるね。窓際だから景色も見えるし、いいスポットだよ。",
+        "furiganaJp": "あそこにあいているせきがあるね。まどぎわだからけしきもみえるし、いいスポットだよ。",
+        "romajiJp": "Asoko ni aite iru seki ga aru ne. Madogiwa da kara keshiki mo mieru shi, ii supotto da yo.",
+        "textEn": "There are empty seats over there. Since it's by the window, you can see the scenery too - it's a good spot.",
+        "nextId": "sitting_down",
+        "tags": ["vocab:241", "vocab:242"]
+      },
+      "choices": []
+    },
+    "sitting_down": {
+      "line": {
+        "id": "sitting_down",
+        "textJp": "二人は窓際のテーブルに座ります。外は東京の夕暮れの景色が広がっています。",
+        "furiganaJp": "ふたりはまどぎわのテーブルにすわります。そとはとうきょうのゆうぐれのけしきがひろがっています。",
+        "romajiJp": "Futari wa madogiwa no tēburu ni suwarimasu. Soto wa Tōkyō no yūgure no keshiki ga hirogatte imasu.",
+        "textEn": "The two of you sit at the window-side table. Outside, Tokyo's twilight scenery spreads out.",
+        "nextId": "meal_beginning",
+        "tags": ["vocab:243", "grammar:140"]
+      },
+      "choices": []
+    },
+    "meal_beginning": {
+      "line": {
+        "id": "meal_beginning",
+        "characterId": "5",
+        "speakerName": "ケンタ",
+        "sprite": "avatar",
+        "position": "center",
+        "textJp": "いただきます！これは食事の前に言う日本の挨拶だよ。食べ物に感謝する気持ちを表すんだ。",
+        "furiganaJp": "いただきます！これはしょくじのまえにいうにほんのあいさつだよ。たべものにかんしゃするきもちをあらわすんだ。",
+        "romajiJp": "Itadakimasu! Kore wa shokuji no mae ni iu Nihon no aisatsu da yo. Tabemono ni kansha suru kimochi o arawasu n da.",
+        "textEn": "Itadakimasu! This is a Japanese greeting said before meals. It expresses gratitude for the food.",
+        "nextId": "cultural_moment",
+        "tags": ["vocab:244", "culture:29"]
+      },
+      "choices": []
+    },
+    "cultural_moment": {
+      "line": {
+        "id": "cultural_moment",
+        "textJp": "「いただきます」の文化的意味について学ぶ機会です。どう反応しますか？",
+        "textEn": "This is an opportunity to learn about the cultural meaning of 'itadakimasu'. How will you react?",
+        "isChoice": true
+      },
+      "choices": [
+        {
+          "id": "choice_practice_saying",
+          "textJp": "いただきます！美しい習慣ですね。",
+          "furiganaJp": "いただきます！うつくしいしゅうかんですね。",
+          "textEn": "Itadakimasu! It's a beautiful custom.",
+          "meaning": "Appreciate and practice the cultural custom",
+          "nextId": "cultural_appreciation",
+          "requiredLevel": 1,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "5": 4
+          },
+          "tags": ["culture:30"]
+        },
+        {
+          "id": "choice_ask_more",
+          "textJp": "感謝の気持ちを表すのですね。他にも食事の習慣はありますか？",
+          "furiganaJp": "かんしゃのきもちをあらわすのですね。ほかにもしょくじのしゅうかんはありますか？",
+          "textEn": "It expresses gratitude, doesn't it? Are there other dining customs too?",
+          "meaning": "Show interest in learning more about Japanese dining culture",
+          "nextId": "more_customs",
+          "requiredLevel": 2,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "5": 5
+          },
+          "tags": ["vocab:245", "culture:31"]
+        },
+        {
+          "id": "choice_compare_culture",
+          "textJp": "私の国でも食事前にお祈りをします。似ていますね。",
+          "furiganaJp": "わたしのくにでもしょくじまえにおいのりをします。にていますね。",
+          "textEn": "In my country we also pray before meals. It's similar.",
+          "meaning": "Draw connections between your culture and Japanese culture",
+          "nextId": "cultural_comparison",
+          "requiredLevel": 2,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "5": 6
+          },
+          "tags": ["vocab:246", "culture:32"]
+        }
+      ]
+    },
+    "cultural_appreciation": {
+      "line": {
+        "id": "cultural_appreciation",
+        "characterId": "5",
+        "speakerName": "ケンタ",
+        "sprite": "encouraging",
+        "position": "center",
+        "textJp": "そう言ってもらえて嬉しいよ！君は日本の文化をよく理解してくれるね。食べ物だけじゃなく、作ってくれた人にも感謝するんだ。",
+        "furiganaJp": "そういってもらえてうれしいよ！きみはにほんのぶんかをよくりかいしてくれるね。たべものだけじゃなく、つくってくれたひとにもかんしゃするんだ。",
+        "romajiJp": "Sō itte moraete ureshii yo! Kimi wa Nihon no bunka o yoku rikai shite kureru ne. Tabemono dake ja naku, tsukutte kureta hito ni mo kansha suru n da.",
+        "textEn": "I'm happy you say that! You understand Japanese culture well. We're grateful not just for the food, but also to the people who made it.",
+        "nextId": "tasting_food",
+        "tags": ["vocab:247", "culture:33"]
+      },
+      "choices": []
+    },
+    "more_customs": {
+      "line": {
+        "id": "more_customs",
+        "characterId": "5",
+        "speakerName": "ケンタ",
+        "sprite": "explaining",
+        "position": "center",
+        "textJp": "うん！箸の使い方にもマナーがあるし、食事の後は「ごちそうさまでした」と言うんだ。それに、茶碗は手に持って食べるのが正しいマナーだよ。",
+        "furiganaJp": "うん！はしのつかいかたにもマナーがあるし、しょくじのあとは「ごちそうさまでした」というんだ。それに、ちゃわんはてにもってたべるのがただしいマナーだよ。",
+        "romajiJp": "Un! Hashi no tsukai-kata ni mo manā ga aru shi, shokuji no ato wa 'gochisōsama deshita' to iu n da. Sore ni, chawan wa te ni motte taberu no ga tadashii manā da yo.",
+        "textEn": "Yes! There are manners for using chopsticks too, and after meals we say 'gochisousama deshita'. Also, it's proper manners to hold your rice bowl in your hand while eating.",
+        "nextId": "tasting_food",
+        "tags": ["vocab:248", "vocab:249", "culture:34"]
+      },
+      "choices": []
+    },
+    "cultural_comparison": {
+      "line": {
+        "id": "cultural_comparison",
+        "characterId": "5",
+        "speakerName": "ケンタ",
+        "sprite": "impressed",
+        "position": "center",
+        "textJp": "本当だね！世界中で食べ物に感謝する気持ちは同じなんだね。文化は違っても、大切にする心は同じだと思うよ。",
+        "furiganaJp": "ほんとうだね！せかいじゅうでたべものにかんしゃするきもちはおなじなんだね。ぶんかはちがっても、たいせつにするこころはおなじだとおもうよ。",
+        "romajiJp": "Hontō da ne! Sekai-jū de tabemono ni kansha suru kimochi wa onaji nan da ne. Bunka wa chigatte mo, taisetsu ni suru kokoro wa onaji da to omou yo.",
+        "textEn": "That's true! The feeling of gratitude for food is the same all over the world. Even though cultures differ, I think the heart that values things is the same.",
+        "nextId": "tasting_food",
+        "tags": ["vocab:250", "vocab:251", "culture:35"]
+      },
+      "choices": []
+    },
+    "tasting_food": {
+      "line": {
+        "id": "tasting_food",
+        "textJp": "生姜焼き定食を食べ始めます。甘辛いタレが効いた豚肉と、温かいご飯の組み合わせが絶妙です。",
+        "furiganaJp": "しょうがやきていしょくをたべはじめます。あまからいタレがきいたぶたにくと、あたたかいごはんのくみあわせがぜつみょうです。",
+        "romajiJp": "Shōgayaki teishoku o tabe hajimemasu. Amakarai tare ga kiita butaniku to, atatakai gohan no kumiawase ga zetsumyō desu.",
+        "textEn": "You begin eating the ginger pork set meal. The combination of pork with sweet and salty sauce and warm rice is exquisite.",
+        "nextId": "food_reaction",
+        "tags": ["vocab:252", "vocab:253", "grammar:141"]
+      },
+      "choices": []
+    },
+    "food_reaction": {
+      "line": {
+        "id": "food_reaction",
+        "textJp": "初めての本格的な日本の定食の味はいかがですか？",
+        "textEn": "How is the taste of your first authentic Japanese set meal?",
+        "isChoice": true
+      },
+      "choices": [
+        {
+          "id": "choice_delicious",
+          "textJp": "とても美味しいです！予想以上でした。",
+          "furiganaJp": "とてもおいしいです！よそういじょうでした。",
+          "textEn": "It's very delicious! It exceeded my expectations.",
+          "meaning": "Express genuine enjoyment of the food",
+          "nextId": "kenta_pleased",
+          "requiredLevel": 1,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "5": 3
+          },
+          "tags": ["vocab:254"]
+        },
+        {
+          "id": "choice_interesting_taste",
+          "textJp": "面白い味ですね。甘いのと塩辛いのがバランス良く混ざっています。",
+          "furiganaJp": "おもしろいあじですね。あまいのとしおからいのがバランスよくまざっています。",
+          "textEn": "It has an interesting taste. Sweet and salty are mixed in good balance.",
+          "meaning": "Analyze and appreciate the flavor complexity",
+          "nextId": "flavor_discussion",
+          "requiredLevel": 2,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "5": 4
+          },
+          "tags": ["vocab:255", "vocab:256", "grammar:142"]
+        },
+        {
+          "id": "choice_ask_ingredients",
+          "textJp": "この生姜焼きはどんな調味料を使っているのですか？",
+          "furiganaJp": "このしょうがやきはどんなちょうみりょうをつかっているのですか？",
+          "textEn": "What seasonings are used in this ginger pork?",
+          "meaning": "Show curiosity about cooking methods and ingredients",
+          "nextId": "cooking_explanation",
+          "requiredLevel": 2,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "5": 5
+          },
+          "tags": ["vocab:257", "vocab:258"]
+        }
+      ]
+    },
+    "kenta_pleased": {
+      "line": {
+        "id": "kenta_pleased",
+        "characterId": "5",
+        "speakerName": "ケンタ",
+        "sprite": "encouraging",
+        "position": "center",
+        "textJp": "良かった！君に気に入ってもらえて嬉しいよ。日本の家庭料理は外国人にも人気があるんだ。",
+        "furiganaJp": "よかった！きみにきにいってもらえてうれしいよ。にほんのかていりょうりはがいこくじんにもにんきがあるんだ。",
+        "romajiJp": "Yokatta! Kimi ni ki ni itte moraete ureshii yo. Nihon no katei ryōri wa gaikokujin ni mo ninki ga aru n da.",
+        "textEn": "Great! I'm happy you like it. Japanese home cooking is popular with foreigners too.",
+        "nextId": "other_students",
+        "tags": ["vocab:259", "grammar:143"]
+      },
+      "choices": []
+    },
+    "flavor_discussion": {
+      "line": {
+        "id": "flavor_discussion",
+        "characterId": "5",
+        "speakerName": "ケンタ",
+        "sprite": "explaining",
+        "position": "center",
+        "textJp": "そうそう！それが日本料理の特徴だよ。醤油、砂糖、みりん、酒を使って、複雑な味を作るんだ。",
+        "furiganaJp": "そうそう！それがにほんりょうりのとくちょうだよ。しょうゆ、さとう、みりん、さけをつかって、ふくざつなあじをつくるんだ。",
+        "romajiJp": "Sō sō! Sore ga Nihon ryōri no tokuchō da yo. Shōyu, satō, mirin, sake o tsukatte, fukuzatsu na aji o tsukuru n da.",
+        "textEn": "That's right! That's the characteristic of Japanese cooking. We use soy sauce, sugar, mirin, and sake to create complex flavors.",
+        "nextId": "other_students",
+        "tags": ["vocab:260", "vocab:261", "vocab:262", "culture:36"]
+      },
+      "choices": []
+    },
+    "cooking_explanation": {
+      "line": {
+        "id": "cooking_explanation",
+        "characterId": "5",
+        "speakerName": "ケンタ",
+        "sprite": "explaining",
+        "position": "center",
+        "textJp": "生姜、醤油、みりん、砂糖が基本だね。生姜が豚肉の臭みを取って、甘辛いタレが食欲をそそるんだ。今度一緒に作ってみる？",
+        "furiganaJp": "しょうが、しょうゆ、みりん、さとうがきほんだね。しょうががぶたにくのくさみをとって、あまからいタレがしょくよくをそそるんだ。こんどいっしょにつくってみる？",
+        "romajiJp": "Shōga, shōyu, mirin, satō ga kihon da ne. Shōga ga butaniku no kusami o totte, amakarai tare ga shokuyoku o sosoru n da. Kondo issho ni tsukutte miru?",
+        "textEn": "Ginger, soy sauce, mirin, and sugar are the basics. The ginger removes the pork smell, and the sweet-salty sauce stimulates appetite. Want to try making it together sometime?",
+        "nextId": "other_students",
+        "tags": ["vocab:263", "vocab:264", "grammar:144"]
+      },
+      "choices": []
+    },
+    "other_students": {
+      "line": {
+        "id": "other_students",
+        "textJp": "食事をしていると、他の国際学生たちも食堂にやってきます。様々な言語が飛び交っています。",
+        "furiganaJp": "しょくじをしていると、ほかのこくさいがくせいたちもしょくどうにやってきます。さまざまなげんごがとびかっています。",
+        "romajiJp": "Shokuji o shite iru to, hoka no kokusai gakusei-tachi mo shokudō ni yatte kimasu. Samazama na gengo ga tobi katte imasu.",
+        "textEn": "While eating, other international students also come to the cafeteria. Various languages are flying around.",
+        "nextId": "international_atmosphere",
+        "tags": ["vocab:265", "grammar:145"]
+      },
+      "choices": []
+    },
+    "international_atmosphere": {
+      "line": {
+        "id": "international_atmosphere",
+        "characterId": "5",
+        "speakerName": "ケンタ",
+        "sprite": "avatar",
+        "position": "center",
+        "textJp": "すごく国際的な雰囲気だろう？この寮にはアジア、ヨーロッパ、アメリカから学生が来ているんだ。",
+        "furiganaJp": "すごくこくさいてきなふんいきだろう？このりょうにはアジア、ヨーロッパ、アメリカからがくせいがきているんだ。",
+        "romajiJp": "Sugoku kokusai-teki na fun'iki darō? Kono ryō ni wa Ajia, Yōroppa, Amerika kara gakusei ga kite iru n da.",
+        "textEn": "It's a very international atmosphere, isn't it? Students from Asia, Europe, and America come to this dormitory.",
+        "nextId": "diversity_appreciation",
+        "tags": ["vocab:266", "vocab:267"]
+      },
+      "choices": []
+    },
+    "diversity_appreciation": {
+      "line": {
+        "id": "diversity_appreciation",
+        "textJp": "この国際的な環境についてどう思いますか？",
+        "textEn": "What do you think about this international environment?",
+        "isChoice": true
+      },
+      "choices": [
+        {
+          "id": "choice_exciting",
+          "textJp": "とてもワクワクします！色々な文化を学べそうです。",
+          "furiganaJp": "とてもワクワクします！いろいろなぶんかをまなべそうです。",
+          "textEn": "Very exciting! I think I can learn about various cultures.",
+          "meaning": "Express enthusiasm about cultural diversity",
+          "nextId": "cultural_exchange_opportunity",
+          "requiredLevel": 1,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "5": 3
+          },
+          "tags": ["vocab:268"]
+        },
+        {
+          "id": "choice_language_practice",
+          "textJp": "日本語の練習にもなりますね。みんなで日本語で話すことになるから。",
+          "furiganaJp": "にほんごのれんしゅうにもなりますね。みんなでにほんごではなすことになるから。",
+          "textEn": "It's good for Japanese practice too. Because we'll all end up speaking in Japanese.",
+          "meaning": "Focus on the practical language learning benefits",
+          "nextId": "language_bridge",
+          "requiredLevel": 2,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "5": 4
+          },
+          "tags": ["vocab:269", "grammar:146"]
+        },
+        {
+          "id": "choice_nervous_but_interested",
+          "textJp": "少し緊張しますが、新しい友達を作るチャンスですね。",
+          "furiganaJp": "すこしきんちょうしますが、あたらしいともだちをつくるチャンスですね。",
+          "textEn": "I'm a bit nervous, but it's a chance to make new friends.",
+          "meaning": "Show mixed feelings but positive attitude toward meeting others",
+          "nextId": "friendship_encouragement",
+          "requiredLevel": 1,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "5": 5
+          },
+          "tags": ["vocab:270"]
+        }
+      ]
+    },
+    "cultural_exchange_opportunity": {
+      "line": {
+        "id": "cultural_exchange_opportunity",
+        "characterId": "5",
+        "speakerName": "ケンタ",
+        "sprite": "encouraging",
+        "position": "center",
+        "textJp": "その通り！僕も色々な国の友達ができて、世界が広がったよ。今度、国際パーティーもあるから楽しみにしていて。",
+        "furiganaJp": "そのとおり！ぼくもいろいろなくにのともだちができて、せかいがひろがったよ。こんど、こくさいパーティーもあるからたのしみにしていて。",
+        "romajiJp": "Sono tōri! Boku mo iroiro na kuni no tomodachi ga dekite, sekai ga hirogatta yo. Kondo, kokusai pātī mo aru kara tanoshimi ni shite ite.",
+        "textEn": "Exactly! I made friends from various countries too, and my world expanded. There's also going to be an international party soon, so look forward to it.",
+        "nextId": "meal_finishing",
+        "tags": ["vocab:271", "vocab:272", "grammar:147"]
+      },
+      "choices": []
+    },
+    "language_bridge": {
+      "line": {
+        "id": "language_bridge",
+        "characterId": "5",
+        "speakerName": "ケンタ",
+        "sprite": "explaining",
+        "position": "center",
+        "textJp": "賢い考えだね！日本語が共通言語になるから、自然と日本語で話すようになる。実践的な勉強方法だよ。",
+        "furiganaJp": "かしこいかんがえだね！にほんごがきょうつうげんごになるから、しぜんとにほんごではなすようになる。じっせんてきなべんきょうほうほうだよ。",
+        "romajiJp": "Kashikoi kangae da ne! Nihongo ga kyōtsū gengo ni naru kara, shizen to Nihongo de hanasu yō ni naru. Jissen-teki na benkyō hōhō da yo.",
+        "textEn": "That's a smart way of thinking! Japanese becomes the common language, so you naturally start speaking in Japanese. It's a practical study method.",
+        "nextId": "meal_finishing",
+        "tags": ["vocab:273", "vocab:274", "grammar:148"]
+      },
+      "choices": []
+    },
+    "friendship_encouragement": {
+      "line": {
+        "id": "friendship_encouragement",
+        "characterId": "5",
+        "speakerName": "ケンタ",
+        "sprite": "encouraging",
+        "position": "center",
+        "textJp": "大丈夫だよ！みんな同じ気持ちだから。最初は緊張するけど、すぐに仲良くなれるよ。僕が紹介してあげる。",
+        "furiganaJp": "だいじょうぶだよ！みんなおなじきもちだから。さいしょはきんちょうするけど、すぐになかよくなれるよ。ぼくがしょうかいしてあげる。",
+        "romajiJp": "Daijōbu da yo! Minna onaji kimochi da kara. Saisho wa kinchō suru kedo, sugu ni nakayoku nareru yo. Boku ga shōkai shite ageru.",
+        "textEn": "It's okay! Everyone feels the same way. You get nervous at first, but you can become friends quickly. I'll introduce you.",
+        "nextId": "meal_finishing",
+        "tags": ["vocab:275", "grammar:149"]
+      },
+      "choices": []
+    },
+    "meal_finishing": {
+      "line": {
+        "id": "meal_finishing",
+        "textJp": "食事も終わりに近づいてきました。お腹も満足し、日本の食文化についても学ぶことができました。",
+        "furiganaJp": "しょくじもおわりにちかづいてきました。おなかもまんぞくし、にほんのしょくぶんかについてもまなぶことができました。",
+        "romajiJp": "Shokuji mo owari ni chikazuite kimashita. Onaka mo manzoku shi, Nihon no shoku bunka ni tsuite mo manabu koto ga dekimashita.",
+        "textEn": "The meal is coming to an end. Your stomach is satisfied, and you were able to learn about Japanese food culture too.",
+        "nextId": "gochisousama",
+        "tags": ["vocab:276", "grammar:150"]
+      },
+      "choices": []
+    },
+    "gochisousama": {
+      "line": {
+        "id": "gochisousama",
+        "characterId": "5",
+        "speakerName": "ケンタ",
+        "sprite": "avatar",
+        "position": "center",
+        "textJp": "ごちそうさまでした！これも日本の習慣だよ。食事の後に感謝の気持ちを表すんだ。",
+        "furiganaJp": "ごちそうさまでした！これもにほんのしゅうかんだよ。しょくじのあとにかんしゃのきもちをあらわすんだ。",
+        "romajiJp": "Gochisōsama deshita! Kore mo Nihon no shūkan da yo. Shokuji no ato ni kansha no kimochi o arawasu n da.",
+        "textEn": "Gochisousama deshita! This is also a Japanese custom. It expresses gratitude after meals.",
+        "nextId": "practicing_gochisousama",
+        "tags": ["culture:37"]
+      },
+      "choices": []
+    },
+    "practicing_gochisousama": {
+      "line": {
+        "id": "practicing_gochisousama",
+        "textJp": "「ごちそうさまでした」と一緒に言います。日本の食事マナーを少しずつ覚えていきます。",
+        "furiganaJp": "「ごちそうさまでした」といっしょにいいます。にほんのしょくじマナーをすこしずつおぼえていきます。",
+        "romajiJp": "'Gochisōsama deshita' to issho ni iimasu. Nihon no shokuji manā o sukoshi zutsu oboete ikimasu.",
+        "textEn": "You say 'gochisousama deshita' together. You're gradually learning Japanese dining manners.",
+        "nextId": "evening_reflection",
+        "tags": ["culture:38", "grammar:151"]
+      },
+      "choices": []
+    },
+    "evening_reflection": {
+      "line": {
+        "id": "evening_reflection",
+        "textJp": "部屋に戻る途中、今日一日を振り返ります。朝の授業から図書館での勉強、そして夕食まで、充実した一日でした。",
+        "furiganaJp": "へやにもどるとちゅう、きょういちにちをふりかえります。あさのじゅぎょうからとしょかんでのべんきょう、そしてゆうしょくまで、じゅうじつしたいちにちでした。",
+        "romajiJp": "Heya ni modoru tochū, kyō ichinichi o furikaemasu. Asa no jugyō kara toshokan de no benkyō, soshite yūshoku made, jūjitsu shita ichinichi deshita.",
+        "textEn": "On the way back to your room, you reflect on the day. From morning classes to studying at the library, and then dinner, it was a fulfilling day.",
+        "nextId": "tomorrow_plans",
+        "background": "assets/images/backgrounds/dormitory_hallway.webp",
+        "tags": ["vocab:277", "vocab:278", "grammar:152"]
+      },
+      "choices": []
+    },
+    "tomorrow_plans": {
+      "line": {
+        "id": "tomorrow_plans",
+        "characterId": "5",
+        "speakerName": "ケンタ",
+        "sprite": "avatar",
+        "position": "center",
+        "textJp": "明日も授業があるから早めに寝よう。週末には東京見学もできるといいね。案内してあげるよ！",
+        "furiganaJp": "あしたもじゅぎょうがあるからはやめにねよう。しゅうまつにはとうきょうけんがくもできるといいね。あんないしてあげるよ！",
+        "romajiJp": "Ashita mo jugyō ga aru kara hayame ni neyō. Shūmatsu ni wa Tōkyō kengaku mo dekiru to ii ne. Annai shite ageru yo!",
+        "textEn": "We have classes tomorrow too, so let's sleep early. It would be nice if we could do some Tokyo sightseeing on the weekend. I'll show you around!",
+        "nextId": "future_excitement",
+        "background": "assets/images/backgrounds/dormitory_room.webp",
+        "tags": ["vocab:279", "vocab:280", "grammar:153"]
+      },
+      "choices": []
+    },
+    "future_excitement": {
+      "line": {
+        "id": "future_excitement",
+        "textJp": "ケンタの提案にどう答えますか？",
+        "textEn": "How will you respond to Kenta's suggestion?",
+        "isChoice": true
+      },
+      "choices": [
+        {
+          "id": "choice_looking_forward",
+          "textJp": "とても楽しみです！どこに行きましょうか？",
+          "furiganaJp": "とてもたのしみです！どこにいきましょうか？",
+          "textEn": "I'm really looking forward to it! Where shall we go?",
+          "meaning": "Show enthusiasm for exploring Tokyo",
+          "nextId": "sightseeing_plans",
+          "requiredLevel": 1,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "5": 4
+          },
+          "tags": []
+        },
+        {
+          "id": "choice_grateful_guide",
+          "textJp": "ありがとうございます！案内してもらえると心強いです。",
+          "furiganaJp": "ありがとうございます！あんないしてもらえるとこころづよいです。",
+          "textEn": "Thank you! Having you guide me would be reassuring.",
+          "meaning": "Express gratitude for his offer to help",
+          "nextId": "helpful_friend",
+          "requiredLevel": 1,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "5": 5
+          },
+          "tags": ["vocab:281"]
+        },
+        {
+          "id": "choice_study_first",
+          "textJp": "いいですね。でも、まず勉強をしっかりやってからにしませんか？",
+          "furiganaJp": "いいですね。でも、まずべんきょうをしっかりやってからにしませんか？",
+          "textEn": "That sounds good. But shall we do it after studying properly first?",
+          "meaning": "Show responsibility by prioritizing studies",
+          "nextId": "responsible_attitude",
+          "requiredLevel": 2,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "5": 6
+          },
+          "tags": ["vocab:282", "grammar:154"]
+        }
+      ]
+    },
+    "sightseeing_plans": {
+      "line": {
+        "id": "sightseeing_plans",
+        "characterId": "5",
+        "speakerName": "ケンタ",
+        "sprite": "explaining",
+        "position": "center",
+        "textJp": "浅草や原宿、それに新宿も面白いよ！でも、まずは学校の近くから始めようか。渋谷も近いし。",
+        "furiganaJp": "あさくさやはらじゅく、それにしんじゅくもおもしろいよ！でも、まずはがっこうのちかくからはじめようか。しぶやもちかいし。",
+        "romajiJp": "Asakusa ya Harajuku, sore ni Shinjuku mo omoshiroi yo! Demo, mazu wa gakkō no chikaku kara hajimeyō ka. Shibuya mo chikai shi.",
+        "textEn": "Asakusa, Harajuku, and Shinjuku are interesting too! But let's start from near the school first. Shibuya is close too.",
+        "nextId": "day_conclusion",
+        "tags": ["vocab:283", "vocab:284", "vocab:285"]
+      },
+      "choices": []
+    },
+    "helpful_friend": {
+      "line": {
+        "id": "helpful_friend",
+        "characterId": "5",
+        "speakerName": "ケンタ",
+        "sprite": "encouraging",
+        "position": "center",
+        "textJp": "もちろんだよ！僕も東京に来たばかりの時は、先輩に色々教えてもらったから。今度は僕が君を助ける番だ。",
+        "furiganaJp": "もちろんだよ！ぼくもとうきょうにきたばかりのときは、せんぱいにいろいろおしえてもらったから。こんどはぼくがきみをたすけるばんだ。",
+        "romajiJp": "Mochiron da yo! Boku mo Tōkyō ni kita bakari no toki wa, senpai ni iroiro oshiete moratta kara. Kondo wa boku ga kimi o tasukeru ban da.",
+        "textEn": "Of course! When I had just come to Tokyo too, seniors taught me various things. Now it's my turn to help you.",
+        "nextId": "day_conclusion",
+        "tags": ["vocab:286", "vocab:287", "grammar:155"]
+      },
+      "choices": []
+    },
+    "responsible_attitude": {
+      "line": {
+        "id": "responsible_attitude",
+        "characterId": "5",
+        "speakerName": "ケンタ",
+        "sprite": "impressed",
+        "position": "center",
+        "textJp": "君は本当に真面目だね！その通りだ。勉強が第一だから、週末までに宿題を終わらせよう。それからお楽しみだ！",
+        "furiganaJp": "きみはほんとうにまじめだね！そのとおりだ。べんきょうがだいいちだから、しゅうまつまでにしゅくだいをおわらせよう。それからおたのしみだ！",
+        "romajiJp": "Kimi wa hontō ni majime da ne! Sono tōri da. Benkyō ga dai-ichi da kara, shūmatsu made ni shukudai o owaraseyō. Sore kara otanoshimi da!",
+        "textEn": "You're really serious! That's right. Since studying comes first, let's finish homework by the weekend. Then comes the fun!",
+        "nextId": "day_conclusion",
+        "tags": ["vocab:288", "vocab:289", "grammar:156"]
+      },
+      "choices": []
+    },
+    "day_conclusion": {
+      "line": {
+        "id": "day_conclusion",
+        "textJp": "初日の夜が終わります。新しい環境、新しい友達、そして新しい学び。明日からもっと日本語が上達しそうな予感がします。おやすみなさい。",
+        "furiganaJp": "しょにちのよるがおわります。あたらしいかんきょう、あたらしいともだち、そしてあたらしいまなび。あしたからもっとにほんごがじょうたつしそうなよかんがします。おやすみなさい。",
+        "romajiJp": "Shonichi no yoru ga owarimasu. Atarashii kankyō, atarashii tomodachi, soshite atarashii manabi. Ashita kara motto Nihongo ga jōtatsu shisō na yokan ga shimasu. Oyasumi nasai.",
+        "textEn": "The first night ends. New environment, new friends, and new learning. You have a feeling that your Japanese will improve even more starting tomorrow. Good night.",
+        "nextId": "scene_end",
+        "tags": ["vocab:290", "vocab:291", "grammar:157"]
+      },
+      "choices": []
+    },
+    "scene_end": {
+      "line": {
+        "id": "scene_end",
+        "textJp": "シーン６：終了",
+        "textEn": "Scene 6: Complete"
+      },
+      "choices": []
+    }
+  },
+  "startNodeId": "evening_return",
+  "tags": ["chapter_1", "evening_activities", "dormitory_dinner", "food_culture", "international_community", "daily_life_reflection"]
+}

@@ -52,7 +52,7 @@ class CharacterSprite extends StatelessWidget {
       case SpritePosition.left:
         return 0;
       case SpritePosition.center:
-        return (screenWidth / 2) - 150;
+        return (screenWidth / 2) - screenWidth * 0.45; // Center position with some offset
       case SpritePosition.right:
         return null;
     }
@@ -103,17 +103,7 @@ class CharacterSprite extends StatelessWidget {
     return Container(
       height: height,
       width: width,
-      decoration: BoxDecoration(
-        boxShadow: isSpeaking
-            ? [
-                BoxShadow(
-                  color: Colors.white.withOpacity(0.1),
-                  blurRadius: 15,
-                  spreadRadius: 5,
-                ),
-              ]
-            : [],
-      ),
+      decoration: BoxDecoration(),
       child: Stack(
         children: [
           if (isSpeaking)

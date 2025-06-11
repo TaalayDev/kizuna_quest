@@ -2,7 +2,7 @@
   "id": "chapter_1",
   "title": "Chapter 1: Arrival in Tokyo",
   "description": "Your adventure begins as you arrive in Tokyo to study Japanese. Meet your teacher, navigate your first day at language school, and start building relationships while learning the language.",
-  "sceneIds": ["arrival", "meetingTanakaAndDormitory", "firstClassAndTest", "firstJapaneseLesson", "studyGroupInLibrary"],
+  "sceneIds": ["arrival", "meetingTanakaAndDormitory", "firstClassAndTest", "firstJapaneseLesson", "studyGroupInLibrary", "dinnerAtDormitoryCafeteria", "morningRoutineAndAdvancedLesson"],
   "startSceneId": "arrival",
   "prerequisites": []
 }

@@ -144,35 +144,28 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
 
   Future<void> _initializeGameSession() async {
     try {
-      // Set loading state
       ref.read(isLoadingDialogueProvider.notifier).state = true;
       setState(() {
         _isInitializing = true;
       });
 
-      // Set active chapter in provider
       if (widget.chapterId != null) {
         ref.read(activeChapterIdProvider.notifier).state = widget.chapterId;
       }
 
-      // If a save ID is provided, load that save
       if (widget.saveId != null) {
         final saveId = int.tryParse(widget.saveId!);
         if (saveId != null) {
           await ref.read(activeSaveIdProvider.notifier).setActiveSaveId(saveId);
 
-          // Initialize game from save
           await _loadFromSave(saveId);
         }
       } else {
-        // New game, start from beginning
         await _initializeNewGame();
       }
 
-      // Pre-load character data for this chapter
       await _loadCharactersForChapter();
 
-      // Capture a background screenshot after initialization
       await _captureBackgroundScreenshot();
 
       ref.read(inAppReviewProvider).incrementSessionCount();
@@ -328,7 +321,6 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
       // Use a delay to ensure the UI is fully rendered
       await Future.delayed(const Duration(milliseconds: 100));
 
-      // Capture and save screenshot
       final activeSaveId = ref.read(activeSaveIdProvider);
       final currentSceneId = ref.read(activeSceneIdProvider);
       final timestamp = DateTime.now().millisecondsSinceEpoch;
@@ -342,7 +334,6 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
 
       if (screenshotPath != null) {
         final size = MediaQuery.sizeOf(context);
-        // Generate a thumbnail for the save game
         final thumbnailPath = await ScreenshotHelper.generateThumbnail(
           screenshotPath: screenshotPath,
           thumbnailName: 'thumb_$fileName',
@@ -365,20 +356,22 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
     return null;
   }
 
-  /// Takes a screenshot in the background without UI feedback
   Future<void> _captureBackgroundScreenshot() async {
-    // Throttle screenshots - only take one every few seconds
     final now = DateTime.now();
     if (_lastScreenshotTime != null && now.difference(_lastScreenshotTime!).inSeconds < 5) {
-      return; // Skip if we captured a screenshot recently
+      return;
     }
 
     _lastScreenshotTime = now;
 
-    // Capture in the background without UI indications
     try {
       await Future.delayed(const Duration(milliseconds: 300)); // Allow UI to render
-      await _captureScreenshot();
+      final path = await _captureScreenshot();
+      final activeSaveId = ref.read(activeSaveIdProvider);
+      if (path != null && activeSaveId != null) {
+        final gameRepository = ref.read(gameRepositoryProvider);
+        gameRepository.createQuickSave(currentSaveId: activeSaveId, thumbnailPath: path);
+      }
     } catch (e, stack) {
       AppLogger.error('Error capturing background screenshot', error: e, stackTrace: stack);
       // Ignore errors for background screenshots
@@ -548,50 +541,36 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
     }
 
     try {
-      // Set loading state
       ref.read(isLoadingDialogueProvider.notifier).state = true;
 
-      // Get current chapter data
       final chapter = await gameRepository.loadChapter(currentChapterId);
       if (chapter == null) {
         throw Exception('Chapter $currentChapterId not found');
       }
 
-      // Find the index of the current scene in the chapter
       final currentSceneIndex = chapter.sceneIds.indexOf(currentSceneId);
       if (currentSceneIndex == -1) {
         throw Exception('Current scene $currentSceneId not found in chapter $currentChapterId');
       }
 
-      // Check if there is a next scene
       if (currentSceneIndex < chapter.sceneIds.length - 1) {
-        // Get the next scene ID
-        final nextSceneId = chapter.sceneIds[currentSceneIndex + 1];
-
-        // Display scene transition UI
         await _showSceneTransition();
 
-        // Update the active scene ID
+        final nextSceneId = chapter.sceneIds[currentSceneIndex + 1];
         ref.read(activeSceneIdProvider.notifier).state = nextSceneId;
-
-        // Reset dialogue ID to null so it will start from the beginning of the new scene
         ref.read(currentDialogueIdProvider.notifier).state = null;
 
-        // Save progress
         await _saveProgress(currentChapterId, nextSceneId);
 
         AppLogger.info('Loaded next scene: $nextSceneId');
 
-        // Take a screenshot of the new scene
         await _captureBackgroundScreenshot();
       } else {
-        // This is the last scene in the chapter
         await _handleChapterEnd(currentChapterId);
       }
     } catch (e, stack) {
       AppLogger.error('Error loading next scene', error: e, stackTrace: stack);
 
-      // Show error message to the user
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
@@ -601,20 +580,16 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
         );
       }
     } finally {
-      // Clear loading state
       ref.read(isLoadingDialogueProvider.notifier).state = false;
     }
   }
 
-  /// Handles the end of a chapter
   Future<void> _handleChapterEnd(String currentChapterId) async {
     final gameRepository = ref.read(gameRepositoryProvider);
 
     try {
-      // Get all chapters to find the next one
       final allChapters = await gameRepository.getAllChapters();
 
-      // Find current chapter by ID
       final currentChapterIndex = allChapters.indexWhere((c) => c.id == currentChapterId);
       if (currentChapterIndex == -1) {
         throw Exception('Current chapter $currentChapterId not found in all chapters');
@@ -651,35 +626,28 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
               false;
 
           if (goToNextChapter) {
-            // Update the active chapter and scene IDs
             ref.read(activeChapterIdProvider.notifier).state = nextChapter.id;
             ref.read(activeSceneIdProvider.notifier).state = nextChapter.startSceneId;
 
-            // Reset dialogue ID
             ref.read(currentDialogueIdProvider.notifier).state = null;
 
-            // Save progress
             await _saveProgress(nextChapter.id, nextChapter.startSceneId);
 
             AppLogger.info('Started next chapter: ${nextChapter.id}');
 
-            // Take a screenshot of the new chapter
             await _captureBackgroundScreenshot();
           } else {
-            // Return to home screen
             if (mounted) {
               context.go(AppConstants.routeHome);
             }
           }
         }
       } else {
-        // This is the last chapter in the game
         await _showGameCompleteScreen();
       }
     } catch (e, stack) {
       AppLogger.error('Error handling chapter end', error: e, stackTrace: stack);
 
-      // Show error message to the user
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(

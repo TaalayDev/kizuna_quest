@@ -17,7 +17,7 @@ class CharacterShowcase extends ConsumerStatefulWidget {
 }
 
 class _CharacterShowcaseState extends ConsumerState<CharacterShowcase> {
-  final _pageController = PageController(viewportFraction: 0.4);
+  final _pageController = PageController(viewportFraction: 0.85);
   int _currentPage = 0;
 
   @override
@@ -147,32 +147,48 @@ class _CharacterShowcaseState extends ConsumerState<CharacterShowcase> {
   }
 
   Widget _buildCharacterList(List<CharacterModel> characters) {
-    return NotificationListener<ScrollNotification>(
-      onNotification: (ScrollNotification notification) {
-        if (notification is ScrollEndNotification) {
-          final page = _pageController.page?.round() ?? 0;
-          if (_currentPage != page) {
-            setState(() {
-              _currentPage = page;
-            });
-          }
-        }
-        return false;
+    return ShaderMask(
+      shaderCallback: (Rect rect) {
+        return const LinearGradient(
+          begin: Alignment.centerLeft,
+          end: Alignment.centerRight,
+          colors: [
+            Colors.black,
+            Colors.transparent,
+            Colors.transparent,
+            Colors.black,
+          ],
+          stops: [0.0, 0.05, 0.9, 1.0],
+        ).createShader(rect);
       },
-      child: PageView.builder(
-        controller: _pageController,
-        itemCount: characters.length,
-        physics: const BouncingScrollPhysics(),
-        itemBuilder: (context, index) {
-          final character = characters[index];
-          final isActive = index == _currentPage;
-
-          return _CharacterCard(
-            character: character,
-            isActive: isActive,
-            index: index,
-          );
+      blendMode: BlendMode.dstOut,
+      child: NotificationListener<ScrollNotification>(
+        onNotification: (ScrollNotification notification) {
+          if (notification is ScrollEndNotification) {
+            final page = _pageController.page?.round() ?? 0;
+            if (_currentPage != page) {
+              setState(() {
+                _currentPage = page;
+              });
+            }
+          }
+          return false;
         },
+        child: PageView.builder(
+          controller: _pageController,
+          itemCount: characters.length,
+          physics: const BouncingScrollPhysics(),
+          itemBuilder: (context, index) {
+            final character = characters[index];
+            final isActive = index == _currentPage;
+
+            return _CharacterCard(
+              character: character,
+              isActive: isActive,
+              index: index,
+            );
+          },
+        ),
       ),
     );
   }

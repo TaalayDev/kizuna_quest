@@ -1,0 +1,950 @@
+{
+  "id": "morningRoutineAndAdvancedLesson",
+  "title": "Morning Routine and Advanced Japanese Lesson",
+  "defaultBackground": "assets/images/backgrounds/dormitory_room.webp",
+  "nodes": {
+    "morning_alarm": {
+      "line": {
+        "id": "morning_alarm",
+        "textJp": "三日目の朝です。目覚ましの音で起きると、すっかり日本の生活に慣れ始めています。",
+        "furiganaJp": "みっかめのあさです。めざましのおとでおきると、すっかりにほんのせいかつになれはじめています。",
+        "romajiJp": "Mikkame no asa desu. Mezamashi no oto de okiru to, sukkari Nihon no seikatsu ni nare hajimete imasu.",
+        "textEn": "It's the morning of the third day. When you wake up to the alarm sound, you're starting to get completely used to life in Japan.",
+        "background": "assets/images/backgrounds/dormitory_room.webp",
+        "nextId": "kenta_morning_routine",
+        "tags": ["vocab:292", "vocab:293", "grammar:158"]
+      },
+      "choices": []
+    },
+    "kenta_morning_routine": {
+      "line": {
+        "id": "kenta_morning_routine",
+        "characterId": "5",
+        "speakerName": "ケンタ",
+        "sprite": "greeting",
+        "position": "center",
+        "textJp": "おはよう！今日は漢字のテストがあるんだ。一緒に朝ごはんを食べながら復習しない？",
+        "furiganaJp": "おはよう！きょうはかんじのテストがあるんだ。いっしょにあさごはんをたべながらふくしゅうしない？",
+        "romajiJp": "Ohayō! Kyō wa kanji no tesuto ga aru n da. Issho ni asagohan o tabe nagara fukushū shinai?",
+        "textEn": "Good morning! There's a kanji test today. Want to review together while eating breakfast?",
+        "nextId": "morning_response",
+        "tags": ["vocab:294", "vocab:295", "grammar:159"]
+      },
+      "choices": []
+    },
+    "morning_response": {
+      "line": {
+        "id": "morning_response",
+        "textJp": "ケンタの提案にどう答えますか？",
+        "textEn": "How will you respond to Kenta's suggestion?",
+        "isChoice": true
+      },
+      "choices": [
+        {
+          "id": "choice_eager_study",
+          "textJp": "はい！漢字は苦手なので、教えてください。",
+          "furiganaJp": "はい！かんじはにがてなので、おしえてください。",
+          "textEn": "Yes! I'm not good at kanji, so please teach me.",
+          "meaning": "Show eagerness to learn and ask for help with kanji",
+          "nextId": "kenta_helpful",
+          "requiredLevel": 1,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "5": 4
+          },
+          "tags": ["vocab:296"]
+        },
+        {
+          "id": "choice_confident",
+          "textJp": "いいですね。私も少し覚えましたが、確認したいです。",
+          "furiganaJp": "いいですね。わたしもすこしおぼえましたが、かくにんしたいです。",
+          "textEn": "That sounds good. I've memorized some too, but I'd like to confirm.",
+          "meaning": "Show some confidence but desire to double-check",
+          "nextId": "mutual_study",
+          "requiredLevel": 2,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "5": 3
+          },
+          "tags": ["vocab:297", "grammar:160"]
+        },
+        {
+          "id": "choice_nervous",
+          "textJp": "実は、とても心配しています。漢字が覚えられません...",
+          "furiganaJp": "じつは、とてもしんぱいしています。かんじがおぼえられません...",
+          "textEn": "Actually, I'm very worried. I can't memorize kanji...",
+          "meaning": "Express anxiety about the kanji test",
+          "nextId": "kenta_encouraging",
+          "requiredLevel": 1,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "5": 5
+          },
+          "tags": ["vocab:298", "grammar:161"]
+        }
+      ]
+    },
+    "kenta_helpful": {
+      "line": {
+        "id": "kenta_helpful",
+        "characterId": "5",
+        "speakerName": "ケンタ",
+        "sprite": "explaining",
+        "position": "center",
+        "textJp": "もちろんだよ！漢字には覚え方のコツがあるんだ。部首や構成要素に注目すると覚えやすいよ。",
+        "furiganaJp": "もちろんだよ！かんじにはおぼえかたのコツがあるんだ。ぶしゅやこうせいようそにちゅうもくするとおぼえやすいよ。",
+        "romajiJp": "Mochiron da yo! Kanji ni wa oboe-kata no kotsu ga aru n da. Bushu ya kōsei yōso ni chūmoku suru to oboe yasui yo.",
+        "textEn": "Of course! There are tricks to memorizing kanji. If you pay attention to radicals and structural elements, they're easier to remember.",
+        "nextId": "breakfast_study",
+        "tags": ["vocab:299", "vocab:300", "grammar:162"]
+      },
+      "choices": []
+    },
+    "mutual_study": {
+      "line": {
+        "id": "mutual_study",
+        "characterId": "5",
+        "speakerName": "ケンタ",
+        "sprite": "encouraging",
+        "position": "center",
+        "textJp": "さすがだね！じゃあ、お互いに問題を出し合おう。そうすると弱点がわかるからね。",
+        "furiganaJp": "さすがだね！じゃあ、おたがいにもんだいをだしあおう。そうするとじゃくてんがわかるからね。",
+        "romajiJp": "Sasuga da ne! Jā, otagai ni mondai o dashi aō. Sō suru to jakuten ga wakaru kara ne.",
+        "textEn": "As expected! Well then, let's quiz each other. That way we can understand our weak points.",
+        "nextId": "breakfast_study",
+        "tags": ["vocab:301", "vocab:302", "grammar:163"]
+      },
+      "choices": []
+    },
+    "kenta_encouraging": {
+      "line": {
+        "id": "kenta_encouraging",
+        "characterId": "5",
+        "speakerName": "ケンタ",
+        "sprite": "encouraging",
+        "position": "center",
+        "textJp": "心配しなくても大丈夫だよ！みんな最初は苦労するんだ。僕も漢字で苦労したから、君の気持ちがよくわかる。",
+        "furiganaJp": "しんぱいしなくてもだいじょうぶだよ！みんなさいしょはくろうするんだ。ぼくもかんじでくろうしたから、きみのきもちがよくわかる。",
+        "romajiJp": "Shinpai shinakute mo daijōbu da yo! Minna saisho wa kurō suru n da. Boku mo kanji de kurō shita kara, kimi no kimochi ga yoku wakaru.",
+        "textEn": "Don't worry, it's okay! Everyone struggles at first. I struggled with kanji too, so I understand your feelings well.",
+        "nextId": "breakfast_study",
+        "tags": ["vocab:303", "grammar:164"]
+      },
+      "choices": []
+    },
+    "breakfast_study": {
+      "line": {
+        "id": "breakfast_study",
+        "textJp": "二人は食堂に向かいます。朝の食堂は静かで、勉強には最適な環境です。",
+        "furiganaJp": "ふたりはしょくどうにむかいます。あさのしょくどうはしずかで、べんきょうにはさいてきなかんきょうです。",
+        "romajiJp": "Futari wa shokudō ni mukaimasu. Asa no shokudō wa shizuka de, benkyō ni wa saiteki na kankyō desu.",
+        "textEn": "The two of you head to the cafeteria. The morning cafeteria is quiet and the optimal environment for studying.",
+        "nextId": "breakfast_kanji_practice",
+        "background": "assets/images/backgrounds/cafeteria.webp",
+        "tags": ["vocab:304", "grammar:165"]
+      },
+      "choices": []
+    },
+    "breakfast_kanji_practice": {
+      "line": {
+        "id": "breakfast_kanji_practice",
+        "characterId": "5",
+        "speakerName": "ケンタ",
+        "sprite": "explaining",
+        "position": "center",
+        "textJp": "今日のテストに出る漢字を見てみよう。「勉強」「学校」「先生」「友達」。これらの漢字の読み方は覚えてる？",
+        "furiganaJp": "きょうのテストにでるかんじをみてみよう。「べんきょう」「がっこう」「せんせい」「ともだち」。これらのかんじのよみかたはおぼえてる？",
+        "romajiJp": "Kyō no tesuto ni deru kanji o mite miyō. 'Benkyō' 'gakkō' 'sensei' 'tomodachi'. Korera no kanji no yomi-kata wa oboeteru?",
+        "textEn": "Let's look at the kanji that will be on today's test. 'Study', 'school', 'teacher', 'friend'. Do you remember how to read these kanji?",
+        "nextId": "kanji_knowledge_test",
+        "tags": ["vocab:305", "vocab:306", "grammar:166"]
+      },
+      "choices": []
+    },
+    "kanji_knowledge_test": {
+      "line": {
+        "id": "kanji_knowledge_test",
+        "textJp": "これらの漢字についてどの程度知っていますか？",
+        "textEn": "How much do you know about these kanji?",
+        "isChoice": true
+      },
+      "choices": [
+        {
+          "id": "choice_know_all",
+          "textJp": "全部覚えています。意味も読み方もわかります。",
+          "furiganaJp": "ぜんぶおぼえています。いみもよみかたもわかります。",
+          "textEn": "I remember them all. I know both the meanings and readings.",
+          "meaning": "Show confidence in your kanji knowledge",
+          "nextId": "advanced_kanji",
+          "requiredLevel": 3,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "5": 3
+          },
+          "tags": ["vocab:307"]
+        },
+        {
+          "id": "choice_know_some",
+          "textJp": "いくつかは覚えていますが、全部は自信がありません。",
+          "furiganaJp": "いくつかはおぼえていますが、ぜんぶはじしんがありません。",
+          "textEn": "I remember some, but I'm not confident about all of them.",
+          "meaning": "Show partial knowledge and ask for help",
+          "nextId": "review_together",
+          "requiredLevel": 2,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "5": 4
+          },
+          "tags": ["vocab:308", "grammar:167"]
+        },
+        {
+          "id": "choice_need_help",
+          "textJp": "正直に言うと、まだ覚えきれていません。教えてください。",
+          "furiganaJp": "しょうじきにいうと、まだおぼえきれていません。おしえてください。",
+          "textEn": "To be honest, I haven't memorized them completely yet. Please teach me.",
+          "meaning": "Be honest about needing help",
+          "nextId": "patient_teaching",
+          "requiredLevel": 1,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "5": 5
+          },
+          "tags": ["vocab:309", "culture:39"]
+        }
+      ]
+    },
+    "advanced_kanji": {
+      "line": {
+        "id": "advanced_kanji",
+        "characterId": "5",
+        "speakerName": "ケンタ",
+        "sprite": "impressed",
+        "position": "center",
+        "textJp": "すごいな！じゃあ、もう少し難しい漢字はどう？「勉強」の「勉」の部首は何だと思う？",
+        "furiganaJp": "すごいな！じゃあ、もうすこしむずかしいかんじはどう？「べんきょう」の「べん」のぶしゅはなんだとおもう？",
+        "romajiJp": "Sugoi na! Jā, mō sukoshi muzukashii kanji wa dō? 'Benkyō' no 'ben' no bushu wa nan da to omou?",
+        "textEn": "Amazing! Well then, how about some more difficult kanji? What do you think the radical of 'ben' in 'benkyō' is?",
+        "nextId": "class_time_approaching",
+        "tags": ["vocab:310", "grammar:168"]
+      },
+      "choices": []
+    },
+    "review_together": {
+      "line": {
+        "id": "review_together",
+        "characterId": "5",
+        "speakerName": "ケンタ",
+        "sprite": "explaining",
+        "position": "center",
+        "textJp": "わからないものがあっても大丈夫。一つずつ確認していこう。「学校」は「がっこう」と読むよね。「学」と「校」に分けて考えてみて。",
+        "furiganaJp": "わからないものがあってもだいじょうぶ。ひとつずつかくにんしていこう。「がっこう」は「がっこう」とよむよね。「がく」と「こう」にわけてかんがえてみて。",
+        "romajiJp": "Wakaranai mono ga atte mo daijōbu. Hitotsu zutsu kakunin shite ikō. 'Gakkō' wa 'gakkō' to yomu yo ne. 'Gaku' to 'kō' ni wakete kangaete mite.",
+        "textEn": "It's okay if there are some you don't know. Let's check them one by one. 'Gakkō' is read as 'gakkō', right? Try thinking of it divided into 'gaku' and 'kō'.",
+        "nextId": "class_time_approaching",
+        "tags": ["vocab:311", "grammar:169"]
+      },
+      "choices": []
+    },
+    "patient_teaching": {
+      "line": {
+        "id": "patient_teaching",
+        "characterId": "5",
+        "speakerName": "ケンタ",
+        "sprite": "encouraging",
+        "position": "center",
+        "textJp": "いいよ、正直に言ってくれて。それが一番いい学習方法だ。まず「勉強」から始めよう。「勉」は「力」と「免」に分かれるんだ。",
+        "furiganaJp": "いいよ、しょうじきにいってくれて。それがいちばんいいがくしゅうほうほうだ。まず「べんきょう」からはじめよう。「べん」は「ちから」と「めん」にわかれるんだ。",
+        "romajiJp": "Ii yo, shōjiki ni itte kurete. Sore ga ichiban ii gakushū hōhō da. Mazu 'benkyō' kara hajimeyō. 'Ben' wa 'chikara' to 'men' ni wakareru n da.",
+        "textEn": "That's good, thanks for being honest. That's the best learning method. Let's start with 'benkyō'. 'Ben' is divided into 'chikara' (power) and 'men'.",
+        "nextId": "class_time_approaching",
+        "tags": ["vocab:312", "vocab:313", "grammar:170"]
+      },
+      "choices": []
+    },
+    "class_time_approaching": {
+      "line": {
+        "id": "class_time_approaching",
+        "textJp": "朝食を食べながら勉強していると、時間が過ぎるのが早く感じます。そろそろ授業の時間です。",
+        "furiganaJp": "ちょうしょくをたべながらべんきょうしていると、じかんがすぎるのがはやくかんじます。そろそろじゅぎょうのじかんです。",
+        "romajiJp": "Chōshoku o tabe nagara benkyō shite iru to, jikan ga sugiru no ga hayaku kanjimasu. Sorosoro jugyō no jikan desu.",
+        "textEn": "While studying while eating breakfast, time feels like it passes quickly. It's almost time for class.",
+        "nextId": "walk_to_class",
+        "tags": ["vocab:314", "grammar:171"]
+      },
+      "choices": []
+    },
+    "walk_to_class": {
+      "line": {
+        "id": "walk_to_class",
+        "characterId": "5",
+        "speakerName": "ケンタ",
+        "sprite": "avatar",
+        "position": "center",
+        "textJp": "教室に行こう！今日は漢字テストの後、敬語の授業があるんだ。ビジネス日本語で使う表現を習うよ。",
+        "furiganaJp": "きょうしつにいこう！きょうはかんじテストのあと、けいごのじゅぎょうがあるんだ。ビジネスにほんごでつかうひょうげんをならうよ。",
+        "romajiJp": "Kyōshitsu ni ikō! Kyō wa kanji tesuto no ato, keigo no jugyō ga aru n da. Bijinesu Nihongo de tsukau hyōgen o narau yo.",
+        "textEn": "Let's go to the classroom! Today after the kanji test, there's a lesson on honorific language. We'll learn expressions used in business Japanese.",
+        "nextId": "classroom_arrival",
+        "background": "assets/images/backgrounds/school_hallway.webp",
+        "tags": ["vocab:315", "vocab:316", "grammar:172"]
+      },
+      "choices": []
+    },
+    "classroom_arrival": {
+      "line": {
+        "id": "classroom_arrival",
+        "textJp": "教室に着くと、ユキさんとメイさんが既に席に座っています。みんな少し緊張した様子です。",
+        "furiganaJp": "きょうしつにつくと、ユキさんとメイさんがすでにせきにすわっています。みんなすこしきんちょうしたようすです。",
+        "romajiJp": "Kyōshitsu ni tsuku to, Yuki-san to Mei-san ga sude ni seki ni suwatte imasu. Minna sukoshi kinchō shita yōsu desu.",
+        "textEn": "When you arrive at the classroom, Yuki-san and Mei-san are already seated. Everyone looks a bit nervous.",
+        "nextId": "greet_friends",
+        "background": "assets/images/backgrounds/classroom.webp",
+        "tags": ["vocab:317", "grammar:173"]
+      },
+      "choices": []
+    },
+    "greet_friends": {
+      "line": {
+        "id": "greet_friends",
+        "characterId": "1",
+        "speakerName": "ユキ",
+        "sprite": "greeting",
+        "position": "left",
+        "textJp": "おはようございます！漢字テスト、準備はできていますか？昨日の夜遅くまで覚えていました。",
+        "furiganaJp": "おはようございます！かんじテスト、じゅんびはできていますか？きのうのよるおそくまでおぼえていました。",
+        "romajiJp": "Ohayō gozaimasu! Kanji tesuto, junbi wa dekite imasu ka? Kinō no yoru osoku made oboete imashita.",
+        "textEn": "Good morning! Are you ready for the kanji test? I was memorizing until late last night.",
+        "nextId": "mei_nervous",
+        "tags": ["vocab:318", "grammar:174"]
+      },
+      "choices": []
+    },
+    "mei_nervous": {
+      "line": {
+        "id": "mei_nervous",
+        "characterId": "4",
+        "speakerName": "メイ",
+        "sprite": "talking",
+        "position": "right",
+        "textJp": "私は漢字は得意ですが、日本語の読み方が台湾と少し違うので心配です。音読みと訓読みが難しいです。",
+        "furiganaJp": "わたしはかんじはとくいですが、にほんごのよみかたがたいわんとすこしちがうのでしんぱいです。おんよみとくんよみがむずかしいです。",
+        "romajiJp": "Watashi wa kanji wa tokui desu ga, Nihongo no yomi-kata ga Taiwan to sukoshi chigau no de shinpai desu. On'yomi to kun'yomi ga muzukashii desu.",
+        "textEn": "I'm good at kanji, but I'm worried because the Japanese readings are a bit different from Taiwan. On'yomi and kun'yomi are difficult.",
+        "nextId": "test_begins",
+        "tags": ["vocab:319", "vocab:320", "culture:40"]
+      },
+      "choices": []
+    },
+    "test_begins": {
+      "line": {
+        "id": "test_begins",
+        "characterId": "2",
+        "speakerName": "田中先生",
+        "sprite": "avatar",
+        "position": "center",
+        "textJp": "皆さん、おはようございます。では、漢字テストを始めましょう。今日は20問です。時間は15分です。",
+        "furiganaJp": "みなさん、おはようございます。では、かんじテストをはじめましょう。きょうはにじゅうもんです。じかんはじゅうごふんです。",
+        "romajiJp": "Mina-san, ohayō gozaimasu. Dewa, kanji tesuto o hajimemashō. Kyō wa nijū-mon desu. Jikan wa jūgo-fun desu.",
+        "textEn": "Good morning, everyone. Now, let's begin the kanji test. Today there are 20 questions. You have 15 minutes.",
+        "nextId": "test_experience",
+        "tags": ["vocab:321", "grammar:175"]
+      },
+      "choices": []
+    },
+    "test_experience": {
+      "line": {
+        "id": "test_experience",
+        "textJp": "テストが始まります。朝の復習のおかげで、多くの漢字を思い出すことができます。",
+        "furiganaJp": "テストがはじまります。あさのふくしゅうのおかげで、おおくのかんじをおもいだすことができます。",
+        "romajiJp": "Tesuto ga hajimarimasu. Asa no fukushū no okage de, ōku no kanji o omoidasu koto ga dekimasu.",
+        "textEn": "The test begins. Thanks to the morning review, you're able to remember many kanji.",
+        "nextId": "test_feeling",
+        "tags": ["vocab:322", "grammar:176"]
+      },
+      "choices": []
+    },
+    "test_feeling": {
+      "line": {
+        "id": "test_feeling",
+        "textJp": "テストの手応えはいかがでしたか？",
+        "textEn": "How did the test feel to you?",
+        "isChoice": true
+      },
+      "choices": [
+        {
+          "id": "choice_confident",
+          "textJp": "朝の復習のおかげで、よくできたと思います。",
+          "furiganaJp": "あさのふくしゅうのおかげで、よくできたとおもいます。",
+          "textEn": "Thanks to the morning review, I think I did well.",
+          "meaning": "Express confidence in your test performance",
+          "nextId": "confident_result",
+          "requiredLevel": 2,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "5": 3
+          },
+          "tags": ["grammar:177"]
+        },
+        {
+          "id": "choice_moderate",
+          "textJp": "半分くらいはできましたが、難しい問題もありました。",
+          "furiganaJp": "はんぶんくらいはできましたが、むずかしいもんだいもありました。",
+          "textEn": "I could do about half, but there were some difficult problems too.",
+          "meaning": "Give a realistic assessment of mixed performance",
+          "nextId": "moderate_result",
+          "requiredLevel": 2,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "1": 3,
+            "4": 3
+          },
+          "tags": ["vocab:323", "grammar:178"]
+        },
+        {
+          "id": "choice_struggled",
+          "textJp": "正直に言うと、とても難しかったです...",
+          "furiganaJp": "しょうじきにいうと、とてもむずかしかったです...",
+          "textEn": "To be honest, it was very difficult...",
+          "meaning": "Admit that you found the test challenging",
+          "nextId": "struggling_support",
+          "requiredLevel": 1,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "1": 4,
+            "4": 4,
+            "5": 4
+          },
+          "tags": ["culture:41"]
+        }
+      ]
+    },
+    "confident_result": {
+      "line": {
+        "id": "confident_result",
+        "characterId": "5",
+        "speakerName": "ケンタ",
+        "sprite": "encouraging",
+        "position": "center",
+        "textJp": "よかった！朝の勉強が役に立ったね。君は真面目だから、きっといい結果が出るよ。",
+        "furiganaJp": "よかった！あさのべんきょうがやくにたったね。きみはまじめだから、きっといいけっかがでるよ。",
+        "romajiJp": "Yokatta! Asa no benkyō ga yaku ni tatta ne. Kimi wa majime da kara, kitto ii kekka ga deru yo.",
+        "textEn": "Great! The morning study was useful. Since you're serious, you'll definitely get good results.",
+        "nextId": "keigo_lesson_start",
+        "tags": ["vocab:324", "grammar:179"]
+      },
+      "choices": []
+    },
+    "moderate_result": {
+      "line": {
+        "id": "moderate_result",
+        "characterId": "1",
+        "speakerName": "ユキ",
+        "sprite": "explaining",
+        "position": "left",
+        "textJp": "私も同じような感じでした。漢字テストは慣れが必要ですね。でも、着実に上達していると思います。",
+        "furiganaJp": "わたしもおなじようなかんじでした。かんじテストはなれがひつようですね。でも、ちゃくじつにじょうたつしているとおもいます。",
+        "romajiJp": "Watashi mo onaji yōna kanji deshita. Kanji tesuto wa nare ga hitsuyō desu ne. Demo, chakujitsu ni jōtatsu shite iru to omoimasu.",
+        "textEn": "I felt the same way. Kanji tests require getting used to them. But I think you're steadily improving.",
+        "nextId": "keigo_lesson_start",
+        "tags": ["vocab:325", "vocab:326", "grammar:180"]
+      },
+      "choices": []
+    },
+    "struggling_support": {
+      "line": {
+        "id": "struggling_support",
+        "characterId": "4",
+        "speakerName": "メイ",
+        "sprite": "avatar",
+        "position": "right",
+        "textJp": "大丈夫ですよ！漢字は練習すれば必ず覚えられます。今度、一緒に漢字の書き方を練習しませんか？",
+        "furiganaJp": "だいじょうぶですよ！かんじはれんしゅうすればかならずおぼえられます。こんど、いっしょにかんじのかきかたをれんしゅうしませんか？",
+        "romajiJp": "Daijōbu desu yo! Kanji wa renshū sureba kanarazu oboeraremasu. Kondo, issho ni kanji no kaki-kata o renshū shimasen ka?",
+        "textEn": "It's okay! If you practice kanji, you can definitely memorize them. Next time, would you like to practice writing kanji together?",
+        "nextId": "keigo_lesson_start",
+        "tags": ["vocab:327", "grammar:181"]
+      },
+      "choices": []
+    },
+    "keigo_lesson_start": {
+      "line": {
+        "id": "keigo_lesson_start",
+        "characterId": "2",
+        "speakerName": "田中先生",
+        "sprite": "avatar",
+        "position": "center",
+        "textJp": "では、今日の授業に入りましょう。敬語について勉強します。敬語は日本のビジネスや社会生活で非常に重要です。",
+        "furiganaJp": "では、きょうのじゅぎょうにはいりましょう。けいごについてべんきょうします。けいごはにほんのビジネスやしゃかいせいかつでひじょうにじゅうようです。",
+        "romajiJp": "Dewa, kyō no jugyō ni hairimashō. Keigo ni tsuite benkyō shimasu. Keigo wa Nihon no bijinesu ya shakai seikatsu de hijō ni jūyō desu.",
+        "textEn": "Now, let's get into today's lesson. We'll study honorific language. Honorific language is extremely important in Japanese business and social life.",
+        "nextId": "keigo_explanation",
+        "tags": ["vocab:328", "vocab:329", "culture:42"]
+      },
+      "choices": []
+    },
+    "keigo_explanation": {
+      "line": {
+        "id": "keigo_explanation",
+        "characterId": "2",
+        "speakerName": "田中先生",
+        "sprite": "explaining",
+        "position": "center",
+        "textJp": "敬語には三つの種類があります。尊敬語、謙譲語、丁寧語です。相手や状況によって使い分けることが大切です。",
+        "furiganaJp": "けいごにはみっつのしゅるいがあります。そんけいご、けんじょうご、ていねいごです。あいてやじょうきょうによってつかいわけることがたいせつです。",
+        "romajiJp": "Keigo ni wa mittsu no shurui ga arimasu. Sonkeigo, kenjōgo, teineigo desu. Aite ya jōkyō ni yotte tsukai-wakeru koto ga taisetsu desu.",
+        "textEn": "There are three types of honorific language: respectful language, humble language, and polite language. It's important to use them appropriately depending on the person and situation.",
+        "nextId": "keigo_practice",
+        "tags": ["vocab:330", "vocab:331", "culture:43"]
+      },
+      "choices": []
+    },
+    "keigo_practice": {
+      "line": {
+        "id": "keigo_practice",
+        "characterId": "2",
+        "speakerName": "田中先生",
+        "sprite": "smile",
+        "position": "center",
+        "textJp": "では、練習してみましょう。「先生が来ます」を尊敬語で言うとどうなりますか？",
+        "furiganaJp": "では、れんしゅうしてみましょう。「せんせいがきます」をそんけいごでいうとどうなりますか？",
+        "romajiJp": "Dewa, renshū shite mimasho. 'Sensei ga kimasu' o sonkeigo de iu to dō narimasu ka?",
+        "textEn": "Now, let's practice. How would you say 'The teacher is coming' in respectful language?",
+        "nextId": "keigo_choice",
+        "tags": ["vocab:332", "grammar:182"]
+      },
+      "choices": []
+    },
+    "keigo_choice": {
+      "line": {
+        "id": "keigo_choice",
+        "textJp": "尊敬語でどう表現しますか？",
+        "textEn": "How will you express this in respectful language?",
+        "isChoice": true
+      },
+      "choices": [
+        {
+          "id": "choice_irassharu",
+          "textJp": "先生がいらっしゃいます。",
+          "furiganaJp": "せんせいがいらっしゃいます。",
+          "textEn": "Sensei ga irasshaimasu.",
+          "meaning": "Use the correct respectful form of 'to come'",
+          "nextId": "correct_keigo",
+          "requiredLevel": 3,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "2": 5
+          },
+          "tags": ["vocab:333", "culture:44"]
+        },
+        {
+          "id": "choice_kimasu",
+          "textJp": "先生が来ます。",
+          "furiganaJp": "せんせいがきます。",
+          "textEn": "Sensei ga kimasu.",
+          "meaning": "Use regular polite form (not respectful enough)",
+          "nextId": "explain_keigo",
+          "requiredLevel": 1,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "2": 2
+          },
+          "tags": []
+        },
+        {
+          "id": "choice_uncertain",
+          "textJp": "すみません、わかりません...",
+          "furiganaJp": "すみません、わかりません...",
+          "textEn": "I'm sorry, I don't know...",
+          "meaning": "Admit you don't know the respectful form",
+          "nextId": "patient_explanation",
+          "requiredLevel": 1,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "2": 3
+          },
+          "tags": ["culture:45"]
+        }
+      ]
+    },
+    "correct_keigo": {
+      "line": {
+        "id": "correct_keigo",
+        "characterId": "2",
+        "speakerName": "田中先生",
+        "sprite": "encouraging",
+        "position": "center",
+        "textJp": "素晴らしいです！「いらっしゃる」は「来る」の尊敬語ですね。相手を高めて表現しています。とてもよくできました。",
+        "furiganaJp": "すばらしいです！「いらっしゃる」は「くる」のそんけいごですね。あいてをたかめてひょうげんしています。とてもよくできました。",
+        "romajiJp": "Subarashii desu! 'Irassharu' wa 'kuru' no sonkeigo desu ne. Aite o takamete hyōgen shite imasu. Totemo yoku dekimashita.",
+        "textEn": "Excellent! 'Irassharu' is the respectful form of 'kuru'. You're expressing it by elevating the other person. Very well done.",
+        "nextId": "keigo_application",
+        "tags": ["vocab:334", "culture:46"]
+      },
+      "choices": []
+    },
+    "explain_keigo": {
+      "line": {
+        "id": "explain_keigo",
+        "characterId": "2",
+        "speakerName": "田中先生",
+        "sprite": "explaining",
+        "position": "center",
+        "textJp": "それも丁寧語として正しいですが、尊敬語では「いらっしゃる」を使います。相手への敬意を示すためです。",
+        "furiganaJp": "それもていねいごとしてただしいですが、そんけいごでは「いらっしゃる」をつかいます。あいてへのけいいをしめすためです。",
+        "romajiJp": "Sore mo teineigo to shite tadashii desu ga, sonkeigo de wa 'irassharu' o tsukaimasu. Aite e no keii o shimesu tame desu.",
+        "textEn": "That's also correct as polite language, but in respectful language we use 'irassharu'. It's to show respect for the other person.",
+        "nextId": "keigo_application",
+        "tags": ["vocab:335", "culture:47"]
+      },
+      "choices": []
+    },
+    "patient_explanation": {
+      "line": {
+        "id": "patient_explanation",
+        "characterId": "2",
+        "speakerName": "田中先生",
+        "sprite": "encouraging",
+        "position": "center",
+        "textJp": "大丈夫ですよ。敬語は日本人でも難しいんです。「来る」の尊敬語は「いらっしゃる」です。覚えておいてくださいね。",
+        "furiganaJp": "だいじょうぶですよ。けいごはにほんじんでもむずかしいんです。「くる」のそんけいごは「いらっしゃる」です。おぼえておいてくださいね。",
+        "romajiJp": "Daijōbu desu yo. Keigo wa Nihonjin de mo muzukashii n desu. 'Kuru' no sonkeigo wa 'irassharu' desu. Oboete oite kudasai ne.",
+        "textEn": "It's okay. Honorific language is difficult even for Japanese people. The respectful form of 'kuru' is 'irassharu'. Please remember it.",
+        "nextId": "keigo_application",
+        "tags": ["vocab:336", "culture:48"]
+      },
+      "choices": []
+    },
+    "keigo_application": {
+      "line": {
+        "id": "keigo_application",
+        "characterId": "2",
+        "speakerName": "田中先生",
+        "sprite": "avatar",
+        "position": "center",
+        "textJp": "では、実際のビジネスシーンを想像してみましょう。会社で上司と話すときの敬語を練習してみます。",
+        "furiganaJp": "では、じっさいのビジネスシーンをそうぞうしてみましょう。かいしゃでじょうしとはなすときのけいごをれんしゅうしてみます。",
+        "romajiJp": "Dewa, jissai no bijinesu shīn o sōzō shite mimasho. Kaisha de jōshi to hanasu toki no keigo o renshū shite mimasu.",
+        "textEn": "Now, let's imagine an actual business scene. We'll practice honorific language when talking with a supervisor at a company.",
+        "nextId": "business_roleplay",
+        "tags": ["vocab:337", "vocab:338", "grammar:183"]
+      },
+      "choices": []
+    },
+    "business_roleplay": {
+      "line": {
+        "id": "business_roleplay",
+        "textJp": "田中先生が上司の役をします。あなたは部下として敬語で話してみてください。",
+        "furiganaJp": "たなかせんせいがじょうしのやくをします。あなたはぶかとしてけいごではなしてみてください。",
+        "romajiJp": "Tanaka-sensei ga jōshi no yaku o shimasu. Anata wa buka to shite keigo de hanashite mite kudasai.",
+        "textEn": "Tanaka-sensei will play the role of a supervisor. Please try speaking as a subordinate using honorific language.",
+        "nextId": "roleplay_scenario",
+        "tags": ["vocab:339", "culture:49"]
+      },
+      "choices": []
+    },
+    "roleplay_scenario": {
+      "line": {
+        "id": "roleplay_scenario",
+        "characterId": "2",
+        "speakerName": "田中部長",
+        "sprite": "avatar",
+        "position": "center",
+        "textJp": "お疲れさまです。明日の会議の資料、準備はいかがですか？",
+        "furiganaJp": "おつかれさまです。あしたのかいぎのしりょう、じゅんびはいかがですか？",
+        "romajiJp": "Otsukaresama desu. Ashita no kaigi no shiryō, junbi wa ikaga desu ka?",
+        "textEn": "Thank you for your hard work. How is the preparation of materials for tomorrow's meeting?",
+        "nextId": "business_response",
+        "tags": ["vocab:340", "vocab:341", "culture:50"]
+      },
+      "choices": []
+    },
+    "business_response": {
+      "line": {
+        "id": "business_response",
+        "textJp": "上司にどのように答えますか？",
+        "textEn": "How will you respond to your supervisor?",
+        "isChoice": true
+      },
+      "choices": [
+        {
+          "id": "choice_humble_response",
+          "textJp": "お疲れさまです。資料の準備をさせていただいております。",
+          "furiganaJp": "おつかれさまです。しりょうのじゅんびをさせていただいております。",
+          "textEn": "Thank you for your hard work. I am humbly preparing the materials.",
+          "meaning": "Use humble language to show respect",
+          "nextId": "excellent_business_japanese",
+          "requiredLevel": 3,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "2": 6
+          },
+          "tags": ["vocab:342", "culture:51"]
+        },
+        {
+          "id": "choice_polite_response",
+          "textJp": "お疲れさまです。準備しています。明日までに完成させます。",
+          "furiganaJp": "おつかれさまです。じゅんびしています。あしたまでにかんせいさせます。",
+          "textEn": "Thank you for your hard work. I am preparing. I will complete it by tomorrow.",
+          "meaning": "Use polite but not overly formal language",
+          "nextId": "good_business_response",
+          "requiredLevel": 2,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "2": 4
+          },
+          "tags": ["vocab:343"]
+        },
+        {
+          "id": "choice_nervous_response",
+          "textJp": "あ、はい...頑張って準備します...",
+          "furiganaJp": "あ、はい...がんばってじゅんびします...",
+          "textEn": "Ah, yes... I'll work hard to prepare...",
+          "meaning": "Show nervousness but determination",
+          "nextId": "encouraging_feedback",
+          "requiredLevel": 1,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "2": 3
+          },
+          "tags": []
+        }
+      ]
+    },
+    "excellent_business_japanese": {
+      "line": {
+        "id": "excellent_business_japanese",
+        "characterId": "2",
+        "speakerName": "田中先生",
+        "sprite": "encouraging",
+        "position": "center",
+        "textJp": "素晴らしい敬語の使い方です！「させていただいております」は完璧な謙譲語ですね。ビジネスでとても重要な表現です。",
+        "furiganaJp": "すばらしいけいごのつかいかたです！「させていただいております」はかんぺきなけんじょうごですね。ビジネスでとてもじゅうようなひょうげんです。",
+        "romajiJp": "Subarashii keigo no tsukai-kata desu! 'Sasete itadaite orimasu' wa kanpeki na kenjōgo desu ne. Bijinesu de totemo jūyō na hyōgen desu.",
+        "textEn": "Excellent use of honorific language! 'Sasete itadaite orimasu' is perfect humble language. It's a very important expression in business.",
+        "nextId": "class_conclusion",
+        "tags": ["vocab:344", "culture:52"]
+      },
+      "choices": []
+    },
+    "good_business_response": {
+      "line": {
+        "id": "good_business_response",
+        "characterId": "2",
+        "speakerName": "田中先生",
+        "sprite": "smile",
+        "position": "center",
+        "textJp": "とても自然な敬語ですね。ビジネスシーンでも十分通用します。もう少し謙譲語を加えると、より丁寧になりますね。",
+        "furiganaJp": "とてもしぜんなけいごですね。ビジネスシーンでもじゅうぶんつうようします。もうすこしけんじょうごをくわえると、よりていねいになりますね。",
+        "romajiJp": "Totemo shizen na keigo desu ne. Bijinesu shīn de mo jūbun tsūyō shimasu. Mō sukoshi kenjōgo o kuwaeru to, yori teinei ni narimasu ne.",
+        "textEn": "Very natural honorific language. It would work perfectly in business scenes too. If you add a bit more humble language, it becomes even more polite.",
+        "nextId": "class_conclusion",
+        "tags": ["vocab:345", "grammar:184"]
+      },
+      "choices": []
+    },
+    "encouraging_feedback": {
+      "line": {
+        "id": "encouraging_feedback",
+        "characterId": "2",
+        "speakerName": "田中先生",
+        "sprite": "encouraging",
+        "position": "center",
+        "textJp": "緊張しなくても大丈夫ですよ。敬語は練習すれば必ず上達します。その気持ちが一番大切です。",
+        "furiganaJp": "きんちょうしなくてもだいじょうぶですよ。けいごはれんしゅうすればかならずじょうたつします。そのきもちがいちばんたいせつです。",
+        "romajiJp": "Kinchō shinakute mo daijōbu desu yo. Keigo wa renshū sureba kanarazu jōtatsu shimasu. Sono kimochi ga ichiban taisetsu desu.",
+        "textEn": "You don't need to be nervous. If you practice honorific language, you'll definitely improve. That attitude is the most important thing.",
+        "nextId": "class_conclusion",
+        "tags": ["vocab:346", "culture:53"]
+      },
+      "choices": []
+    },
+    "class_conclusion": {
+      "line": {
+        "id": "class_conclusion",
+        "characterId": "2",
+        "speakerName": "田中先生",
+        "sprite": "avatar",
+        "position": "center",
+        "textJp": "今日の授業はここまでです。敬語の宿題として、ビジネスメールを書いてみてください。次回添削しますね。",
+        "furiganaJp": "きょうのじゅぎょうはここまでです。けいごのしゅくだいとして、ビジネスメールをかいてみてください。じかいてんさくしますね。",
+        "romajiJp": "Kyō no jugyō wa koko made desu. Keigo no shukudai to shite, bijinesu mēru o kaite mite kudasai. Jikai tensaku shimasu ne.",
+        "textEn": "Today's lesson ends here. For your honorific language homework, please try writing a business email. I'll correct it next time.",
+        "nextId": "after_class_discussion",
+        "tags": ["vocab:347", "vocab:348", "grammar:185"]
+      },
+      "choices": []
+    },
+    "after_class_discussion": {
+      "line": {
+        "id": "after_class_discussion",
+        "textJp": "授業が終わった後、四人で今日の学習について話し合います。",
+        "furiganaJp": "じゅぎょうがおわったあと、よにんできょうのがくしゅうについてはなしあいます。",
+        "romajiJp": "Jugyō ga owatta ato, yo-nin de kyō no gakushū ni tsuite hanashiaimasu.",
+        "textEn": "After class ends, the four of you discuss today's learning.",
+        "nextId": "reflection_on_learning",
+        "tags": ["vocab:349", "grammar:186"]
+      },
+      "choices": []
+    },
+    "reflection_on_learning": {
+      "line": {
+        "id": "reflection_on_learning",
+        "characterId": "4",
+        "speakerName": "メイ",
+        "sprite": "talking",
+        "position": "center",
+        "textJp": "敬語は本当に複雑ですね。でも、日本の文化を理解するためには必要不可欠だと思います。",
+        "furiganaJp": "けいごはほんとうにふくざつですね。でも、にほんのぶんかをりかいするためにはひつようふかけつだとおもいます。",
+        "romajiJp": "Keigo wa hontō ni fukuzatsu desu ne. Demo, Nihon no bunka o rikai suru tame ni wa hitsuyō fukaketsu da to omoimasu.",
+        "textEn": "Honorific language is really complex. But I think it's indispensable for understanding Japanese culture.",
+        "nextId": "future_plans_discussion",
+        "tags": ["vocab:350", "vocab:351", "culture:54"]
+      },
+      "choices": []
+    },
+    "future_plans_discussion": {
+      "line": {
+        "id": "future_plans_discussion",
+        "characterId": "1",
+        "speakerName": "ユキ",
+        "sprite": "avatar",
+        "position": "left",
+        "textJp": "明日は週末ですね。みんなで東京見学に行きませんか？実際に日本語を使う機会になります。",
+        "furiganaJp": "あしたはしゅうまつですね。みんなでとうきょうけんがくにいきませんか？じっさいににほんごをつかうきかいになります。",
+        "romajiJp": "Ashita wa shūmatsu desu ne. Minna de Tōkyō kengaku ni ikimasen ka? Jissai ni Nihongo o tsukau kikai ni narimasu.",
+        "textEn": "Tomorrow is the weekend, isn't it? How about we all go sightseeing in Tokyo? It will be an opportunity to actually use Japanese.",
+        "nextId": "weekend_plans",
+        "tags": ["vocab:352", "vocab:353", "grammar:187"]
+      },
+      "choices": []
+    },
+    "weekend_plans": {
+      "line": {
+        "id": "weekend_plans",
+        "textJp": "週末の東京見学の提案にどう答えますか？",
+        "textEn": "How will you respond to the suggestion of weekend Tokyo sightseeing?",
+        "isChoice": true
+      },
+      "choices": [
+        {
+          "id": "choice_enthusiastic",
+          "textJp": "とてもいいアイデアです！ぜひ行きましょう。",
+          "furiganaJp": "とてもいいアイデアです！ぜひいきましょう。",
+          "textEn": "That's a very good idea! Let's definitely go.",
+          "meaning": "Show enthusiasm for the weekend trip",
+          "nextId": "planning_excitement",
+          "requiredLevel": 1,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "1": 4,
+            "4": 3,
+            "5": 3
+          },
+          "tags": []
+        },
+        {
+          "id": "choice_practical",
+          "textJp": "いいですね。どこに行く予定ですか？計画を立てましょう。",
+          "furiganaJp": "いいですね。どこにいくよていですか？けいかくをたてましょう。",
+          "textEn": "That sounds good. Where are you planning to go? Let's make a plan.",
+          "meaning": "Show interest and suggest practical planning",
+          "nextId": "detailed_planning",
+          "requiredLevel": 2,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "1": 5,
+            "4": 4,
+            "5": 4
+          },
+          "tags": ["vocab:354", "grammar:188"]
+        },
+        {
+          "id": "choice_study_focused",
+          "textJp": "いいですね。日本語の練習にもなりそうです。",
+          "furiganaJp": "いいですね。にほんごのれんしゅうにもなりそうです。",
+          "textEn": "That sounds good. It seems like it would be good Japanese practice too.",
+          "meaning": "Focus on the educational benefit",
+          "nextId": "learning_opportunity",
+          "requiredLevel": 2,
+          "requiredItems": [],
+          "relationshipChanges": {
+            "1": 3,
+            "4": 5,
+            "5": 3
+          },
+          "tags": ["grammar:189"]
+        }
+      ]
+    },
+    "planning_excitement": {
+      "line": {
+        "id": "planning_excitement",
+        "characterId": "5",
+        "speakerName": "ケンタ",
+        "sprite": "encouraging",
+        "position": "right",
+        "textJp": "やった！みんなで東京を探検するんだ！浅草、渋谷、新宿...どこから行こうか？",
+        "furiganaJp": "やった！みんなでとうきょうをたんけんするんだ！あさくさ、しぶや、しんじゅく...どこからいこうか？",
+        "romajiJp": "Yatta! Minna de Tōkyō o tanken suru n da! Asakusa, Shibuya, Shinjuku... doko kara ikō ka?",
+        "textEn": "Yay! We're going to explore Tokyo together! Asakusa, Shibuya, Shinjuku... where should we start?",
+        "nextId": "scene_ending",
+        "tags": ["vocab:355", "vocab:356"]
+      },
+      "choices": []
+    },
+    "detailed_planning": {
+      "line": {
+        "id": "detailed_planning",
+        "characterId": "1",
+        "speakerName": "ユキ",
+        "sprite": "explaining",
+        "position": "left",
+        "textJp": "そうですね。朝は浅草の浅草寺を見て、午後は渋谷で買い物をして、夜は新宿で食事をするのはどうでしょうか？",
+        "furiganaJp": "そうですね。あさはあさくさのせんそうじをみて、ごごはしぶやでかいものをして、よるはしんじゅくでしょくじをするのはどうでしょうか？",
+        "romajiJp": "Sō desu ne. Asa wa Asakusa no Sensōji o mite, gogo wa Shibuya de kaimono o shite, yoru wa Shinjuku de shokuji o suru no wa dō deshō ka?",
+        "textEn": "That's right. How about seeing Sensoji Temple in Asakusa in the morning, shopping in Shibuya in the afternoon, and dining in Shinjuku in the evening?",
+        "nextId": "scene_ending",
+        "tags": ["vocab:357", "vocab:358", "grammar:190"]
+      },
+      "choices": []
+    },
+    "learning_opportunity": {
+      "line": {
+        "id": "learning_opportunity",
+        "characterId": "4",
+        "speakerName": "メイ",
+        "sprite": "talking",
+        "position": "center",
+        "textJp": "その通りです！観光地で実際に日本人と話したり、お店で注文したりする練習ができますね。",
+        "furiganaJp": "そのとおりです！かんこうちでじっさいににほんじんとはなしたり、おみせでちゅうもんしたりするれんしゅうができますね。",
+        "romajiJp": "Sono tōri desu! Kankōchi de jissai ni Nihonjin to hanashitari, omise de chūmon shitari suru renshū ga dekimasu ne.",
+        "textEn": "That's exactly right! We can practice actually talking with Japanese people at tourist spots and ordering at shops.",
+        "nextId": "scene_ending",
+        "tags": ["vocab:359", "vocab:360", "grammar:191"]
+      },
+      "choices": []
+    },
+    "scene_ending": {
+      "line": {
+        "id": "scene_ending",
+        "textJp": "日本語学習の三日目が終わりました。漢字テスト、敬語の授業、そして週末の計画。着実に日本語も上達し、友情も深まっています。明日の東京見学が楽しみです。",
+        "furiganaJp": "にほんごがくしゅうのみっかめがおわりました。かんじテスト、けいごのじゅぎょう、そしてしゅうまつのけいかく。ちゃくじつににほんごもじょうたつし、ゆうじょうもふかまっています。あしたのとうきょうけんがくがたのしみです。",
+        "romajiJp": "Nihongo gakushū no mikkame ga owarimashita. Kanji tesuto, keigo no jugyō, soshite shūmatsu no keikaku. Chakujitsu ni Nihongo mo jōtatsu shi, yūjō mo fukamatte imasu. Ashita no Tōkyō kengaku ga tanoshimi desu.",
+        "textEn": "The third day of Japanese language learning has ended. Kanji test, honorific language lesson, and weekend plans. Your Japanese is steadily improving and friendships are deepening. You're looking forward to tomorrow's Tokyo sightseeing.",
+        "nextId": "scene_end",
+        "tags": ["vocab:361", "vocab:362", "grammar:192"]
+      },
+      "choices": []
+    },
+    "scene_end": {
+      "line": {
+        "id": "scene_end",
+        "textJp": "シーン７：終了",
+        "textEn": "Scene 7: Complete"
+      },
+      "choices": []
+    }
+  },
+  "startNodeId": "morning_alarm",
+  "tags": ["chapter_1", "morning_routine", "kanji_test", "keigo_lesson", "business_japanese", "weekend_planning", "friendship_deepening"]
+}

@@ -19,9 +19,7 @@ import '../widgets/common/about_dialog.dart';
 import '../widgets/home/error_report_dialog.dart';
 import '../widgets/home/save_games_dialog.dart';
 
-/// Home screen of the application
 class HomeScreen extends ConsumerStatefulWidget {
-  /// Creates a HomeScreen
   const HomeScreen({super.key});
 
   @override
@@ -57,53 +55,45 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
           // Main content
           SafeArea(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                // App bar area
-                _buildAppBar(context),
-
-                // Main content area
-                Expanded(
-                  child: SingleChildScrollView(
-                    physics: const BouncingScrollPhysics(),
-                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const SizedBox(height: 16),
-
-                        // Continue playing section
-                        _buildContinueSection(allSaveGames),
-
-                        const SizedBox(height: 32),
-
-                        // Character showcase
-                        const CharacterShowcase(),
-
-                        const SizedBox(height: 32),
-
-                        // Game features section
-                        _buildFeaturesSection(),
-
-                        // Bottom padding
-                        const SizedBox(height: 100),
-                      ],
-                    ),
-                  ),
+            child: Center(
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(
+                  maxWidth: 800,
+                  minWidth: 400,
                 ),
-              ],
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    _buildAppBar(context),
+                    Expanded(
+                      child: SingleChildScrollView(
+                        physics: const BouncingScrollPhysics(),
+                        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const SizedBox(height: 16),
+                            _buildContinueSection(allSaveGames),
+                            const SizedBox(height: 32),
+                            const CharacterShowcase(),
+                            const SizedBox(height: 32),
+                            _buildFeaturesSection(),
+                            const SizedBox(height: 100),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ),
 
-          // New game floating button
           Positioned(
             right: 20,
             bottom: 20,
             child: _buildNewGameButton(),
           ),
-
-          // Settings panel (slides in from the right)
         ],
       ),
     );
@@ -114,7 +104,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
       child: Row(
         children: [
-          // Logo
           Hero(
             tag: 'game_logo',
             child: Container(
@@ -140,10 +129,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               ),
             ),
           ),
-
           const SizedBox(width: 12),
-
-          // Title
           Text(
             '続きコネクト',
             style: context.textTheme.titleLarge?.copyWith(
@@ -151,10 +137,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               color: context.theme.colorScheme.primary,
             ),
           ),
-
           const Spacer(),
-
-          // Settings button
           IconButton(
             onPressed: () {
               ref.read(soundControllerProvider.notifier).playClick();
@@ -363,7 +346,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     final shouldRequest = await reviewService.shouldRequestReview();
 
     if (shouldRequest && context.mounted) {
-      // Delay slightly to let the current screen finish loading
       Future.delayed(const Duration(seconds: 1), () {
         if (context.mounted) {
           reviewService.requestReview();
@@ -443,23 +425,19 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   void _replayTutorial() {
     ref.read(soundControllerProvider.notifier).playClick();
-    // Reset onboarding flag and navigate to onboarding
     SettingsService.setOnboardingCompleted(false);
     context.go('/onboarding');
   }
 
   void _startNewGame() {
     ref.read(soundControllerProvider.notifier).playClick();
-    // Navigate to game screen with no save ID (new game)
     context.push('${AppConstants.routeGame}?chapter=chapter_1');
   }
 
   void _continueSavedGame(SaveGameModel saveGame) {
     ref.read(soundControllerProvider.notifier).playClick();
-    // Set active save in provider
     ref.read(activeSaveIdProvider.notifier).state = saveGame.id;
 
-    // Navigate to game screen with chapter and save ID
     context.push('${AppConstants.routeGame}?chapter=${saveGame.currentChapter}&saveId=${saveGame.id}');
   }
 }

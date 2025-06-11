@@ -11,13 +11,10 @@ import 'package:tsuzuki_connect/core/utils/extensions.dart';
 
 import '../../providers/sound_controller.dart';
 
-/// Provider for the current selected category in Culture Notes
 final selectedCategoryProvider = StateProvider.autoDispose<String?>((ref) => null);
 
-/// Provider for the current search query in Culture Notes
 final cultureSearchQueryProvider = StateProvider.autoDispose<String>((ref) => '');
 
-/// Provider for filtered cultural notes
 final filteredCulturalNotesProvider = Provider.autoDispose<List<CulturalNoteModel>>((ref) {
   final notesAsync = ref.watch(culturalNotesWithStatusProvider);
   final selectedCategory = ref.watch(selectedCategoryProvider);
@@ -27,15 +24,12 @@ final filteredCulturalNotesProvider = Provider.autoDispose<List<CulturalNoteMode
     data: (notes) {
       List<CulturalNoteModel> filteredList = [];
 
-      // First filter by unlock status (always show unlocked first)
       filteredList = notes.where((note) => note.isUnlocked).toList();
 
-      // Then apply category filter if selected
       if (selectedCategory != null && selectedCategory != 'All') {
         filteredList = filteredList.where((note) => note.category == selectedCategory).toList();
       }
 
-      // Apply search filter if there's a query
       if (searchQuery.isNotEmpty) {
         filteredList = filteredList
             .where((note) =>
@@ -45,23 +39,19 @@ final filteredCulturalNotesProvider = Provider.autoDispose<List<CulturalNoteMode
             .toList();
       }
 
-      // Sort: Read vs Unread (Unread first), then by most recently unlocked
       filteredList.sort((a, b) {
-        // First sort by read status
         if (a.isRead != b.isRead) {
-          return a.isRead ? 1 : -1; // Unread first
+          return a.isRead ? 1 : -1;
         }
 
-        // Then sort by unlock date if available
         if (a.unlockedAt != null && b.unlockedAt != null) {
-          return b.unlockedAt!.compareTo(a.unlockedAt!); // Newest first
+          return b.unlockedAt!.compareTo(a.unlockedAt!);
         } else if (a.unlockedAt != null) {
           return -1;
         } else if (b.unlockedAt != null) {
           return 1;
         }
 
-        // Finally sort by title
         return a.title.compareTo(b.title);
       });
 
@@ -71,27 +61,22 @@ final filteredCulturalNotesProvider = Provider.autoDispose<List<CulturalNoteMode
   );
 });
 
-/// Provider for categories available in unlocked cultural notes
 final cultureNoteCategoriesProvider = Provider.autoDispose<List<String>>((ref) {
   final notesAsync = ref.watch(culturalNotesWithStatusProvider);
 
   return notesAsync.maybeWhen(
     data: (notes) {
-      // Get unique categories from unlocked notes
       final unlockedNotes = notes.where((note) => note.isUnlocked).toList();
       final categories = unlockedNotes.map((note) => note.category).toSet().toList();
 
-      // Sort categories alphabetically
       categories.sort();
 
-      // Add 'All' as the first option
       return ['All', ...categories];
     },
     orElse: () => ['All'],
   );
 });
 
-/// Statistics for Culture Notes
 final cultureStatsProvider = Provider.autoDispose<Map<String, int>>((ref) {
   final notesAsync = ref.watch(culturalNotesWithStatusProvider);
 
@@ -115,9 +100,7 @@ final cultureStatsProvider = Provider.autoDispose<Map<String, int>>((ref) {
   );
 });
 
-/// Screen for displaying Japanese cultural notes
 class CultureNotesScreen extends ConsumerStatefulWidget {
-  /// Creates a CultureNotesScreen
   const CultureNotesScreen({super.key});
 
   @override
@@ -145,50 +128,41 @@ class _CultureNotesScreenState extends ConsumerState<CultureNotesScreen> {
     return Scaffold(
       body: Stack(
         children: [
-          // Background
           const AnimatedBackground(
             backgroundAsset: 'assets/images/backgrounds/temple.webp',
             showParticles: true,
           ),
-
-          // Main content
           SafeArea(
-            child: Column(
-              children: [
-                // App bar
-                _buildAppBar(context),
-
-                // Search bar (animated)
-                AnimatedSize(
-                  duration: const Duration(milliseconds: 300),
-                  curve: Curves.easeInOut,
-                  child: _showSearch ? _buildSearchBar() : const SizedBox(height: 0),
+            child: Center(
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 800),
+                child: Column(
+                  children: [
+                    _buildAppBar(context),
+                    AnimatedSize(
+                      duration: const Duration(milliseconds: 300),
+                      curve: Curves.easeInOut,
+                      child: _showSearch ? _buildSearchBar() : const SizedBox(height: 0),
+                    ),
+                    CategorySelector(
+                      categories: categories,
+                      selectedCategory: selectedCategory,
+                      onCategorySelected: (category) {
+                        ref.read(selectedCategoryProvider.notifier).state = category == 'All' ? null : category;
+                      },
+                    ),
+                    AnimatedSize(
+                      duration: const Duration(milliseconds: 300),
+                      curve: Curves.easeInOut,
+                      child: _showFilterInfo ? _buildFilterInfoBar() : const SizedBox(height: 0),
+                    ),
+                    _buildProgressIndicator(stats),
+                    Expanded(
+                      child: culturalNotes.isEmpty ? _buildEmptyState() : _buildNotesList(culturalNotes),
+                    ),
+                  ],
                 ),
-
-                // Category selector
-                CategorySelector(
-                  categories: categories,
-                  selectedCategory: selectedCategory,
-                  onCategorySelected: (category) {
-                    ref.read(selectedCategoryProvider.notifier).state = category == 'All' ? null : category;
-                  },
-                ),
-
-                // Filter info bar (shows when filters are active)
-                AnimatedSize(
-                  duration: const Duration(milliseconds: 300),
-                  curve: Curves.easeInOut,
-                  child: _showFilterInfo ? _buildFilterInfoBar() : const SizedBox(height: 0),
-                ),
-
-                // Progress indicator
-                _buildProgressIndicator(stats),
-
-                // Culture notes list
-                Expanded(
-                  child: culturalNotes.isEmpty ? _buildEmptyState() : _buildNotesList(culturalNotes),
-                ),
-              ],
+              ),
             ),
           ),
         ],
@@ -201,7 +175,6 @@ class _CultureNotesScreenState extends ConsumerState<CultureNotesScreen> {
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
       child: Row(
         children: [
-          // Back button
           IconButton(
             onPressed: () {
               ref.read(soundControllerProvider.notifier).playClick();
@@ -212,8 +185,6 @@ class _CultureNotesScreenState extends ConsumerState<CultureNotesScreen> {
               color: context.theme.colorScheme.onBackground,
             ),
           ),
-
-          // Title
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -233,8 +204,6 @@ class _CultureNotesScreenState extends ConsumerState<CultureNotesScreen> {
               ],
             ),
           ),
-
-          // Search toggle button
           IconButton(
             onPressed: () {
               ref.read(soundControllerProvider.notifier).playClick();
@@ -252,8 +221,6 @@ class _CultureNotesScreenState extends ConsumerState<CultureNotesScreen> {
               color: context.theme.colorScheme.onBackground,
             ),
           ),
-
-          // Filter info button
           IconButton(
             onPressed: () {
               ref.read(soundControllerProvider.notifier).playClick();
@@ -358,7 +325,7 @@ class _CultureNotesScreenState extends ConsumerState<CultureNotesScreen> {
   }
 
   Widget _buildProgressIndicator(Map<String, int> stats) {
-    final total = stats['total'] ?? 1; // Avoid division by zero
+    final total = stats['total'] ?? 1;
     final unlocked = stats['unlocked'] ?? 0;
     final read = stats['read'] ?? 0;
     final progress = (unlocked / total).clamp(0.0, 1.0);
