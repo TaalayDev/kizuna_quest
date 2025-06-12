@@ -149,7 +149,7 @@ class AppDatabase extends _$AppDatabase {
       CharactersCompanion.insert(
         nameEn: 'Mei',
         nameJp: 'メイ',
-        personality: 'Advanced Japanese student from Taiwan who offers study tips',
+        personality: 'Advanced Japanese student from Korea who offers study tips',
         avatarPath: 'assets/images/characters/mei/avatar.webp',
         spriteFolder: 'assets/images/characters/mei',
       ),

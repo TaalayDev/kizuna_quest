@@ -101,7 +101,7 @@ class SettingsPanel extends ConsumerWidget {
                     child: ListView(
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       children: [
-                        _buildThemeSettings(context, ref),
+                        //_buildThemeSettings(context, ref),
                         _buildTextSpeedSettings(context, ref),
                         _buildAudioSettings(context, ref),
                         _buildDisplaySettings(context, ref),

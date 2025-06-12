@@ -49,8 +49,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         children: [
           // Animated background
           const AnimatedBackground(
-            backgroundAsset: 'assets/images/backgrounds/tokyo_night.webp',
+            backgroundAsset: 'assets/images/backgrounds/menu_background.webp',
             showParticles: true,
+            isDarkMode: false,
           ),
 
           // Main content
@@ -111,7 +112,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               height: 40,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: context.theme.colorScheme.surface,
                 boxShadow: [
                   BoxShadow(
                     color: context.theme.colorScheme.primary.withOpacity(0.2),
@@ -167,7 +167,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         saveGames.when(
           data: (saves) {
             if (saves.isEmpty) {
-              return _buildNoSavesMessage();
+              return SizedBox(
+                width: double.infinity,
+                child: _buildNoSavesMessage(),
+              );
             }
 
             final sortedSaves = [...saves]..sort((a, b) => b.lastSavedAt.compareTo(a.lastSavedAt));

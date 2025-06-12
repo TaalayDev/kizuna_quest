@@ -3,23 +3,18 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
-/// An animated background widget with parallax effects and floating particles
 class AnimatedBackground extends StatefulWidget {
-  /// Path to the background image asset
   final String backgroundAsset;
-
-  /// Whether to show the particle effect
   final bool showParticles;
-
-  /// Number of particles to show
   final int particleCount;
+  final bool? isDarkMode;
 
-  /// Creates an AnimatedBackground
   const AnimatedBackground({
     super.key,
     required this.backgroundAsset,
     this.showParticles = true,
     this.particleCount = 30,
+    this.isDarkMode,
   });
 
   @override
@@ -34,13 +29,11 @@ class _AnimatedBackgroundState extends State<AnimatedBackground> with SingleTick
   void initState() {
     super.initState();
 
-    // Setup animation controller
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 10),
     )..repeat(reverse: true);
 
-    // Initialize particles
     if (widget.showParticles) {
       _initializeParticles();
     }
@@ -71,12 +64,11 @@ class _AnimatedBackgroundState extends State<AnimatedBackground> with SingleTick
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final isDarkMode = theme.brightness == Brightness.dark;
+    final isDarkMode = widget.isDarkMode ?? theme.brightness == Brightness.dark;
 
     return Stack(
       fit: StackFit.expand,
       children: [
-        // Gradient background
         Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -94,15 +86,12 @@ class _AnimatedBackgroundState extends State<AnimatedBackground> with SingleTick
             ),
           ),
         ),
-
-        // Animated cityscape silhouette
         AnimatedBuilder(
           animation: _controller,
           builder: (context, child) {
             return Stack(
               fit: StackFit.expand,
               children: [
-                // Background city silhouette
                 Positioned(
                   bottom: 0,
                   left: -(_controller.value * 30),
@@ -113,8 +102,6 @@ class _AnimatedBackgroundState extends State<AnimatedBackground> with SingleTick
                     fit: BoxFit.cover,
                   ),
                 ),
-
-                // Custom painter for particles
                 if (widget.showParticles)
                   CustomPaint(
                     painter: ParticlePainter(
@@ -124,8 +111,6 @@ class _AnimatedBackgroundState extends State<AnimatedBackground> with SingleTick
                     ),
                     size: Size.infinite,
                   ),
-
-                // Gradient overlay for better text contrast
                 Container(
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
@@ -153,24 +138,13 @@ class _AnimatedBackgroundState extends State<AnimatedBackground> with SingleTick
   }
 }
 
-/// Data class for a particle
 class Particle {
-  /// X position (0.0 - 1.0)
   final double x;
-
-  /// Y position (0.0 - 1.0)
   final double y;
-
-  /// Size of the particle
   final double size;
-
-  /// Speed factor
   final double speedFactor;
-
-  /// Opacity (0.0 - 1.0)
   final double opacity;
 
-  /// Creates a particle
   const Particle({
     required this.x,
     required this.y,
@@ -180,18 +154,11 @@ class Particle {
   });
 }
 
-/// Custom painter for drawing particles
 class ParticlePainter extends CustomPainter {
-  /// The particles to draw
   final List<Particle> particles;
-
-  /// Animation value (0.0 - 1.0)
   final double animationValue;
-
-  /// Whether dark mode is enabled
   final bool isDarkMode;
 
-  /// Creates a ParticlePainter
   ParticlePainter(this.particles, this.animationValue, this.isDarkMode);
 
   @override
