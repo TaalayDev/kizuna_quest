@@ -5,10 +5,8 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tsuzuki_connect/core/services/settings_service.dart';
-import 'package:tsuzuki_connect/data/repositories/game_repository.dart';
 import 'package:tsuzuki_connect/presentation/widgets/common/animated_background.dart';
 import 'package:tsuzuki_connect/core/utils/constants.dart';
-import 'package:lottie/lottie.dart';
 
 /// Animated splash screen for Tsuzuki Connect
 class SplashScreen extends ConsumerStatefulWidget {
@@ -83,6 +81,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> with SingleTickerPr
           // Animated background with cityscape silhouette
           const AnimatedBackground(
             backgroundAsset: 'assets/images/backgrounds/tokyo_skyline.webp',
+            isDarkMode: false,
           ),
 
           // Content container
@@ -101,9 +100,9 @@ class _SplashScreenState extends ConsumerState<SplashScreen> with SingleTickerPr
                 _buildGameTitle(),
 
                 // Loading indicator
-                const Spacer(),
-                _buildLoadingIndicator(),
-                const SizedBox(height: 32),
+                // const Spacer(),
+                // _buildLoadingIndicator(),
+                // const SizedBox(height: 32),
               ],
             ),
           ),

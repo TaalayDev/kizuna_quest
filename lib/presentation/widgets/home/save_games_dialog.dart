@@ -69,6 +69,7 @@ class _SaveGamesDialogState extends ConsumerState<SaveGamesDialog> with SingleTi
   @override
   Widget build(BuildContext context) {
     final allSaveGames = ref.watch(allSaveGamesProvider);
+    final screenHeight = context.screenHeight;
 
     return FadeTransition(
       opacity: _fadeAnimation,
@@ -120,19 +121,23 @@ class _SaveGamesDialogState extends ConsumerState<SaveGamesDialog> with SingleTi
                   width: 1,
                 ),
               ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  _buildHeader(),
-                  _buildContent(allSaveGames),
-                  // _buildCharacterShowcase(),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: CharacterShowcase(showTitle: false),
-                  ),
-                  const SizedBox(height: 18),
-                  _buildFooter(),
-                ],
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    _buildHeader(),
+                    _buildContent(allSaveGames),
+                    // _buildCharacterShowcase(),
+                    if (screenHeight > 500) ...[
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        child: CharacterShowcase(showTitle: false),
+                      ),
+                    ],
+                    const SizedBox(height: 18),
+                    _buildFooter(),
+                  ],
+                ),
               ),
             ),
           ),
@@ -393,38 +398,40 @@ class _SaveGamesDialogState extends ConsumerState<SaveGamesDialog> with SingleTi
             children: [
               Row(
                 children: [
-                  Container(
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [
-                          context.theme.colorScheme.primary,
-                          context.theme.colorScheme.primary.withOpacity(0.7),
+                  if (context.screenHeight > 500) ...[
+                    Container(
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [
+                            context.theme.colorScheme.primary,
+                            context.theme.colorScheme.primary.withOpacity(0.7),
+                          ],
+                        ),
+                        shape: BoxShape.circle,
+                        boxShadow: [
+                          BoxShadow(
+                            color: context.theme.colorScheme.primary.withOpacity(0.3),
+                            blurRadius: 8,
+                            offset: const Offset(0, 2),
+                          ),
                         ],
                       ),
-                      shape: BoxShape.circle,
-                      boxShadow: [
-                        BoxShadow(
-                          color: context.theme.colorScheme.primary.withOpacity(0.3),
-                          blurRadius: 8,
-                          offset: const Offset(0, 2),
-                        ),
-                      ],
-                    ),
-                    child: Center(
-                      child: Text(
-                        isQuickSave ? 'Q' : save.slotId.toString(),
-                        style: context.textTheme.titleMedium?.copyWith(
-                          fontWeight: FontWeight.bold,
-                          color: context.theme.colorScheme.onPrimary,
+                      child: Center(
+                        child: Text(
+                          isQuickSave ? 'Q' : save.slotId.toString(),
+                          style: context.textTheme.titleMedium?.copyWith(
+                            fontWeight: FontWeight.bold,
+                            color: context.theme.colorScheme.onPrimary,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  const Spacer(),
+                    const Spacer(),
+                  ],
                   if (isQuickSave)
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),

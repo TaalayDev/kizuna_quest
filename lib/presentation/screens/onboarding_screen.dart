@@ -29,6 +29,7 @@ class OnboardingScreen extends ConsumerWidget {
           // Background gradient
           AnimatedBackground(
             backgroundAsset: 'assets/images/backgrounds/onboarding.webp',
+            isDarkMode: false,
           ),
 
           // Main content

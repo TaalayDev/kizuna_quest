@@ -16,6 +16,7 @@ import 'package:tsuzuki_connect/providers/sound_controller.dart';
 
 import '../../providers/app_providers.dart';
 import '../widgets/common/about_dialog.dart';
+import '../widgets/home/character_showcase.dart';
 import '../widgets/home/error_report_dialog.dart';
 import '../widgets/home/save_games_dialog.dart';
 
@@ -42,6 +43,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   Widget build(BuildContext context) {
     final allSaveGames = ref.watch(allSaveGamesProvider);
 
+    final screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       key: _scaffoldKey,
       endDrawer: _buildSettingsPanel(),
@@ -55,7 +58,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             isDarkMode: false,
           ),
 
-          Positioned(child: _buildAppBar(context)),
+          _buildAppBar(context),
 
           // Main content
           SafeArea(
@@ -68,10 +71,14 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      _buildLogoSection(),
+                      if (screenHeight > 500) ...[
+                        _buildLogoSection(),
+                      ],
                       // const SizedBox(height: 14),
                       _buildActionButtons(),
-                      const SizedBox(height: 132),
+                      if (screenHeight > 500) ...[
+                        const SizedBox(height: 132),
+                      ],
                       // _buildContinueSection(allSaveGames),
                       // const SizedBox(height: 32),
                       // _buildFeaturesSection(),
@@ -83,9 +90,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   child: Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        // const CharacterShowcase(),
+                        // const CharacterShowcase(showTitle: false),
                       ],
                     ),
                   ),
@@ -500,9 +507,10 @@ class _MenuButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
     return SizedBox(
       width: 280,
-      height: 70,
+      height: screenHeight > 500 ? 70 : 60,
       child: OutlinedButton.icon(
         onPressed: onPressed,
         style: OutlinedButton.styleFrom(

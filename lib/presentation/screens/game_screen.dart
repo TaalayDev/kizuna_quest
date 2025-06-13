@@ -1127,7 +1127,7 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
 
             // Dialogue choices (conditionally shown)
             if (_showChoices && currentDialogue != null && currentDialogue.choices.isNotEmpty)
-              _buildChoices(currentDialogue.choices, showFurigana),
+              _buildChoices(currentDialogue.choices, false),
 
             // Game menu (conditionally shown)
             if (_isMenuOpen) _buildGameMenu(),
@@ -1427,7 +1427,7 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
 
   Widget _buildChoices(List<DialogueChoice> choices, bool showFurigana) {
     return Positioned(
-      bottom: 220, // Position above dialogue box
+      bottom: 220,
       left: 0,
       right: 0,
       child: AnimatedBuilder(
@@ -1443,24 +1443,57 @@ class _GameScreenState extends ConsumerState<GameScreen> with TickerProviderStat
         },
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 32.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              for (int i = 0; i < choices.length; i++)
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 12.0),
-                  child: ChoiceButton(
-                    choice: choices[i],
-                    onTap: () => _makeChoice(choices[i]),
-                    showFurigana: showFurigana,
-                    canMakeChoice: _canMakeChoice(choices[i]),
-                    index: i,
-                  ),
-                ),
-            ],
+          child: _buildChoicesItems(
+            choices,
+            showFurigana,
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildChoicesItems(
+    List<DialogueChoice> choices,
+    bool showFurigana,
+  ) {
+    final screenHeight = MediaQuery.of(context).size.height;
+    if (screenHeight < 600) {
+      return Wrap(
+        spacing: 8.0,
+        runSpacing: 8.0,
+        children: [
+          for (int i = 0; i < choices.length; i++)
+            ConstrainedBox(
+              constraints: BoxConstraints(
+                maxWidth: screenHeight * 0.5,
+              ),
+              child: ChoiceButton(
+                choice: choices[i],
+                onTap: () => _makeChoice(choices[i]),
+                showFurigana: showFurigana,
+                canMakeChoice: _canMakeChoice(choices[i]),
+                index: i,
+              ),
+            ),
+        ],
+      );
+    }
+
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        for (int i = 0; i < choices.length; i++)
+          Padding(
+            padding: const EdgeInsets.only(bottom: 12.0),
+            child: ChoiceButton(
+              choice: choices[i],
+              onTap: () => _makeChoice(choices[i]),
+              showFurigana: showFurigana,
+              canMakeChoice: _canMakeChoice(choices[i]),
+              index: i,
+            ),
+          ),
+      ],
     );
   }
 
