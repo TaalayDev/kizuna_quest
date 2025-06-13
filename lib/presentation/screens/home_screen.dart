@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tsuzuki_connect/core/services/settings_service.dart';
 import 'package:tsuzuki_connect/data/models/save_game_model.dart';
 import 'package:tsuzuki_connect/presentation/widgets/home/settings_panel.dart';
 import 'package:tsuzuki_connect/providers/database_provider.dart';
 import 'package:tsuzuki_connect/presentation/widgets/common/animated_background.dart';
-import 'package:tsuzuki_connect/presentation/widgets/home/character_showcase.dart';
 import 'package:tsuzuki_connect/presentation/widgets/home/feature_button.dart';
 import 'package:tsuzuki_connect/presentation/widgets/home/recent_save_card.dart';
 import 'package:tsuzuki_connect/core/utils/constants.dart';
@@ -45,6 +45,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     return Scaffold(
       key: _scaffoldKey,
       endDrawer: _buildSettingsPanel(),
+      // appBar: _buildAppBar(context),
       body: Stack(
         children: [
           // Animated background
@@ -54,100 +55,200 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             isDarkMode: false,
           ),
 
+          Positioned(child: _buildAppBar(context)),
+
           // Main content
           SafeArea(
-            child: Center(
-              child: ConstrainedBox(
-                constraints: const BoxConstraints(
-                  maxWidth: 800,
-                  minWidth: 400,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      _buildLogoSection(),
+                      // const SizedBox(height: 14),
+                      _buildActionButtons(),
+                      const SizedBox(height: 132),
+                      // _buildContinueSection(allSaveGames),
+                      // const SizedBox(height: 32),
+                      // _buildFeaturesSection(),
+                    ],
+                  ),
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    _buildAppBar(context),
-                    Expanded(
-                      child: SingleChildScrollView(
-                        physics: const BouncingScrollPhysics(),
-                        padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const SizedBox(height: 16),
-                            _buildContinueSection(allSaveGames),
-                            const SizedBox(height: 32),
-                            const CharacterShowcase(),
-                            const SizedBox(height: 32),
-                            _buildFeaturesSection(),
-                            const SizedBox(height: 100),
-                          ],
-                        ),
-                      ),
+                Expanded(
+                  flex: 2,
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        // const CharacterShowcase(),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
-              ),
+              ],
             ),
-          ),
-
-          Positioned(
-            right: 20,
-            bottom: 20,
-            child: _buildNewGameButton(),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildAppBar(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-      child: Row(
+  PreferredSizeWidget _buildAppBar(BuildContext context) {
+    return AppBar(
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      actions: [
+        IconButton(
+          onPressed: () {
+            ref.read(soundControllerProvider.notifier).playClick();
+            _scaffoldKey.currentState?.openEndDrawer();
+          },
+          icon: Icon(
+            Icons.settings,
+            color: context.theme.colorScheme.onBackground,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildLogoSection() {
+    return Center(
+      child: Hero(
+        tag: 'game_logo',
+        child: SizedBox(
+          width: 280,
+          height: 280,
+          child: Center(
+            child: Image.asset(
+              'assets/images/ui/logo.png',
+            ),
+          ),
+        ),
+      ),
+    ).animate().fadeIn(delay: 100.ms, duration: 600.ms).scale(
+          begin: const Offset(0.8, 0.8),
+          end: const Offset(1.0, 1.0),
+          delay: 100.ms,
+          duration: 600.ms,
+          curve: Curves.easeOutQuad,
+        );
+  }
+
+  Widget _buildActionButtons() {
+    final allSaveGames = ref.watch(allSaveGamesProvider);
+
+    return SizedBox(
+      width: double.infinity,
+      child: Column(
         children: [
-          Hero(
-            tag: 'game_logo',
-            child: Container(
-              width: 40,
-              height: 40,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                boxShadow: [
-                  BoxShadow(
-                    color: context.theme.colorScheme.primary.withOpacity(0.2),
-                    blurRadius: 8,
-                    spreadRadius: 1,
-                  ),
-                ],
+          _MenuButton(
+            icon: Feather.play,
+            title: 'New Game',
+            onPressed: _startNewGame,
+          ).animate().fadeIn(delay: 100.ms, duration: 400.ms).slideY(
+                begin: 0.3,
+                end: 0,
+                delay: 100.ms,
+                duration: 400.ms,
+                curve: Curves.easeOutQuad,
               ),
-              child: Center(
-                child: Image.asset(
-                  'assets/images/ui/logo.png',
-                  width: 32,
-                  height: 32,
-                ),
+          const SizedBox(height: 12),
+          _MenuButton(
+            title: 'Continue',
+            icon: Feather.save,
+            onPressed: allSaveGames.when(
+              data: (saves) {
+                if (saves.isEmpty) {
+                  return null;
+                } else {
+                  return _showSavesDialog;
+                }
+              },
+              loading: () => null,
+              error: (error, stack) => null,
+            ),
+          ).animate().fadeIn(delay: 100.ms, duration: 400.ms).slideY(
+                begin: 0.3,
+                end: 0,
+                delay: 100.ms,
+                duration: 400.ms,
+                curve: Curves.easeOutQuad,
               ),
-            ),
-          ),
-          const SizedBox(width: 12),
-          Text(
-            '続きコネクト',
-            style: context.textTheme.titleLarge?.copyWith(
-              fontWeight: FontWeight.bold,
-              color: context.theme.colorScheme.primary,
-            ),
-          ),
-          const Spacer(),
-          IconButton(
+
+          const SizedBox(height: 12),
+          _MenuButton(
+            title: 'Kotoba Log',
+            icon: Feather.book,
             onPressed: () {
               ref.read(soundControllerProvider.notifier).playClick();
-              _scaffoldKey.currentState?.openEndDrawer();
+              context.push(AppConstants.routeKotobaLog);
             },
-            icon: Icon(
-              Icons.settings,
-              color: context.theme.colorScheme.onBackground,
-            ),
-          ),
+          ).animate().fadeIn(delay: 100.ms, duration: 400.ms).slideY(
+                begin: 0.3,
+                end: 0,
+                delay: 100.ms,
+                duration: 400.ms,
+                curve: Curves.easeOutQuad,
+              ),
+          const SizedBox(height: 12),
+          _MenuButton(
+            title: 'Culture Notes',
+            icon: Feather.info,
+            onPressed: () {
+              ref.read(soundControllerProvider.notifier).playClick();
+              context.push(AppConstants.routeCultureNotes);
+            },
+          ).animate().fadeIn(delay: 100.ms, duration: 400.ms).slideY(
+                begin: 0.3,
+                end: 0,
+                delay: 100.ms,
+                duration: 400.ms,
+                curve: Curves.easeOutQuad,
+              ),
+
+          // Row(
+          //   children: [
+          //     Expanded(
+          //       child: OutlinedButton.icon(
+          //         onPressed: () => _showSavesDialog(),
+          //         style: OutlinedButton.styleFrom(
+          //           padding: const EdgeInsets.symmetric(vertical: 12.0),
+          //           shape: RoundedRectangleBorder(
+          //             borderRadius: BorderRadius.circular(12.0),
+          //           ),
+          //         ),
+          //         icon: const Icon(Icons.save, size: 20),
+          //         label: const Text('Saves'),
+          //       ),
+          //     ),
+          //     const SizedBox(width: 12),
+          //     Expanded(
+          //       child: OutlinedButton.icon(
+          //         onPressed: () => _showRateAppDialog(),
+          //         style: OutlinedButton.styleFrom(
+          //           padding: const EdgeInsets.symmetric(vertical: 12.0),
+          //           shape: RoundedRectangleBorder(
+          //             borderRadius: BorderRadius.circular(12.0),
+          //           ),
+          //         ),
+          //         icon: const Icon(Icons.star, size: 20),
+          //         label: const Text('Rate'),
+          //       ),
+          //     ),
+          //   ],
+          // ).animate().fadeIn(delay: 300.ms, duration: 400.ms).slideY(
+          //       begin: 0.3,
+          //       end: 0,
+          //       delay: 300.ms,
+          //       duration: 400.ms,
+          //       curve: Curves.easeOutQuad,
+          //     ),
         ],
       ),
     );
@@ -162,19 +263,15 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           style: context.textTheme.headlineSmall?.copyWith(
             fontWeight: FontWeight.bold,
           ),
-        ).animate().fadeIn(delay: 100.ms, duration: 400.ms),
-        const SizedBox(height: 8),
+        ).animate().fadeIn(delay: 400.ms, duration: 400.ms),
+        const SizedBox(height: 12),
         saveGames.when(
           data: (saves) {
             if (saves.isEmpty) {
-              return SizedBox(
-                width: double.infinity,
-                child: _buildNoSavesMessage(),
-              );
+              return _buildNoSavesMessage();
             }
 
             final sortedSaves = [...saves]..sort((a, b) => b.lastSavedAt.compareTo(a.lastSavedAt));
-
             final recentSaves = sortedSaves.take(3).toList();
 
             return Column(
@@ -186,7 +283,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                       saveGame: recentSaves[i],
                       onTap: () => _continueSavedGame(recentSaves[i]),
                     ).animate().fadeIn(
-                          delay: (100 + i * 100).ms,
+                          delay: (500 + i * 100).ms,
                           duration: 400.ms,
                         ),
                   ),
@@ -252,7 +349,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           ),
         ],
       ),
-    ).animate().fadeIn(delay: 100.ms, duration: 400.ms);
+    ).animate().fadeIn(delay: 500.ms, duration: 400.ms);
   }
 
   Widget _buildFeaturesSection() {
@@ -264,66 +361,32 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           style: context.textTheme.headlineSmall?.copyWith(
             fontWeight: FontWeight.bold,
           ),
-        ).animate().fadeIn(delay: 300.ms, duration: 400.ms),
+        ).animate().fadeIn(delay: 700.ms, duration: 400.ms),
         const SizedBox(height: 16),
-        Row(
-          children: [
-            Expanded(
-              child: FeatureButton(
-                title: 'Kotoba Log',
-                icon: Icons.book,
-                subtitle: 'My Vocabulary',
-                japaneseText: '言葉帳',
-                color: context.theme.colorScheme.secondary,
-                onTap: () {
-                  ref.read(soundControllerProvider.notifier).playClick();
-                  context.push(AppConstants.routeKotobaLog);
-                },
-              ).animate().fadeIn(delay: 400.ms, duration: 400.ms),
-            ),
-            const SizedBox(width: 16),
-            Expanded(
-              child: FeatureButton(
-                title: 'Culture Notes',
-                icon: Icons.lightbulb,
-                subtitle: 'Japanese Culture',
-                japaneseText: '文化ノート',
-                color: context.theme.colorScheme.tertiary,
-                onTap: () {
-                  ref.read(soundControllerProvider.notifier).playClick();
-                  context.push(AppConstants.routeCultureNotes);
-                },
-              ).animate().fadeIn(delay: 500.ms, duration: 400.ms),
-            ),
-          ],
-        ),
-        const SizedBox(height: 16),
-        Row(
-          children: [
-            Expanded(
-              child: FeatureButton(
-                title: 'Save Games',
-                icon: Icons.save,
-                subtitle: 'Manage Saves',
-                japaneseText: 'セーブ',
-                color: context.theme.colorScheme.primaryContainer,
-                onTap: () => _showSavesDialog(),
-              ).animate().fadeIn(delay: 600.ms, duration: 400.ms),
-            ),
-            const SizedBox(width: 16),
-            Expanded(
-              child: FeatureButton(
-                title: 'Rate App',
-                icon: Icons.star,
-                subtitle: 'Support Us!',
-                japaneseText: '評価',
-                color: Colors.amber,
-                onTap: () => _showRateAppDialog(),
-              ).animate().fadeIn(delay: 700.ms, duration: 400.ms),
-            ),
-          ],
-        ),
-        const SizedBox(height: 16),
+        FeatureButton(
+          title: 'Kotoba Log',
+          icon: Icons.book,
+          subtitle: 'My Vocabulary',
+          japaneseText: '言葉帳',
+          color: context.theme.colorScheme.secondary,
+          onTap: () {
+            ref.read(soundControllerProvider.notifier).playClick();
+            context.push(AppConstants.routeKotobaLog);
+          },
+        ).animate().fadeIn(delay: 800.ms, duration: 400.ms),
+        const SizedBox(height: 12),
+        FeatureButton(
+          title: 'Culture Notes',
+          icon: Icons.lightbulb,
+          subtitle: 'Japanese Culture',
+          japaneseText: '文化ノート',
+          color: context.theme.colorScheme.tertiary,
+          onTap: () {
+            ref.read(soundControllerProvider.notifier).playClick();
+            context.push(AppConstants.routeCultureNotes);
+          },
+        ).animate().fadeIn(delay: 900.ms, duration: 400.ms),
+        const SizedBox(height: 12),
         FeatureButton(
           title: 'Report Translation Error',
           icon: Icons.feedback,
@@ -331,7 +394,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           japaneseText: '翻訳ミス報告',
           color: Colors.teal,
           onTap: () => _showReportErrorDialog(),
-        ).animate().fadeIn(delay: 800.ms, duration: 400.ms),
+        ).animate().fadeIn(delay: 1000.ms, duration: 400.ms),
       ],
     );
   }
@@ -362,22 +425,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     ErrorReportDialog.show(context);
   }
 
-  Widget _buildNewGameButton() {
-    return FloatingActionButton.extended(
-      onPressed: () => _startNewGame(),
-      backgroundColor: context.theme.colorScheme.primary,
-      elevation: 4,
-      icon: const Icon(Icons.play_arrow),
-      label: const Text('New Game'),
-    ).animate().fadeIn(delay: 800.ms, duration: 500.ms).slideX(
-          begin: 1,
-          end: 0,
-          delay: 800.ms,
-          duration: 500.ms,
-          curve: Curves.easeOutQuad,
-        );
-  }
-
   Widget _buildSettingsPanel() {
     return SafeArea(
       child: SettingsPanel(
@@ -398,17 +445,13 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       _showingSavesDialog = true;
     });
 
-    OverlayState overlayState = Overlay.of(context);
-    OverlayEntry? overlayEntry;
-
-    overlayEntry = OverlayEntry(
+    showDialog(
+      context: context,
       builder: (context) => Material(
         color: Colors.transparent,
         child: SaveGamesDialog(
           onDismiss: () {
-            // Remove the overlay when dismissed
-            overlayEntry?.remove();
-
+            Navigator.of(context).pop(); // Close the dialog
             setState(() {
               _showingSavesDialog = false;
             });
@@ -416,8 +459,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         ),
       ),
     );
-
-    overlayState.insert(overlayEntry);
   }
 
   void _showAboutDialog() {
@@ -442,5 +483,53 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     ref.read(activeSaveIdProvider.notifier).state = saveGame.id;
 
     context.push('${AppConstants.routeGame}?chapter=${saveGame.currentChapter}&saveId=${saveGame.id}');
+  }
+}
+
+class _MenuButton extends StatelessWidget {
+  const _MenuButton({
+    super.key,
+    required this.title,
+    required this.icon,
+    required this.onPressed,
+  });
+
+  final String title;
+  final IconData icon;
+  final VoidCallback? onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 280,
+      height: 70,
+      child: OutlinedButton.icon(
+        onPressed: onPressed,
+        style: OutlinedButton.styleFrom(
+          backgroundColor: context.theme.colorScheme.primary,
+          foregroundColor: context.theme.colorScheme.onPrimary,
+          padding: const EdgeInsets.symmetric(vertical: 16.0),
+          elevation: 4,
+          side: BorderSide(
+            color: context.theme.colorScheme.inversePrimary,
+            width: 2,
+          ),
+          iconColor: context.theme.colorScheme.onSurface,
+        ),
+        icon: Icon(icon, size: 24),
+        label: Text(
+          title,
+          style: context.textTheme.titleMedium?.copyWith(
+            fontWeight: FontWeight.w800,
+          ),
+        ),
+      ),
+    ).animate().fadeIn(delay: 200.ms, duration: 400.ms).slideY(
+          begin: 0.3,
+          end: 0,
+          delay: 200.ms,
+          duration: 400.ms,
+          curve: Curves.easeOutQuad,
+        );
   }
 }

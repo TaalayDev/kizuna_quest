@@ -35,11 +35,7 @@ class SettingsPanel extends ConsumerWidget {
               ref.read(soundControllerProvider.notifier).playClick();
               onClose?.call();
             },
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.black.withOpacity(0.5),
-              ),
-            ),
+            child: Container(),
           ),
           Positioned(
             top: 0,

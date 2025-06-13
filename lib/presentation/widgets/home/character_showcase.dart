@@ -8,9 +8,13 @@ import 'package:tsuzuki_connect/core/utils/extensions.dart';
 
 import 'character_display_dialog.dart';
 
-/// Horizontal scrolling showcase of game characters
 class CharacterShowcase extends ConsumerStatefulWidget {
-  const CharacterShowcase({super.key});
+  const CharacterShowcase({
+    super.key,
+    this.showTitle = true,
+  });
+
+  final bool showTitle;
 
   @override
   ConsumerState<CharacterShowcase> createState() => _CharacterShowcaseState();
@@ -35,13 +39,15 @@ class _CharacterShowcaseState extends ConsumerState<CharacterShowcase> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          'Characters',
-          style: context.textTheme.headlineSmall?.copyWith(
-            fontWeight: FontWeight.bold,
-          ),
-        ).animate().fadeIn(delay: 200.ms, duration: 400.ms),
-        const SizedBox(height: 16),
+        if (widget.showTitle) ...[
+          Text(
+            'Characters',
+            style: context.textTheme.headlineSmall?.copyWith(
+              fontWeight: FontWeight.bold,
+            ),
+          ).animate().fadeIn(delay: 200.ms, duration: 400.ms),
+          const SizedBox(height: 16),
+        ],
         SizedBox(
           height: 220,
           child: charactersData.when(
