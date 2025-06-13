@@ -5,6 +5,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tsuzuki_connect/core/services/settings_service.dart';
+import 'package:tsuzuki_connect/core/utils/extensions.dart';
 import 'package:tsuzuki_connect/presentation/widgets/common/animated_background.dart';
 import 'package:tsuzuki_connect/core/utils/constants.dart';
 
@@ -100,9 +101,11 @@ class _SplashScreenState extends ConsumerState<SplashScreen> with SingleTickerPr
                 _buildGameTitle(),
 
                 // Loading indicator
-                // const Spacer(),
-                // _buildLoadingIndicator(),
-                // const SizedBox(height: 32),
+                if (context.screenHeight > 500) ...[
+                  const Spacer(),
+                  _buildLoadingIndicator(),
+                  const SizedBox(height: 32),
+                ],
               ],
             ),
           ),

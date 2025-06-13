@@ -97,7 +97,7 @@ class CharacterSprite extends StatelessWidget {
   }
 
   Widget _buildSprite(Size size, String spritePath) {
-    final height = size.height > 500 ? size.height * 0.8 : size.height;
+    final height = size.height > 500 ? size.height * 0.95 : size.height;
     final width = size.width;
 
     return Container(
