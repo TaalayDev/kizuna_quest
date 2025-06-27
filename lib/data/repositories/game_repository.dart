@@ -124,7 +124,9 @@ class GameRepository {
 
   /// Get all characters
   Future<List<CharacterModel>> getAllCharacters() async {
+    print('Fetching all characters from database...');
     final characters = await _characterDao.getAllCharacters();
+    print('Fetched ${characters.length} characters from database');
     return characters.map((c) => CharacterModel.fromEntity(c)).toList();
   }
 

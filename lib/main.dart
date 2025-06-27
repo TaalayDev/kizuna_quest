@@ -16,28 +16,18 @@ import 'package:window_manager/window_manager.dart';
 import 'providers/database_provider.dart';
 //import 'package:tsuzuki_connect/utils/firebase_options.dart';
 
-final ProviderContainer _container = ProviderContainer(
-  observers: [if (kDebugMode) _ProviderObserver()],
-);
+final ProviderContainer _container = ProviderContainer(observers: [if (kDebugMode) _ProviderObserver()]);
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await SystemChrome.setPreferredOrientations([
-    DeviceOrientation.landscapeLeft,
-    DeviceOrientation.landscapeRight,
-  ]);
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight]);
 
-  SystemChrome.setEnabledSystemUIMode(
-    SystemUiMode.edgeToEdge,
-    overlays: [SystemUiOverlay.top],
-  );
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge, overlays: [SystemUiOverlay.top]);
 
   await initWindowManager();
 
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   if (!kIsWeb) {
     try {
       // FlutterError.onError = (errorDetails) {
@@ -51,22 +41,13 @@ void main() async {
 
       await FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(!kDebugMode);
     } catch (e, stack) {
-      AppLogger.error(
-        'Failed to initialize Firebase',
-        error: e,
-        stackTrace: stack,
-      );
+      AppLogger.error('Failed to initialize Firebase', error: e, stackTrace: stack);
     }
   }
 
   await SettingsService.initialize();
 
-  runApp(
-    UncontrolledProviderScope(
-      container: _container,
-      child: const TsuzukiConnectApp(),
-    ),
-  );
+  runApp(UncontrolledProviderScope(container: _container, child: const TsuzukiConnectApp()));
 
   _initializeActiveSaveId();
 }
@@ -109,7 +90,7 @@ class _ProviderObserver extends ProviderObserver {
 }
 
 Future<void> initWindowManager() async {
-  if (!Platform.isWindows && !Platform.isLinux && !Platform.isMacOS) {
+  if (kIsWeb || !Platform.isWindows && !Platform.isLinux && !Platform.isMacOS) {
     return;
   }
 
@@ -119,6 +100,7 @@ Future<void> initWindowManager() async {
     // minimumSize: size,
     size: size,
     center: true,
+    fullScreen: true,
     backgroundColor: Color.fromARGB(255, 255, 255, 255),
     skipTaskbar: false,
     titleBarStyle: TitleBarStyle.hidden,
